@@ -1,0 +1,33 @@
+/* navigation */
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 14px;
+}
+
+.navbar a {
+    min-height: 42px;
+    padding: 7px 28px;
+
+    border: 1px solid #CBD2DE;
+    border-radius: 999px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+
+    color: #273247;
+    background: var(--nav-color);
+
+    font-family: "Computer Modern Sans", sans-serif;
+    font-size: 1.03rem;
+    font-weight: 600;
+}
+
+.home-btn { --nav-color: #DCEBFA; }
+.date-btn { --nav-color: #F5E3CF; }
+.github-btn { --nav-color: #DDEBDC; }
+.navbar a:hover { text-decoration: underline; }

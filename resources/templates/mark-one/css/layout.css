@@ -1,0 +1,22 @@
+/* layout */
+
+.main-layout {
+    display: grid;
+
+    /*
+        column 1 = sidebar
+        column 2 = flexible article
+        column 3 = table of contents
+    */
+    grid-template-columns: 300px minmax(500px, 1fr) 340px;
+
+    /* horizontal separation */
+    column-gap: 20px;
+
+    /* overall width and positioning */
+    width: calc(100% - 20px);
+    margin: 30px 10px 0;
+
+    /* align columns to the top */
+    align-items: start;
+}

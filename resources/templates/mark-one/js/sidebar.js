@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",()=>{document.querySelectorAll("sidebar").forEach(s=>{const a=document.createElement("aside");a.className="sidebar";[...s.children].forEach(x=>a.appendChild(x.cloneNode(true)));s.replaceWith(a)})});

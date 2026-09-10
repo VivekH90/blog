@@ -1,0 +1,22 @@
+/* global */
+
+* {
+    box-sizing: border-box;
+}
+
+/* smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* default page styling */
+body {
+    margin: 0;
+
+    background: #FBF8F2;
+    color: #273247;
+
+    font-family:
+        "Computer Modern Serif",
+        serif;
+}
