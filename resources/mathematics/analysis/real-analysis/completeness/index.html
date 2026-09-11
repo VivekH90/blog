@@ -2,251 +2,266 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The three equivalent forms of completeness</title>
 
-    <link
-        rel="stylesheet"
-        href="../../../../templates/mark-one/css/main.css">
+    <link rel="stylesheet" href="../../../../templates/mark-one/css/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vsalvino/computer-modern@main/fonts/sans.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vsalvino/computer-modern@main/fonts/serif.css">
 
-
-    <!-- computer modern fonts -->
-
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/vsalvino/computer-modern@main/fonts/sans.css">
-
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/vsalvino/computer-modern@main/fonts/serif.css">
-
-    <!-- page palette -->
+    <!-- page-specific palette -->
     <style>
         :root {
-            --warm-paper: #F6F1E7;
-            --soft-ivory: #FDF8F1;
-            --ink-navy: #18324A;
-            --dusty-blue: #62788E;
-            --warm-gray-blue: #D8D5CC;
-            --dusty-lavender: #8175B5;
-            --muted-sky: #7199B8;
-            --sage-mint: #83B79F;
-            --dusty-coral: #D9948E;
-            --parchment-gold: #D6B36A;
+            --page-background: #F4EBDD;
+            --surface: #FBF7EF;
+            --ink: #172B3A;
+            --slate: #536574;
+            --border: #D5C9B8;
+            --blue: #6689AA;
+            --teal: #4F8178;
+            --mustard: #C7A253;
+            --lavender: #8C7FB0;
+            --terracotta: #C97870;
+            --sidebar-background: #E9DDC9;
+            --toc-selected: #E3DDEB;
+            --blue-tint: #EEF4F8;
+            --teal-tint: #EDF5F2;
+            --mustard-tint: #F8F2E5;
+            --lavender-tint: #F2EFF7;
+            --terracotta-tint: #F8EDEB;
+        }
+
+        html, body {
+            background: var(--page-background) !important;
         }
 
         body {
-            background: var(--warm-paper);
-            color: var(--ink-navy);
+            color: var(--ink) !important;
         }
 
-        .main-title,
-        .note-content {
-            color: var(--ink-navy);
+        .note-content,
+        .note-content p,
+        .note-content li {
+            color: var(--ink) !important;
         }
 
+        .main-title {
+            color: var(--ink) !important;
+        }
+
+        .breadcrumbs,
+        .breadcrumbs span,
         .breadcrumbs a {
-            color: var(--muted-sky);
+            color: var(--slate) !important;
         }
 
-        .breadcrumbs span {
-            color: var(--dusty-blue);
+        .breadcrumbs a:hover {
+            color: var(--blue) !important;
+        }
+
+        .section-title,
+        .section-number,
+        .subsection-title,
+        .subsection-number {
+            color: var(--terracotta) !important;
+        }
+
+        /* Navigation: pale accent surfaces with dark-ink text */
+        .home-btn {
+            --nav-color: #E4EDF4 !important;
+            color: var(--ink) !important;
+            border-color: var(--border) !important;
+        }
+
+        .date-btn {
+            --nav-color: #F1E8CF !important;
+            color: var(--ink) !important;
+            border-color: var(--border) !important;
+        }
+
+        .github-btn {
+            --nav-color: #E3EEE9 !important;
+            color: var(--ink) !important;
+            border-color: var(--border) !important;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: var(--sidebar-background) !important;
+            border-color: var(--border) !important;
+            color: var(--ink) !important;
+        }
+
+        .sidebar-items a {
+            color: var(--slate) !important;
+        }
+
+        .sidebar-items a:hover {
+            color: var(--teal) !important;
+        }
+
+        .sidebar-search input,
+        .sidebar-search button {
+            background: var(--surface) !important;
+            color: var(--ink) !important;
+            border-color: var(--border) !important;
+        }
+
+        .sidebar-search input:focus {
+            border-color: var(--blue) !important;
+            outline: none;
+        }
+
+        /* Table of contents */
+        .table-of-contents {
+            background: var(--surface) !important;
+            border-color: var(--border) !important;
+            color: var(--ink) !important;
+        }
+
+        .toc-sections a {
+            color: var(--ink) !important;
+        }
+
+        .toc-sections a:hover {
+            color: var(--lavender) !important;
+        }
+
+        .toc-sections .active,
+        .toc-sections .active-item,
+        .toc-sections li.active,
+        .toc-sections li.active-item,
+        .toc-sections a.active,
+        .table-of-contents .active,
+        .table-of-contents .active-item {
+            background: var(--toc-selected) !important;
+            color: var(--lavender) !important;
+        }
+
+        /* Pale definition / theorem / lemma / example / proof cards */
+        .definition-box, definition {
+            --env-color: var(--teal) !important;
+            --env-dark-color: #315E59 !important;
+            --env-light-color: var(--teal-tint) !important;
+            --env-border-color: #BDD5D0 !important;
+        }
+
+        .theorem-box, theorem {
+            --env-color: var(--blue) !important;
+            --env-dark-color: #405F7A !important;
+            --env-light-color: var(--blue-tint) !important;
+            --env-border-color: #C7D7E3 !important;
+        }
+
+        .lemma-box, lemma,
+        .proposition-box, proposition {
+            --env-color: var(--lavender) !important;
+            --env-dark-color: #60547E !important;
+            --env-light-color: var(--lavender-tint) !important;
+            --env-border-color: #D3CCE2 !important;
+        }
+
+        .example-box, example,
+        .corollary-box, corollary,
+        .axiom-box, axiom {
+            --env-color: var(--mustard) !important;
+            --env-dark-color: #78602A !important;
+            --env-light-color: var(--mustard-tint) !important;
+            --env-border-color: #DECEAA !important;
+        }
+
+        .proof-box, proof {
+            --env-color: var(--terracotta) !important;
+            --env-dark-color: #7D403B !important;
+            --env-light-color: var(--terracotta-tint) !important;
+            --env-border-color: #DFC0BB !important;
+        }
+
+        .math-environment,
+        .environment-name {
+            color: var(--ink) !important;
+        }
+
+        hr,
+        .sidebar-divider,
+        .table-of-contents hr {
+            border-color: var(--border) !important;
+        }
+
+        mjx-container {
+            color: var(--ink) !important;
         }
 
         .number-line-figure {
             margin-left: 0;
             margin-right: 0;
         }
-
-        /* Keep the accent colors soft when used as large surfaces. */
-        .sidebar {
-            background: color-mix(in srgb, #D6B36A 32%, #FDF8F1);
-            border-color: color-mix(in srgb, #D6B36A 48%, #D8D5CC);
-        }
-
-        .table-of-contents {
-            background: var(--soft-ivory);
-            border-color: var(--warm-gray-blue);
-        }
     </style>
 
-
     <!-- mathjax -->
-
     <script>
-
         window.MathJax = {
             tex: {
-                inlineMath: [
-                    ["\\(", "\\)"]
-                ],
-                displayMath: [
-                    ["\\[", "\\]"]
-                ]
+                inlineMath: [["\\(", "\\)"]],
+                displayMath: [["\\[", "\\]"]]
             }
         };
-
     </script>
-
-    <script
-        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
-        defer>
-    </script>
-
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
 
     <!-- javascript -->
-
     <script src="../../../../templates/mark-one/js/banner.js" defer></script>
     <script src="../../../../templates/mark-one/js/navigation.js" defer></script>
     <script src="../../../../templates/mark-one/js/sidebar.js" defer></script>
     <script src="../../../../templates/mark-one/js/section.js" defer></script>
     <script src="../../../../templates/mark-one/js/toc.js" defer></script>
     <script src="../../../../templates/mark-one/js/environments.js" defer></script>
-
 </head>
 
-
 <body>
-
-
     <header class="header-box">
-
-
-        <!-- banner -->
-
-        <banner
-            title="Real Analysis"
-            color="#18324A">
-        </banner>
-
-
-
-        <!-- navigation -->
+        <banner title="Real Analysis" color="#172B3A"></banner>
 
         <nav class="navbar">
-
-            <home
-                color="#7199B8"
-                href="#">
-                Home
-            </home>
-
-            <date
-                color="#D6B36A">
-                7 Sep, 2026
-            </date>
-
-            <github
-                color="#83B79F"
-                href="https://github.com/VivekH90/blog">
-                Github
-            </github>
-
+            <home color="#6689AA" href="#">Home</home>
+            <date color="#C7A253">7 Sep, 2026</date>
+            <github color="#4F8178" href="https://github.com/VivekH90/blog">Github</github>
         </nav>
-
-
     </header>
 
-
-
-    <!-- main layout -->
-
     <div class="main-layout">
-
-
-        <!-- sidebar -->
-
-        <sidebar
-            color="#D6B36A"
-            title="Important Readings"
-            search="true">
-
+        <sidebar color="#E9DDC9" title="Important Readings" search="true">
             <item
                 title="Understanding Analysis — Stephen Abbott"
                 href="https://books.google.co.in/books/about/Understanding_Analysis.html?id=JXvBBAAAQBAJ&redir_esc=y">
             </item>
-
         </sidebar>
 
-
-
-        <!-- document -->
-
-        <main
-            id="document"
-            class="note-content">
-
-
-            <!-- breadcrumbs -->
-
+        <main id="document" class="note-content">
             <div class="breadcrumbs">
-
-                <a href="#">
-                    Home
-                </a>
-
+                <a href="#">Home</a>
                 <span>›</span>
-
-                <a href="#">
-                    Real Analysis
-                </a>
-
+                <a href="#">Real Analysis</a>
                 <span>›</span>
-
-                <span>
-                    The three equivalent forms of completeness
-                </span>
-
+                <span>The three equivalent forms of completeness</span>
             </div>
 
-
-
-            <!-- title -->
-
-            <h1 class="main-title">
-                The three equivalent forms of completeness
-            </h1>
-
-
-
-            <!-- introduction -->
+            <h1 class="main-title">The three equivalent forms of completeness</h1>
 
             <p class="intro-paragraph">
                 The Axiom of Completeness, the Nested Interval Property, and the Heine–Borel Theorem all point to the same fundamental idea: the set of real numbers is complete. In other words, there are no <strong>gaps</strong> in the real number line. These three statements are equivalent in the sense that, if we take any one of them as an axiom, we can prove the other two from it. This is the idea we will explore here.
             </p>
 
-
-
-            <!-- section -->
-
-            <section
-                title="Some basic definitions"
-                color="#D9948E"
-                class="section-fundamentals">
-
-
-                <!-- section content -->
-
-
-                <definition
-                    title="Bounded above/below"
-                    color="#83B79F">
-
+            <section title="Some basic definitions" color="#C97870" class="section-fundamentals">
+                <definition title="Bounded above/below" color="#4F8178">
                     <r-item>
-
                         <p>
                             A set \(A \subseteq \mathbb{R}\) is
                             <strong><em>bounded above</em></strong>
                             if there exists a number \(b \in \mathbb{R}\)
                             such that
                         </p>
-
                         <div class="definition-equation">
                             \[
                                 a \leq b
@@ -254,24 +269,19 @@
                                 \text{for all } a \in A.
                             \]
                         </div>
-
                         <p>
                             The number \(b\) is called an
                             <strong><em>upper bound</em></strong> for \(A\).
                         </p>
-
                     </r-item>
 
-
                     <r-item>
-
                         <p>
                             A set \(A \subseteq \mathbb{R}\) is
                             <strong><em>bounded below</em></strong>
                             if there exists a number \(l \in \mathbb{R}\)
                             such that
                         </p>
-
                         <div class="definition-equation">
                             \[
                                 l \leq a
@@ -279,95 +289,41 @@
                                 \text{for every } a \in A.
                             \]
                         </div>
-
                         <p>
                             The number \(l\) is called a
                             <strong><em>lower bound</em></strong> for \(A\).
                         </p>
-
                     </r-item>
-
                 </definition>
 
-
-                <!-- upper-bound number line -->
-
                 <figure class="number-line-figure">
-
-                    <canvas
-                        id="upper-bound-number-line"
-                        width="900"
-                        height="250"
-                        style="display: block; width: 100%; height: 250px;">
-                    </canvas>
-
+                    <canvas id="upper-bound-number-line" width="900" height="250" style="display: block; width: 100%; height: 250px;"></canvas>
                 </figure>
-
                 <script src="input/number-line.js"></script>
 
-
-                <!-- least upper bound and greatest lower bound -->
-
-                <definition 
-                    title="Least Upper Bound and Greatest Lower Bound"
-                    color="#2F9672">
-                    <p>Let \(A \subseteq \mathbb{R}\). The <strong><em>least upper bound</em></strong>, or <strong><em>supremum</em></strong>, of \(A\) is a real number \(s \in \mathbb{R}\), denoted by \(\text{sup}\,A\) satisfying two conditions:</p>
-                         
+                <definition title="Least Upper Bound and Greatest Lower Bound" color="#4F8178">
+                    <p>
+                        Let \(A \subseteq \mathbb{R}\). The <strong><em>least upper bound</em></strong>, or <strong><em>supremum</em></strong>, of \(A\) is a real number \(s \in \mathbb{R}\), denoted by \(\text{sup}\,A\) satisfying two conditions:
+                    </p>
                     <r-item>
-
-                        <p>
-                          \(s\) is an upper bound for \(A\) 
-                        </p>
-
+                        <p>\(s\) is an upper bound for \(A\)</p>
                     </r-item>
-
-
                     <r-item>
-
-                        <p>
-                            If \(b\) is any upper bound for \(A\), then
-                                \(s \leq b\).
-                        </p>
-
+                        <p>If \(b\) is any upper bound for \(A\), then \(s \leq b\).</p>
                     </r-item>
-                    <p>The <strong><em>greatest lower bound</em></strong> is defined likewise in the similar way and denoted by \(\text{inf}\, A.\)</p>
-                        
+                    <p>
+                        The <strong><em>greatest lower bound</em></strong> is defined likewise in the similar way and denoted by \(\text{inf}\, A.\)
+                    </p>
                 </definition>
 
-
-                <!-- infimum and supremum number line -->
-
                 <figure class="number-line-figure">
-
-                    <canvas
-                        id="infimum-supremum-number-line"
-                        width="900"
-                        height="360"
-                        style="display: block; width: 100%; height: 360px;">
-                    </canvas>
-
+                    <canvas id="infimum-supremum-number-line" width="900" height="360" style="display: block; width: 100%; height: 360px;"></canvas>
                 </figure>
-
                 <script src="input/infimum-supremum-number-line.js"></script>
-
-
             </section>
-
-
         </main>
 
-
-
-        <!-- table of contents -->
-
-        <table-of-contents
-            color="#8175B5">
-        </table-of-contents>
-
-
+        <table-of-contents color="#8C7FB0"></table-of-contents>
     </div>
-
-
 </body>
-
 </html>
