@@ -27,7 +27,18 @@
     font-weight: 600;
 }
 
-.home-btn { --nav-color: #DCEBFA; }
-.date-btn { --nav-color: #F5E3CF; }
-.github-btn { --nav-color: #DDEBDC; }
-.navbar a:hover { text-decoration: underline; }
+.home-btn {
+    --nav-color: #DCEBFA;
+}
+
+.date-btn {
+    --nav-color: #F5E3CF;
+}
+
+.github-btn {
+    --nav-color: #DDEBDC;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
