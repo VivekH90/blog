@@ -7,61 +7,33 @@
 
 /* banner variables */
 banner {
-    --banner-color: #765A75;
+    --banner-color: #FFFFFF;
 }
 
 /* banner */
 .banner {
     width: 100%;
     min-height: 190px;
-
     box-sizing: border-box;
-
     padding: 35px 40px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     background-image: url("../banner.png");
     background-size: cover;
     background-position: center;
-
     border-radius: 18px;
-
     overflow: hidden;
-
     position: relative;
-}
-
-/* banner overlay */
-.banner::before {
-    content: "";
-
-    position: absolute;
-    inset: 0;
-
-    background:
-        color-mix(
-            in srgb,
-            var(--banner-color) 18%,
-            transparent
-        );
 }
 
 /* banner title */
 .banner h1 {
     position: relative;
-
     margin: 0;
-
-    font-family:
-        "Computer Modern Sans",
-        sans-serif;
-
+    font-family: "Computer Modern Sans", sans-serif;
     font-size: clamp(3rem, 5vw, 4.35rem);
     line-height: 1.2;
     font-weight: 700;
-
-    color: #FFFFFF;
+    color: var(--banner-color);
 }
