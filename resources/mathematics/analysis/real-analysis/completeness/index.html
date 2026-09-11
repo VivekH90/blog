@@ -26,6 +26,56 @@
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/vsalvino/computer-modern@main/fonts/serif.css">
 
+    <!-- page palette -->
+    <style>
+        :root {
+            --warm-paper: #F6F1E7;
+            --soft-ivory: #FDF8F1;
+            --ink-navy: #18324A;
+            --dusty-blue: #62788E;
+            --warm-gray-blue: #D8D5CC;
+            --dusty-lavender: #8175B5;
+            --muted-sky: #7199B8;
+            --sage-mint: #83B79F;
+            --dusty-coral: #D9948E;
+            --parchment-gold: #D6B36A;
+        }
+
+        body {
+            background: var(--warm-paper);
+            color: var(--ink-navy);
+        }
+
+        .main-title,
+        .note-content {
+            color: var(--ink-navy);
+        }
+
+        .breadcrumbs a {
+            color: var(--muted-sky);
+        }
+
+        .breadcrumbs span {
+            color: var(--dusty-blue);
+        }
+
+        .number-line-figure {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        /* Keep the accent colors soft when used as large surfaces. */
+        .sidebar {
+            background: color-mix(in srgb, #D6B36A 32%, #FDF8F1);
+            border-color: color-mix(in srgb, #D6B36A 48%, #D8D5CC);
+        }
+
+        .table-of-contents {
+            background: var(--soft-ivory);
+            border-color: var(--warm-gray-blue);
+        }
+    </style>
+
 
     <!-- mathjax -->
 
@@ -72,7 +122,7 @@
 
         <banner
             title="Real Analysis"
-            color="#000000">
+            color="#18324A">
         </banner>
 
 
@@ -82,18 +132,18 @@
         <nav class="navbar">
 
             <home
-                color=""
+                color="#7199B8"
                 href="#">
                 Home
             </home>
 
             <date
-                color="">
+                color="#D6B36A">
                 7 Sep, 2026
             </date>
 
             <github
-                color=""
+                color="#83B79F"
                 href="https://github.com/VivekH90/blog">
                 Github
             </github>
@@ -113,7 +163,7 @@
         <!-- sidebar -->
 
         <sidebar
-            color="#F6D1A0"
+            color="#D6B36A"
             title="Important Readings"
             search="true">
 
@@ -177,7 +227,7 @@
 
             <section
                 title="Some basic definitions"
-                color=""
+                color="#D9948E"
                 class="section-fundamentals">
 
 
@@ -186,7 +236,7 @@
 
                 <definition
                     title="Bounded above/below"
-                    color="#2F9672">
+                    color="#83B79F">
 
                     <r-item>
 
@@ -311,7 +361,7 @@
         <!-- table of contents -->
 
         <table-of-contents
-            color="">
+            color="#8175B5">
         </table-of-contents>
 
 
