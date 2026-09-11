@@ -12,7 +12,12 @@ function draw(){
  ctx.strokeStyle=ctx.fillStyle="#273247";ctx.beginPath();ctx.moveTo(L,y);ctx.lineTo(R,y);ctx.stroke();
  ctx.beginPath();ctx.moveTo(L,y);ctx.lineTo(L+10,y-6);ctx.lineTo(L+10,y+6);ctx.closePath();ctx.fill();ctx.beginPath();ctx.moveTo(R,y);ctx.lineTo(R-10,y-6);ctx.lineTo(R-10,y+6);ctx.closePath();ctx.fill();
  for(let n=-2;n<=3;n++){const px=x(n);ctx.beginPath();ctx.moveTo(px,y-8);ctx.lineTo(px,y+8);ctx.stroke();}
+ for(let n=-2;n<=3;n++)label("\\("+n+"\\)",x(n),y+19);
+ 
+ // Mark both endpoints of the open interval A = (-sqrt(2), sqrt(2)).
+ ctx.fillStyle="#4575B4";ctx.beginPath();ctx.arc(ix,y,7,0,2*Math.PI);ctx.fill();
  ctx.fillStyle="#C44E52";ctx.beginPath();ctx.arc(sx,y,7,0,2*Math.PI);ctx.fill();
+ 
  const hs=8,st=y-10;ctx.strokeStyle=ctx.fillStyle="#C44E52";ctx.beginPath();ctx.moveTo(sx,85);ctx.lineTo(sx,st);ctx.stroke();ctx.beginPath();ctx.moveTo(sx,st);ctx.lineTo(sx-hs,st-hs);ctx.lineTo(sx+hs,st-hs);ctx.closePath();ctx.fill();
  const it=y+10;ctx.strokeStyle=ctx.fillStyle="#4575B4";ctx.beginPath();ctx.moveTo(ix,245);ctx.lineTo(ix,it);ctx.stroke();ctx.beginPath();ctx.moveTo(ix,it);ctx.lineTo(ix-hs,it+hs);ctx.lineTo(ix+hs,it+hs);ctx.closePath();ctx.fill();
  overlay.innerHTML="";
