@@ -208,26 +208,102 @@
             margin-right: 0;
         }
 
-        .compact-set-figure {
-            position: relative;
-            width: 100%;
-            max-width: 100%;
+        /* Compactness counterexample: a self-contained proof layout. */
+        .compact-proof-card {
+            margin: 1.8rem 0 2.2rem;
+            background: var(--surface);
+            border: 1.5px solid var(--ink);
+            border-radius: 6.7px;
             overflow: hidden;
+            color: var(--ink);
         }
 
-        .compact-set-figure canvas {
+        .compact-proof-title {
+            margin: 0;
+            padding: 1rem 1.35rem;
+            border-bottom: 1.5px solid var(--ink);
+            text-align: center;
+            font-family: "Computer Modern Sans", sans-serif;
+            font-size: 1.55rem;
+            font-weight: 600;
+        }
+
+        .compact-proof-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.18fr;
+        }
+
+        .compact-proof-pane,
+        .compact-proof-figure,
+        .compact-proof-wide,
+        .compact-proof-conclusion {
+            min-width: 0;
+            padding: 1.25rem 1.35rem;
+        }
+
+        .compact-proof-pane {
+            border-right: 1.5px solid var(--ink);
+        }
+
+        .compact-proof-figure {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .compact-proof-figure img {
             display: block;
             width: 100%;
             max-width: 100%;
             height: auto;
+            object-fit: contain;
         }
 
-        .compact-set-overlay {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
+        .compact-proof-wide {
+            border-top: 1.5px solid var(--ink);
+            border-bottom: 1.5px solid var(--ink);
+        }
+
+        .compact-proof-conclusion {
+            border-left: 1.5px solid var(--ink);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .compact-proof-conclusion p {
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 30rem;
+        }
+
+        .compact-proof-final {
+            display: inline-block;
+            align-self: center;
+            margin-top: 0.65rem;
+            padding: 0.45rem 0.9rem;
+            border: 1.5px solid var(--ink);
+            border-radius: 999px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 720px) {
+            .compact-proof-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .compact-proof-pane,
+            .compact-proof-conclusion {
+                border-right: 0;
+                border-left: 0;
+            }
+
+            .compact-proof-pane,
+            .compact-proof-figure {
+                border-bottom: 1.5px solid var(--ink);
+            }
         }
     </style>
 
@@ -406,11 +482,94 @@
 
                     </definition>
 
-                    <figure class="number-line-figure compact-set-figure">
-                        <canvas id="compact-set-not-compact" width="900" height="410"></canvas>
-                        <div class="compact-set-overlay"></div>
-                    </figure>
-                    <script src="input/compact-set-not-compact.js"></script>
+                    <div class="compact-proof-card">
+                        <h2 class="compact-proof-title">
+                            The set \((0,1)\) is not compact.
+                        </h2>
+
+                        <div class="compact-proof-grid">
+                            <div class="compact-proof-pane">
+                                <p>
+                                    Consider the collection of open intervals
+                                </p>
+                                <div class="definition-equation">
+                                    \[
+                                        U_n = \left(\frac{1}{n+1},1\right),
+                                        \qquad n=1,2,3,\ldots
+                                    \]
+                                </div>
+                                <p>
+                                    Every point of \((0,1)\) belongs to at least one
+                                    of these intervals, so
+                                </p>
+                                <div class="definition-equation">
+                                    \[
+                                        (0,1)=\bigcup_{n=1}^{\infty} U_n.
+                                    \]
+                                </div>
+                                <p>
+                                    Thus \(\{U_n\}_{n=1}^{\infty}\) is an open
+                                    cover of \((0,1)\).
+                                </p>
+                            </div>
+
+                            <figure class="compact-proof-figure">
+                                <img
+                                    src="input/not-compact-final.png"
+                                    alt="An open cover of the interval (0,1) with no finite subcover">
+                            </figure>
+                        </div>
+
+                        <div class="compact-proof-wide">
+                            <p>
+                                Now suppose that finitely many intervals from this
+                                cover were enough to cover \((0,1)\). Then, for some
+                                finite indices \(\alpha_1,\ldots,\alpha_m\),
+                            </p>
+                            <div class="definition-equation">
+                                \[
+                                    (0,1)
+                                    =U_{\alpha_1}\cup\cdots\cup U_{\alpha_m}.
+                                \]
+                            </div>
+                            <p>
+                                Let \(N=\max\{\alpha_1,\ldots,\alpha_m\}\).
+                                Since the intervals are nested,
+                            </p>
+                            <div class="definition-equation">
+                                \[
+                                    U_{\alpha_1}\cup\cdots\cup U_{\alpha_m}
+                                    =U_N
+                                    =\left(\frac{1}{N+1},1\right).
+                                \]
+                            </div>
+                            <p>
+                                But this misses every point sufficiently close to
+                                \(0\), for example \(\frac{1}{2(N+1)}\). Hence
+                                no finite collection of the \(U_n\)'s can cover
+                                \((0,1)\).
+                            </p>
+                        </div>
+
+                        <div class="compact-proof-grid">
+                            <figure class="compact-proof-figure">
+                                <img
+                                    src="input/nested-intervals.png"
+                                    alt="Nested open intervals approaching the endpoint 0">
+                            </figure>
+
+                            <div class="compact-proof-conclusion">
+                                <p>
+                                    Therefore this open cover has no finite subcover.
+                                    We have found an open cover of \((0,1)\) for which
+                                    every finite selection leaves some points uncovered.
+                                </p>
+                                <div class="compact-proof-final">
+                                    \((0,1)\text{ is not compact.}\)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
                 </subsection>
