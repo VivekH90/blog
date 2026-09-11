@@ -1,3 +1,4 @@
+(() => {
 const canvas = document.getElementById(
     "infimum-supremum-number-line"
 );
@@ -242,3 +243,4 @@ window.addEventListener(
     "resize",
     drawInfimumSupremumNumberLine
 );
+})();
