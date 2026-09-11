@@ -99,7 +99,7 @@ function drawNumberLine() {
         '18px "Computer Modern Sans", sans-serif';
 
     ctx.fillText(
-        "an upper bound for A: b = 4",
+        "An upper bound for A: b = 4",
         fourX,
         arrowTop
     );
