@@ -1,1 +1,350 @@
-.math-environment{--env-color:#2F9672;--env-dark-color:#154433;--env-light-color:#F1F8F5;--env-border-color:#B5D6C7;width:70%;box-sizing:border-box;padding:22px 24px 24px;margin-bottom:30px;background:var(--env-light-color);border:1px solid var(--env-border-color);border-radius:20px;font-family:"Computer Modern Serif",serif;color:#273247}.environment-header{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:20px}.environment-heading{display:flex;align-items:baseline;gap:10px}.environment-number{font-size:1.55rem;font-weight:700}.environment-name{font-size:1.28rem}.environment-tag{padding:7px 18px;border-radius:999px;background:color-mix(in srgb,var(--env-color) 35%,white);color:var(--env-dark-color);font-family:"Computer Modern Sans",sans-serif;font-weight:600}.environment-content{display:flex;flex-direction:column;gap:20px}.environment-item,.proof-step{display:grid;grid-template-columns:42px minmax(0,1fr);column-gap:14px}.environment-number-circle,.proof-step-number{width:38px;height:38px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:var(--env-dark-color);color:#FFF}.proof-box{width:100%;box-sizing:border-box;padding:22px 28px 28px;margin-bottom:30px;background:var(--proof-background);border-radius:18px;color:var(--proof-color);font-family:"Computer Modern Serif",serif}.proof-title{margin:0 0 22px;font-family:"Computer Modern Sans",sans-serif;font-size:1.55rem}.proof-step-number{background:var(--proof-color)}.proof-figure{margin:14px 0 0;padding:18px 20px 14px;background:rgba(255,255,255,.42);border-radius:10px}.proof-figure img{display:block;max-width:100%;height:auto}
+/* environment */
+.math-environment {
+    --env-color: #2F9672;
+    --env-dark-color: #154433;
+    --env-light-color: #F1F8F5;
+    --env-border-color: #B5D6C7;
+
+    width: 70%;
+    box-sizing: border-box;
+    padding: 22px 24px 24px;
+    margin-bottom: 30px;
+    background: var(--env-light-color);
+    border: 1px solid var(--env-border-color);
+    border-radius: 20px;
+    font-family:
+        "Computer Modern Serif",
+        serif;
+    color: #273247;
+}
+
+/* environment header */
+.environment-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* environment heading */
+.environment-heading {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    min-width: 0;
+}
+
+/* environment name */
+.environment-number {
+    font-family:
+        "Computer Modern Serif",
+        serif;
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: #273247;
+}
+
+/* environment title */
+.environment-name {
+    font-size: 1.28rem;
+    color: #304A55;
+}
+
+/* environment tag */
+.environment-tag {
+    flex: 0 0 auto;
+    padding: 7px 18px;
+    border-radius: 999px;
+    background:
+        color-mix(
+            in srgb,
+            var(--env-color) 35%,
+            white
+        );
+    color: var(--env-dark-color);
+    font-family:
+        "Computer Modern Sans",
+        sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+/* environment content */
+.environment-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* r-item */
+.environment-item {
+    display: grid;
+    grid-template-columns:
+        42px minmax(0, 1fr);
+    column-gap: 14px;
+    align-items: start;
+}
+
+/* item number */
+.environment-number-circle {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--env-dark-color);
+    color: #FFFFFF;
+    font-family:
+        "Computer Modern Sans",
+        sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+/* item text */
+.environment-item-text {
+    min-width: 0;
+    font-size: 1.05rem;
+    line-height: 1.5;
+}
+
+/* item paragraphs */
+.environment-item-text p {
+    margin: 0;
+}
+
+.environment-item-text p + p {
+    margin-top: 8px;
+}
+
+/* definition equation */
+.definition-equation {
+    text-align: center;
+}
+
+/* axiom statement */
+.axiom-statement {
+    padding: 10px 14px;
+    border-radius: 10px;
+    background:
+        var(--env-light-color);
+    border:
+        1px solid
+        var(--env-border-color);
+    text-align: center;
+    overflow-x: auto;
+}
+
+/* proof */
+.proof-box {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 22px 28px 28px;
+    margin-bottom: 30px;
+    background: var(--proof-background);
+    border-radius: 18px;
+    color: var(--proof-color);
+    font-family:
+        "Computer Modern Serif",
+        serif;
+}
+
+/* proof heading */
+.proof-title {
+    margin: 0 0 22px;
+    font-family:
+        "Computer Modern Sans",
+        sans-serif;
+    font-size: 1.55rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--proof-color);
+}
+
+/* proof content */
+.proof-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* proof paragraphs */
+.proof-content > p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* proof step */
+.proof-step {
+    display: grid;
+    grid-template-columns:
+        42px minmax(0, 1fr);
+    column-gap: 14px;
+    align-items: start;
+}
+
+/* step number */
+.proof-step-number {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--proof-color);
+    color: #FFFFFF;
+    font-family:
+        "Computer Modern Sans",
+        sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+/* step content */
+.proof-step-content {
+    min-width: 0;
+    color: var(--proof-color);
+}
+
+/* step title */
+.proof-step-title {
+    margin: 0 0 10px;
+    font-family:
+        "Computer Modern Serif",
+        serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--proof-color);
+}
+
+/* step paragraphs */
+.proof-step-content p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+.proof-step-content p + p {
+    margin-top: 10px;
+}
+
+/* proof figure */
+.proof-figure {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 14px 0 0;
+    padding: 18px 20px 14px;
+    background:
+        rgba(255, 255, 255, 0.42);
+    border:
+        1px solid
+        color-mix(
+            in srgb,
+            var(--proof-color) 18%,
+            transparent
+        );
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* figure visual */
+.proof-figure-visual {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: auto;
+}
+
+/* figure image */
+.proof-figure img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* figure svg */
+.proof-figure svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* figure caption */
+.proof-figure figcaption {
+    margin-top: 10px;
+    text-align: center;
+    font-family:
+        "Computer Modern Serif",
+        serif;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: var(--proof-color);
+}
+
+.proof-figure figcaption strong {
+    font-weight: 700;
+}
+
+/* proof math */
+.proof-box mjx-container {
+    color: inherit;
+}
+
+.proof-step-content mjx-container {
+    max-width: 100%;
+}
+
+/* small screens */
+@media (max-width: 900px) {
+    .math-environment {
+        width: 100%;
+    }
+
+    .proof-box {
+        padding: 20px 20px 24px;
+    }
+}
+
+@media (max-width: 600px) {
+    .environment-header {
+        align-items: flex-start;
+    }
+
+    .environment-tag {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+
+    .environment-number {
+        font-size: 1.35rem;
+    }
+
+    .environment-name {
+        font-size: 1.1rem;
+    }
+
+    .proof-step,
+    .environment-item {
+        grid-template-columns:
+            36px minmax(0, 1fr);
+        column-gap: 10px;
+    }
+
+    .proof-step-number,
+    .environment-number-circle {
+        width: 34px;
+        height: 34px;
+        font-size: 0.9rem;
+    }
+
+    .proof-box {
+        padding: 18px 16px 22px;
+    }
+
+    .proof-title {
+        font-size: 1.4rem;
+    }
+}
