@@ -8,8 +8,11 @@
 
     const C = {
         ink: "#172B3A",
-        blue: "#6689AA",
-        terracotta: "#C97870",
+        blue: "rgba(102,137,170,0.48)",
+        teal: "rgba(79,129,120,0.42)",
+        lavender: "rgba(140,127,176,0.42)",
+        terracotta: "rgba(201,120,112,0.40)",
+        point: "#C97870",
         box: "#F8F2E5",
         boxBorder: "#DECEAA",
         surface: "#FBF7EF"
@@ -71,27 +74,13 @@
         ctx.restore();
     }
 
-    function bracket(x1, x2, y, h) {
-        const r = Math.min(9, h / 2);
-        const t = y - h / 2;
-        const b = y + h / 2;
-        ctx.save();
-        ctx.strokeStyle = C.blue;
-        ctx.lineWidth = 3;
-        ctx.lineCap = "round";
-        ctx.lineJoin = "round";
-        ctx.beginPath();
-        ctx.moveTo(x1 + r, t);
-        ctx.lineTo(x2 - r, t);
-        ctx.quadraticCurveTo(x2, t, x2, t + r);
-        ctx.lineTo(x2, b - r);
-        ctx.quadraticCurveTo(x2, b, x2 - r, b);
-        ctx.lineTo(x1 + r, b);
-        ctx.quadraticCurveTo(x1, b, x1, b - r);
-        ctx.lineTo(x1, t + r);
-        ctx.quadraticCurveTo(x1, t, x1 + r, t);
-        ctx.stroke();
-        ctx.restore();
+    function bar(x1, x2, y, h, fill) {
+        const r=Math.min(6,h/2),t=y-h/2,b=y+h/2;
+        ctx.save(); ctx.fillStyle=fill; ctx.strokeStyle=fill.replace(/rgba\(([^,]+),([^,]+),([^,]+),[^)]+\)/,"rgba($1,$2,$3,0.95)");
+        ctx.lineWidth=1.6; ctx.beginPath(); ctx.moveTo(x1+r,t); ctx.lineTo(x2-r,t);
+        ctx.quadraticCurveTo(x2,t,x2,t+r); ctx.lineTo(x2,b-r); ctx.quadraticCurveTo(x2,b,x2-r,b);
+        ctx.lineTo(x1+r,b); ctx.quadraticCurveTo(x1,b,x1,b-r); ctx.lineTo(x1,t+r);
+        ctx.quadraticCurveTo(x1,t,x1+r,t); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.restore();
     }
 
     function roundRect(x, y, w, h, r) {
@@ -149,38 +138,30 @@
         addLabel("\\(0\\)", map(0), y + 14, {tx: "-50%", fontSize: "0.98rem"});
         addLabel("\\(1\\)", map(1), y + 14, {tx: "-50%", fontSize: "0.98rem"});
 
-        const bars = [
-            [0, 0.5, 0.31, "\\((0,0.5)\\)"],
-            [0.25, 0.75, 0.44, "\\((0.25,0.75)\\)"],
-            [0.5, 0.6, 0.57, "\\((0.5,0.6)\\)"]
+        // The intervals U_n=(1/(n+1),1/n) sit directly on the number line.
+        const intervals = [
+            [1/2,1,C.blue,"\\(U_1=\\left(\\tfrac{1}{2},1\\right)\\)"],
+            [1/3,1/2,C.teal,"\\(U_2=\\left(\\tfrac{1}{3},\\tfrac{1}{2}\\right)\\)"],
+            [1/4,1/3,C.lavender,"\\(U_3=\\left(\\tfrac{1}{4},\\tfrac{1}{3}\\right)\\)"],
+            [1/5,1/4,C.terracotta,"\\(U_4=\\left(\\tfrac{1}{5},\\tfrac{1}{4}\\right)\\)"]
         ];
-
-        bars.forEach(([a, b, py, label]) => {
-            const yy = height * py;
-            bracket(map(a), map(b), yy, Math.max(25, height * 0.07));
-            addLabel(label, (map(a) + map(b)) / 2, yy - 6, {
-                tx: "-50%", ty: "-100%", fontSize: width < 600 ? "0.78rem" : "0.95rem"
-            });
+        const overlap=Math.max(2,width*.004),barH=Math.max(15,height*.06);
+        intervals.forEach(([a,b,color,text])=>{
+            const x1=Math.max(map(0)+1,map(a)-overlap),x2=Math.min(map(1)-1,map(b)+overlap);
+            bar(x1,x2,y,barH,color);
+            addLabel(text,(x1+x2)/2,y-5,{tx:"-50%",ty:"-100%",fontSize:width<650?"0.66rem":"0.84rem"});
         });
 
-        const dotsY = height * 0.65;
-        ctx.save();
-        ctx.strokeStyle = C.blue;
-        ctx.lineWidth = 2;
-        ctx.setLineDash([5, 5]);
-        ctx.beginPath();
-        ctx.moveTo(map(0.67), dotsY);
-        ctx.lineTo(map(0.98), dotsY);
-        ctx.stroke();
-        ctx.restore();
-        addLabel("\\(\\cdots\\)", map(0.65), dotsY - 4, {
-            tx: "-100%", ty: "-100%", color: C.blue, fontSize: "1.15rem"
-        });
+        // Infinitely many smaller intervals continue toward 0.
+        const dotsY=y+height*.075;
+        ctx.save(); ctx.strokeStyle=C.ink; ctx.lineWidth=2; ctx.setLineDash([5,5]);
+        ctx.beginPath(); ctx.moveTo(map(.08),dotsY); ctx.lineTo(map(.20),dotsY); ctx.stroke(); ctx.restore();
+        addLabel("\\(\\cdots\\)",map(.06),dotsY-5,{tx:"-100%",ty:"-100%",color:C.ink,fontSize:"1.1rem"});
 
         const bx = Math.max(18, width * 0.04);
-        const by = height * 0.72;
+        const by = height * 0.36;
         const bw = width - 2 * bx;
-        const bh = height * 0.24;
+        const bh = height * 0.56;
 
         ctx.save();
         ctx.fillStyle = C.box;
@@ -193,11 +174,11 @@
 
         addLabel(
             "For \\((0,1)\\), consider the open cover " +
-            "\\(U_n=\\left(\\tfrac{1}{n+1},1\\right)\\), " +
-            "where \\(n=1,2,3,\\dots\\). Together these intervals cover every point of \\((0,1)\\), " +
-            "but any finite selection misses points sufficiently close to \\(0\\). Thus this particular " +
-            "open cover has no finite subcover, so \\((0,1)\\) is not compact.",
-            bx + 15, by + 12, {width: bw - 30, wrap: true, align: "left", fontSize: width < 600 ? "0.72rem" : "0.88rem", lineHeight: "1.38"}
+            "\\(U_n=\\left(\\tfrac{1}{n+1},\\tfrac{1}{n}\\right)\\) for " +
+            "\\(n=1,2,3,\\dots\\). These intervals cover every point of \\((0,1)\\), " +
+            "but any finite selection misses points sufficiently close to \\(0\\). " +
+            "Hence this cover has no finite subcover, so \\((0,1)\\) is not compact.",
+            bx+15,by+14,{width:bw-30,wrap:true,align:"left",fontSize:width<650?"0.72rem":"0.88rem",lineHeight:"1.38"}
         );
 
         if (window.MathJax && typeof MathJax.typesetPromise === "function") {
