@@ -40,6 +40,16 @@
             color: var(--ink) !important;
         }
 
+        /* Slightly increase the page's reading size without changing the shared template. */
+        .note-content {
+            font-size: 1.06rem;
+        }
+
+        .note-content p,
+        .note-content li {
+            font-size: 1.06rem;
+        }
+
         .note-content,
         .note-content p,
         .note-content li {
@@ -325,39 +335,57 @@
                     title="Compact sets"
                     color="#C97870">
 
-                <definition
-                    title="Compact set"
-                    color="#4F8178">
-
-                    <p>
-                        A set \(K \subseteq \mathbb{R}\) is
-                        <strong><em>compact</em></strong>
-                        if every open cover of \(K\) contains a finite subcover. In other words, we can choose finitely many sets from the cover such that
-                    </p>
-
-                    <div class="definition-equation">
-                        \[
-                            K \subseteq U_{\alpha_1} \cup \cdots \cup U_{\alpha_n}.
-                        \]
-                    </div>
-
-                    <r-item>
+                    <definition
+                        title="Compact set"
+                        color="#4F8178">
 
                         <p>
-                            An <strong><em>open cover</em></strong> of \(K\) is a collection of open sets whose union contains \(K\).
+                            A set \(K \subseteq \mathbb{R}\) is
+                            <strong><em>compact</em></strong> if every open cover
+                            of \(K\) contains a finite subcover.
                         </p>
 
-                    </r-item>
+                        <r-item>
 
-                    <r-item>
+                            <p>
+                                An <strong><em>open cover</em></strong> of \(K\)
+                                is a collection of open sets \(\{U_\alpha\}\)
+                                such that every point of \(K\) lies in at least
+                                one of the sets. Equivalently, the union of all
+                                the sets contains \(K\):
+                            </p>
 
-                        <p>
-                            A <strong><em>finite subcover</em></strong> means that we can choose finitely many of those sets and they still cover \(K\).
-                        </p>
+                            <div class="definition-equation">
+                                \[
+                                    K \subseteq \bigcup_{\alpha} U_\alpha.
+                                \]
+                            </div>
 
-                    </r-item>
+                        </r-item>
 
-                </definition>
+                        <r-item>
+
+                            <p>
+                                A <strong><em>finite subcover</em></strong> means
+                                that we can choose only finitely many sets from
+                                the original cover, and these chosen sets still
+                                contain every point of \(K\). Thus, for some
+                                finite collection,
+                            </p>
+
+                            <div class="definition-equation">
+                                \[
+                                    K \subseteq
+                                    U_{\alpha_1} \cup \cdots \cup U_{\alpha_n}.
+                                \]
+                            </div>
+
+                        </r-item>
+
+                    </definition>
+
+                </subsection>
+
             </section>
         </main>
 
