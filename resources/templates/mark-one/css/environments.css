@@ -74,7 +74,13 @@
 .environment-content {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 14px;
+}
+
+/* environment paragraphs */
+.environment-content > p {
+    margin: 0;
+    line-height: 1.55;
 }
 
 /* r-item */
