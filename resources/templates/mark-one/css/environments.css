@@ -267,12 +267,21 @@
 /* figure image */
 .proof-figure img {
     display: block;
-    width: auto;
-    max-width: 98%;
-    max-height: 20rem;
-    height: auto;
+    width: 72% !important;
+    max-width: 100% !important;
+    max-height: 30rem !important;
+    height: auto !important;
     object-fit: contain;
     margin: 0 auto;
+}
+
+/* The completeness page contains older page-level rules with !important
+   that shrink proof figures. This selector deliberately has higher
+   specificity so shared proof figures keep a readable size. */
+.proof-box .proof-step-content .proof-figure img {
+    width: 72% !important;
+    max-width: 100% !important;
+    max-height: 30rem !important;
 }
 
 /* figure svg */
