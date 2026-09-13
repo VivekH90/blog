@@ -306,26 +306,26 @@
         }
 
 
-        /* Nested interval proof: compact figures and a restrained title. */
+        /* Nested Interval proof: one outer frame, arranged as a visual argument. */
         .proof-box {
             width: 100%;
             box-sizing: border-box;
-            margin-bottom: 1.8rem;
-            padding: 1rem 1.2rem 1.2rem;
-            background: #FBF7EF;
+            margin: 1.6rem 0 2rem;
+            padding: 1.25rem;
+            background: #F7F1E6;
             border: 3px solid var(--ink);
-            border-radius: 5px;
+            border-radius: 7px;
             color: var(--ink);
             font-family: "Computer Modern Serif", serif;
         }
 
         .proof-title {
-            width: auto;
-            max-width: 12rem;
-            margin: 0 auto 1rem;
-            padding: 0.32rem 0.8rem;
+            width: fit-content;
+            min-width: 9rem;
+            margin: -0.1rem auto 1.35rem;
+            padding: 0.38rem 1.2rem;
             background: var(--lavender-tint);
-            border: 1px solid var(--border);
+            border: 1.5px solid var(--ink);
             border-radius: 4px;
             text-align: center;
             font-family: "Computer Modern Sans", sans-serif;
@@ -338,18 +338,51 @@
         .proof-content {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 1.25rem;
         }
 
-        .proof-content > p {
-            margin: 0;
-            line-height: 1.6;
+        .nested-proof-row {
+            display: grid;
+            grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.25fr);
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nested-proof-text,
+        .nested-proof-middle,
+        .nested-proof-conclusion {
+            min-width: 0;
+            line-height: 1.65;
+        }
+
+        .nested-proof-text > p,
+        .nested-proof-middle > p,
+        .nested-proof-conclusion > p {
+            margin: 0 0 0.8rem;
+        }
+
+        .nested-proof-text > p:last-child,
+        .nested-proof-middle > p:last-child,
+        .nested-proof-conclusion > p:last-child {
+            margin-bottom: 0;
+        }
+
+        .nested-proof-middle {
+            padding: 0.25rem 0.15rem;
+        }
+
+        .nested-proof-conclusion {
+            padding: 1.15rem 1.25rem;
+            background: var(--mustard-tint);
+            border-radius: 6px;
+            text-align: left;
         }
 
         .proof-figure {
             width: 100%;
+            min-width: 0;
             box-sizing: border-box;
-            margin: 0.15rem 0;
+            margin: 0;
             padding: 0;
             background: transparent;
             border: 0 !important;
@@ -365,18 +398,46 @@
 
         .proof-figure img {
             display: block;
-            width: auto;
-            max-width: min(100%, 42rem);
-            max-height: 20rem;
+            width: 100%;
+            max-width: 100%;
+            max-height: 17rem;
             height: auto;
             object-fit: contain;
             border-radius: 3px;
         }
 
+        .nested-proof-bottom .proof-figure img {
+            max-height: 15rem;
+        }
+
         @media (max-width: 720px) {
-            .proof-box { padding: 0.85rem; }
-            .proof-title { max-width: 10rem; font-size: 1rem; }
-            .proof-figure img { max-width: 100%; max-height: 15rem; }
+            .proof-box {
+                padding: 0.9rem;
+            }
+
+            .proof-title {
+                min-width: 7.5rem;
+                margin-bottom: 1rem;
+                font-size: 1rem;
+            }
+
+            .nested-proof-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .nested-proof-top .proof-figure {
+                order: -1;
+            }
+
+            .proof-figure img,
+            .nested-proof-bottom .proof-figure img {
+                max-height: 14rem;
+            }
+
+            .nested-proof-conclusion {
+                padding: 1rem;
+            }
         }
 
         @media (max-width: 720px) {
@@ -710,55 +771,74 @@
                 </theorem>
 
                 <proof>
-                    <proof-figure
-                        src="input/nested-interval-proof-one.png"
-                        alt="Nested closed intervals">
-                    </proof-figure>
+                    <div class="nested-proof-row nested-proof-top">
+                        <div class="nested-proof-text">
+                            <p>
+                                Since \(I_{n+1}\subseteq I_n\), we have
+                                \(a_n\leq a_{n+1}\leq b_{n+1}\leq b_n\).
+                                Thus the left endpoints form a set bounded above,
+                                while the right endpoints form a set bounded below.
+                                By the Axiom of Completeness, let
+                            </p>
+                            <div class="definition-equation">
+                                \[
+                                    \alpha=\sup\{a_n:n\in\mathbb{N}\}.
+                                \]
+                            </div>
+                        </div>
 
-                    <p>
-                        Since \(I_{n+1}\subseteq I_n\), we have
-                        \(a_n\leq a_{n+1}\leq b_{n+1}\leq b_n\). Thus the left
-                        endpoints form a set bounded above, while the right endpoints form
-                        a set bounded below. By the Axiom of Completeness, the left
-                        endpoints have a supremum. Let
-                    </p>
-
-                    <div class="definition-equation">
-                        \[
-                            \alpha=\sup\{a_n:n\in\mathbb{N}\}.
-                        \]
+                        <proof-figure
+                            src="input/nested-interval-proof-one.png"
+                            alt="Nested closed intervals">
+                        </proof-figure>
                     </div>
 
-                    <p>
-                        Because \(\alpha\) is an upper bound of the \(a_n\)'s,
-                        \(a_n\leq\alpha\) for every \(n\). On the other hand,
-                        for each fixed \(n\), \(b_n\) is an upper bound for every
-                        left endpoint \(a_m\). Hence, by the defining property of
-                        the supremum, \(\alpha\leq b_n\). Therefore
-                    </p>
+                    <div class="nested-proof-middle">
+                        <p>
+                            Because \(\alpha\) is an upper bound of the \(a_n\)'s,
+                            \(a_n\leq\alpha\) for every \(n\). On the other hand,
+                            for each fixed \(n\), \(b_n\) is an upper bound for every
+                            left endpoint \(a_m\). Hence, by the defining property of
+                            the supremum, \(\alpha\leq b_n\). Therefore
+                        </p>
 
-                    <div class="definition-equation">
-                        \[
-                            a_n\leq\alpha\leq b_n
-                            \qquad\text{for every }n\in\mathbb{N}.
-                        \]
+                        <div class="definition-equation">
+                            \[
+                                a_n\leq\alpha\leq b_n
+                                \qquad\text{for every }n\in\mathbb{N}.
+                            \]
+                        </div>
+
+                        <p>
+                            Thus \(\alpha\in I_n\) for every \(n\).
+                        </p>
                     </div>
 
-                    <p>
-                        Thus \(\alpha\in I_n\) for every \(n\), so the intervals
-                        all share the point \(\alpha\):
-                    </p>
+                    <div class="nested-proof-row nested-proof-bottom">
+                        <proof-figure
+                            src="input/nested-interval-proof-two.png"
+                            alt="A common point belonging to every nested interval">
+                        </proof-figure>
 
-                    <div class="definition-equation">
-                        \[
-                            \alpha\in\bigcap_{n=1}^{\infty}I_n.
-                        \]
+                        <div class="nested-proof-conclusion">
+                            <p>
+                                Therefore the intervals all share the point \(\alpha\):
+                            </p>
+
+                            <div class="definition-equation">
+                                \[
+                                    \alpha\in\bigcap_{n=1}^{\infty}I_n.
+                                \]
+                            </div>
+
+                            <p>
+                                Hence
+                                \[
+                                    \bigcap_{n=1}^{\infty}I_n\neq\varnothing.
+                                \]
+                            </p>
+                        </div>
                     </div>
-
-                    <proof-figure
-                        src="input/nested-interval-proof-two.png"
-                        alt="A common point belonging to every nested interval">
-                    </proof-figure>
                 </proof>
             </section>
 
