@@ -685,10 +685,12 @@
                                 \(S=(-\infty,0)\cup[1,2]\) is bounded above, but not bounded
                                 below.
                             </p>
-                            <proof-figure
-                                src="input/hb-to-aoc-one.png"
-                                alt="A nonempty set S bounded above with a chosen element a and upper bound b">
-                            </proof-figure>
+                            <figure class="proof-figure">
+                                <div class="proof-figure-visual">
+                                    <img src="input/hb-to-aoc-one.png"
+                                         alt="A nonempty set S bounded above with a chosen element a and upper bound b">
+                                </div>
+                            </figure>
                         </step>
 
                         <step title="Truncate the set from below">
@@ -717,10 +719,12 @@
                             <p>
                                 Therefore \(S\) and \(T\) have the same upper bounds.
                             </p>
-                            <proof-figure
-                                src="input/hb-to-aoc-two.png"
-                                alt="The truncated set T equals S intersected with the interval [a,b]">
-                            </proof-figure>
+                            <figure class="proof-figure">
+                                <div class="proof-figure-visual">
+                                    <img src="input/hb-to-aoc-two.png"
+                                         alt="The truncated set T equals S intersected with the interval [a,b]">
+                                </div>
+                            </figure>
                         </step>
 
                         <step title="Take the closure">
@@ -737,15 +741,24 @@
                                 \(\overline T\subseteq[a,b]\). Thus \(K\) is closed and
                                 bounded. By the Heine–Borel property, \(K\) is compact.
                             </p>
-                            <proof-figure
-                                src="input/hb-to-aoc-three.png"
-                                alt="The closure K of T is closed, bounded, and contained in [a,b]">
-                            </proof-figure>
+                            <figure class="proof-figure">
+                                <div class="proof-figure-visual">
+                                    <img src="input/hb-to-aoc-three.png"
+                                         alt="The closure K of T is closed, bounded, and contained in [a,b]">
+                                </div>
+                            </figure>
                         </step>
 
                         <step title="A compact set has a maximum">
                             <p>
                                 Every nonempty compact subset of \(\mathbb R\) has a maximum.
+                                Indeed, if a compact set \(K\) had no maximum, then the family
+                                \(\{(-\infty,x):x\in K\}\) would be an open cover of \(K\).
+                                A finite subcover would have a largest endpoint \(x_0\in K\),
+                                but \(x_0\notin(-\infty,x_0)\), a contradiction. Thus a
+                                nonempty compact set has a maximum.
+                            </p>
+                            <p>
                                 Since \(T\neq\varnothing\), its closure \(K\) is nonempty;
                                 hence there exists
                             </p>
