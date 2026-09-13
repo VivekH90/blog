@@ -319,6 +319,36 @@
                 margin: 0 1rem;
             }
         }
+    
+        /* Keep proof figures compact so they support the argument rather than dominate it. */
+        .proof-figure {
+            width: 100%;
+            margin: 1rem auto !important;
+            padding: .45rem !important;
+            background: transparent !important;
+            border: 0 !important;
+        }
+
+        .proof-figure-visual {
+            justify-content: center;
+            overflow: hidden !important;
+        }
+
+        .proof-figure img {
+            width: auto !important;
+            max-width: 82% !important;
+            max-height: 11rem !important;
+            height: auto !important;
+            object-fit: contain !important;
+        }
+
+        @media (max-width: 720px) {
+            .proof-figure img {
+                max-width: 96% !important;
+                max-height: 9rem !important;
+            }
+        }
+
     </style>
 
     <!-- mathjax -->
