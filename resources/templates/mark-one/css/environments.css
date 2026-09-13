@@ -267,8 +267,12 @@
 /* figure image */
 .proof-figure img {
     display: block;
-    max-width: 100%;
+    width: auto;
+    max-width: 88%;
+    max-height: 11rem;
     height: auto;
+    object-fit: contain;
+    margin: 0 auto;
 }
 
 /* figure svg */
