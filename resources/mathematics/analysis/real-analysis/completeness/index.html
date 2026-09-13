@@ -975,11 +975,13 @@
                                 </div>
 
                                 <p>
-                                    Suppose first that \(K\) is compact. The open
-                                    intervals \(U_n=(-n,n)\), \(n\in\mathbb{N}\),
-                                    cover \(K\). A finite subcover exists, and since
-                                    these intervals are nested, for some \(N\),
-                                    \(K\subseteq U_N=(-N,N)\). Thus \(K\) is bounded.
+                                    Suppose first that \(K\) is compact. The intervals
+                                    \(U_n=(-n,n)\), \(n\in\mathbb{N}\), form an open
+                                    cover of \(K\). A finite subcover exists. If \(N\)
+                                    is the largest index occurring in that finite selection,
+                                    then, because \(U_1\subseteq U_2\subseteq\cdots\),
+                                    the whole finite union is contained in \(U_N\). Hence
+                                    \(K\subseteq(-N,N)\), so \(K\) is bounded.
                                 </p>
 
                                 <p>
@@ -997,12 +999,14 @@
                                 </div>
 
                                 <p>
-                                    The \(V_n\)'s form an open cover of \(K\).
-                                    A finite selection is contained in some \(V_N\),
+                                    The \(V_n\)'s form an open cover of \(K\): for each
+                                    \(y\in K\), we have \(|y-x|>0\), so for sufficiently
+                                    large \(n\), \(1/n<|y-x|\) and hence \(y\in V_n\).
+                                    A finite subcover would be contained in some \(V_N\),
                                     but \(V_N\) misses
-                                    \((x-\tfrac1N,x+\tfrac1N)\). Since \(x\) is a
-                                    limit point of \(K\), this interval contains a point
-                                    of \(K\), a contradiction. Hence \(K\) is closed.
+                                    \((x-\tfrac1N,x+\tfrac1N)\). Since
+                                    \(x\in\overline K\), every neighbourhood of \(x\)
+                                    meets \(K\), giving a contradiction. Hence \(K\) is closed.
                                 </p>
                             </div>
 
@@ -1039,27 +1043,37 @@
                                 </div>
 
                                 <p>
-                                    The set \(S\) is non-empty and bounded above by
-                                    \(b\), so let \(c=\sup S\). Suppose, for a
-                                    contradiction, that \(c<b\).
+                                    The set \(S\) is non-empty, since
+                                    \(K\cap[a,a]\) is either empty or a single point and
+                                    is therefore finitely covered. Also \(S\subseteq[a,b]\),
+                                    so \(S\) is bounded above. Let \(c=\sup S\).
+                                    We claim that \(c=b\).
                                 </p>
 
                                 <p>
-                                    If \(c\notin K\), closedness gives a small interval
-                                    around \(c\) containing no points of \(K\). Choose a
-                                    point of \(S\) sufficiently close to \(c\). The finite
-                                    cover up to that point then already covers \(K\) a little
-                                    past \(c\), contradicting that \(c\) is an upper bound
-                                    of \(S\).
+                                    Suppose instead that \(c<b\). If \(c\notin K\),
+                                    then, since \(K\) is closed, there is
+                                    \(\delta>0\) such that
+                                    \((c-\delta,c+\delta)\cap K=\varnothing\), with
+                                    \(c+\delta\le b\). By the defining property of the
+                                    supremum, choose \(s\in S\) with
+                                    \(c-\delta<s\le c\). The finite cover of
+                                    \(K\cap[a,s]\) already covers
+                                    \(K\cap[a,c+\delta]\), because there are no points of
+                                    \(K\) between \(s\) and \(c+\delta\). Thus
+                                    \(c+\delta\in S\), contradicting that \(c\) is an
+                                    upper bound of \(S\).
                                 </p>
 
                                 <p>
-                                    If \(c\in K\), some \(U_\alpha\) contains \(c\).
-                                    Because \(U_\alpha\) is open, it contains a whole
-                                    interval around \(c\). A point of \(S\) sufficiently
-                                    close to \(c\), together with this one \(U_\alpha\),
-                                    again gives a finite cover beyond \(c\), the same
-                                    contradiction. Therefore \(c=b\).
+                                    If \(c\in K\), choose \(U_\alpha\) containing \(c\).
+                                    Since \(U_\alpha\) is open, there is \(\delta>0\) with
+                                    \((c-\delta,c+\delta)\subseteq U_\alpha\) and
+                                    \(c+\delta\le b\). Again choose
+                                    \(s\in S\) with \(c-\delta<s\le c\). A finite cover
+                                    of \(K\cap[a,s]\), together with \(U_\alpha\), covers
+                                    \(K\cap[a,c+\delta]\). Hence \(c+\delta\in S\), the
+                                    same contradiction. Therefore \(c=b\).
                                 </p>
                             </div>
                         </div>
