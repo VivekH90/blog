@@ -431,7 +431,7 @@
         }
 
         .heine-borel-row.reverse {
-            grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
+            grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
         }
 
         .heine-borel-step,
@@ -482,7 +482,10 @@
 
         .heine-borel-equation {
             margin: 0.75rem 0;
+            max-width: 100%;
             text-align: center;
+            overflow-x: auto;
+            overflow-y: hidden;
         }
 
         .heine-borel-figure {
@@ -506,7 +509,8 @@
         }
 
         .heine-borel-row.reverse .heine-borel-figure img {
-            max-height: 16.5rem;
+            max-height: 12.5rem;
+            max-width: 92%;
         }
 
         .heine-borel-final .heine-borel-figure img {
@@ -1037,8 +1041,7 @@
                                 <div class="heine-borel-equation">
                                     \[
                                     S=\{x\in[a,b]:
-                                    K\cap[a,x]\text{ can be covered by finitely many }
-                                    U_\alpha\}.
+                                    K\cap[a,x]\text{ can be covered by finitely many }U_\alpha\}.
                                     \]
                                 </div>
 
@@ -1052,15 +1055,14 @@
 
                                 <p>
                                     Suppose instead that \(c<b\). If \(c\notin K\),
-                                    then, since \(K\) is closed, there is
-                                    \(\delta>0\) such that
-                                    \((c-\delta,c+\delta)\cap K=\varnothing\), with
-                                    \(c+\delta\le b\). By the defining property of the
-                                    supremum, choose \(s\in S\) with
+                                    then, since \(K\) is closed, there is \(\delta>0\)
+                                    such that \((c-\delta,c+\delta)\cap K=\varnothing\),
+                                    with \(c+\delta\le b\). By the defining property of
+                                    the supremum, choose \(s\in S\) with
                                     \(c-\delta<s\le c\). The finite cover of
                                     \(K\cap[a,s]\) already covers
-                                    \(K\cap[a,c+\delta]\), because there are no points of
-                                    \(K\) between \(s\) and \(c+\delta\). Thus
+                                    \(K\cap[a,c+\delta]\), because there are no points
+                                    of \(K\) between \(s\) and \(c+\delta\). Thus
                                     \(c+\delta\in S\), contradicting that \(c\) is an
                                     upper bound of \(S\).
                                 </p>
@@ -1069,11 +1071,26 @@
                                     If \(c\in K\), choose \(U_\alpha\) containing \(c\).
                                     Since \(U_\alpha\) is open, there is \(\delta>0\) with
                                     \((c-\delta,c+\delta)\subseteq U_\alpha\) and
-                                    \(c+\delta\le b\). Again choose
-                                    \(s\in S\) with \(c-\delta<s\le c\). A finite cover
+                                    \(c+\delta\le b\). Again choose \(s\in S\) with
+                                    \(c-\delta<s\le c\). A finite cover of
+                                    \(K\cap[a,s]\), together with \(U_\alpha\), covers
+                                    \(K\cap[a,c+\delta]\). Hence \(c+\delta\in S\),
+                                    giving the same contradiction. Therefore \(c=b\).
+                                </p>
+
+                                <p>
+                                    It remains to show that \(b\in S\). If \(b\notin K\),
+                                    choose \(\delta>0\) with
+                                    \((b-\delta,b+\delta)\cap K=\varnothing\). Since
+                                    \(b=\sup S\), choose \(s\in S\) with
+                                    \(b-\delta<s\le b\). The finite cover of
+                                    \(K\cap[a,s]\) then covers all of \(K\), so \(b\in S\).
+                                    If \(b\in K\), choose \(U_\alpha\) containing \(b\).
+                                    Since \(U_\alpha\) is open, choose \(\delta>0\) with
+                                    \((b-\delta,b+\delta)\subseteq U_\alpha\). Again choose
+                                    \(s\in S\) with \(b-\delta<s\le b\). The finite cover
                                     of \(K\cap[a,s]\), together with \(U_\alpha\), covers
-                                    \(K\cap[a,c+\delta]\). Hence \(c+\delta\in S\), the
-                                    same contradiction. Therefore \(c=b\).
+                                    all of \(K\). Thus \(b\in S\).
                                 </p>
                             </div>
                         </div>
