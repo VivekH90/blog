@@ -424,8 +424,8 @@
 
         .heine-borel-row {
             display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
-            gap: 1.7rem;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+            gap: 1.5rem;
             align-items: center;
             min-width: 0;
         }
@@ -443,6 +443,7 @@
         .heine-borel-step {
             padding: 0.25rem 0.2rem;
             line-height: 1.62;
+            overflow-wrap: break-word;
         }
 
         .heine-borel-step-heading {
@@ -496,12 +497,20 @@
 
         .heine-borel-figure img {
             display: block;
-            width: 100%;
+            width: auto;
             max-width: 100%;
-            max-height: 15.5rem;
+            max-height: 20rem;
             height: auto;
             object-fit: contain;
             border-radius: 4px;
+        }
+
+        .heine-borel-row.reverse .heine-borel-figure img {
+            max-height: 16.5rem;
+        }
+
+        .heine-borel-final .heine-borel-figure img {
+            max-height: 20rem;
         }
 
         .heine-borel-final-note {
