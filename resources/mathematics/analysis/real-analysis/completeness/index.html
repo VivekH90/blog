@@ -306,258 +306,7 @@
         }
 
 
-        /* Nested Interval proof: one outer frame, arranged as a visual argument. */
-        .proof-box {
-            width: 100%;
-            box-sizing: border-box;
-            margin: 1.6rem 0 2rem;
-            padding: 1.25rem;
-            background: #F7F1E6;
-            border: 3px solid var(--ink);
-            border-radius: 7px;
-            color: var(--ink);
-            font-family: "Computer Modern Serif", serif;
-        }
-
-        .proof-title {
-            width: fit-content;
-            min-width: 9rem;
-            margin: -0.1rem auto 1.35rem;
-            padding: 0.38rem 1.2rem;
-            background: var(--lavender-tint);
-            border: 1.5px solid var(--ink);
-            border-radius: 4px;
-            text-align: center;
-            font-family: "Computer Modern Sans", sans-serif;
-            font-size: 1.08rem;
-            font-weight: 600;
-            line-height: 1.2;
-            color: var(--ink);
-        }
-
-        .proof-content {
-            display: flex;
-            flex-direction: column;
-            gap: 1.25rem;
-        }
-
-        .nested-proof-row {
-            display: grid;
-            grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.25fr);
-            gap: 1.5rem;
-            align-items: center;
-        }
-
-        .nested-proof-text,
-        .nested-proof-middle,
-        .nested-proof-conclusion {
-            min-width: 0;
-            line-height: 1.65;
-        }
-
-        .nested-proof-text > p,
-        .nested-proof-middle > p,
-        .nested-proof-conclusion > p {
-            margin: 0 0 0.8rem;
-        }
-
-        .nested-proof-text > p:last-child,
-        .nested-proof-middle > p:last-child,
-        .nested-proof-conclusion > p:last-child {
-            margin-bottom: 0;
-        }
-
-        .nested-proof-middle {
-            padding: 0.25rem 0.15rem;
-        }
-
-        .nested-proof-conclusion {
-            padding: 1.15rem 1.25rem;
-            background: var(--mustard-tint);
-            border-radius: 6px;
-            text-align: left;
-        }
-
-        .proof-figure {
-            width: 100%;
-            min-width: 0;
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            background: transparent;
-            border: 0 !important;
-        }
-
-        .proof-figure-visual {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        .proof-figure img {
-            display: block;
-            width: 100%;
-            max-width: 100%;
-            max-height: 17rem;
-            height: auto;
-            object-fit: contain;
-            border-radius: 3px;
-        }
-
-        .nested-proof-top .proof-figure img {
-            max-height: 20rem;
-        }
-
-        .nested-proof-bottom .proof-figure img {
-            max-height: 19rem;
-        }
-
-
-        /* Heine–Borel proof: one outer frame, three visual stages, no inner borders. */
-        .heine-borel-proof {
-            display: flex;
-            flex-direction: column;
-            gap: 1.55rem;
-        }
-
-        .heine-borel-row {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
-            gap: 1.5rem;
-            align-items: center;
-            min-width: 0;
-        }
-
-        .heine-borel-row.reverse {
-            grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
-        }
-
-        .heine-borel-step,
-        .heine-borel-figure {
-            min-width: 0;
-            border: 0 !important;
-        }
-
-        .heine-borel-step {
-            padding: 0.25rem 0.2rem;
-            line-height: 1.62;
-            overflow-wrap: break-word;
-        }
-
-        .heine-borel-step-heading {
-            display: flex;
-            align-items: center;
-            gap: 0.85rem;
-            margin-bottom: 0.7rem;
-            font-family: "Computer Modern Sans", sans-serif;
-            font-size: 1.08rem;
-            font-weight: 600;
-        }
-
-        .heine-borel-number {
-            flex: 0 0 2.15rem;
-            width: 2.15rem;
-            height: 2.15rem;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: var(--terracotta);
-            color: #FFFDF8;
-            font-family: "Computer Modern Sans", sans-serif;
-            font-weight: 700;
-            line-height: 1;
-            box-shadow: 0 2px 5px rgba(201, 120, 112, 0.20);
-        }
-
-        .heine-borel-step p {
-            margin: 0 0 0.75rem;
-        }
-
-        .heine-borel-step p:last-child {
-            margin-bottom: 0;
-        }
-
-        .heine-borel-equation {
-            margin: 0.75rem 0;
-            max-width: 100%;
-            text-align: center;
-            overflow-x: auto;
-            overflow-y: hidden;
-        }
-
-        .heine-borel-figure {
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 0;
-            background: transparent;
-            overflow: hidden;
-        }
-
-        .heine-borel-figure img {
-            display: block;
-            width: auto;
-            max-width: 100%;
-            max-height: 20rem;
-            height: auto;
-            object-fit: contain;
-            border-radius: 4px;
-        }
-
-        .heine-borel-row.reverse .heine-borel-figure img {
-            max-height: 12.5rem;
-            max-width: 92%;
-        }
-
-        .heine-borel-final .heine-borel-figure img {
-            max-height: 20rem;
-        }
-
-        .heine-borel-final-note {
-            margin-top: 0.35rem;
-            padding: 0.25rem 0.2rem;
-            background: transparent;
-        }
-
-        .heine-borel-final-note strong {
-            color: var(--ink);
-        }
-
-        @media (max-width: 720px) {
-            .proof-box {
-                padding: 0.9rem;
-            }
-
-            .proof-title {
-                min-width: 7.5rem;
-                margin-bottom: 1rem;
-                font-size: 1rem;
-            }
-
-            .nested-proof-row {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .nested-proof-top .proof-figure {
-                order: -1;
-            }
-
-            .proof-figure img,
-            .nested-proof-bottom .proof-figure img {
-                max-height: 14rem;
-            }
-
-            .nested-proof-conclusion {
-                padding: 1rem;
-            }
-        }
-
-        @media (max-width: 720px) {
+        /* Completeness proofs use the shared linear proof environment. */\n\n        @media (max-width: 720px) {
             .compact-proof-grid {
                 grid-template-columns: 1fr;
                 padding: 1rem;
@@ -885,78 +634,69 @@
                     </div>
                 </theorem>
 
-                <proof>
-                    <div class="nested-proof-row nested-proof-top">
-                        <div class="nested-proof-text">
-                            <p>
-                                Since \(I_{n+1}\subseteq I_n\), we have
-                                \(a_n\leq a_{n+1}\leq b_{n+1}\leq b_n\).
-                                Thus the left endpoints form a set bounded above,
-                                while the right endpoints form a set bounded below.
-                                By the Axiom of Completeness, let
-                            </p>
-                            <div class="definition-equation">
-                                \[
-                                    \alpha=\sup\{a_n:n\in\mathbb{N}\}.
-                                \]
-                            </div>
-                        </div>
+                <proof colback="#F8EDEB" coltext="#7D403B">
+                    <p>
+                        Since \(I_{n+1}\subseteq I_n\), we have
+                        \[
+                            a_n\le a_{n+1}\le b_{n+1}\le b_n
+                            \qquad(n\in\mathbb N).
+                        \]
+                        Hence the left endpoints form a non-empty set bounded above by \(b_1\).
+                        By the Axiom of Completeness, let
+                    </p>
 
-                        <figure class="proof-figure">
-                            <div class="proof-figure-visual">
-                                <img src="input/nested-interval-proof-one.png"
-                                     alt="Nested closed intervals">
-                            </div>
-                        </figure>
+                    <div class="definition-equation">
+                        \[
+                            \alpha=\sup\{a_n:n\in\mathbb N\}.
+                        \]
                     </div>
 
-                    <div class="nested-proof-middle">
-                        <p>
-                            Because \(\alpha\) is an upper bound of the \(a_n\)'s,
-                            \(a_n\leq\alpha\) for every \(n\). On the other hand,
-                            for each fixed \(n\), \(b_n\) is an upper bound for every
-                            left endpoint \(a_m\). Hence, by the defining property of
-                            the supremum, \(\alpha\leq b_n\). Therefore
-                        </p>
+                    <proof-figure
+                        src="input/nested-interval-proof-one.png"
+                        alt="The left endpoints and right endpoints of nested intervals">
+                    </proof-figure>
 
-                        <div class="definition-equation">
-                            \[
-                                a_n\leq\alpha\leq b_n
-                                \qquad\text{for every }n\in\mathbb{N}.
-                            \]
-                        </div>
+                    <p>
+                        Because \(\alpha\) is an upper bound of the set of left endpoints,
+                        \(a_n\le\alpha\) for every \(n\). Now fix \(n\). We claim that
+                        \(b_n\) is also an upper bound of \(\{a_m:m\in\mathbb N\}\).
+                        If \(m\le n\), then \(a_m\le a_n\le b_n\). If \(m\ge n\), then
+                        \(I_m\subseteq I_n\), so \(a_m\in I_n\) and again \(a_m\le b_n\).
+                        Thus \(b_n\) is an upper bound of the entire set of left endpoints. Since
+                        \(\alpha\) is its least upper bound, \(\alpha\le b_n\).
+                    </p>
 
-                        <p>
-                            Thus \(\alpha\in I_n\) for every \(n\).
-                        </p>
+                    <div class="definition-equation">
+                        \[
+                            a_n\le\alpha\le b_n
+                            \qquad\text{for every }n\in\mathbb N.
+                        \]
                     </div>
 
-                    <div class="nested-proof-row nested-proof-bottom">
-                        <figure class="proof-figure">
-                            <div class="proof-figure-visual">
-                                <img src="input/nested-interval-proof-two.png"
-                                     alt="A common point belonging to every nested interval">
-                            </div>
-                        </figure>
+                    <p>
+                        Therefore \(\alpha\in[a_n,b_n]=I_n\) for every \(n\). Thus the same
+                        point belongs to every interval:
+                    </p>
 
-                        <div class="nested-proof-conclusion">
-                            <p>
-                                Therefore the intervals all share the point \(\alpha\):
-                            </p>
+                    <proof-figure
+                        src="input/nested-interval-proof-two.png"
+                        alt="The common point alpha belongs to every nested interval">
+                    </proof-figure>
 
-                            <div class="definition-equation">
-                                \[
-                                    \alpha\in\bigcap_{n=1}^{\infty}I_n.
-                                \]
-                            </div>
+                    <div class="definition-equation">
+                        \[
+                            \alpha\in\bigcap_{n=1}^{\infty}I_n.
+                        \]
+                    </div>
 
-                            <p>
-                                Hence
-                                \[
-                                    \bigcap_{n=1}^{\infty}I_n\neq\varnothing.
-                                \]
-                            </p>
-                        </div>
+                    <p>
+                        Hence
+                    </p>
+
+                    <div class="definition-equation">
+                        \[
+                            \bigcap_{n=1}^{\infty}I_n\ne\varnothing.
+                        \]
                     </div>
                 </proof>
 
@@ -968,164 +708,98 @@
                     </p>
                 </theorem>
 
-                <proof>
-                    <div class="heine-borel-proof">
+                <proof colback="#F8EDEB" coltext="#7D403B">
+                    <p><strong>First suppose that \(K\) is compact.</strong></p>
 
-                        <div class="heine-borel-row">
-                            <div class="heine-borel-step">
-                                <div class="heine-borel-step-heading">
-                                    <span class="heine-borel-number">1</span>
-                                    <span>Compact sets are bounded and closed.</span>
-                                </div>
+                    <p>
+                        The intervals \(U_n=(-n,n)\), \(n\in\mathbb N\), form an open cover of \(K\).
+                        By compactness, finitely many of them cover \(K\). If \(N\) is the largest index
+                        in the finite selection, then \(K\subseteq U_N=(-N,N)\). Hence \(K\) is bounded.
+                    </p>
 
-                                <p>
-                                    Suppose first that \(K\) is compact. The intervals
-                                    \(U_n=(-n,n)\), \(n\in\mathbb{N}\), form an open
-                                    cover of \(K\). A finite subcover exists. If \(N\)
-                                    is the largest index occurring in that finite selection,
-                                    then, because \(U_1\subseteq U_2\subseteq\cdots\),
-                                    the whole finite union is contained in \(U_N\). Hence
-                                    \(K\subseteq(-N,N)\), so \(K\) is bounded.
-                                </p>
+                    <p>
+                        To see that \(K\) is closed, suppose for contradiction that
+                        \(x\in\overline K\setminus K\). For each \(n\in\mathbb N\), let
+                    </p>
 
-                                <p>
-                                    To see that \(K\) is closed, suppose otherwise.
-                                    Then there is a point
-                                    \(x\in\overline K\setminus K\). For each
-                                    \(n\in\mathbb{N}\), let
-                                </p>
-
-                                <div class="heine-borel-equation">
-                                    \[
-                                        V_n=(-\infty,x-\tfrac1n)
-                                        \cup(x+\tfrac1n,\infty).
-                                    \]
-                                </div>
-
-                                <p>
-                                    The \(V_n\)'s form an open cover of \(K\): for each
-                                    \(y\in K\), we have \(|y-x|&gt;0\), so for sufficiently
-                                    large \(n\), \(1/n&lt;|y-x|\) and hence \(y\in V_n\).
-                                    A finite subcover would be contained in some \(V_N\),
-                                    but \(V_N\) misses
-                                    \((x-\tfrac1N,x+\tfrac1N)\). Since
-                                    \(x\in\overline K\), every neighbourhood of \(x\)
-                                    meets \(K\), giving a contradiction. Hence \(K\) is closed.
-                                </p>
-                            </div>
-
-                            <figure class="heine-borel-figure">
-                                <img src="input/heine-borel-one.png"
-                                     alt="A visual step in the bounded and closed part of the Heine–Borel proof">
-                            </figure>
-                        </div>
-
-                        <div class="heine-borel-row reverse">
-                            <figure class="heine-borel-figure">
-                                <img src="input/heine-borel-two.png"
-                                     alt="A visual step in constructing the set S for the Heine–Borel proof">
-                            </figure>
-
-                            <div class="heine-borel-step">
-                                <div class="heine-borel-step-heading">
-                                    <span class="heine-borel-number">2</span>
-                                    <span>A closed and bounded set has a finite subcover.</span>
-                                </div>
-
-                                <p>
-                                    Now let \(K\) be closed and bounded, and let
-                                    \(\{U_\alpha\}\) be an open cover of \(K\).
-                                    Choose \(a&lt;b\) with \(K\subseteq[a,b]\), and define
-                                </p>
-
-                                <div class="heine-borel-equation">
-                                    \[
-                                    S=\{x\in[a,b]:
-                                    K\cap[a,x]\text{ can be covered by finitely many }U_\alpha\}.
-                                    \]
-                                </div>
-
-                                <p>
-                                    The set \(S\) is non-empty, since
-                                    \(K\cap[a,a]\) is either empty or a single point and
-                                    is therefore finitely covered. Also \(S\subseteq[a,b]\),
-                                    so \(S\) is bounded above. Let \(c=\sup S\).
-                                    We claim that \(c=b\).
-                                </p>
-
-                                <p>
-                                    Suppose instead that \(c&lt;b\). If \(c\notin K\),
-                                    then, since \(K\) is closed, there is \(\delta&gt;0\)
-                                    such that \((c-\delta,c+\delta)\cap K=\varnothing\),
-                                    with \(c+\delta\le b\). By the defining property of
-                                    the supremum, choose \(s\in S\) with
-                                    \(c-\delta&lt;s\le c\). The finite cover of
-                                    \(K\cap[a,s]\) already covers
-                                    \(K\cap[a,c+\delta]\), because there are no points
-                                    of \(K\) between \(s\) and \(c+\delta\). Thus
-                                    \(c+\delta\in S\), contradicting that \(c\) is an
-                                    upper bound of \(S\).
-                                </p>
-
-                                <p>
-                                    If \(c\in K\), choose \(U_\alpha\) containing \(c\).
-                                    Since \(U_\alpha\) is open, there is \(\delta&gt;0\) with
-                                    \((c-\delta,c+\delta)\subseteq U_\alpha\) and
-                                    \(c+\delta\le b\). Again choose \(s\in S\) with
-                                    \(c-\delta&lt;s\le c\). A finite cover of
-                                    \(K\cap[a,s]\), together with \(U_\alpha\), covers
-                                    \(K\cap[a,c+\delta]\). Hence \(c+\delta\in S\),
-                                    giving the same contradiction. Therefore \(c=b\).
-                                </p>
-
-                                <p>
-                                    It remains to show that \(b\in S\). If \(b\notin K\),
-                                    choose \(\delta&gt;0\) with
-                                    \((b-\delta,b+\delta)\cap K=\varnothing\). Since
-                                    \(b=\sup S\), choose \(s\in S\) with
-                                    \(b-\delta&lt;s\le b\). The finite cover of
-                                    \(K\cap[a,s]\) then covers all of \(K\), so \(b\in S\).
-                                    If \(b\in K\), choose \(U_\alpha\) containing \(b\).
-                                    Since \(U_\alpha\) is open, choose \(\delta&gt;0\) with
-                                    \((b-\delta,b+\delta)\subseteq U_\alpha\). Again choose
-                                    \(s\in S\) with \(b-\delta&lt;s\le b\). The finite cover
-                                    of \(K\cap[a,s]\), together with \(U_\alpha\), covers
-                                    all of \(K\). Thus \(b\in S\).
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="heine-borel-row heine-borel-final">
-                            <div class="heine-borel-step">
-                                <div class="heine-borel-step-heading">
-                                    <span class="heine-borel-number">3</span>
-                                    <span>Final words.</span>
-                                </div>
-
-                                <div class="heine-borel-final-note">
-                                    <p>
-                                        Since \(b\in S\), the whole set
-                                        \(K=K\cap[a,b]\) is covered by finitely many
-                                        members of \(\{U_\alpha\}\). Thus every open
-                                        cover of \(K\) has a finite subcover, so
-                                        \(K\) is compact.
-                                    </p>
-
-                                    <p>
-                                        Combining this with the first part,
-                                        \(K\subseteq\mathbb{R}\) is compact exactly
-                                        when it is closed and bounded.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <figure class="heine-borel-figure">
-                                <img src="input/heine-borel-three.png"
-                                     alt="Final visual step of the Heine–Borel proof">
-                            </figure>
-                        </div>
-
+                    <div class="definition-equation">
+                        \[
+                            V_n=(-\infty,x-\tfrac1n)\cup(x+\tfrac1n,\infty).
+                        \]
                     </div>
+
+                    <p>
+                        The sets \(V_n\) form an open cover of \(K\): every \(y\in K\) satisfies
+                        \(|y-x|>0\), so \(y\in V_n\) for sufficiently large \(n\). A finite subcover
+                        would be contained in some \(V_N\), but \(V_N\) misses
+                        \((x-\tfrac1N,x+\tfrac1N)\). Since \(x\in\overline K\), this neighbourhood
+                        meets \(K\), a contradiction. Thus \(K\) is closed.
+                    </p>
+
+                    <proof-figure src="input/heine-borel-one.png"
+                        alt="Compactness implies boundedness and closedness">
+                    </proof-figure>
+
+                    <p><strong>Conversely, suppose that \(K\) is closed and bounded.</strong></p>
+
+                    <p>
+                        Let \(\{U_\alpha\}\) be an open cover of \(K\). Choose \(a<b\) with
+                        \(K\subseteq[a,b]\), and define
+                    </p>
+
+                    <div class="definition-equation">
+                        \[
+                            S=\left\{x\in[a,b]:
+                            K\cap[a,x]\text{ can be covered by finitely many }U_\alpha\right\}.
+                        \]
+                    </div>
+
+                    <p>
+                        The set \(S\) is non-empty, because \(K\cap[a,a]\) is either empty or a single
+                        point. Also \(S\subseteq[a,b]\), so it is bounded above. Let \(c=\sup S\).
+                    </p>
+
+                    <proof-figure src="input/heine-borel-two.png"
+                        alt="The supremum c marks the furthest point reached by a finite subcover">
+                    </proof-figure>
+
+                    <p>
+                        We claim that \(c=b\). Suppose \(c<b\). If \(c\notin K\), closedness gives
+                        \(\delta>0\) such that \((c-\delta,c+\delta)\cap K=\varnothing\), with
+                        \(c+\delta\le b\). Choose \(s\in S\) with \(c-\delta<s\le c\).
+                        The finite cover of \(K\cap[a,s]\) then already covers
+                        \(K\cap[a,c+\delta]\), so \(c+\delta\in S\), contradicting that \(c\)
+                        is an upper bound of \(S\).
+                    </p>
+
+                    <p>
+                        If \(c\in K\), choose \(U_\alpha\) containing \(c\). Since \(U_\alpha\) is
+                        open, choose \(\delta>0\) with
+                        \((c-\delta,c+\delta)\subseteq U_\alpha\) and \(c+\delta\le b\).
+                        Again choose \(s\in S\) with \(c-\delta<s\le c\). A finite cover of
+                        \(K\cap[a,s]\), together with \(U_\alpha\), covers
+                        \(K\cap[a,c+\delta]\). Hence \(c+\delta\in S\), the same contradiction.
+                        Therefore \(c=b\).
+                    </p>
+
+                    <p>
+                        Finally, \(b\in S\). If \(b\notin K\), closedness gives a neighbourhood of \(b\)
+                        disjoint from \(K\), and an element \(s\in S\) sufficiently close to \(b\)
+                        shows that a finite cover of \(K\cap[a,s]\) already covers all of \(K\).
+                        If \(b\in K\), choose an open set \(U_\alpha\) containing \(b\); a sufficiently
+                        small neighbourhood of \(b\) lies in \(U_\alpha\), and together with a finite cover
+                        up to some \(s\in S\) close to \(b\), it covers all of \(K\).
+                    </p>
+
+                    <proof-figure src="input/heine-borel-three.png"
+                        alt="The endpoint b is reached, giving a finite subcover of the whole set">
+                    </proof-figure>
+
+                    <p>
+                        Thus \(b\in S\), so \(K=K\cap[a,b]\) has a finite subcover. Therefore \(K\)
+                        is compact. Combining the two directions,
+                        \(K\subseteq\mathbb R\) is compact if and only if it is closed and bounded.
+                    </p>
                 </proof>
             </section>
             </main>
