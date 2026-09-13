@@ -1027,21 +1027,26 @@
 
                                 <p>
                                     The set \(S\) is non-empty and bounded above by
-                                    \(b\), so let \(c=\sup S\). We show that \(c=b\).
+                                    \(b\), so let \(c=\sup S\). Suppose, for a
+                                    contradiction, that \(c<b\).
+                                </p>
+
+                                <p>
                                     If \(c\notin K\), closedness gives a small interval
-                                    around \(c\) containing no points of \(K\). Taking a
-                                    point of \(S\) sufficiently close to \(c\) then lets
-                                    us extend past \(c\), contradicting that \(c\) is the
-                                    least upper bound.
+                                    around \(c\) containing no points of \(K\). Choose a
+                                    point of \(S\) sufficiently close to \(c\). The finite
+                                    cover up to that point then already covers \(K\) a little
+                                    past \(c\), contradicting that \(c\) is an upper bound
+                                    of \(S\).
                                 </p>
 
                                 <p>
                                     If \(c\in K\), some \(U_\alpha\) contains \(c\).
                                     Because \(U_\alpha\) is open, it contains a whole
-                                    interval around \(c\). Again, a point of \(S\)
-                                    sufficiently close to \(c\), together with this one
-                                    \(U_\alpha\), gives a finite cover beyond \(c\), the
-                                    same contradiction. Therefore \(c=b\).
+                                    interval around \(c\). A point of \(S\) sufficiently
+                                    close to \(c\), together with this one \(U_\alpha\),
+                                    again gives a finite cover beyond \(c\), the same
+                                    contradiction. Therefore \(c=b\).
                                 </p>
                             </div>
                         </div>
