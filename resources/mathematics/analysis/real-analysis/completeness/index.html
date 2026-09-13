@@ -485,18 +485,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: var(--blue-tint);
-            border-radius: 7px;
-            padding: 0.75rem;
+            padding: 0;
+            background: transparent;
             overflow: hidden;
-        }
-
-        .heine-borel-row.reverse .heine-borel-figure {
-            background: var(--teal-tint);
-        }
-
-        .heine-borel-final .heine-borel-figure {
-            background: var(--mustard-tint);
         }
 
         .heine-borel-figure img {
@@ -511,9 +502,8 @@
 
         .heine-borel-final-note {
             margin-top: 0.35rem;
-            padding: 0.9rem 1rem;
-            background: var(--mustard-tint);
-            border-radius: 7px;
+            padding: 0.25rem 0.2rem;
+            background: transparent;
         }
 
         .heine-borel-final-note strong {
@@ -790,20 +780,21 @@
                             </div>
                             <p>
                                 Let \(N=\max\{\alpha_1,\ldots,\alpha_m\}\).
-                                Since the intervals are nested,
+                                Then every selected index is at most \(N\), so each
+                                selected interval lies to the right of
+                                \(\frac{1}{N+1}\). Hence
                             </p>
                             <div class="definition-equation">
                                 \[
                                     U_{\alpha_1}\cup\cdots\cup U_{\alpha_m}
-                                    =U_N
-                                    =\left(\frac{1}{N+1},1\right).
+                                    \subseteq\left(\frac{1}{N+1},1\right).
                                 \]
                             </div>
                             <p>
-                                But this misses every point sufficiently close to
-                                \(0\), for example \(\frac{1}{2(N+1)}\). Hence
-                                no finite collection of the \(U_n\)'s can cover
-                                \((0,1)\).
+                                Thus the finite selection misses every point in
+                                \(\left(0,\frac{1}{N+1}\right]\), for example
+                                \(\frac{1}{2(N+1)}\). Hence no finite collection
+                                of the \(U_n\)'s can cover \((0,1)\).
                             </p>
                         </div>
 
