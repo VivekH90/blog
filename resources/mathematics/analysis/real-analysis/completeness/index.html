@@ -305,6 +305,71 @@
             color: var(--ink);
         }
 
+
+        /* Nested interval proof: only the outer proof boundary is visible. */
+        .proof-box {
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 30px;
+            padding: 1.4rem 1.6rem 1.6rem;
+            background: #FBF7EF;
+            border: 3px solid var(--ink);
+            border-radius: 5px;
+            color: var(--ink);
+            font-family: "Computer Modern Serif", serif;
+        }
+
+        .proof-title {
+            width: min(45%, 360px);
+            margin: 0 auto 1.7rem;
+            padding: 0.55rem 1rem;
+            background: var(--lavender-tint);
+            border: 1.5px solid var(--ink);
+            border-radius: 5px;
+            text-align: center;
+            font-family: "Computer Modern Sans", sans-serif;
+            font-size: 1.45rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--ink);
+        }
+
+        .proof-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.6rem;
+        }
+
+        .proof-content > p {
+            margin: 0;
+            line-height: 1.65;
+        }
+
+        .proof-figure {
+            width: 100%;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0.4rem 0;
+            background: transparent;
+            border: 0 !important;
+        }
+
+        .proof-figure-visual {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: auto;
+        }
+
+        .proof-figure img {
+            display: block;
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 3px;
+        }
+
         @media (max-width: 720px) {
             .compact-proof-grid {
                 grid-template-columns: 1fr;
@@ -619,6 +684,73 @@
                     </r-item>
 
                 </axiom>
+            </section>
+
+
+            <section title="The Nested Interval Theorem" color="#C97870">
+                <theorem title="Nested Interval Theorem" color="#6689AA">
+                    <p>
+                        Let \(I_n=[a_n,b_n]\) be a sequence of non-empty closed bounded intervals such that
+                        \(I_{n+1}\subseteq I_n\) for every \(n\in\mathbb{N}\). Then
+                    </p>
+                    <div class="definition-equation">
+                        \[
+                            \bigcap_{n=1}^{\infty} I_n \neq \varnothing.
+                        \]
+                    </div>
+                </theorem>
+
+                <proof>
+                    <proof-figure
+                        src="input/nested-interval-proof-one.png"
+                        alt="Nested closed intervals">
+                    </proof-figure>
+
+                    <p>
+                        Since \(I_{n+1}\subseteq I_n\), we have
+                        \(a_n\leq a_{n+1}\leq b_{n+1}\leq b_n\). Thus the left
+                        endpoints form a set bounded above, while the right endpoints form
+                        a set bounded below. By the Axiom of Completeness, the left
+                        endpoints have a supremum. Let
+                    </p>
+
+                    <div class="definition-equation">
+                        \[
+                            \alpha=\sup\{a_n:n\in\mathbb{N}\}.
+                        \]
+                    </div>
+
+                    <p>
+                        Because \(\alpha\) is an upper bound of the \(a_n\)'s,
+                        \(a_n\leq\alpha\) for every \(n\). On the other hand,
+                        for each fixed \(n\), \(b_n\) is an upper bound for every
+                        left endpoint \(a_m\). Hence, by the defining property of
+                        the supremum, \(\alpha\leq b_n\). Therefore
+                    </p>
+
+                    <div class="definition-equation">
+                        \[
+                            a_n\leq\alpha\leq b_n
+                            \qquad\text{for every }n\in\mathbb{N}.
+                        \]
+                    </div>
+
+                    <p>
+                        Thus \(\alpha\in I_n\) for every \(n\), so the intervals
+                        all share the point \(\alpha\):
+                    </p>
+
+                    <div class="definition-equation">
+                        \[
+                            \alpha\in\bigcap_{n=1}^{\infty}I_n.
+                        \]
+                    </div>
+
+                    <proof-figure
+                        src="input/nested-interval-proof-two.png"
+                        alt="A common point belonging to every nested interval">
+                    </proof-figure>
+                </proof>
             </section>
 
         </main>
