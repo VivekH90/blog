@@ -329,6 +329,38 @@
             border: 0 !important;
         }
 
+
+        .equivalence-introduction {
+            margin: 1.8rem 0 2.1rem;
+            padding: 1.35rem 1.5rem;
+            background: var(--lavender-tint);
+            border: 1px solid #D3CCE2;
+            border-radius: 18px;
+            box-sizing: border-box;
+        }
+
+        .equivalence-introduction p {
+            margin: 0 0 0.9rem;
+            line-height: 1.6;
+        }
+
+        .equivalence-introduction p:last-of-type {
+            margin-bottom: 0.55rem;
+        }
+
+        .equivalence-summary {
+            text-align: center;
+            margin: 0.5rem 0 0.9rem;
+        }
+
+        .equivalence-overview {
+            display: block;
+            width: min(100%, 760px);
+            height: auto;
+            margin: 0.85rem auto 0;
+            border-radius: 10px;
+        }
+
         .proof-figure-visual {
             justify-content: center;
             overflow: hidden !important;
@@ -833,6 +865,163 @@
                         \(K\subseteq\mathbb R\) is compact if and only if it is closed and bounded.
                     </p>
                 </proof>
+
+
+                <subsection title="The other ways around" color="#8C7FB0">
+                    <div class="equivalence-introduction">
+                        <p>
+                            So far, we have used the <strong>Axiom of Completeness</strong> to prove the
+                            Nested Interval Property and the Heine–Borel Theorem. The remarkable fact is
+                            that the implication can also be reversed. If we take the <strong>Nested Interval
+                            Property as an axiom</strong>, then we can recover the Axiom of Completeness.
+                        </p>
+                        <p>
+                            The construction below is the key idea: repeatedly trap the boundary between the
+                            elements of a bounded set and its upper bounds inside smaller and smaller nested
+                            intervals.
+                        </p>
+                        <div class="equivalence-summary">
+                            \[
+                                \mathrm{Nested\ Interval\ Property}
+                                \quad\Longrightarrow\quad
+                                \mathrm{Axiom\ of\ Completeness}.
+                            \]
+                        </div>
+                        <img
+                            class="equivalence-overview"
+                            src="input/nip-to-aoc.png"
+                            alt="Overview of the proof from the Nested Interval Property to the Axiom of Completeness">
+                    </div>
+
+                    <proof colback="#F8EDEB" coltext="#7D403B">
+                        <step title="Start with a bounded set">
+                            <p>
+                                Let \(S\subseteq\mathbb R\) be nonempty and bounded above. Choose
+                                \(A_1\in S\), and choose an upper bound \(B_1\) of \(S\) such that
+                                \(A_1<B_1\).
+                            </p>
+                        </step>
+
+                        <step title="Construct nested intervals">
+                            <p>
+                                Suppose \(A_n\in S\) and \(B_n\) is an upper bound of \(S\).
+                                Consider their midpoint
+                            </p>
+                            <div class="definition-equation">
+                                \[
+                                    M_n=\frac{A_n+B_n}{2}.
+                                \]
+                            </div>
+                            <p>
+                                If \(M_n\) is an upper bound of \(S\), set
+                                \(A_{n+1}=A_n\) and \(B_{n+1}=M_n\).
+                                If \(M_n\) is not an upper bound, choose
+                                \(A_{n+1}\in S\) with \(A_{n+1}>M_n\), and set
+                                \(B_{n+1}=B_n\).
+                            </p>
+                            <p>
+                                In either case,
+                                \[
+                                    [A_{n+1},B_{n+1}]\subseteq[A_n,B_n],
+                                    \qquad
+                                    B_{n+1}-A_{n+1}\le\frac{B_n-A_n}{2}.
+                                \]
+                            </p>
+                        </step>
+
+                        <step title="A nested sequence of intervals">
+                            <p>
+                                Iterating this construction gives
+                                \[
+                                    [A_1,B_1]\supseteq[A_2,B_2]\supseteq[A_3,B_3]\supseteq\cdots,
+                                \]
+                                where \(A_n\in S\), \(B_n\) is an upper bound of \(S\), and
+                                \[
+                                    0\le B_n-A_n
+                                    \le\frac{B_1-A_1}{2^{n-1}}
+                                    \longrightarrow0.
+                                \]
+                            </p>
+                        </step>
+
+                        <step title="Apply the Nested Interval Property">
+                            <p>
+                                By the Nested Interval Property,
+                                \[
+                                    \bigcap_{n=1}^{\infty}[A_n,B_n]\ne\varnothing.
+                                \]
+                                Choose
+                                \[
+                                    x\in\bigcap_{n=1}^{\infty}[A_n,B_n].
+                                \]
+                                Then \(A_n\le x\le B_n\) for every \(n\).
+                            </p>
+                            <proof-figure
+                                src="input/nip-to-aoc-two.png"
+                                alt="A common point x belonging to every nested interval">
+                            </proof-figure>
+                        </step>
+
+                        <step title="x is an upper bound of S">
+                            <p>
+                                Suppose, for contradiction, that \(x\) is not an upper bound of \(S\).
+                                Then there exists \(s\in S\) with \(s>x\). Since
+                                \(B_n-A_n\to0\), choose \(n\) such that
+                                \[
+                                    B_n-A_n<s-x.
+                                \]
+                                Because \(A_n\le x\),
+                                \[
+                                    B_n
+                                    =A_n+(B_n-A_n)
+                                    \le x+(B_n-A_n)
+                                    <s.
+                                \]
+                                But \(B_n\) is an upper bound of \(S\), so \(s\le B_n\), a
+                                contradiction. Hence \(x\) is an upper bound of \(S\).
+                            </p>
+                        </step>
+
+                        <step title="x is the least upper bound">
+                            <p>
+                                Suppose that \(u<x\) is also an upper bound of \(S\). Again, because
+                                \(B_n-A_n\to0\), choose \(n\) such that
+                                \[
+                                    B_n-A_n<x-u.
+                                \]
+                                Since \(x\le B_n\),
+                                \[
+                                    A_n
+                                    =B_n-(B_n-A_n)
+                                    \ge x-(B_n-A_n)
+                                    >u.
+                                \]
+                                But \(A_n\in S\), contradicting the assumption that \(u\) is an upper
+                                bound of \(S\). Therefore \(x\) is the least upper bound of \(S\).
+                            </p>
+                            <proof-figure
+                                src="input/nip-to-aoc-three.png"
+                                alt="The shrinking intervals identify x as the least upper bound">
+                            </proof-figure>
+                        </step>
+
+                        <step title="Conclusion">
+                            <p>
+                                Every nonempty subset \(S\subseteq\mathbb R\) that is bounded above has
+                                a least upper bound \(x\in\mathbb R\). Thus
+                            </p>
+                            <div class="definition-equation">
+                                \[
+                                    \boxed{
+                                        \mathrm{Nested\ Interval\ Property}
+                                        \Longrightarrow
+                                        \mathrm{Axiom\ of\ Completeness}
+                                    }.
+                                \]
+                            </div>
+                        </step>
+                    </proof>
+                </subsection>
             </section>
             </main>
 
