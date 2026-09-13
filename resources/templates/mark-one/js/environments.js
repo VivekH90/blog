@@ -279,28 +279,61 @@ function buildProof(proof) {
     content.className =
         "proof-content";
 
-    [...proof.children].forEach(child => {
-        const tag =
-            child.tagName.toLowerCase();
+    const children = [...proof.children];
 
-        if (tag === "step") {
-            content.appendChild(
-                buildProofStep(
-                    child
-                )
-            );
-        } else if (tag === "proof-figure") {
-            content.appendChild(
-                buildProofFigure(
-                    child
-                )
-            );
-        } else {
-            content.appendChild(
-                child.cloneNode(true)
-            );
-        }
-    });
+    // Explicit <step> elements keep their author-defined structure.
+    // Older linear proofs are grouped automatically so they also use
+    // the same numbered proof-step layout.
+    if (children.some(child =>
+        child.tagName.toLowerCase() === "step"
+    )) {
+        let stepNumber = 0;
+
+        children.forEach(child => {
+            const tag = child.tagName.toLowerCase();
+
+            if (tag === "step") {
+                stepNumber++;
+                content.appendChild(
+                    buildProofStep(child, stepNumber)
+                );
+            } else if (tag === "proof-figure") {
+                content.appendChild(buildProofFigure(child));
+            } else {
+                content.appendChild(child.cloneNode(true));
+            }
+        });
+    } else {
+        let group = [];
+        let stepNumber = 0;
+
+        const appendGroup = () => {
+            if (!group.length) return;
+
+            const step = document.createElement("step");
+            group.forEach(node => step.appendChild(node.cloneNode(true)));
+            stepNumber++;
+            content.appendChild(buildProofStep(step, stepNumber));
+            group = [];
+        };
+
+        children.forEach(child => {
+            if (child.tagName.toLowerCase() === "proof-figure") {
+                appendGroup();
+
+                const figureStep = document.createElement("step");
+                figureStep.appendChild(buildProofFigure(child));
+                stepNumber++;
+                content.appendChild(
+                    buildProofStep(figureStep, stepNumber)
+                );
+            } else {
+                group.push(child);
+            }
+        });
+
+        appendGroup();
+    }
 
     box.appendChild(content);
 
@@ -310,7 +343,7 @@ function buildProof(proof) {
 }
 
 // build proof step
-function buildProofStep(step) {
+function buildProofStep(step, stepNumber = null) {
     const row =
         document.createElement("div");
 
@@ -323,13 +356,11 @@ function buildProofStep(step) {
     number.className =
         "proof-step-number";
 
-    const existingSteps =
+    number.textContent =
+        stepNumber ??
         document.querySelectorAll(
             ".proof-step"
-        ).length;
-
-    number.textContent =
-        existingSteps + 1;
+        ).length + 1;
 
     const content =
         document.createElement("div");
