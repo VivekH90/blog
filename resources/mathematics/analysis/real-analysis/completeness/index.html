@@ -306,12 +306,12 @@
         }
 
 
-        /* Nested interval proof: only the outer proof boundary is visible. */
+        /* Nested interval proof: compact figures and a restrained title. */
         .proof-box {
             width: 100%;
             box-sizing: border-box;
-            margin-bottom: 30px;
-            padding: 1.4rem 1.6rem 1.6rem;
+            margin-bottom: 1.8rem;
+            padding: 1rem 1.2rem 1.2rem;
             background: #FBF7EF;
             border: 3px solid var(--ink);
             border-radius: 5px;
@@ -320,16 +320,17 @@
         }
 
         .proof-title {
-            width: min(45%, 360px);
-            margin: 0 auto 1.7rem;
-            padding: 0.55rem 1rem;
+            width: auto;
+            max-width: 12rem;
+            margin: 0 auto 1rem;
+            padding: 0.32rem 0.8rem;
             background: var(--lavender-tint);
-            border: 1.5px solid var(--ink);
-            border-radius: 5px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
             text-align: center;
             font-family: "Computer Modern Sans", sans-serif;
-            font-size: 1.45rem;
-            font-weight: 700;
+            font-size: 1.08rem;
+            font-weight: 600;
             line-height: 1.2;
             color: var(--ink);
         }
@@ -337,19 +338,19 @@
         .proof-content {
             display: flex;
             flex-direction: column;
-            gap: 1.6rem;
+            gap: 1rem;
         }
 
         .proof-content > p {
             margin: 0;
-            line-height: 1.65;
+            line-height: 1.6;
         }
 
         .proof-figure {
             width: 100%;
             box-sizing: border-box;
-            margin: 0;
-            padding: 0.4rem 0;
+            margin: 0.15rem 0;
+            padding: 0;
             background: transparent;
             border: 0 !important;
         }
@@ -359,15 +360,23 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow-x: auto;
+            overflow: hidden;
         }
 
         .proof-figure img {
             display: block;
-            width: 100%;
-            max-width: 100%;
+            width: auto;
+            max-width: min(100%, 42rem);
+            max-height: 20rem;
             height: auto;
+            object-fit: contain;
             border-radius: 3px;
+        }
+
+        @media (max-width: 720px) {
+            .proof-box { padding: 0.85rem; }
+            .proof-title { max-width: 10rem; font-size: 1rem; }
+            .proof-figure img { max-width: 100%; max-height: 15rem; }
         }
 
         @media (max-width: 720px) {
