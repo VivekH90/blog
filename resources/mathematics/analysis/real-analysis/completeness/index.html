@@ -410,6 +410,116 @@
             max-height: 15rem;
         }
 
+
+        /* Heine–Borel proof: one outer frame, three visual stages, no inner borders. */
+        .heine-borel-proof {
+            display: flex;
+            flex-direction: column;
+            gap: 1.55rem;
+        }
+
+        .heine-borel-row {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+            gap: 1.7rem;
+            align-items: center;
+            min-width: 0;
+        }
+
+        .heine-borel-row.reverse {
+            grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
+        }
+
+        .heine-borel-step,
+        .heine-borel-figure {
+            min-width: 0;
+            border: 0 !important;
+        }
+
+        .heine-borel-step {
+            padding: 0.25rem 0.2rem;
+            line-height: 1.62;
+        }
+
+        .heine-borel-step-heading {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            margin-bottom: 0.7rem;
+            font-family: "Computer Modern Sans", sans-serif;
+            font-size: 1.08rem;
+            font-weight: 600;
+        }
+
+        .heine-borel-number {
+            flex: 0 0 2.15rem;
+            width: 2.15rem;
+            height: 2.15rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--terracotta);
+            color: #FFFDF8;
+            font-family: "Computer Modern Sans", sans-serif;
+            font-weight: 700;
+            line-height: 1;
+            box-shadow: 0 2px 5px rgba(201, 120, 112, 0.20);
+        }
+
+        .heine-borel-step p {
+            margin: 0 0 0.75rem;
+        }
+
+        .heine-borel-step p:last-child {
+            margin-bottom: 0;
+        }
+
+        .heine-borel-equation {
+            margin: 0.75rem 0;
+            text-align: center;
+        }
+
+        .heine-borel-figure {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--blue-tint);
+            border-radius: 7px;
+            padding: 0.75rem;
+            overflow: hidden;
+        }
+
+        .heine-borel-row.reverse .heine-borel-figure {
+            background: var(--teal-tint);
+        }
+
+        .heine-borel-final .heine-borel-figure {
+            background: var(--mustard-tint);
+        }
+
+        .heine-borel-figure img {
+            display: block;
+            width: 100%;
+            max-width: 100%;
+            max-height: 15.5rem;
+            height: auto;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+
+        .heine-borel-final-note {
+            margin-top: 0.35rem;
+            padding: 0.9rem 1rem;
+            background: var(--mustard-tint);
+            border-radius: 7px;
+        }
+
+        .heine-borel-final-note strong {
+            color: var(--ink);
+        }
+
         @media (max-width: 720px) {
             .proof-box {
                 padding: 0.9rem;
@@ -849,6 +959,134 @@
                         <strong><em>bounded</em></strong>.
                     </p>
                 </theorem>
+
+                <proof>
+                    <div class="heine-borel-proof">
+
+                        <div class="heine-borel-row">
+                            <div class="heine-borel-step">
+                                <div class="heine-borel-step-heading">
+                                    <span class="heine-borel-number">1</span>
+                                    <span>Compact sets are bounded and closed.</span>
+                                </div>
+
+                                <p>
+                                    Suppose first that \(K\) is compact. The open
+                                    intervals \(U_n=(-n,n)\), \(n\in\mathbb{N}\),
+                                    cover \(K\). A finite subcover exists, and since
+                                    these intervals are nested, for some \(N\),
+                                    \(K\subseteq U_N=(-N,N)\). Thus \(K\) is bounded.
+                                </p>
+
+                                <p>
+                                    To see that \(K\) is closed, suppose otherwise.
+                                    Then there is a point
+                                    \(x\in\overline K\setminus K\). For each
+                                    \(n\in\mathbb{N}\), let
+                                </p>
+
+                                <div class="heine-borel-equation">
+                                    \[
+                                        V_n=(-\infty,x-\tfrac1n)
+                                        \cup(x+\tfrac1n,\infty).
+                                    \]
+                                </div>
+
+                                <p>
+                                    The \(V_n\)'s form an open cover of \(K\).
+                                    A finite selection is contained in some \(V_N\),
+                                    but \(V_N\) misses
+                                    \((x-\tfrac1N,x+\tfrac1N)\). Since \(x\) is a
+                                    limit point of \(K\), this interval contains a point
+                                    of \(K\), a contradiction. Hence \(K\) is closed.
+                                </p>
+                            </div>
+
+                            <figure class="heine-borel-figure">
+                                <img src="input/heine-borel-one.png"
+                                     alt="A visual step in the bounded and closed part of the Heine–Borel proof">
+                            </figure>
+                        </div>
+
+                        <div class="heine-borel-row reverse">
+                            <figure class="heine-borel-figure">
+                                <img src="input/heine-borel-two.png"
+                                     alt="A visual step in constructing the set S for the Heine–Borel proof">
+                            </figure>
+
+                            <div class="heine-borel-step">
+                                <div class="heine-borel-step-heading">
+                                    <span class="heine-borel-number">2</span>
+                                    <span>A closed and bounded set has a finite subcover.</span>
+                                </div>
+
+                                <p>
+                                    Now let \(K\) be closed and bounded, and let
+                                    \(\{U_\alpha\}\) be an open cover of \(K\).
+                                    Choose \(a<b\) with \(K\subseteq[a,b]\), and define
+                                </p>
+
+                                <div class="heine-borel-equation">
+                                    \[
+                                    S=\{x\in[a,b]:
+                                    K\cap[a,x]\text{ can be covered by finitely many }
+                                    U_\alpha\}.
+                                    \]
+                                </div>
+
+                                <p>
+                                    The set \(S\) is non-empty and bounded above by
+                                    \(b\), so let \(c=\sup S\). We show that \(c=b\).
+                                    If \(c\notin K\), closedness gives a small interval
+                                    around \(c\) containing no points of \(K\). Taking a
+                                    point of \(S\) sufficiently close to \(c\) then lets
+                                    us extend past \(c\), contradicting that \(c\) is the
+                                    least upper bound.
+                                </p>
+
+                                <p>
+                                    If \(c\in K\), some \(U_\alpha\) contains \(c\).
+                                    Because \(U_\alpha\) is open, it contains a whole
+                                    interval around \(c\). Again, a point of \(S\)
+                                    sufficiently close to \(c\), together with this one
+                                    \(U_\alpha\), gives a finite cover beyond \(c\), the
+                                    same contradiction. Therefore \(c=b\).
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="heine-borel-row heine-borel-final">
+                            <div class="heine-borel-step">
+                                <div class="heine-borel-step-heading">
+                                    <span class="heine-borel-number">3</span>
+                                    <span>Final words.</span>
+                                </div>
+
+                                <div class="heine-borel-final-note">
+                                    <p>
+                                        Since \(b\in S\), the whole set
+                                        \(K=K\cap[a,b]\) is covered by finitely many
+                                        members of \(\{U_\alpha\}\). Thus every open
+                                        cover of \(K\) has a finite subcover, so
+                                        \(K\) is compact.
+                                    </p>
+
+                                    <p>
+                                        Combining this with the first part,
+                                        \(K\subseteq\mathbb{R}\) is compact exactly
+                                        when it is closed and bounded.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <figure class="heine-borel-figure">
+                                <img src="input/heine-borel-three.png"
+                                     alt="Final visual step of the Heine–Borel proof">
+                            </figure>
+                        </div>
+
+                    </div>
+                </proof>
             </section>
             </main>
 
