@@ -1,18 +1,678 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Not Regular Languages</title>
 
-    <link rel="stylesheet" href="../../../../templates/mark-one/css/main.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vsalvino/computer-modern@main/fonts/sans.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vsalvino/computer-modern@main/fonts/serif.css">
+    <title>When are languages not regular</title>
+
+    <!-- Mark One styles -->
+    <link
+        rel="stylesheet"
+        href="../../../../templates/mark-one/css/main.css">
+
+    <!-- Computer Modern -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/vsalvino/computer-modern@main/fonts/sans.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/vsalvino/computer-modern@main/fonts/serif.css">
+
+
+    <!-- Page-specific dark theme -->
+    <style>
+
+        :root {
+
+            --page-background: #0D1117;
+
+            --surface: #161B22;
+
+            --surface-dark: #0D1117;
+
+            --surface-raised: #1B222C;
+
+            --ink: #E6EDF3;
+
+            --muted: #8B949E;
+
+            --border: #30363D;
+
+            --blue: #58A6FF;
+
+            --green: #3FB950;
+
+            --purple: #A371F7;
+
+            --orange: #D29922;
+        }
+
+
+        /* page */
+
+        html,
+        body {
+
+            background:
+                var(--page-background) !important;
+
+            color:
+                var(--ink) !important;
+        }
+
+
+        /* banner */
+
+        .banner {
+
+            background-image:
+                url("banner.png") !important;
+
+            border:
+                1px solid
+                var(--border);
+        }
+
+
+        .banner h1 {
+
+            color:
+                #F0F6FC !important;
+        }
+
+
+        /* navigation */
+
+        .navbar a {
+
+            color:
+                var(--ink) !important;
+
+            border-color:
+                var(--border) !important;
+        }
+
+
+        .home-btn {
+
+            --nav-color:
+                #172235 !important;
+        }
+
+
+        .date-btn {
+
+            --nav-color:
+                #272218 !important;
+        }
+
+
+        .github-btn {
+
+            --nav-color:
+                #17251C !important;
+        }
+
+
+        .navbar a:hover {
+
+            color:
+                #FFFFFF !important;
+
+            text-decoration:
+                none;
+        }
+
+
+        /* document */
+
+        .note-content {
+
+            color:
+                var(--ink) !important;
+        }
+
+
+        .note-content p,
+        .note-content li {
+
+            color:
+                var(--ink) !important;
+        }
+
+
+        .main-title {
+
+            color:
+                var(--ink) !important;
+        }
+
+
+        .intro-paragraph {
+
+            color:
+                #C9D1D9 !important;
+        }
+
+
+        /* breadcrumbs */
+
+        .breadcrumbs,
+        .breadcrumbs span,
+        .breadcrumbs a {
+
+            color:
+                var(--muted) !important;
+        }
+
+
+        .breadcrumbs a:hover {
+
+            color:
+                var(--blue) !important;
+        }
+
+
+        /* sidebar */
+
+        .sidebar {
+
+            background:
+                var(--surface) !important;
+
+            border-color:
+                var(--border) !important;
+
+            color:
+                var(--ink) !important;
+        }
+
+
+        .sidebar-group h2 {
+
+            color:
+                var(--ink) !important;
+        }
+
+
+        .sidebar-items a {
+
+            color:
+                #A8B3BF !important;
+        }
+
+
+        .sidebar-items a:hover {
+
+            color:
+                var(--blue) !important;
+        }
+
+
+        /* sidebar search */
+
+        .sidebar-search input,
+        .sidebar-search button {
+
+            background:
+                var(--surface-dark) !important;
+
+            color:
+                var(--ink) !important;
+
+            border-color:
+                var(--border) !important;
+        }
+
+
+        .sidebar-search input::placeholder {
+
+            color:
+                #6E7681 !important;
+        }
+
+
+        .sidebar-search input:focus {
+
+            border-color:
+                var(--blue) !important;
+
+            outline:
+                none;
+        }
+
+
+        .sidebar-divider {
+
+            border-color:
+                var(--border) !important;
+        }
+
+
+        /* table of contents */
+
+        .table-of-contents {
+
+            background:
+                var(--surface) !important;
+
+            border-color:
+                var(--border) !important;
+
+            color:
+                var(--ink) !important;
+        }
+
+
+        .table-of-contents h2 {
+
+            color:
+                var(--ink) !important;
+
+            border-color:
+                var(--border) !important;
+        }
+
+
+        .toc-sections a {
+
+            color:
+                #C9D1D9 !important;
+        }
+
+
+        .toc-sections a:hover {
+
+            color:
+                #D2A8FF !important;
+        }
+
+
+        .toc-sections li.toc-item-active {
+
+            background:
+                rgba(
+                    163,
+                    113,
+                    247,
+                    0.12
+                ) !important;
+        }
+
+
+        .toc-sections li.toc-item-active > a {
+
+            color:
+                #D2A8FF !important;
+        }
+
+
+        /* sections */
+
+        .section-title,
+        .section-number,
+        .subsection-title,
+        .subsection-number {
+
+            color:
+                var(--blue) !important;
+        }
+
+
+        /* general dividers */
+
+        hr {
+
+            border-color:
+                var(--border) !important;
+        }
+
+
+        /* MathJax */
+
+        mjx-container {
+
+            color:
+                var(--ink) !important;
+        }
+
+
+        /* mathematical environments */
+
+        .math-environment {
+
+            background:
+                #151C24 !important;
+
+            border-color:
+                #33404D !important;
+
+            color:
+                #D0D7DE !important;
+        }
+
+
+        .environment-number,
+        .environment-name,
+        .environment-item-text {
+
+            color:
+                #D0D7DE !important;
+        }
+
+
+        .environment-tag {
+
+            color:
+                #D2A8FF !important;
+
+            background:
+                rgba(
+                    163,
+                    113,
+                    247,
+                    0.18
+                ) !important;
+        }
+
+
+        .environment-number-circle {
+
+            background:
+                #30363D !important;
+
+            color:
+                #F0F6FC !important;
+        }
+
+
+        .axiom-statement {
+
+            background:
+                #111820 !important;
+
+            border-color:
+                #33404D !important;
+        }
+
+
+        /* proofs */
+
+        .proof-box {
+
+            background:
+                #151C24 !important;
+
+            color:
+                #D0D7DE !important;
+
+            border:
+                1px solid
+                #33404D;
+        }
+
+
+        .proof-title,
+        .proof-step-title,
+        .proof-step-content {
+
+            color:
+                #D0D7DE !important;
+        }
+
+
+        .proof-step-number {
+
+            background:
+                #30363D !important;
+
+            color:
+                #F0F6FC !important;
+        }
+
+
+        .proof-figure {
+
+            background:
+                #111820 !important;
+
+            border-color:
+                #33404D !important;
+        }
+
+
+        .proof-figure figcaption {
+
+            color:
+                var(--muted) !important;
+        }
+
+    </style>
+
+
+    <!-- MathJax -->
+
+    <script>
+
+        window.MathJax = {
+
+            tex: {
+
+                inlineMath: [
+                    ["\\(", "\\)"]
+                ],
+
+                displayMath: [
+                    ["\\[", "\\]"]
+                ]
+
+            }
+
+        };
+
+    </script>
+
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+        defer>
+    </script>
+
+
+    <!-- Mark One JavaScript -->
+
+    <script
+        src="../../../../templates/mark-one/js/banner.js"
+        defer>
+    </script>
+
+    <script
+        src="../../../../templates/mark-one/js/navigation.js"
+        defer>
+    </script>
+
+    <script
+        src="../../../../templates/mark-one/js/sidebar.js"
+        defer>
+    </script>
+
+    <script
+        src="../../../../templates/mark-one/js/section.js"
+        defer>
+    </script>
+
+    <script
+        src="../../../../templates/mark-one/js/toc.js"
+        defer>
+    </script>
+
+    <script
+        src="../../../../templates/mark-one/js/environments.js"
+        defer>
+    </script>
+
 </head>
+
+
 <body>
-    <main>
-        <h1>Not Regular Languages</h1>
-        <p>Notes and proofs about languages that cannot be recognized by finite automata.</p>
-    </main>
+
+
+    <!-- Banner + navigation -->
+
+    <header class="header-box">
+
+        <banner
+            title="Computer Science"
+            color="#58A6FF">
+        </banner>
+
+
+        <nav class="navbar">
+
+            <home
+                color="#172235"
+                href="#">
+                Home
+            </home>
+
+
+            <date
+                color="#272218">
+                14 Sep, 2026
+            </date>
+
+
+            <github
+                color="#17251C"
+                href="https://github.com/VivekH90/blog">
+                Github
+            </github>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- Main layout -->
+
+    <div class="main-layout">
+
+
+        <!-- Sidebar -->
+
+        <sidebar
+            color="#161B22"
+            search="true">
+
+            <group
+                title="Theory of Computation">
+
+                <item
+                    title="When are languages not regular"
+                    href="index.html">
+                </item>
+
+            </group>
+
+        </sidebar>
+
+
+
+        <!-- Document -->
+
+        <main
+            id="document"
+            class="note-content">
+
+
+            <!-- Breadcrumbs -->
+
+            <div class="breadcrumbs">
+
+                <a href="#">
+                    Home
+                </a>
+
+                <span>
+                    ›
+                </span>
+
+                <a href="#">
+                    Computer Science
+                </a>
+
+                <span>
+                    ›
+                </span>
+
+                <span>
+                    Theory of Computation
+                </span>
+
+            </div>
+
+
+
+            <!-- Main title -->
+
+            <h1 class="main-title">
+
+                When are languages not regular
+
+            </h1>
+
+
+
+            <!-- Introduction -->
+
+            <p class="intro-paragraph">
+
+                Notes on recognizing when a language lies beyond
+                the expressive power of finite automata.
+
+            </p>
+
+
+
+            <!-- Section -->
+
+            <section
+                title="The question of regularity"
+                color="#58A6FF">
+
+
+                <p>
+
+                    A language is regular precisely when some
+                    finite automaton can recognize it. The central
+                    problem is therefore to understand how to prove
+                    that no finite-state description can recognize
+                    a given language.
+
+                </p>
+
+
+            </section>
+
+
+        </main>
+
+
+
+        <!-- Table of contents -->
+
+        <table-of-contents
+            color="#A371F7">
+        </table-of-contents>
+
+
+    </div>
+
+
 </body>
+
 </html>

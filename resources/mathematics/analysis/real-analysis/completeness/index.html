@@ -2,1216 +2,874 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The three equivalent forms of completeness</title>
 
-    <link rel="stylesheet" href="../../../../templates/mark-one/css/main.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vsalvino/computer-modern@main/fonts/sans.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/vsalvino/computer-modern@main/fonts/serif.css">
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>When are languages not regular</title>
+
+
+    <!-- Mark One -->
+
+    <link
+        rel="stylesheet"
+        href="../../../../templates/mark-one/css/main.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/vsalvino/computer-modern@main/fonts/sans.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/vsalvino/computer-modern@main/fonts/serif.css">
+
 
     <!-- page-specific palette -->
+
     <style>
+
         :root {
-            --page-background: #F4EBDD;
-            --surface: #FBF7EF;
-            --ink: #172B3A;
-            --slate: #536574;
-            --border: #D5C9B8;
-            --blue: #6689AA;
-            --teal: #4F8178;
-            --mustard: #C7A253;
-            --lavender: #8C7FB0;
-            --terracotta: #C97870;
-            --sidebar-background: #E9DDC9;
-            --toc-selected: #E3DDEB;
-            --blue-tint: #EEF4F8;
-            --teal-tint: #EDF5F2;
-            --mustard-tint: #F8F2E5;
-            --lavender-tint: #F2EFF7;
-            --terracotta-tint: #F8EDEB;
+
+            --page-background: #0D1117;
+
+            --surface: #161B22;
+            --surface-raised: #1C2128;
+
+            --ink: #E6EDF3;
+            --slate: #8B949E;
+
+            --border: #30363D;
+
+            --blue: #58A6FF;
+            --green: #3FB950;
+            --orange: #D29922;
+            --purple: #A371F7;
+            --red: #F85149;
+
+            --sidebar-background: #161B22;
+            --toc-background: #161B22;
+
+            --sidebar-text: #C9D1D9;
+            --toc-text: #C9D1D9;
         }
 
-        html, body {
-            background: var(--page-background) !important;
+
+        /* -------------------------------------------------- */
+        /* page */
+        /* -------------------------------------------------- */
+
+        html,
+        body {
+
+            background:
+                var(--page-background)
+                !important;
+
+            color:
+                var(--ink)
+                !important;
         }
+
 
         body {
-            color: var(--ink) !important;
+
+            min-height: 100vh;
         }
 
-        /* Slightly increase the page's reading size without changing the shared template. */
+
+        /* -------------------------------------------------- */
+        /* banner */
+        /* -------------------------------------------------- */
+
+        .banner {
+
+            background-image:
+                url("./banner.png")
+                !important;
+
+            border:
+                1px solid
+                var(--border);
+
+        }
+
+
+        .banner h1 {
+
+            color:
+                #F0F6FC
+                !important;
+        }
+
+
+        /* -------------------------------------------------- */
+        /* navigation */
+        /* -------------------------------------------------- */
+
+        .navbar a {
+
+            color:
+                var(--ink)
+                !important;
+
+            border-color:
+                var(--border)
+                !important;
+        }
+
+
+        .home-btn {
+
+            --nav-color:
+                #172235;
+        }
+
+
+        .date-btn {
+
+            --nav-color:
+                #272218;
+        }
+
+
+        .github-btn {
+
+            --nav-color:
+                #17251C;
+        }
+
+
+        .navbar a:hover {
+
+            color:
+                #FFFFFF
+                !important;
+
+            text-decoration:
+                none;
+        }
+
+
+        /* -------------------------------------------------- */
+        /* document */
+        /* -------------------------------------------------- */
+
         .note-content {
-            font-size: 1.06rem;
+
+            color:
+                var(--ink)
+                !important;
         }
+
 
         .note-content p,
         .note-content li {
-            font-size: 1.06rem;
+
+            color:
+                #C9D1D9
+                !important;
         }
 
-        .note-content,
-        .note-content p,
-        .note-content li {
-            color: var(--ink) !important;
-        }
 
         .main-title {
-            color: var(--ink) !important;
+
+            color:
+                #F0F6FC
+                !important;
         }
+
+
+        .intro-paragraph {
+
+            color:
+                #B8C1CC
+                !important;
+        }
+
+
+        /* -------------------------------------------------- */
+        /* breadcrumbs */
+        /* -------------------------------------------------- */
 
         .breadcrumbs,
         .breadcrumbs span,
         .breadcrumbs a {
-            color: var(--slate) !important;
+
+            color:
+                var(--slate)
+                !important;
         }
 
+
         .breadcrumbs a:hover {
-            color: var(--blue) !important;
+
+            color:
+                var(--blue)
+                !important;
         }
+
+
+        /* -------------------------------------------------- */
+        /* sidebar */
+        /* -------------------------------------------------- */
+
+        .sidebar {
+
+            background:
+                var(--sidebar-background)
+                !important;
+
+            border-color:
+                var(--border)
+                !important;
+
+            color:
+                var(--sidebar-text)
+                !important;
+        }
+
+
+        .sidebar-group h2 {
+
+            color:
+                var(--ink)
+                !important;
+        }
+
+
+        .sidebar-items a {
+
+            color:
+                var(--sidebar-text)
+                !important;
+        }
+
+
+        .sidebar-items a:hover {
+
+            color:
+                var(--blue)
+                !important;
+        }
+
+
+        .sidebar-search input,
+        .sidebar-search button {
+
+            background:
+                #0D1117
+                !important;
+
+            color:
+                var(--ink)
+                !important;
+
+            border-color:
+                var(--border)
+                !important;
+        }
+
+
+        .sidebar-search input::placeholder {
+
+            color:
+                #6E7681
+                !important;
+        }
+
+
+        .sidebar-search input:focus {
+
+            border-color:
+                var(--blue)
+                !important;
+
+            outline:
+                none;
+        }
+
+
+        .sidebar-divider {
+
+            border-color:
+                var(--border)
+                !important;
+        }
+
+
+        /* -------------------------------------------------- */
+        /* table of contents */
+        /* -------------------------------------------------- */
+
+        .table-of-contents {
+
+            background:
+                var(--toc-background)
+                !important;
+
+            border-color:
+                var(--border)
+                !important;
+
+            color:
+                var(--toc-text)
+                !important;
+        }
+
+
+        .table-of-contents h2 {
+
+            color:
+                var(--ink)
+                !important;
+
+            border-color:
+                var(--border)
+                !important;
+        }
+
+
+        .toc-sections a {
+
+            color:
+                var(--toc-text)
+                !important;
+        }
+
+
+        .toc-sections a:hover {
+
+            color:
+                var(--purple)
+                !important;
+        }
+
+
+        .toc-sections li.toc-item-active {
+
+            background:
+                rgba(
+                    163,
+                    113,
+                    247,
+                    0.12
+                )
+                !important;
+        }
+
+
+        .toc-sections li.toc-item-active > a {
+
+            color:
+                #D2A8FF
+                !important;
+        }
+
+
+        /* -------------------------------------------------- */
+        /* sections */
+        /* -------------------------------------------------- */
 
         .section-title,
         .section-number,
         .subsection-title,
         .subsection-number {
-            color: var(--terracotta) !important;
+
+            color:
+                var(--blue)
+                !important;
         }
 
-        /* Navigation: pale accent surfaces with dark-ink text */
-        .home-btn {
-            --nav-color: #E4EDF4 !important;
-            color: var(--ink) !important;
-            border-color: var(--border) !important;
-        }
 
-        .date-btn {
-            --nav-color: #F1E8CF !important;
-            color: var(--ink) !important;
-            border-color: var(--border) !important;
-        }
-
-        .github-btn {
-            --nav-color: #E3EEE9 !important;
-            color: var(--ink) !important;
-            border-color: var(--border) !important;
-        }
-
-        /* Sidebar */
-        .sidebar {
-            background: var(--sidebar-background) !important;
-            border-color: var(--border) !important;
-            color: var(--ink) !important;
-        }
-
-        .sidebar-items a {
-            color: var(--slate) !important;
-        }
-
-        .sidebar-items a:hover {
-            color: var(--teal) !important;
-        }
-
-        .sidebar-search input,
-        .sidebar-search button {
-            background: var(--surface) !important;
-            color: var(--ink) !important;
-            border-color: var(--border) !important;
-        }
-
-        .sidebar-search input:focus {
-            border-color: var(--blue) !important;
-            outline: none;
-        }
-
-        /* Table of contents */
-        .table-of-contents {
-            background: var(--surface) !important;
-            border-color: var(--border) !important;
-            color: var(--ink) !important;
-        }
-
-        .toc-sections a {
-            color: var(--ink) !important;
-        }
-
-        .toc-sections a:hover {
-            color: var(--lavender) !important;
-        }
-
-        .toc-sections .active,
-        .toc-sections .active-item,
-        .toc-sections li.active,
-        .toc-sections li.active-item,
-        .toc-sections a.active,
-        .table-of-contents .active,
-        .table-of-contents .active-item {
-            background: var(--toc-selected) !important;
-            color: var(--lavender) !important;
-        }
-
-        /* Pale definition / theorem / lemma / example / proof cards */
-        .definition-box, definition {
-            --env-color: var(--teal) !important;
-            --env-dark-color: #315E59 !important;
-            --env-light-color: var(--teal-tint) !important;
-            --env-border-color: #BDD5D0 !important;
-        }
-
-        .theorem-box, theorem {
-            --env-color: var(--blue) !important;
-            --env-dark-color: #405F7A !important;
-            --env-light-color: var(--blue-tint) !important;
-            --env-border-color: #C7D7E3 !important;
-        }
-
-        .lemma-box, lemma,
-        .proposition-box, proposition {
-            --env-color: var(--lavender) !important;
-            --env-dark-color: #60547E !important;
-            --env-light-color: var(--lavender-tint) !important;
-            --env-border-color: #D3CCE2 !important;
-        }
-
-        .example-box, example,
-        .corollary-box, corollary,
-        .axiom-box, axiom {
-            --env-color: var(--mustard) !important;
-            --env-dark-color: #78602A !important;
-            --env-light-color: var(--mustard-tint) !important;
-            --env-border-color: #DECEAA !important;
-        }
-
-        .proof-box, proof {
-            --env-color: var(--terracotta) !important;
-            --env-dark-color: #7D403B !important;
-            --env-light-color: var(--terracotta-tint) !important;
-            --env-border-color: #DFC0BB !important;
-        }
-
-        .math-environment,
-        .environment-name {
-            color: var(--ink) !important;
-        }
-
-        hr,
-        .sidebar-divider,
-        .table-of-contents hr {
-            border-color: var(--border) !important;
-        }
+        /* -------------------------------------------------- */
+        /* mathematics */
+        /* -------------------------------------------------- */
 
         mjx-container {
-            color: var(--ink) !important;
-        }
 
-        .number-line-figure {
-            margin-left: 0;
-            margin-right: 0;
-        }
-
-        /* Compactness counterexample: a self-contained proof layout. */
-        .compact-proof-card {
-            margin: 1.9rem 0 2.4rem;
-            background: #F7F1E6;
-            border: 3px solid var(--ink);
-            border-radius: 10px;
-            overflow: hidden;
-            color: var(--ink);
-            box-shadow: 0 5px 0 rgba(23, 43, 58, 0.06);
-        }
-
-        .compact-proof-title {
-            margin: 0;
-            padding: 1rem 1.35rem;
-            background: var(--lavender-tint);
-            text-align: center;
-            font-family: "Computer Modern Sans", sans-serif;
-            font-size: 1.55rem;
-            font-weight: 600;
-            color: var(--ink);
-        }
-
-        .compact-proof-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.18fr;
-            gap: 1.25rem;
-            padding: 1.25rem;
-            background: #F7F1E6;
-        }
-
-        .compact-proof-pane,
-        .compact-proof-figure,
-        .compact-proof-wide,
-        .compact-proof-conclusion {
-            min-width: 0;
-            padding: 1.15rem 1.25rem;
-            border: 0 !important;
-            box-sizing: border-box;
-        }
-
-        .compact-proof-pane {
-            background: var(--teal-tint);
-            border-radius: 7px;
-        }
-
-        .compact-proof-figure {
-            margin: 0;
-            background: var(--blue-tint);
-            border-radius: 7px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .compact-proof-figure img {
-            display: block;
-            width: 100%;
-            max-width: 100%;
-            height: auto;
-            object-fit: contain;
-            border-radius: 4px;
-        }
-
-        .compact-proof-wide {
-            margin: 0 1.25rem;
-            padding: 1.25rem 1.35rem;
-            background: #FBF7EF;
-            border-radius: 7px;
-        }
-
-        .compact-proof-conclusion {
-            background: var(--mustard-tint);
-            border-radius: 7px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            text-align: center;
-        }
-
-        .compact-proof-conclusion p {
-            margin-left: auto;
-            margin-right: auto;
-            max-width: 30rem;
-        }
-
-        .compact-proof-final {
-            display: inline-block;
-            align-self: center;
-            margin-top: 0.65rem;
-            padding: 0.48rem 0.95rem;
-            background: var(--terracotta-tint);
-            border: 1.5px solid var(--terracotta);
-            border-radius: 999px;
-            font-weight: 600;
-            color: var(--ink);
+            color:
+                var(--ink)
+                !important;
         }
 
 
-        /* Completeness proofs use the shared linear proof environment. */
+        /* -------------------------------------------------- */
+        /* mathematical environments */
+        /* -------------------------------------------------- */
 
-        @media (max-width: 720px) {
-            .compact-proof-grid {
-                grid-template-columns: 1fr;
-                padding: 1rem;
-                gap: 1rem;
-            }
+        .math-environment {
 
-            .compact-proof-wide {
-                margin: 0 1rem;
-            }
+            background:
+                #151C24
+                !important;
+
+            border-color:
+                #303B48
+                !important;
+
+            color:
+                #D0D7DE
+                !important;
         }
-    
-        /* Keep proof figures compact so they support the argument rather than dominate it. */
+
+
+        .environment-number {
+
+            color:
+                #E6EDF3
+                !important;
+        }
+
+
+        .environment-name {
+
+            color:
+                #C9D1D9
+                !important;
+        }
+
+
+        .environment-item-text {
+
+            color:
+                #D0D7DE
+                !important;
+        }
+
+
+        .environment-number-circle {
+
+            background:
+                #30363D
+                !important;
+
+            color:
+                #F0F6FC
+                !important;
+        }
+
+
+        .environment-tag {
+
+            color:
+                #D2A8FF
+                !important;
+
+            background:
+                rgba(
+                    163,
+                    113,
+                    247,
+                    0.16
+                )
+                !important;
+        }
+
+
+        .axiom-statement {
+
+            background:
+                #111820
+                !important;
+
+            border-color:
+                #303B48
+                !important;
+        }
+
+
+        /* -------------------------------------------------- */
+        /* proofs */
+        /* -------------------------------------------------- */
+
+        .proof-box {
+
+            background:
+                #151C24
+                !important;
+
+            color:
+                #D0D7DE
+                !important;
+
+            border:
+                1px solid
+                #303B48;
+        }
+
+
+        .proof-title {
+
+            color:
+                #E6EDF3
+                !important;
+        }
+
+
+        .proof-step-title {
+
+            color:
+                #E6EDF3
+                !important;
+        }
+
+
+        .proof-step-content {
+
+            color:
+                #D0D7DE
+                !important;
+        }
+
+
+        .proof-step-number {
+
+            background:
+                #30363D
+                !important;
+
+            color:
+                #F0F6FC
+                !important;
+        }
+
+
         .proof-figure {
-            width: 100%;
-            margin: 1rem auto !important;
-            padding: .45rem !important;
-            background: transparent !important;
-            border: 0 !important;
+
+            background:
+                #111820
+                !important;
+
+            border-color:
+                #303B48
+                !important;
         }
 
 
-        .equivalence-introduction {
-            margin: 1.8rem 0 2.1rem;
-            padding: 1.35rem 1.5rem;
-            background: var(--lavender-tint);
-            border: 1px solid #D3CCE2;
-            border-radius: 18px;
-            box-sizing: border-box;
+        .proof-figure figcaption {
+
+            color:
+                var(--slate)
+                !important;
         }
 
-        .equivalence-introduction p {
-            margin: 0 0 0.9rem;
-            line-height: 1.6;
+
+        /* -------------------------------------------------- */
+        /* dividers */
+        /* -------------------------------------------------- */
+
+        hr {
+
+            border-color:
+                var(--border)
+                !important;
         }
 
-        .equivalence-introduction p:last-of-type {
-            margin-bottom: 0.55rem;
-        }
 
-        .equivalence-summary {
-            text-align: center;
-            margin: 0.5rem 0 0.9rem;
-        }
+        /* -------------------------------------------------- */
+        /* responsive */
+        /* -------------------------------------------------- */
 
-        .equivalence-overview {
-            display: block;
-            width: min(100%, 760px);
-            height: auto;
-            margin: 0.85rem auto 0;
-            border-radius: 10px;
-        }
+        @media (max-width: 700px) {
 
-        .proof-figure-visual {
-            justify-content: center;
-            overflow: hidden !important;
-        }
+            .main-title {
 
-        .proof-figure img {
-            width: auto !important;
-            max-width: 82% !important;
-            max-height: 11rem !important;
-            height: auto !important;
-            object-fit: contain !important;
-        }
-
-        @media (max-width: 720px) {
-            .proof-figure img {
-                max-width: 96% !important;
-                max-height: 9rem !important;
+                font-size:
+                    2.25rem;
             }
+
         }
 
     </style>
 
-    <!-- mathjax -->
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [["\\(", "\\)"]],
-                displayMath: [["\\[", "\\]"]]
-            }
-        };
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
 
-    <!-- javascript -->
-    <script src="../../../../templates/mark-one/js/banner.js" defer></script>
-    <script src="../../../../templates/mark-one/js/navigation.js" defer></script>
-    <script src="../../../../templates/mark-one/js/sidebar.js" defer></script>
-    <script src="../../../../templates/mark-one/js/section.js" defer></script>
-    <script src="../../../../templates/mark-one/js/toc.js" defer></script>
-    <script src="../../../../templates/mark-one/js/environments.js" defer></script>
+    <!-- MathJax -->
+
+    <script>
+
+        window.MathJax = {
+
+            tex: {
+
+                inlineMath: [
+                    ["\\(", "\\)"]
+                ],
+
+                displayMath: [
+                    ["\\[", "\\]"]
+                ]
+
+            }
+
+        };
+
+    </script>
+
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+        defer>
+    </script>
+
+
+    <!-- Mark One JavaScript -->
+
+    <script
+        src="../../../../templates/mark-one/js/banner.js"
+        defer>
+    </script>
+
+    <script
+        src="../../../../templates/mark-one/js/navigation.js"
+        defer>
+    </script>
+
+    <script
+        src="../../../../templates/mark-one/js/sidebar.js"
+        defer>
+    </script>
+
+    <script
+        src="../../../../templates/mark-one/js/section.js"
+        defer>
+    </script>
+
+    <script
+        src="../../../../templates/mark-one/js/toc.js"
+        defer>
+    </script>
+
+    <script
+        src="../../../../templates/mark-one/js/environments.js"
+        defer>
+    </script>
+
 </head>
 
+
 <body>
+
+
+    <!-- banner -->
+
     <header class="header-box">
-        <banner title="Real Analysis" color="#172B3A"></banner>
+
+        <banner
+            title="Computer Science"
+            color="#58A6FF">
+        </banner>
+
+
+        <!-- navigation -->
 
         <nav class="navbar">
-            <home color="#6689AA" href="#">Home</home>
-            <date color="#C7A253">7 Sep, 2026</date>
-            <github color="#4F8178" href="https://github.com/VivekH90/blog">Github</github>
+
+            <home
+                color="#172235"
+                href="../../../../index.html">
+
+                Home
+
+            </home>
+
+
+            <date
+                color="#272218">
+
+                14 Sep, 2026
+
+            </date>
+
+
+            <github
+                color="#17251C"
+                href="https://github.com/VivekH90/blog">
+
+                Github
+
+            </github>
+
         </nav>
+
     </header>
 
+
+
+    <!-- main layout -->
+
     <div class="main-layout">
-        <sidebar color="#E9DDC9" title="Important Readings" search="true">
+
+
+        <!-- sidebar -->
+
+        <sidebar
+            color="#161B22"
+            title="Theory of Computation"
+            search="true">
+
+
             <item
-                title="Understanding Analysis — Stephen Abbott"
-                href="https://books.google.co.in/books/about/Understanding_Analysis.html?id=JXvBBAAAQBAJ&redir_esc=y">
+                title="When are languages not regular"
+                href="index.html">
             </item>
+
+
         </sidebar>
 
-        <main id="document" class="note-content">
+
+
+        <!-- document -->
+
+        <main
+            id="document"
+            class="note-content">
+
+
+            <!-- breadcrumbs -->
+
             <div class="breadcrumbs">
-                <a href="#">Home</a>
-                <span>›</span>
-                <a href="#">Real Analysis</a>
-                <span>›</span>
-                <span>The three equivalent forms of completeness</span>
+
+                <a href="../../../../index.html">
+                    Home
+                </a>
+
+                <span>
+                    ›
+                </span>
+
+                <span>
+                    Computer Science
+                </span>
+
+                <span>
+                    ›
+                </span>
+
+                <span>
+                    Theory of Computation
+                </span>
+
             </div>
 
-            <h1 class="main-title">The three equivalent forms of completeness</h1>
+
+
+            <!-- title -->
+
+            <h1 class="main-title">
+
+                When are languages not regular
+
+            </h1>
+
+
+
+            <!-- introduction -->
 
             <p class="intro-paragraph">
-                The Axiom of Completeness, the Nested Interval Property, and the Heine–Borel Theorem all point to the same fundamental idea: the set of real numbers is complete. In other words, there are no <strong>gaps</strong> in the real number line. These three statements are equivalent in the sense that, if we take any one of them as an axiom, we can prove the other two from it. This is the idea we will explore here.
+
+                Finite automata are powerful precisely because
+                they are finite. But that same finiteness places
+                fundamental limits on the languages they can
+                recognize.
+
             </p>
 
-            <section title="Some basic definitions" color="#C97870" class="section-fundamentals">
-                <definition title="Bounded above/below" color="#4F8178">
-                    <r-item>
-                        <p>
-                            A set \(A \subseteq \mathbb{R}\) is
-                            <strong><em>bounded above</em></strong>
-                            if there exists a number \(b \in \mathbb{R}\)
-                            such that
-                        </p>
-                        <div class="definition-equation">
-                            \[
-                                a \leq b
-                                \qquad
-                                \text{for all } a \in A.
-                            \]
-                        </div>
-                        <p>
-                            The number \(b\) is called an
-                            <strong><em>upper bound</em></strong> for \(A\).
-                        </p>
-                    </r-item>
 
-                    <r-item>
-                        <p>
-                            A set \(A \subseteq \mathbb{R}\) is
-                            <strong><em>bounded below</em></strong>
-                            if there exists a number \(l \in \mathbb{R}\)
-                            such that
-                        </p>
-                        <div class="definition-equation">
-                            \[
-                                l \leq a
-                                \qquad
-                                \text{for every } a \in A.
-                            \]
-                        </div>
-                        <p>
-                            The number \(l\) is called a
-                            <strong><em>lower bound</em></strong> for \(A\).
-                        </p>
-                    </r-item>
-                </definition>
 
-                <figure class="number-line-figure">
-                    <canvas id="upper-bound-number-line" width="900" height="250" style="display: block; width: 100%; height: 250px;"></canvas>
-                </figure>
-                <script src="input/number-line.js"></script>
+            <!-- section -->
 
-                <definition title="Least Upper Bound and Greatest Lower Bound" color="#4F8178">
-                    <p>
-                        Let \(A \subseteq \mathbb{R}\). The <strong><em>least upper bound</em></strong>, or <strong><em>supremum</em></strong>, of \(A\) is a real number \(s \in \mathbb{R}\), denoted by \(\text{sup}\,A\) satisfying two conditions:
-                    </p>
-                    <r-item>
-                        <p>\(s\) is an upper bound for \(A\)</p>
-                    </r-item>
-                    <r-item>
-                        <p>If \(b\) is any upper bound for \(A\), then \(s \leq b\).</p>
-                    </r-item>
-                    <p>
-                        The <strong><em>greatest lower bound</em></strong>, or <strong><em>infimum</em></strong>, is defined similarly and denoted by \(\inf A\).
-                    </p>
-                </definition>
+            <section
+                title="When is a language regular?"
+                color="#58A6FF">
 
-                <figure class="number-line-figure">
-                    <canvas id="infimum-supremum-number-line" width="900" height="360" style="display: block; width: 100%; height: 360px;"></canvas>
-                </figure>
-                <script src="input/infimum-supremum-number-line.js"></script>
+
+                <p>
+
+                    A language is called
+                    <strong>regular</strong>
+                    when it can be recognized by a finite
+                    automaton. Equivalently, it can be described
+                    by a regular expression or generated by a
+                    regular grammar.
+
+                </p>
+
+
+                <p>
+
+                    The interesting question is therefore not
+                    merely how to construct a finite automaton,
+                    but how to recognize when constructing one is
+                    fundamentally impossible.
+
+                </p>
+
+
+
+                <!-- subsection -->
 
                 <subsection
-                    title="Compact sets"
-                    color="#C97870">
-
-                    <definition
-                        title="Compact set"
-                        color="#4F8178">
-
-                        <p>
-                            A set \(K \subseteq \mathbb{R}\) is
-                            <strong><em>compact</em></strong> if every open cover
-                            of \(K\) contains a finite subcover.
-                        </p>
-
-                        <r-item>
-
-                            <p>
-                                An <strong><em>open cover</em></strong> of \(K\)
-                                is a collection of open sets \(\{U_\alpha\}\)
-                                such that every point of \(K\) lies in at least
-                                one of the sets. Equivalently, the union of all
-                                the sets contains \(K\):
-                            </p>
-
-                            <div class="definition-equation">
-                                \[
-                                    K \subseteq \bigcup_{\alpha} U_\alpha.
-                                \]
-                            </div>
-
-                        </r-item>
-
-                        <r-item>
-
-                            <p>
-                                A <strong><em>finite subcover</em></strong> means
-                                that we can choose only finitely many sets from
-                                the original cover, and these chosen sets still
-                                contain every point of \(K\). Thus, for some
-                                finite collection,
-                            </p>
-
-                            <div class="definition-equation">
-                                \[
-                                    K \subseteq
-                                    U_{\alpha_1} \cup \cdots \cup U_{\alpha_n}.
-                                \]
-                            </div>
-
-                        </r-item>
-
-                    </definition>
-
-                    <div class="compact-proof-card">
-                        <h2 class="compact-proof-title">
-                            The set \((0,1)\) is not compact.
-                        </h2>
-
-                        <div class="compact-proof-grid">
-                            <div class="compact-proof-pane">
-                                <p>
-                                    Consider the collection of open intervals
-                                </p>
-                                <div class="definition-equation">
-                                    \[
-                                        U_n = \left(\frac{1}{n+1},1\right),
-                                        \qquad n=1,2,3,\ldots
-                                    \]
-                                </div>
-                                <p>
-                                    Every point of \((0,1)\) belongs to at least one
-                                    of these intervals, so
-                                </p>
-                                <div class="definition-equation">
-                                    \[
-                                        (0,1)=\bigcup_{n=1}^{\infty} U_n.
-                                    \]
-                                </div>
-                                <p>
-                                    Thus \(\{U_n\}_{n=1}^{\infty}\) is an open
-                                    cover of \((0,1)\). By definition, if \((0,1)\) were compact, there would have to be a finite collection of the \(U_n\)'s whose union still covers \((0,1)\).
-                                </p>
-                            </div>
-
-                            <figure class="compact-proof-figure">
-                                <img
-                                    src="input/nested-intervals.png"
-                                    alt="An open cover of the interval (0,1) with no finite subcover">
-                            </figure>
-                        </div>
-
-                        <div class="compact-proof-wide">
-                            <p>
-                                Now suppose that finitely many intervals from this
-                                cover were enough to cover \((0,1)\). Then, for some
-                                finite indices \(\alpha_1,\ldots,\alpha_m\),
-                            </p>
-                            <div class="definition-equation">
-                                \[
-                                    (0,1)
-                                    =U_{\alpha_1}\cup\cdots\cup U_{\alpha_m}.
-                                \]
-                            </div>
-                            <p>
-                                Let \(N=\max\{\alpha_1,\ldots,\alpha_m\}\).
-                                Then every selected index is at most \(N\), so each
-                                selected interval lies to the right of
-                                \(\frac{1}{N+1}\). Hence
-                            </p>
-                            <div class="definition-equation">
-                                \[
-                                    U_{\alpha_1}\cup\cdots\cup U_{\alpha_m}
-                                    \subseteq\left(\frac{1}{N+1},1\right).
-                                \]
-                            </div>
-                            <p>
-                                Thus the finite selection misses every point in
-                                \(\left(0,\frac{1}{N+1}\right]\), for example
-                                \(\frac{1}{2(N+1)}\). Hence no finite collection
-                                of the \(U_n\)'s can cover \((0,1)\).
-                            </p>
-                        </div>
-
-                        <div class="compact-proof-grid">
-                            <figure class="compact-proof-figure">
-                                <img
-                                    src="input/not-compact-final.png"
-                                    alt="Nested open intervals approaching the endpoint 0">
-                            </figure>
-
-                            <div class="compact-proof-conclusion">
-                                <p>
-                                    Therefore this open cover has no finite subcover.
-                                    We have found an open cover of \((0,1)\) for which
-                                    every finite selection leaves some points uncovered.
-                                </p>
-                                <div class="compact-proof-final">
-                                    \((0,1)\text{ is not compact.}\)
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    title="The finite-state limitation"
+                    color="#A371F7">
 
 
-                    <div class="equivalence-introduction">
-                        <p>
-                            The reverse direction can also be obtained from the
-                            <strong>Heine–Borel Theorem</strong>. Assume the Heine–Borel
-                            property as our starting point: every closed and bounded subset
-                            of \(\mathbb R\) is compact. We now show that this already
-                            implies the Axiom of Completeness.
-                        </p>
-                        <p>
-                            The strategy is to cut off the irrelevant unbounded part of a
-                            set, take the closure of the remaining piece, use compactness to
-                            obtain a maximum, and then show that this maximum is precisely
-                            the least upper bound.
-                        </p>
-                        <div class="equivalence-summary">
-                            \[
-                                \mathrm{Heine\text{–}Borel}
-                                \quad\Longrightarrow\quad
-                                \mathrm{Axiom\ of\ Completeness}.
-                            \]
-                        </div>
-                    </div>
+                    <p>
 
-                    <proof colback="#F8EDEB" coltext="#7D403B">
-                        <step title="Start with a nonempty set bounded above">
-                            <p>
-                                Let \(S\subseteq\mathbb R\) be nonempty and bounded above.
-                                Choose \(a\in S\) and choose an upper bound \(b\in\mathbb R\)
-                                of \(S\).
-                            </p>
-                            <p>
-                                We cannot simply conclude that \(S\subseteq[a,b]\), since
-                                \(S\) may extend indefinitely to the left. For example,
-                                \(S=(-\infty,0)\cup[1,2]\) is bounded above, but not bounded
-                                below.
-                            </p>
-                            <figure class="proof-figure">
-                                <div class="proof-figure-visual">
-                                    <img src="input/hb-to-aoc-one.png"
-                                         alt="A nonempty set S bounded above with a chosen element a and upper bound b">
-                                </div>
-                            </figure>
-                        </step>
+                        A finite automaton has only finitely many
+                        states. After reading an arbitrarily long
+                        input string, it must therefore reuse
+                        states. This finite-memory constraint is
+                        the source of many impossibility results
+                        in the theory of computation.
 
-                        <step title="Truncate the set from below">
-                            <p>
-                                Define
-                            </p>
-                            <div class="definition-equation">
-                                \[
-                                    T=S\cap[a,b].
-                                \]
-                            </div>
-                            <p>
-                                Then \(T\neq\varnothing\), since \(a\in S\) and
-                                \(a\in[a,b]\), and \(T\subseteq[a,b]\).
-                            </p>
-                            <p>
-                                Moreover, \(S\) and \(T\) have exactly the same upper
-                                bounds. Indeed, an upper bound of \(S\) is automatically an
-                                upper bound of \(T\). Conversely, if \(u\) is an upper
-                                bound of \(T\), then \(a\in T\) gives \(a\le u\). For
-                                any \(s\in S\), either \(s<a\), in which case
-                                \(s<a\le u\), or \(s\ge a\), in which case
-                                \(s\in T\) and hence \(s\le u\). Thus \(u\) is an upper
-                                bound of \(S\).
-                            </p>
-                            <p>
-                                Therefore \(S\) and \(T\) have the same upper bounds.
-                            </p>
-                            <figure class="proof-figure">
-                                <div class="proof-figure-visual">
-                                    <img src="input/hb-to-aoc-two.png"
-                                         alt="The truncated set T equals S intersected with the interval [a,b]">
-                                </div>
-                            </figure>
-                        </step>
+                    </p>
 
-                        <step title="Take the closure">
-                            <p>
-                                Let
-                            </p>
-                            <div class="definition-equation">
-                                \[
-                                    K=\overline T.
-                                \]
-                            </div>
-                            <p>
-                                Since \(T\subseteq[a,b]\) and \([a,b]\) is closed,
-                                \(\overline T\subseteq[a,b]\). Thus \(K\) is closed and
-                                bounded. By the Heine–Borel property, \(K\) is compact.
-                            </p>
-                            <figure class="proof-figure">
-                                <div class="proof-figure-visual">
-                                    <img src="input/hb-to-aoc-three.png"
-                                         alt="The closure K of T is closed, bounded, and contained in [a,b]">
-                                </div>
-                            </figure>
-                        </step>
-
-                        <step title="A compact set has a maximum">
-                            <p>
-                                Every nonempty compact subset of \(\mathbb R\) has a maximum.
-                                Indeed, if a compact set \(K\) had no maximum, then the family
-                                \(\{(-\infty,x):x\in K\}\) would be an open cover of \(K\).
-                                A finite subcover would have a largest endpoint \(x_0\in K\),
-                                but \(x_0\notin(-\infty,x_0)\), a contradiction. Thus a
-                                nonempty compact set has a maximum.
-                            </p>
-                            <p>
-                                Since \(T\neq\varnothing\), its closure \(K\) is nonempty;
-                                hence there exists
-                            </p>
-                            <div class="definition-equation">
-                                \[
-                                    M=\max K.
-                                \]
-                            </div>
-                        </step>
-
-                        <step title="Show that \(M=\sup T\)">
-                            <p>
-                                Since \(T\subseteq K\) and \(M=\max K\), we have
-                                \(t\le M\) for every \(t\in T\). Thus \(M\) is an upper
-                                bound of \(T\).
-                            </p>
-                            <p>
-                                Now let \(u<M\). Because \(M\in\overline T\), every
-                                neighbourhood of \(M\) intersects \(T\). Put
-                            </p>
-                            <div class="definition-equation">
-                                \[
-                                    \varepsilon=\frac{M-u}{2}>0.
-                                \]
-                            </div>
-                            <p>
-                                Then there exists \(t\in T\) with
-                            </p>
-                            <div class="definition-equation">
-                                \[
-                                    M-\varepsilon<t<M.
-                                \]
-                            </div>
-                            <p>
-                                Hence
-                            </p>
-                            <div class="definition-equation">
-                                \[
-                                    t>M-\frac{M-u}{2}
-                                    =\frac{M+u}{2}>u.
-                                \]
-                            </div>
-                            <p>
-                                Therefore \(u\) is not an upper bound of \(T\). No number
-                                smaller than \(M\) is an upper bound, so
-                                \(M=\sup T\).
-                            </p>
-                        </step>
-
-                        <step title="Return to \(S\)">
-                            <p>
-                                The sets \(S\) and \(T\) have exactly the same upper bounds.
-                                Consequently,
-                            </p>
-                            <div class="definition-equation">
-                                \[
-                                    \sup S=\sup T=M.
-                                \]
-                            </div>
-                            <p>
-                                Thus every nonempty subset of \(\mathbb R\) that is bounded
-                                above has a least upper bound in \(\mathbb R\). Therefore the
-                                Heine–Borel property implies the Axiom of Completeness.
-                            </p>
-                            <div class="definition-equation">
-                                \[
-                                    \boxed{
-                                        \mathrm{Heine\text{–}Borel}
-                                        \Longrightarrow
-                                        \mathrm{Axiom\ of\ Completeness}
-                                    }.
-                                \]
-                            </div>
-                        </step>
-                    </proof>
 
                 </subsection>
 
-            </section>
-        
-            <section title="The Axiom of Completeness" color="#C97870">
-                <axiom title="Axiom of Completeness" color="#C7A253">
+
+
+                <!-- subsection -->
+
+                <subsection
+                    title="Proving non-regularity"
+                    color="#A371F7">
+
 
                     <p>
-                        Every non-empty subset \(S \subseteq \mathbb{R}\) that is
-                        bounded above has a least upper bound
-                        <strong><em>(supremum)</em></strong> in \(\mathbb{R}\).
+
+                        To show that a language is not regular, we
+                        typically assume that it is regular and
+                        then derive a contradiction from the
+                        consequences of finite-state computation.
+
                     </p>
 
-                    <p>
-                        That is, if \(S \neq \varnothing\) and there exists
-                        \(M \in \mathbb{R}\) such that \(s \leq M\) for all
-                        \(s \in S\), then there exists a number
-                        \(L \in \mathbb{R}\) such that
-                    </p>
 
-                    <r-item>
-                        <p>
-                            \(s \leq L\) for all \(s \in S\)
-                            \(\text{(so }L\text{ is an upper bound)}\), and
-                        </p>
-                    </r-item>
-
-                    <r-item>
-                        <p>
-                            If \(U\) is any upper bound of \(S\), then
-                            \(L \leq U\)
-                            \(\text{(so }L\text{ is the least upper bound)}\).
-                        </p>
-                    </r-item>
-
-                </axiom>
-
-            <theorem title="Nested Interval Theorem" color="#6689AA">
-                    <p>
-                        Let \(I_n=[a_n,b_n]\) be a sequence of non-empty closed bounded intervals such that
-                        \(I_{n+1}\subseteq I_n\) for every \(n\in\mathbb{N}\). Then
-                    </p>
-                    <div class="definition-equation">
-                        \[
-                            \bigcap_{n=1}^{\infty} I_n \neq \varnothing.
-                        \]
-                    </div>
-                </theorem>
-
-                <proof colback="#F8EDEB" coltext="#7D403B">
-                    <p>
-                        Since \(I_{n+1}\subseteq I_n\), we have
-                        \[
-                            a_n\le a_{n+1}\le b_{n+1}\le b_n
-                            \qquad(n\in\mathbb N).
-                        \]
-                        Hence the left endpoints form a non-empty set bounded above by \(b_1\).
-                        By the Axiom of Completeness, let
-                    </p>
-
-                    <div class="definition-equation">
-                        \[
-                            \alpha=\sup\{a_n:n\in\mathbb N\}.
-                        \]
-                    </div>
-
-                    <proof-figure
-                        src="input/nested-interval-proof-one.png"
-                        alt="The left endpoints and right endpoints of nested intervals">
-                    </proof-figure>
-
-                    <p>
-                        Because \(\alpha\) is an upper bound of the set of left endpoints,
-                        \(a_n\le\alpha\) for every \(n\). Now fix \(n\). We claim that
-                        \(b_n\) is also an upper bound of \(\{a_m:m\in\mathbb N\}\).
-                        If \(m\le n\), then \(a_m\le a_n\le b_n\). If \(m\ge n\), then
-                        \(I_m\subseteq I_n\), so \(a_m\in I_n\) and again \(a_m\le b_n\).
-                        Thus \(b_n\) is an upper bound of the entire set of left endpoints. Since
-                        \(\alpha\) is its least upper bound, \(\alpha\le b_n\).
-                    </p>
-
-                    <div class="definition-equation">
-                        \[
-                            a_n\le\alpha\le b_n
-                            \qquad\text{for every }n\in\mathbb N.
-                        \]
-                    </div>
-
-                    <p>
-                        Therefore \(\alpha\in[a_n,b_n]=I_n\) for every \(n\). Thus the same
-                        point belongs to every interval:
-                    </p>
-
-                    <proof-figure
-                        src="input/nested-interval-proof-two.png"
-                        alt="The common point alpha belongs to every nested interval">
-                    </proof-figure>
-
-                    <div class="definition-equation">
-                        \[
-                            \alpha\in\bigcap_{n=1}^{\infty}I_n.
-                        \]
-                    </div>
-
-                    <p>
-                        Hence
-                    </p>
-
-                    <div class="definition-equation">
-                        \[
-                            \bigcap_{n=1}^{\infty}I_n\ne\varnothing.
-                        \]
-                    </div>
-                </proof>
-
-                <theorem title="Heine–Borel Theorem" color="#6689AA">
-                    <p>
-                        A set \(K \subseteq \mathbb{R}\) is compact if and only if
-                        it is <strong><em>closed</em></strong> and
-                        <strong><em>bounded</em></strong>.
-                    </p>
-                </theorem>
-
-                <proof colback="#F8EDEB" coltext="#7D403B">
-                    <p><strong>First suppose that \(K\) is compact.</strong></p>
-
-                    <p>
-                        The intervals \(U_n=(-n,n)\), \(n\in\mathbb N\), form an open cover of \(K\).
-                        By compactness, finitely many of them cover \(K\). If \(N\) is the largest index
-                        in the finite selection, then \(K\subseteq U_N=(-N,N)\). Hence \(K\) is bounded.
-                    </p>
-
-                    <p>
-                        To see that \(K\) is closed, suppose for contradiction that
-                        \(x\in\overline K\setminus K\). For each \(n\in\mathbb N\), let
-                    </p>
-
-                    <div class="definition-equation">
-                        \[
-                            V_n=(-\infty,x-\tfrac1n)\cup(x+\tfrac1n,\infty).
-                        \]
-                    </div>
-
-                    <p>
-                        The sets \(V_n\) form an open cover of \(K\): every \(y\in K\) satisfies
-                        \(|y-x|>0\), so \(y\in V_n\) for sufficiently large \(n\). A finite subcover
-                        would be contained in some \(V_N\), but \(V_N\) misses
-                        \((x-\tfrac1N,x+\tfrac1N)\). Since \(x\in\overline K\), this neighbourhood
-                        meets \(K\), a contradiction. Thus \(K\) is closed.
-                    </p>
-
-                    <proof-figure src="input/heine-borel-one.png"
-                        alt="Compactness implies boundedness and closedness">
-                    </proof-figure>
-
-                    <p><strong>Conversely, suppose that \(K\) is closed and bounded.</strong></p>
-
-                    <p>
-                        Let \(\{U_\alpha\}\) be an open cover of \(K\). Choose \(a&lt;b\) with
-                        \(K\subseteq[a,b]\), and define
-                    </p>
-
-                    <div class="definition-equation">
-                        \[
-                            S=\left\{x\in[a,b]:
-                            K\cap[a,x]\text{ can be covered by finitely many }U_\alpha\right\}.
-                        \]
-                    </div>
-
-                    <p>
-                        The set \(S\) is non-empty, because \(K\cap[a,a]\) is either empty or a single
-                        point. Also \(S\subseteq[a,b]\), so it is bounded above. Let \(c=\sup S\).
-                    </p>
-
-                    <proof-figure src="input/heine-borel-two.png"
-                        alt="The supremum c marks the furthest point reached by a finite subcover">
-                    </proof-figure>
-
-                    <p>
-                        We claim that \(c=b\). Suppose \(c&lt;b\). If \(c\notin K\), closedness gives
-                        \(\delta>0\) such that \((c-\delta,c+\delta)\cap K=\varnothing\), with
-                        \(c+\delta\le b\). Choose \(s\in S\) with \(c-\delta&lt;s\le c\).
-                        The finite cover of \(K\cap[a,s]\) then already covers
-                        \(K\cap[a,c+\delta]\), so \(c+\delta\in S\), contradicting that \(c\)
-                        is an upper bound of \(S\).
-                    </p>
-
-                    <p>
-                        If \(c\in K\), choose \(U_\alpha\) containing \(c\). Since \(U_\alpha\) is
-                        open, choose \(\delta>0\) with
-                        \((c-\delta,c+\delta)\subseteq U_\alpha\) and \(c+\delta\le b\).
-                        Again choose \(s\in S\) with \(c-\delta&lt;s\le c\). A finite cover of
-                        \(K\cap[a,s]\), together with \(U_\alpha\), covers
-                        \(K\cap[a,c+\delta]\). Hence \(c+\delta\in S\), the same contradiction.
-                        Therefore \(c=b\).
-                    </p>
-
-                    <p>
-                        Finally, \(b\in S\). If \(b\notin K\), closedness gives a neighbourhood of \(b\)
-                        disjoint from \(K\), and an element \(s\in S\) sufficiently close to \(b\)
-                        shows that a finite cover of \(K\cap[a,s]\) already covers all of \(K\).
-                        If \(b\in K\), choose an open set \(U_\alpha\) containing \(b\); a sufficiently
-                        small neighbourhood of \(b\) lies in \(U_\alpha\), and together with a finite cover
-                        up to some \(s\in S\) close to \(b\), it covers all of \(K\).
-                    </p>
-
-                    <proof-figure src="input/heine-borel-three.png"
-                        alt="The endpoint b is reached, giving a finite subcover of the whole set">
-                    </proof-figure>
-
-                    <p>
-                        Thus \(b\in S\), so \(K=K\cap[a,b]\) has a finite subcover. Therefore \(K\)
-                        is compact. Combining the two directions,
-                        \(K\subseteq\mathbb R\) is compact if and only if it is closed and bounded.
-                    </p>
-                </proof>
-
-
-                <subsection title="The other ways around" color="#8C7FB0">
-                    <div class="equivalence-introduction">
-                        <p>
-                            So far, we have used the <strong>Axiom of Completeness</strong> to prove the
-                            Nested Interval Property and the Heine–Borel Theorem. The remarkable fact is
-                            that the implication can also be reversed. If we take the <strong>Nested Interval
-                            Property as an axiom</strong>, then we can recover the Axiom of Completeness.
-                        </p>
-                        <p>
-                            The construction below is the key idea: repeatedly trap the boundary between the
-                            elements of a bounded set and its upper bounds inside smaller and smaller nested
-                            intervals.
-                        </p>
-                        <div class="equivalence-summary">
-                            \[
-                                \mathrm{Nested\ Interval\ Property}
-                                \quad\Longrightarrow\quad
-                                \mathrm{Axiom\ of\ Completeness}.
-                            \]
-                        </div>
-                        <img
-                            class="equivalence-overview"
-                            src="input/nip-to-aoc.png"
-                            alt="Overview of the proof from the Nested Interval Property to the Axiom of Completeness">
-                    </div>
-
-                    <proof colback="#F8EDEB" coltext="#7D403B">
-                        <step title="Start with a bounded set">
-                            <p>
-                                Let \(S\subseteq\mathbb R\) be nonempty and bounded above. Choose
-                                \(A_1\in S\), and choose an upper bound \(B_1\) of \(S\) such that
-                                \(A_1<B_1\).
-                            </p>
-                        </step>
-
-                        <step title="Construct nested intervals">
-                            <p>
-                                Suppose \(A_n\in S\) and \(B_n\) is an upper bound of \(S\).
-                                Consider their midpoint
-                            </p>
-                            <div class="definition-equation">
-                                \[
-                                    M_n=\frac{A_n+B_n}{2}.
-                                \]
-                            </div>
-                            <p>
-                                If \(M_n\) is an upper bound of \(S\), set
-                                \(A_{n+1}=A_n\) and \(B_{n+1}=M_n\).
-                                If \(M_n\) is not an upper bound, choose
-                                \(A_{n+1}\in S\) with \(A_{n+1}>M_n\), and set
-                                \(B_{n+1}=B_n\).
-                            </p>
-                            <p>
-                                In either case,
-                                \[
-                                    [A_{n+1},B_{n+1}]\subseteq[A_n,B_n],
-                                    \qquad
-                                    B_{n+1}-A_{n+1}\le\frac{B_n-A_n}{2}.
-                                \]
-                            </p>
-                        </step>
-
-                        <step title="A nested sequence of intervals">
-                            <p>
-                                Iterating this construction gives
-                                \[
-                                    [A_1,B_1]\supseteq[A_2,B_2]\supseteq[A_3,B_3]\supseteq\cdots,
-                                \]
-                                where \(A_n\in S\), \(B_n\) is an upper bound of \(S\), and
-                                \[
-                                    0\le B_n-A_n
-                                    \le\frac{B_1-A_1}{2^{n-1}}
-                                    \longrightarrow0.
-                                \]
-                            </p>
-                        </step>
-
-                        <step title="Apply the Nested Interval Property">
-                            <p>
-                                By the Nested Interval Property,
-                                \[
-                                    \bigcap_{n=1}^{\infty}[A_n,B_n]\ne\varnothing.
-                                \]
-                                Choose
-                                \[
-                                    x\in\bigcap_{n=1}^{\infty}[A_n,B_n].
-                                \]
-                                Then \(A_n\le x\le B_n\) for every \(n\).
-                            </p>
-                            <proof-figure
-                                src="input/nip-to-aoc-two.png"
-                                alt="A common point x belonging to every nested interval">
-                            </proof-figure>
-                        </step>
-
-                        <step title="x is an upper bound of S">
-                            <p>
-                                Suppose, for contradiction, that \(x\) is not an upper bound of \(S\).
-                                Then there exists \(s\in S\) with \(s>x\). Since
-                                \(B_n-A_n\to0\), choose \(n\) such that
-                                \[
-                                    B_n-A_n<s-x.
-                                \]
-                                Because \(A_n\le x\),
-                                \[
-                                    B_n
-                                    =A_n+(B_n-A_n)
-                                    \le x+(B_n-A_n)
-                                    <s.
-                                \]
-                                But \(B_n\) is an upper bound of \(S\), so \(s\le B_n\), a
-                                contradiction. Hence \(x\) is an upper bound of \(S\).
-                            </p>
-                        </step>
-
-                        <step title="x is the least upper bound">
-                            <p>
-                                Suppose that \(u<x\) is also an upper bound of \(S\). Again, because
-                                \(B_n-A_n\to0\), choose \(n\) such that
-                                \[
-                                    B_n-A_n<x-u.
-                                \]
-                                Since \(x\le B_n\),
-                                \[
-                                    A_n
-                                    =B_n-(B_n-A_n)
-                                    \ge x-(B_n-A_n)
-                                    >u.
-                                \]
-                                But \(A_n\in S\), contradicting the assumption that \(u\) is an upper
-                                bound of \(S\). Therefore \(x\) is the least upper bound of \(S\).
-                            </p>
-                            <proof-figure
-                                src="input/nip-to-aoc-three.png"
-                                alt="The shrinking intervals identify x as the least upper bound">
-                            </proof-figure>
-                        </step>
-
-                        <step title="Conclusion">
-                            <p>
-                                Every nonempty subset \(S\subseteq\mathbb R\) that is bounded above has
-                                a least upper bound \(x\in\mathbb R\). Thus
-                            </p>
-                            <div class="definition-equation">
-                                \[
-                                    \boxed{
-                                        \mathrm{Nested\ Interval\ Property}
-                                        \Longrightarrow
-                                        \mathrm{Axiom\ of\ Completeness}
-                                    }.
-                                \]
-                            </div>
-                        </step>
-                    </proof>
                 </subsection>
-            </section>
-            </main>
 
-        <table-of-contents color="#8C7FB0"></table-of-contents>
+
+            </section>
+
+
+
+        </main>
+
+
+
+        <!-- table of contents -->
+
+        <table-of-contents
+            color="#A371F7">
+        </table-of-contents>
+
+
     </div>
+
+
 </body>
+
 </html>
