@@ -649,6 +649,179 @@
                     </div>
 
 
+                    <div class="equivalence-introduction">
+                        <p>
+                            The reverse direction can also be obtained from the
+                            <strong>Heine–Borel Theorem</strong>. Assume the Heine–Borel
+                            property as our starting point: every closed and bounded subset
+                            of \(\mathbb R\) is compact. We now show that this already
+                            implies the Axiom of Completeness.
+                        </p>
+                        <p>
+                            The strategy is to cut off the irrelevant unbounded part of a
+                            set, take the closure of the remaining piece, use compactness to
+                            obtain a maximum, and then show that this maximum is precisely
+                            the least upper bound.
+                        </p>
+                        <div class="equivalence-summary">
+                            \[
+                                \mathrm{Heine\text{–}Borel}
+                                \quad\Longrightarrow\quad
+                                \mathrm{Axiom\ of\ Completeness}.
+                            \]
+                        </div>
+                    </div>
+
+                    <proof colback="#F8EDEB" coltext="#7D403B">
+                        <step title="Start with a nonempty set bounded above">
+                            <p>
+                                Let \(S\subseteq\mathbb R\) be nonempty and bounded above.
+                                Choose \(a\in S\) and choose an upper bound \(b\in\mathbb R\)
+                                of \(S\).
+                            </p>
+                            <p>
+                                We cannot simply conclude that \(S\subseteq[a,b]\), since
+                                \(S\) may extend indefinitely to the left. For example,
+                                \(S=(-\infty,0)\cup[1,2]\) is bounded above, but not bounded
+                                below.
+                            </p>
+                            <proof-figure
+                                src="input/hb-to-aoc-one.png"
+                                alt="A nonempty set S bounded above with a chosen element a and upper bound b">
+                            </proof-figure>
+                        </step>
+
+                        <step title="Truncate the set from below">
+                            <p>
+                                Define
+                            </p>
+                            <div class="definition-equation">
+                                \[
+                                    T=S\cap[a,b].
+                                \]
+                            </div>
+                            <p>
+                                Then \(T\neq\varnothing\), since \(a\in S\) and
+                                \(a\in[a,b]\), and \(T\subseteq[a,b]\).
+                            </p>
+                            <p>
+                                Moreover, \(S\) and \(T\) have exactly the same upper
+                                bounds. Indeed, an upper bound of \(S\) is automatically an
+                                upper bound of \(T\). Conversely, if \(u\) is an upper
+                                bound of \(T\), then \(a\in T\) gives \(a\le u\). For
+                                any \(s\in S\), either \(s<a\), in which case
+                                \(s<a\le u\), or \(s\ge a\), in which case
+                                \(s\in T\) and hence \(s\le u\). Thus \(u\) is an upper
+                                bound of \(S\).
+                            </p>
+                            <p>
+                                Therefore \(S\) and \(T\) have the same upper bounds.
+                            </p>
+                            <proof-figure
+                                src="input/hb-to-aoc-two.png"
+                                alt="The truncated set T equals S intersected with the interval [a,b]">
+                            </proof-figure>
+                        </step>
+
+                        <step title="Take the closure">
+                            <p>
+                                Let
+                            </p>
+                            <div class="definition-equation">
+                                \[
+                                    K=\overline T.
+                                \]
+                            </div>
+                            <p>
+                                Since \(T\subseteq[a,b]\) and \([a,b]\) is closed,
+                                \(\overline T\subseteq[a,b]\). Thus \(K\) is closed and
+                                bounded. By the Heine–Borel property, \(K\) is compact.
+                            </p>
+                            <proof-figure
+                                src="input/hb-to-aoc-three.png"
+                                alt="The closure K of T is closed, bounded, and contained in [a,b]">
+                            </proof-figure>
+                        </step>
+
+                        <step title="A compact set has a maximum">
+                            <p>
+                                Every nonempty compact subset of \(\mathbb R\) has a maximum.
+                                Since \(T\neq\varnothing\), its closure \(K\) is nonempty;
+                                hence there exists
+                            </p>
+                            <div class="definition-equation">
+                                \[
+                                    M=\max K.
+                                \]
+                            </div>
+                        </step>
+
+                        <step title="Show that \(M=\sup T\)">
+                            <p>
+                                Since \(T\subseteq K\) and \(M=\max K\), we have
+                                \(t\le M\) for every \(t\in T\). Thus \(M\) is an upper
+                                bound of \(T\).
+                            </p>
+                            <p>
+                                Now let \(u<M\). Because \(M\in\overline T\), every
+                                neighbourhood of \(M\) intersects \(T\). Put
+                            </p>
+                            <div class="definition-equation">
+                                \[
+                                    \varepsilon=\frac{M-u}{2}>0.
+                                \]
+                            </div>
+                            <p>
+                                Then there exists \(t\in T\) with
+                            </p>
+                            <div class="definition-equation">
+                                \[
+                                    M-\varepsilon<t<M.
+                                \]
+                            </div>
+                            <p>
+                                Hence
+                            </p>
+                            <div class="definition-equation">
+                                \[
+                                    t>M-\frac{M-u}{2}
+                                    =\frac{M+u}{2}>u.
+                                \]
+                            </div>
+                            <p>
+                                Therefore \(u\) is not an upper bound of \(T\). No number
+                                smaller than \(M\) is an upper bound, so
+                                \(M=\sup T\).
+                            </p>
+                        </step>
+
+                        <step title="Return to \(S\)">
+                            <p>
+                                The sets \(S\) and \(T\) have exactly the same upper bounds.
+                                Consequently,
+                            </p>
+                            <div class="definition-equation">
+                                \[
+                                    \sup S=\sup T=M.
+                                \]
+                            </div>
+                            <p>
+                                Thus every nonempty subset of \(\mathbb R\) that is bounded
+                                above has a least upper bound in \(\mathbb R\). Therefore the
+                                Heine–Borel property implies the Axiom of Completeness.
+                            </p>
+                            <div class="definition-equation">
+                                \[
+                                    \boxed{
+                                        \mathrm{Heine\text{–}Borel}
+                                        \Longrightarrow
+                                        \mathrm{Axiom\ of\ Completeness}
+                                    }.
+                                \]
+                            </div>
+                        </step>
+                    </proof>
+
                 </subsection>
 
             </section>
