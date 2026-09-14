@@ -27,109 +27,142 @@
 
         :root {
 
-            --page-background: #0D1117;
+            --page-background: #151C24;
 
-            --surface: #161B22;
+            --surface: #1D2630;
+            --surface-raised: #252F3B;
 
-            --surface-dark: #0D1117;
+            --ink: #F1F5F9;
+            --slate: #A8B3BF;
 
-            --surface-raised: #1B222C;
+            --border: #3A4654;
 
-            --ink: #E6EDF3;
+            --blue: #66B3FF;
+            --green: #57C96B;
+            --orange: #E0AD45;
+            --purple: #B68AF7;
+            --red: #FF716B;
 
-            --muted: #8B949E;
+            --sidebar-background: #1C252F;
+            --toc-background: #1C252F;
 
-            --border: #30363D;
-
-            --blue: #58A6FF;
-
-            --green: #3FB950;
-
-            --purple: #A371F7;
-
-            --orange: #D29922;
+            --sidebar-text: #D3DAE3;
+            --toc-text: #D3DAE3;
         }
 
 
+        /* -------------------------------------------------- */
         /* page */
+        /* -------------------------------------------------- */
 
         html,
         body {
 
             background:
-                var(--page-background) !important;
+                var(--page-background)
+                !important;
 
             color:
-                var(--ink) !important;
+                var(--ink)
+                !important;
         }
 
 
+        body {
+
+            min-height: 100vh;
+        }
+
+
+        /* -------------------------------------------------- */
         /* banner */
+        /* -------------------------------------------------- */
 
         .banner {
 
             border:
                 1px solid
                 var(--border);
+
+            box-shadow:
+                0 8px 24px rgba(0, 0, 0, 0.18);
         }
 
 
         .banner h1 {
 
             color:
-                #F0F6FC !important;
+                #F8FAFC
+                !important;
+
+            text-shadow:
+                0 2px 16px rgba(0, 0, 0, 0.55);
         }
 
 
+        /* -------------------------------------------------- */
         /* navigation */
+        /* -------------------------------------------------- */
 
         .navbar a {
 
             color:
-                var(--ink) !important;
+                var(--ink)
+                !important;
 
             border-color:
-                var(--border) !important;
+                var(--border)
+                !important;
+
+            box-shadow:
+                0 3px 10px rgba(0, 0, 0, 0.10);
         }
 
 
         .home-btn {
 
             --nav-color:
-                #172235 !important;
+                #22364F !important;
         }
 
 
         .date-btn {
 
             --nav-color:
-                #272218 !important;
+                #3A3223 !important;
         }
 
 
         .github-btn {
 
             --nav-color:
-                #17251C !important;
+                #21382A !important;
         }
 
 
         .navbar a:hover {
 
             color:
-                #FFFFFF !important;
+                #FFFFFF
+                !important;
 
             text-decoration:
                 none;
+
+            transform:
+                translateY(-1px);
         }
 
 
+        /* -------------------------------------------------- */
         /* document */
+        /* -------------------------------------------------- */
 
         .note-content {
 
             color:
-                var(--ink) !important;
+                var(--ink)
+                !important;
         }
 
 
@@ -137,105 +170,132 @@
         .note-content li {
 
             color:
-                var(--ink) !important;
+                #D7DEE7
+                !important;
+
+            line-height:
+                1.68;
         }
 
 
         .main-title {
 
             color:
-                var(--ink) !important;
+                #F5F8FB
+                !important;
+
+            letter-spacing:
+                -0.02em;
         }
 
 
         .intro-paragraph {
 
             color:
-                #C9D1D9 !important;
+                #BFC9D4
+                !important;
         }
 
 
+        /* -------------------------------------------------- */
         /* breadcrumbs */
+        /* -------------------------------------------------- */
 
         .breadcrumbs,
         .breadcrumbs span,
         .breadcrumbs a {
 
             color:
-                var(--muted) !important;
+                var(--slate)
+                !important;
         }
 
 
         .breadcrumbs a:hover {
 
             color:
-                var(--blue) !important;
+                var(--blue)
+                !important;
         }
 
 
+        /* -------------------------------------------------- */
         /* sidebar */
+        /* -------------------------------------------------- */
 
         .sidebar {
 
             background:
-                var(--surface) !important;
+                var(--sidebar-background)
+                !important;
 
             border-color:
-                var(--border) !important;
+                var(--border)
+                !important;
 
             color:
-                var(--ink) !important;
+                var(--sidebar-text)
+                !important;
+
+            box-shadow:
+                0 8px 24px rgba(0, 0, 0, 0.13);
         }
 
 
         .sidebar-group h2 {
 
             color:
-                var(--ink) !important;
+                var(--ink)
+                !important;
         }
 
 
         .sidebar-items a {
 
             color:
-                #A8B3BF !important;
+                var(--sidebar-text)
+                !important;
         }
 
 
         .sidebar-items a:hover {
 
             color:
-                var(--blue) !important;
+                var(--blue)
+                !important;
         }
 
-
-        /* sidebar search */
 
         .sidebar-search input,
         .sidebar-search button {
 
             background:
-                var(--surface-dark) !important;
+                #151C24
+                !important;
 
             color:
-                var(--ink) !important;
+                var(--ink)
+                !important;
 
             border-color:
-                var(--border) !important;
+                var(--border)
+                !important;
         }
 
 
         .sidebar-search input::placeholder {
 
             color:
-                #6E7681 !important;
+                #84909D
+                !important;
         }
 
 
         .sidebar-search input:focus {
 
             border-color:
-                var(--blue) !important;
+                var(--blue)
+                !important;
 
             outline:
                 none;
@@ -245,69 +305,81 @@
         .sidebar-divider {
 
             border-color:
-                var(--border) !important;
+                var(--border)
+                !important;
         }
 
 
+        /* -------------------------------------------------- */
         /* table of contents */
+        /* -------------------------------------------------- */
 
         .table-of-contents {
 
             background:
-                var(--surface) !important;
+                var(--toc-background)
+                !important;
 
             border-color:
-                var(--border) !important;
+                var(--border)
+                !important;
 
             color:
-                var(--ink) !important;
+                var(--toc-text)
+                !important;
+
+            box-shadow:
+                0 8px 24px rgba(0, 0, 0, 0.13);
         }
 
 
         .table-of-contents h2 {
 
             color:
-                var(--ink) !important;
+                var(--ink)
+                !important;
 
             border-color:
-                var(--border) !important;
+                var(--border)
+                !important;
         }
 
 
         .toc-sections a {
 
             color:
-                #C9D1D9 !important;
+                var(--toc-text)
+                !important;
         }
 
 
         .toc-sections a:hover {
 
             color:
-                #D2A8FF !important;
+                var(--purple)
+                !important;
         }
 
 
         .toc-sections li.toc-item-active {
 
             background:
-                rgba(
-                    163,
-                    113,
-                    247,
-                    0.12
-                ) !important;
+                rgba(182, 138, 247, 0.12)
+                !important;
         }
 
 
         .toc-sections li.toc-item-active > a {
 
             color:
-                #D2A8FF !important;
+                #D7B9FF
+                !important;
         }
 
 
+        /* -------------------------------------------------- */
         /* sections */
+        /* -------------------------------------------------- */
 
         .section-title,
         .section-number,
@@ -315,40 +387,40 @@
         .subsection-number {
 
             color:
-                var(--blue) !important;
+                var(--blue)
+                !important;
         }
 
 
-        /* general dividers */
-
-        hr {
-
-            border-color:
-                var(--border) !important;
-        }
-
-
-        /* MathJax */
+        /* -------------------------------------------------- */
+        /* mathematics */
+        /* -------------------------------------------------- */
 
         mjx-container {
 
             color:
-                var(--ink) !important;
+                var(--ink)
+                !important;
         }
 
 
+        /* -------------------------------------------------- */
         /* mathematical environments */
+        /* -------------------------------------------------- */
 
         .math-environment {
 
             background:
-                #151C24 !important;
+                #202A35
+                !important;
 
             border-color:
-                #33404D !important;
+                #465260
+                !important;
 
             color:
-                #D0D7DE !important;
+                #DEE5ED
+                !important;
         }
 
 
@@ -357,58 +429,64 @@
         .environment-item-text {
 
             color:
-                #D0D7DE !important;
+                #DEE5ED
+                !important;
         }
 
 
         .environment-tag {
 
             color:
-                #D2A8FF !important;
+                #DFC8FF
+                !important;
 
             background:
-                rgba(
-                    163,
-                    113,
-                    247,
-                    0.18
-                ) !important;
+                rgba(182, 138, 247, 0.16)
+                !important;
         }
 
 
         .environment-number-circle {
 
             background:
-                #30363D !important;
+                #3A4654
+                !important;
 
             color:
-                #F0F6FC !important;
+                #F7FAFC
+                !important;
         }
 
 
         .axiom-statement {
 
             background:
-                #111820 !important;
+                #1A232D
+                !important;
 
             border-color:
-                #33404D !important;
+                #465260
+                !important;
         }
 
 
+        /* -------------------------------------------------- */
         /* proofs */
+        /* -------------------------------------------------- */
 
         .proof-box {
 
             background:
-                #151C24 !important;
+                #202A35
+                !important;
 
             color:
-                #D0D7DE !important;
+                #DEE5ED
+                !important;
 
             border:
                 1px solid
-                #33404D;
+                #465260;
         }
 
 
@@ -417,34 +495,67 @@
         .proof-step-content {
 
             color:
-                #D0D7DE !important;
+                #E7EDF4
+                !important;
         }
 
 
         .proof-step-number {
 
             background:
-                #30363D !important;
+                #3A4654
+                !important;
 
             color:
-                #F0F6FC !important;
+                #F7FAFC
+                !important;
         }
 
 
         .proof-figure {
 
             background:
-                #111820 !important;
+                #1A232D
+                !important;
 
             border-color:
-                #33404D !important;
+                #465260
+                !important;
         }
 
 
         .proof-figure figcaption {
 
             color:
-                var(--muted) !important;
+                var(--slate)
+                !important;
+        }
+
+
+        /* -------------------------------------------------- */
+        /* dividers */
+        /* -------------------------------------------------- */
+
+        hr {
+
+            border-color:
+                var(--border)
+                !important;
+        }
+
+
+        /* -------------------------------------------------- */
+        /* responsive */
+        /* -------------------------------------------------- */
+
+        @media (max-width: 700px) {
+
+            .main-title {
+
+                font-size:
+                    2.25rem;
+            }
+
         }
 
     </style>
@@ -517,7 +628,7 @@
 <body>
 
 
-    <!-- Banner + navigation -->
+    <!-- banner -->
 
     <header class="header-box">
 
@@ -527,6 +638,8 @@
             image="theory-of-computation-banner.png">
         </banner>
 
+
+        <!-- navigation -->
 
         <nav class="navbar">
 
@@ -555,15 +668,15 @@
 
 
 
-    <!-- Main layout -->
+    <!-- main layout -->
 
     <div class="main-layout">
 
 
-        <!-- Sidebar -->
+        <!-- sidebar -->
 
         <sidebar
-            color="#161B22"
+            color="#1C252F"
             search="true">
 
             <group
@@ -580,18 +693,18 @@
 
 
 
-        <!-- Document -->
+        <!-- document -->
 
         <main
             id="document"
             class="note-content">
 
 
-            <!-- Breadcrumbs -->
+            <!-- breadcrumbs -->
 
             <div class="breadcrumbs">
 
-                <a href="#">
+                <a href="../../../index.html">
                     Home
                 </a>
 
@@ -599,9 +712,9 @@
                     ›
                 </span>
 
-                <a href="#">
+                <span>
                     Computer Science
-                </a>
+                </span>
 
                 <span>
                     ›
@@ -615,7 +728,7 @@
 
 
 
-            <!-- Main title -->
+            <!-- title -->
 
             <h1 class="main-title">
 
@@ -625,7 +738,7 @@
 
 
 
-            <!-- Introduction -->
+            <!-- introduction -->
 
             <p class="intro-paragraph">
 
@@ -636,7 +749,7 @@
 
 
 
-            <!-- Section -->
+            <!-- section -->
 
             <section
                 title="The question of regularity"
@@ -661,7 +774,7 @@
 
 
 
-        <!-- Table of contents -->
+        <!-- table of contents -->
 
         <table-of-contents
             color="#A371F7">
