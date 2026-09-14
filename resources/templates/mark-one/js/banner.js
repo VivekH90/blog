@@ -20,8 +20,11 @@ function initializeBanner() {
         const color =
             source.getAttribute("color");
 
+        const image =
+            source.getAttribute("image") || "banner.png";
+
         banner.style.backgroundImage =
-            `url("${new URL("banner.png", document.baseURI).href}")`;
+            `url("${new URL(image, document.baseURI).href}")`;
 
         if (color) {
             banner.style.setProperty(
