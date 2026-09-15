@@ -39,6 +39,8 @@ Taking real parts,
     }
 }
 
+@image{image = input/triangle-inequality.png, caption = Illustration of the triangle inequality, label = triangle inequality, width = 60%, height = auto}
+
 @theorem{The ML Inequality, label = ml-inequality}
 Let \(C\) be a contour of length \(L\). If \(|f(z)|\leq M\) for all \(z\) on \(C\), then
 \[
@@ -100,7 +102,7 @@ Equivalently, if all \(C_k\) are given positive (counterclockwise) orientation, 
 \oint_C f(z)\,dz=\sum_{k=1}^n\oint_{C_k}f(z)\,dz.
 \]
 
-@image{image(1) = input/cauchy1.png, image(2) = input/cauchy2.png, width = 50%, caption = (1) We wish to evaluate the integral around a contour that contains a hole of the domain. (2) Decomposition of a contour into smaller contours , label = decomposition-contours}
+@image{image(1) = input/cauchy1.png, image(2) = input/cauchy2.png, width(1) = 50%, width(2) = 50%,  height(1) = auto, height(2) = auto, caption = (1) We wish to evaluate the integral around a contour that contains a hole of the domain. (2) Decomposition of a contour into smaller contours , label = decomposition-contours}
 
 @corollary{Topological Invariance, label = topological-invariance}
 If \(C_1\) and \(C_2\) are positively oriented simple closed contours, with \(C_1\) entirely inside \(C_2\), and \(f(z)\) analytic on the region between them, then

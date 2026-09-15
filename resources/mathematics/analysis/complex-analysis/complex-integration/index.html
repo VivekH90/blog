@@ -56,6 +56,10 @@
 <li><p>Since the real part of a complex number is always less then or equal to its modulus,</p>
 <div class="math-display">\[\rho_0\leq\int_a^b\left|w(t)e^{-i\theta_0}\right|dt=\int_a^b|w(t)|\,dt.\]</div></li>
 </ol></div><div class="proof-qed" aria-label="Q.E.D.">□</div></div>
+<figure class="article-image" id="triangle inequality">
+<img src="input/triangle-inequality.png" alt="" loading="lazy" style="width: 60%; height: auto">
+<figcaption><strong>Figure 1:</strong> Illustration of the triangle inequality</figcaption>
+</figure>
 <div class="math-environment theorem" id="ml-inequality"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Theorem</span> <span class="environment-number">1</span></span> <span class="environment-title">(The ML Inequality)</span></div><div class="environment-content"><p>Let \(C\) be a contour of length \(L\). If \(|f(z)|\leq M\) for all \(z\) on \(C\), then</p>
 <div class="math-display">\[\left|\int_C f(z)\,dz\right|\leq ML.\]</div></div></div>
 <div class="proof-environment"><div class="proof-heading">Proof</div><div class="proof-content"><p>Expanding the contour integral using a parametrization \(z=z(t)\),</p>
@@ -68,11 +72,11 @@
 <h3>1.1. Cauchy-Goursat Theorem</h3>
 <div class="math-environment definition" id="connectivity"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Definition</span> <span class="environment-number">1</span></span> <span class="environment-title">(Simply Connected and Multiply Connected Domains)</span></div><div class="environment-content"><p>A domain \(D\) is simply connected if every simple closed contour \(C\subset D\) encloses a region that lies entirely within \(D\). Informally, there are no holes. A domain is multiply connected if this property fails, so the domain contains holes that contours cannot shrink across.</p></div></div>
 <figure class="article-image multi-image" id="simply-multiply-figure">
-<div class="image-row" style="display: grid; grid-template-columns: 50% minmax(0, 1fr); gap: 10px; align-items: stretch;">
+<div class="image-row" style="display: grid; grid-template-columns: 50% minmax(0, calc((100% - (50%) - 10px) / 1)); gap: 10px; align-items: stretch;">
 <img src="input/simply_connected.png" alt="" loading="lazy" style="width: 50%; width: 100%; height: 280px; object-fit: cover; margin: 0;">
 <img src="input/multiply_connected.png" alt="" loading="lazy" style="width: 100%; height: 280px; object-fit: cover; margin: 0;">
 </div>
-<figcaption><strong>Figure 1:</strong> Simply connected region and Multiply connected region</figcaption>
+<figcaption><strong>Figure 2:</strong> Simply connected region and Multiply connected region</figcaption>
 </figure>
 <div class="math-environment theorem" id="cauchy-goursat-theorem"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Theorem</span> <span class="environment-number">2</span></span> <span class="environment-title">(Cauchy-Goursat Theorem)</span></div><div class="environment-content"><p>Let \(D\) be a simply connected domain. If \(f(z)\) is analytic on \(D\), then for any simple closed contour \(C\subset D\),</p>
 <div class="math-display">\[\oint_C f(z)\,dz=0.\]</div></div></div>
@@ -87,11 +91,11 @@
 <p>Equivalently, if all \(C_k\) are given positive (counterclockwise) orientation, then</p>
 <div class="math-display">\[\oint_C f(z)\,dz=\sum_{k=1}^n\oint_{C_k}f(z)\,dz.\]</div></div></div>
 <figure class="article-image multi-image" id="decomposition-contours">
-<div class="image-row" style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; align-items: stretch;">
-<img src="input/cauchy1.png" alt="" loading="lazy" style="width: 100%; height: 280px; object-fit: cover; margin: 0;">
-<img src="input/cauchy2.png" alt="" loading="lazy" style="width: 100%; height: 280px; object-fit: cover; margin: 0;">
+<div class="image-row" style="display: grid; grid-template-columns: 50% 50%; gap: 10px; align-items: stretch;">
+<img src="input/cauchy1.png" alt="" loading="lazy" style="width: 50%; height: auto; width: 100%; height: auto; object-fit: cover; margin: 0;">
+<img src="input/cauchy2.png" alt="" loading="lazy" style="width: 50%; height: auto; width: 100%; height: auto; object-fit: cover; margin: 0;">
 </div>
-<figcaption><strong>Figure 2:</strong> (1) We wish to evaluate the integral around a contour that contains a hole of the domain. (2) Decomposition of a contour into smaller contours</figcaption>
+<figcaption><strong>Figure 3:</strong> (1) We wish to evaluate the integral around a contour that contains a hole of the domain. (2) Decomposition of a contour into smaller contours</figcaption>
 </figure>
 <div class="math-environment corollary" id="topological-invariance"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Corollary</span> <span class="environment-number">1</span></span> <span class="environment-title">(Topological Invariance)</span></div><div class="environment-content"><p>If \(C_1\) and \(C_2\) are positively oriented simple closed contours, with \(C_1\) entirely inside \(C_2\), and \(f(z)\) analytic on the region between them, then</p>
 <div class="math-display">\[\oint_{C_2}f(z)\,dz=\oint_{C_1}f(z)\,dz.\]</div>
