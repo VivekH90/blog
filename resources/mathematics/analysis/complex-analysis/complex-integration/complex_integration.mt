@@ -113,18 +113,23 @@ Thus contour integrals are invariant under continuous deformations through regio
 
 The Fundamental Theorem for complex line integrals does not generally hold in multiply connected domains. The value of an integral may depend on the topology of the domain and on whether the contour encloses singularities.
 
+@image{image = input/topological-invariance.png, width = 40%, height = auto, caption = An illustration of the topological invariance, label = topological invariance}
+
 @subsection{Cauchy Integral Formula, label = cauchy-integral-formula}
 
 @example{The Fundamental Integral, label = fundamental-integral}
-Consider
+We have the formula:
 \[
-\oint_C\frac{1}{z}\,dz
+\oint_C\frac{1}{z}\,dz = 2\pi i
 \]
-around a positively oriented simple closed curve enclosing the origin. By topological invariance, shrink \(C\) to a small circle \(C_\epsilon\) of radius \(\epsilon\) centered at the origin. Parameterize it by \(z=\epsilon e^{i\theta}\), \(0\leq\theta\leq2\pi\), so that \(dz=i\epsilon e^{i\theta}d\theta\). Then
+
+@proof{}
+By topological invariance, shrink \(C\) to a small circle \(C_\epsilon\) of radius \(\epsilon\) centered at the origin. Parameterize it by \(z=\epsilon e^{i\theta}\), \(0\leq\theta\leq2\pi\), so that \(dz=i\epsilon e^{i\theta}d\theta\). Then
 \[
 \oint_C\frac{dz}{z}=\oint_{C_\epsilon}\frac{dz}{z}=\int_0^{2\pi}\frac{i\epsilon e^{i\theta}}{\epsilon e^{i\theta}}\,d\theta=\int_0^{2\pi}i\,d\theta=2\pi i.
 \]
-This calculation is the basic model for the Cauchy integral formula.
+
+@image{image = input/fundamental-integral.png, height = auto, width = 50%, label = fundamental-integral, caption = Heatmap of the function \(f(z) = 1/z\)}
 
 @theorem{Cauchy's Integral Formula, label = cauchys-integral-formula}
 Let \(D\) be a simply connected domain. Suppose \(f(z)\) is analytic on \(D\), and let \(C\subset D\) be a positively oriented simple closed contour. For any point \(z_0\) strictly inside \(C\),
@@ -133,31 +138,28 @@ f(z_0)=\frac{1}{2\pi i}\oint_C\frac{f(z)}{z-z_0}\,dz.
 \]
 
 @proof{}
-Define
+@enumerate{
+    @item{We aim to evaluate the integral \(\oint_{C} \frac{f(z)}{z - z_0} dz\) by isolating the value \(f(z_0)\). Consider the difference:
 \[
-g(z)=\frac{f(z)-f(z_0)}{z-z_0}.
-\]
-The apparent singularity at \(z_0\) is removable, so \(g\) is analytic in a neighborhood of the closed region between \(C\) and a sufficiently small positively oriented circle \(C_1\) centered at \(z_0\). By deformation of contours,
+k = \oint_{C} \frac{f(z)}{z - z_0} dz - f(z_0) \oint_{C} \frac{dz}{z - z_0}.
+\]}
+@item{By evaluating \(\oint_{C} \frac{dz}{z-z_0} = 2\pi i\) (substituting \(z_0\) into the earlier example), we can write:
 \[
-k:=\oint_C g(z)\,dz=\oint_{C_1}g(z)\,dz.
-\]
-By continuity of \(f\), for every \(\epsilon>0\) we can choose the radius \(r\) of \(C_1\) small enough that \(|f(z)-f(z_0)|<\epsilon\) on \(C_1\). Hence, by the ML inequality,
+k = \oint_{C} \frac{f(z) - f(z_0)}{z - z_0} dz.
+\]}
+@item{Let \(C_1\) be a small circle of radius \(r\) centered at \(z_0\). By the continuity of \(f\), for any \(\epsilon > 0\), we can choose \(r\) small enough such that \(|f(z) - f(z_0)| < \epsilon\) on \(C_1\). Then, we have:
 \[
-|k|\leq\int_{C_1}\frac{|f(z)-f(z_0)|}{|z-z_0|}\,|dz|<\frac{\epsilon}{r}\int_{C_1}|dz|.
+|k| = \left| \oint_{C_1} \frac{f(z) - f(z_0)}{z - z_0} dz \right| \leq \oint_{C_1} \frac{|f(z) - f(z_0)|}{|z - z_0|} |dz| < \oint_{C_1} \frac{\epsilon}{r} |dz|.
 \]
-The circumference of \(C_1\) is \(2\pi r\), so
+Evaluating the integral of the arc length element \(|dz|\) over the circle \(C_1\) gives its circumference \(2\pi r\). Hence:
 \[
-|k|<2\pi\epsilon.
+|k| < \frac{\epsilon}{r} (2\pi r) = 2\pi \epsilon.
 \]
-As \(\epsilon\) is arbitrary, \(k=0\). Therefore
+Since \(\epsilon\) can be made arbitrarily small, we must have \(k = 0\). Therefore:
 \[
-\oint_C\frac{f(z)-f(z_0)}{z-z_0}\,dz=0,
-\]
-and consequently
-\[
-\oint_C\frac{f(z)}{z-z_0}\,dz=f(z_0)\oint_C\frac{dz}{z-z_0}=2\pi i f(z_0),
-\]
-which yields the formula.
+\oint_{C} \frac{f(z)}{z - z_0} dz - 2\pi i f(z_0) = 0 \implies f(z_0) = \frac{1}{2\pi i} \oint_{C} \frac{f(z)}{z - z_0} dz.
+\]}
+}
 
 @theorem{Cauchy's Integral Formula for Derivatives, label = cauchys-derivatives}
 Let \(n\geq0\). For a function \(f\) analytic on and inside a positively oriented simple closed contour \(C\),
@@ -226,26 +228,25 @@ The first term is an exact differential and integrates to zero around a closed c
 \]
 Green's theorem identifies the remaining integral with the enclosed area.
 
-@subsection{Constructions, label = constructions}
+@subsection{Fundamental theorem of algebra, label = fundamental-theorem-of-algebra}
 
-@theorem{Fundamental Theorem of Algebra, label = fundamental-theorem-algebra}
+@theorem{Existence of roots, label = fundamental-theorem-algebra}
 Every non-constant polynomial \(P(z)\) of degree \(n\geq1\),
 \[
 P(z)=a_nz^n+a_{n-1}z^{n-1}+\cdots+a_1z+a_0,
 \]
 has at least one complex root \(z_0\) such that \(P(z_0)=0\).
 
-@remark{Strategy}
-A useful construction is
+@proof{}
+@enumerate{
+    @item{A useful construction is
 \[
 f(z)=\frac{1}{P(z)}.
 \]
-Assuming that \(P\) never vanishes makes \(f\) entire, after which Liouville's theorem can be used to obtain a contradiction.
-
-@proof{}
-Assume that \(P\) has no roots. Then \(f(z)=1/P(z)\) is entire. For sufficiently large \(|z|\), the leading term dominates, so \(|P(z)|\to\infty\) and consequently \(|f(z)|\to0\). Thus there is an \(R>0\) such that \(|f(z)|<1\) for \(|z|>R\).
-
-On the compact disk \(|z|\leq R\), the function \(f\) is continuous, so it attains a finite maximum \(M_0\). Hence \(f\) is bounded on all of \(\mathbb{C}\). Liouville's theorem forces \(f\) to be constant, so \(P\) must be constant, contradicting \(\deg P\geq1\). Therefore \(P\) has a complex root.
+Assuming that \(P\) never vanishes makes \(f\) entire, after which Liouville's theorem can be used to obtain a contradiction.}
+@item{Assume that \(P\) has no roots. Then \(f(z)=1/P(z)\) is entire. For sufficiently large \(|z|\), the leading term dominates, so \(|P(z)|\to\infty\) and consequently \(|f(z)|\to0\). Thus there is an \(R>0\) such that \(|f(z)|<1\) for \(|z|>R\).}
+@item{On the compact disk \(|z|\leq R\), the function \(f\) is continuous, so it attains a finite maximum \(M_0\). Hence \(f\) is bounded on all of \(\mathbb{C}\). Liouville's theorem forces \(f\) to be constant, so \(P\) must be constant, contradicting \(\deg P\geq1\). Therefore \(P\) has a complex root.}
+}
 
 @corollary{Fundamental Theorem of Algebra, label = fundamental-algebra-counting}
 A polynomial of degree \(n\geq1\) has exactly \(n\) complex roots, counted with multiplicity.
