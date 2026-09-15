@@ -1,3 +1,3 @@
-[submodule]
+[submodule "resources/templates/mark-two"]
 	path = resources/templates/mark-two
 	url = https://github.com/VivekH90/mark-two.git
