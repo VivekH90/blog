@@ -8,38 +8,6 @@
 
 @section{Fundamentals, color = #d21683, label = fundamentals}
 
-@subsection{Arc Length and Contour Integrals, label = arc-length-contour-integrals}
-
-@definition{Parametric Curves, label = parametric-curves}
-A curve in the complex plane is a continuous map \(z:\mathbb{R}\to\mathbb{C}\) given by
-\[
-z(t)=x(t)+iy(t).
-\]
-This is referred to as a parametric curve.
-
-@remark{Reparametrization, label = reparametrization}
-We can reparameterize a curve without changing its underlying geometric path. Let \(t=\phi(\tau)\), where \(\phi'(\tau)>0\). If the original curve is \(z(t)\), the new curve \(Z(\tau)\) is
-\[
-Z(\tau)=z(\phi(\tau)).
-\]
-Since \(\phi'(\tau)>0\), the reparametrization preserves the orientation of the curve.
-
-@definition{Arc Length of a Smooth Curve, label = arc-length}
-A curve is smooth if its derivative \(z'(t)\) exists, is continuous, and satisfies \(z'(t)\neq0\) for all \(t\). For such a curve, the arc length \(L\) from \(t=a\) to \(t=b\) is
-\[
-L=\int_a^b |z'(t)|\,dt.
-\]
-The unit tangent vector along the curve is
-\[
-T=\frac{z'(t)}{|z'(t)|}.
-\]
-
-@definition{Contour Integral, label = contour-integral}
-Given a contour \(C\) parameterized by \(z(t)\) for \(t\in[a,b]\), the line integral of a complex function \(f(z)\) along \(C\) is defined by
-\[
-\int_C f(z)\,dz=\int_a^b f(z(t))z'(t)\,dt.
-\]
-
 @lemma{Triangle Inequality for Integrals, label = triangle-inequality}
 For any integrable function \(w(t)\),
 \[
@@ -47,7 +15,9 @@ For any integrable function \(w(t)\),
 \]
 
 @proof{}
-Suppose the complex integral has magnitude \(\rho_0\) and phase \(\theta_0\), so that
+@enumerate{color = green, 
+    @item{
+        Suppose the complex integral has magnitude \(\rho_0\) and phase \(\theta_0\), so that
 \[
 \int_a^b w(t)\,dt=\rho_0e^{i\theta_0}.
 \]
@@ -59,10 +29,16 @@ Taking real parts,
 \[
 \rho_0=\int_a^b\operatorname{Re}\!\left(w(t)e^{-i\theta_0}\right)dt.
 \]
-Since the real part of a complex number is bounded above by its modulus,
+    },
+    @item{
+        Since the real part of a complex number is bounded above by its modulus,
 \[
 \rho_0\leq\int_a^b\left|w(t)e^{-i\theta_0}\right|dt=\int_a^b|w(t)|\,dt.
 \]
+    }
+}
+
+
 
 @theorem{The ML Inequality, label = ml-inequality}
 Let \(C\) be a contour of length \(L\). If \(|f(z)|\leq M\) for all \(z\) on \(C\), then

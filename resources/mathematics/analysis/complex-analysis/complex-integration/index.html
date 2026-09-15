@@ -44,31 +44,22 @@
                 <h1 class="article-title">Basics of Complex Integration</h1>
                 <section class="article-section" id="fundamentals" style="--section-color: #d21683; --section-color-dark: #d21683;">
 <h2><span class="section-symbol">§</span> 1. Fundamentals</h2>
-
-<section class="article-subsection" id="arc-length-and-contour-integrals">
-<h3>1.1. Arc Length and Contour Integrals</h3>
-<div class="math-environment definition" id="parametric-curves"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Definition</span> <span class="environment-number">1</span></span> <span class="environment-title">(Parametric Curves)</span></div><div class="environment-content"><p>A curve in the complex plane is a continuous map \(z:\mathbb{R}\to\mathbb{C}\) given by</p>
-<div class="math-display">\[z(t)=x(t)+iy(t).\]</div>
-<p>This is referred to as a parametric curve.</p></div></div>
-<div class="math-environment remark" id="reparametrization"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Remark</span> <span class="environment-number">1</span></span> <span class="environment-title">(Reparametrization)</span></div><div class="environment-content"><p>We can reparameterize a curve without changing its underlying geometric path. Let \(t=\phi(\tau)\), where \(\phi&#x27;(\tau)&gt;0\). If the original curve is \(z(t)\), the new curve \(Z(\tau)\) is</p>
-<div class="math-display">\[Z(\tau)=z(\phi(\tau)).\]</div>
-<p>Since \(\phi&#x27;(\tau)&gt;0\), the reparametrization preserves the orientation of the curve.</p></div></div>
-<div class="math-environment definition" id="arc-length"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Definition</span> <span class="environment-number">2</span></span> <span class="environment-title">(Arc Length of a Smooth Curve)</span></div><div class="environment-content"><p>A curve is smooth if its derivative \(z&#x27;(t)\) exists, is continuous, and satisfies \(z&#x27;(t)\neq0\) for all \(t\). For such a curve, the arc length \(L\) from \(t=a\) to \(t=b\) is</p>
-<div class="math-display">\[L=\int_a^b |z'(t)|\,dt.\]</div>
-<p>The unit tangent vector along the curve is</p>
-<div class="math-display">\[T=\frac{z'(t)}{|z'(t)|}.\]</div></div></div>
-<div class="math-environment definition" id="contour-integral"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Definition</span> <span class="environment-number">3</span></span> <span class="environment-title">(Contour Integral)</span></div><div class="environment-content"><p>Given a contour \(C\) parameterized by \(z(t)\) for \(t\in[a,b]\), the line integral of a complex function \(f(z)\) along \(C\) is defined by</p>
-<div class="math-display">\[\int_C f(z)\,dz=\int_a^b f(z(t))z'(t)\,dt.\]</div></div></div>
 <div class="math-environment lemma" id="triangle-inequality"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Lemma</span> <span class="environment-number">1</span></span> <span class="environment-title">(Triangle Inequality for Integrals)</span></div><div class="environment-content"><p>For any integrable function \(w(t)\),</p>
 <div class="math-display">\[\left|\int_a^b w(t)\,dt\right|\leq\int_a^b |w(t)|\,dt.\]</div></div></div>
-<div class="proof-environment"><div class="proof-heading">Proof</div><div class="proof-content"><p>Suppose the complex integral has magnitude \(\rho_0\) and phase \(\theta_0\), so that</p>
+<div class="proof-environment"><div class="proof-heading">Proof</div><div class="proof-content"><p>@enumerate{color = green,</p>
+<p>@item{</p>
+<p>Suppose the complex integral has magnitude \(\rho_0\) and phase \(\theta_0\), so that</p>
 <div class="math-display">\[\int_a^b w(t)\,dt=\rho_0e^{i\theta_0}.\]</div>
 <p>Multiplying by \(e^{-i\theta_0}\) gives</p>
 <div class="math-display">\[\rho_0=\int_a^b w(t)e^{-i\theta_0}\,dt.\]</div>
 <p>Taking real parts,</p>
 <div class="math-display">\[\rho_0=\int_a^b\operatorname{Re}\!\left(w(t)e^{-i\theta_0}\right)dt.\]</div>
+<p>},</p>
+<p>@item{</p>
 <p>Since the real part of a complex number is bounded above by its modulus,</p>
-<div class="math-display">\[\rho_0\leq\int_a^b\left|w(t)e^{-i\theta_0}\right|dt=\int_a^b|w(t)|\,dt.\]</div></div><div class="proof-qed" aria-label="Q.E.D.">□</div></div>
+<div class="math-display">\[\rho_0\leq\int_a^b\left|w(t)e^{-i\theta_0}\right|dt=\int_a^b|w(t)|\,dt.\]</div>
+<p>}</p>
+<p>}</p></div><div class="proof-qed" aria-label="Q.E.D.">□</div></div>
 <div class="math-environment theorem" id="ml-inequality"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Theorem</span> <span class="environment-number">1</span></span> <span class="environment-title">(The ML Inequality)</span></div><div class="environment-content"><p>Let \(C\) be a contour of length \(L\). If \(|f(z)|\leq M\) for all \(z\) on \(C\), then</p>
 <div class="math-display">\[\left|\int_C f(z)\,dz\right|\leq ML.\]</div></div></div>
 <div class="proof-environment"><div class="proof-heading">Proof</div><div class="proof-content"><p>Expanding the contour integral using a parametrization \(z=z(t)\),</p>
@@ -77,17 +68,16 @@
 <div class="math-display">\[\left|\int_a^b f(z(t))z'(t)\,dt\right|\leq\int_a^b|f(z(t))|\,|z'(t)|\,dt.\]</div>
 <p>Because \(|f(z)|\leq M\) on \(C\),</p>
 <div class="math-display">\[\int_a^b|f(z(t))|\,|z'(t)|\,dt\leq M\int_a^b|z'(t)|\,dt=ML.\]</div></div><div class="proof-qed" aria-label="Q.E.D.">□</div></div>
-</section>
 <section class="article-subsection" id="cauchy-goursat-theorem">
-<h3>1.2. Cauchy-Goursat Theorem</h3>
-<div class="math-environment definition" id="antiderivative"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Definition</span> <span class="environment-number">4</span></span> <span class="environment-title">(Anti-derivative)</span></div><div class="environment-content"><p>A function \(F(z)\) is called an anti-derivative of \(f(z)\) on a domain \(D\) if</p>
+<h3>1.1. Cauchy-Goursat Theorem</h3>
+<div class="math-environment definition" id="antiderivative"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Definition</span> <span class="environment-number">1</span></span> <span class="environment-title">(Anti-derivative)</span></div><div class="environment-content"><p>A function \(F(z)\) is called an anti-derivative of \(f(z)\) on a domain \(D\) if</p>
 <div class="math-display">\[F'(z)=f(z),\qquad\forall z\in D.\]</div></div></div>
 <div class="math-environment theorem" id="fundamental-line-integral"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Theorem</span> <span class="environment-number">2</span></span> <span class="environment-title">(Fundamental Theorem for Complex Line Integrals)</span></div><div class="environment-content"><p>Let \(f(z)\) be continuous on a domain \(D\). If \(f(z)\) possesses an anti-derivative \(F(z)\) on \(D\), then for any contour \(C\) connecting \(z_1\) to \(z_2\),</p>
 <div class="math-display">\[\int_{z_1}^{z_2}f(z)\,dz=F(z_2)-F(z_1).\]</div>
 <p>In particular, for any closed contour \(C\),</p>
 <div class="math-display">\[\oint_C f(z)\,dz=0.\]</div>
 <p>The theorem does not assert that an anti-derivative always exists. It states what the integral becomes when one does exist.</p></div></div>
-<div class="math-environment definition" id="connectivity"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Definition</span> <span class="environment-number">5</span></span> <span class="environment-title">(Simply Connected and Multiply Connected Domains)</span></div><div class="environment-content"><p>A domain \(D\) is simply connected if every simple closed contour \(C\subset D\) encloses a region that lies entirely within \(D\). Informally, there are no holes. A domain is multiply connected if this property fails, so the domain contains holes that contours cannot shrink across.</p></div></div>
+<div class="math-environment definition" id="connectivity"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Definition</span> <span class="environment-number">2</span></span> <span class="environment-title">(Simply Connected and Multiply Connected Domains)</span></div><div class="environment-content"><p>A domain \(D\) is simply connected if every simple closed contour \(C\subset D\) encloses a region that lies entirely within \(D\). Informally, there are no holes. A domain is multiply connected if this property fails, so the domain contains holes that contours cannot shrink across.</p></div></div>
 <figure class="article-image" id="simply-connected-figure">
 <img src="https://raw.githubusercontent.com/VivekH90/mushrooms/master/resources/mathout/complex_analysis/lvl_one/complex_integration_basics/input/simply_connected.png" alt="Diagram of a simply connected region" loading="lazy">
 <figcaption><strong>Figure 1:</strong> Simply connected region</figcaption>
@@ -122,7 +112,7 @@
 <p>The Fundamental Theorem for complex line integrals does not generally hold in multiply connected domains. The value of an integral may depend on the topology of the domain and on whether the contour encloses singularities.</p></div></div>
 </section>
 <section class="article-subsection" id="cauchy-integral-formula">
-<h3>1.3. Cauchy Integral Formula</h3>
+<h3>1.2. Cauchy Integral Formula</h3>
 <div class="math-environment example" id="fundamental-integral"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Example</span> <span class="environment-number">1</span></span> <span class="environment-title">(The Fundamental Integral)</span></div><div class="environment-content"><p>Consider</p>
 <div class="math-display">\[\oint_C\frac{1}{z}\,dz\]</div>
 <p>around a positively oriented simple closed curve enclosing the origin. By topological invariance, shrink \(C\) to a small circle \(C_\epsilon\) of radius \(\epsilon\) centered at the origin. Parameterize it by \(z=\epsilon e^{i\theta}\), \(0\leq\theta\leq2\pi\), so that \(dz=i\epsilon e^{i\theta}d\theta\). Then</p>
@@ -179,7 +169,7 @@
 <div class="math-environment theorem" id="fundamental-theorem-algebra"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Theorem</span> <span class="environment-number">11</span></span> <span class="environment-title">(Fundamental Theorem of Algebra)</span></div><div class="environment-content"><p>Every non-constant polynomial \(P(z)\) of degree \(n\geq1\),</p>
 <div class="math-display">\[P(z)=a_nz^n+a_{n-1}z^{n-1}+\cdots+a_1z+a_0,\]</div>
 <p>has at least one complex root \(z_0\) such that \(P(z_0)=0\).</p></div></div>
-<div class="math-environment remark"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Remark</span> <span class="environment-number">2</span></span> <span class="environment-title">(Strategy)</span></div><div class="environment-content"><p>A useful construction is</p>
+<div class="math-environment remark"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Remark</span> <span class="environment-number">1</span></span> <span class="environment-title">(Strategy)</span></div><div class="environment-content"><p>A useful construction is</p>
 <div class="math-display">\[f(z)=\frac{1}{P(z)}.\]</div>
 <p>Assuming that \(P\) never vanishes makes \(f\) entire, after which Liouville&#x27;s theorem can be used to obtain a contradiction.</p></div></div>
 <div class="proof-environment"><div class="proof-heading">Proof</div><div class="proof-content"><p>Assume that \(P\) has no roots. Then \(f(z)=1/P(z)\) is entire. For sufficiently large \(|z|\), the leading term dominates, so \(|P(z)|\to\infty\) and consequently \(|f(z)|\to0\). Thus there is an \(R&gt;0\) such that \(|f(z)|&lt;1\) for \(|z|&gt;R\).</p>
@@ -191,14 +181,14 @@
 <div class="math-display">\[P(z)=(z-z_0)Q(z).\]</div>
 <p>By the induction hypothesis, \(Q\) has exactly \(n-1\) roots counted with multiplicity. Together with \(z_0\), this gives exactly \(n\) roots for \(P\).</p></div><div class="proof-qed" aria-label="Q.E.D.">□</div></div>
 <div class="math-environment theorem" id="minimum-modulus"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Theorem</span> <span class="environment-number">12</span></span> <span class="environment-title">(Minimum Modulus Principle)</span></div><div class="environment-content"><p>Let \(f(z)\) be continuous on a closed bounded region \(R\), analytic and non-constant in its interior, and suppose \(f(z)\neq0\) on \(R\). Then \(|f(z)|\) attains its minimum value on the boundary of \(R\), not in the interior.</p></div></div>
-<div class="math-environment remark"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Remark</span> <span class="environment-number">3</span></span> <span class="environment-title">(Strategy)</span></div><div class="environment-content"><p>Construct</p>
+<div class="math-environment remark"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Remark</span> <span class="environment-number">2</span></span> <span class="environment-title">(Strategy)</span></div><div class="environment-content"><p>Construct</p>
 <div class="math-display">\[g(z)=\frac{1}{f(z)}\]</div>
 <p>and apply the maximum-modulus principle to \(g\).</p></div></div>
 <div class="proof-environment"><div class="proof-heading">Proof</div><div class="proof-content"><p>Suppose \(|f(z)|\) attains its minimum in the interior at \(z_0\), with \(m=|f(z_0)|\). Then</p>
 <div class="math-display">\[|g(z)|=\frac{1}{|f(z)|}\leq\frac1m=|g(z_0)|,\]</div>
 <p>so \(|g|\) has an interior maximum. The maximum-modulus principle forces \(g\), and hence \(f\), to be constant, contradicting the hypothesis. Therefore the minimum occurs on the boundary.</p></div><div class="proof-qed" aria-label="Q.E.D.">□</div></div>
 <div class="math-environment theorem" id="harmonic-boundary"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Theorem</span> <span class="environment-number">13</span></span> <span class="environment-title">(Boundary Minima of Harmonic Components)</span></div><div class="environment-content"><p>Let \(f(z)=u(x,y)+iv(x,y)\) be continuous on a closed bounded region \(R\), analytic and non-constant in its interior. Then both \(u\) and \(v\) attain their minima and maxima on the boundary of \(R\), never at an interior extremum.</p></div></div>
-<div class="math-environment remark"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Remark</span> <span class="environment-number">4</span></span> <span class="environment-title">(Strategy)</span></div><div class="environment-content"><p>The standard constructions are</p>
+<div class="math-environment remark"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Remark</span> <span class="environment-number">3</span></span> <span class="environment-title">(Strategy)</span></div><div class="environment-content"><p>The standard constructions are</p>
 <div class="math-display">\[g(z)=e^{-f(z)},\qquad e^{if(z)},\qquad e^{f(z)},\qquad e^{-if(z)},\]</div>
 <p>chosen according to which component and which extremum is being studied.</p>
 <p>@proof{</p>
@@ -220,9 +210,8 @@
                         <ol>
                             <li><a href="#fundamentals"><span class="toc-section-symbol">§</span> 1. Fundamentals</a>
 <ol class="toc-subsections">
-<li><a href="#arc-length-and-contour-integrals">1.1. Arc Length and Contour Integrals</a></li>
-<li><a href="#cauchy-goursat-theorem">1.2. Cauchy-Goursat Theorem</a></li>
-<li><a href="#cauchy-integral-formula">1.3. Cauchy Integral Formula</a></li>
+<li><a href="#cauchy-goursat-theorem">1.1. Cauchy-Goursat Theorem</a></li>
+<li><a href="#cauchy-integral-formula">1.2. Cauchy Integral Formula</a></li>
 </ol>
 </li>
 <li><a href="#problem-solving"><span class="toc-section-symbol">§</span> 2. Problem Solving</a>
