@@ -29,7 +29,7 @@ Taking real parts,
 \[
 \rho_0=\int_a^b\operatorname{Re}\!\left(w(t)e^{-i\theta_0}\right)dt.
 \]
-    },
+    }
     @item{
         Since the real part of a complex number is bounded above by its modulus,
 \[
