@@ -1,0 +1,3 @@
+[submodule]
+	path = resources/templates/mark-two
+	url = https://github.com/VivekH90/mark-two.git
