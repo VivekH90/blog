@@ -15,6 +15,7 @@ For any integrable function \(w(t)\),
 \]
 
 @proof{}
+
 @enumerate{color = green,
     @item{
         Suppose the complex integral has magnitude \(\rho_0\) and phase \(\theta_0\), so that
@@ -37,7 +38,6 @@ Taking real parts,
 \]
     }
 }
-
 
 
 @theorem{The ML Inequality, label = ml-inequality}
