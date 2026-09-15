@@ -1,4 +1,4 @@
-@documenttitle{Mathematics, banner = https://raw.githubusercontent.com/VivekH90/mushrooms/master/resources/mathout/complex_analysis/lvl_one/complex_integration_basics/input/mushroom.png}
+@documenttitle{Mathematics, banner = com_int_banner.png}
 
 @button{Home, href = /, color = #111111}
 @button{Archives, href = /archives, color = #4f6fd8}
