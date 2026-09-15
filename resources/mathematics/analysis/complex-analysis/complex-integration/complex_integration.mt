@@ -4,7 +4,7 @@
 @button{Archives, href = /archives, color = #4f6fd8}
 @button{GitHub, href = https://github.com/VivekH90/blog, color = #4f9d69}
 
-@title{Complex Integration}
+@title{Basics of Complex Integration}
 
 @section{Fundamentals, color = #d21683, label = fundamentals}
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Complex Integration | Mathematics</title>
+    <title>Basics of Complex Integration | Mathematics</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sugina-dev/latin-modern-web@1.0.1/style/latinmodern-sans.css">
     <link rel="stylesheet" href="style.css">
@@ -27,7 +27,7 @@
 <body>
     <div class="site-shell">
         <header class="site-header">
-            <div class="site-banner"><img src="com_int_banner.png" alt="" loading="eager"><a class="banner-title" href="#" style="--banner-title-color: #111111; --banner-title-color-dark: #737373;">Mathematics</a></div>
+            <div class="site-banner"><img src="com_int_banner.png" alt="" loading="eager"><a class="banner-title" href="#" style="color: #111111; --banner-title-color: #111111; --banner-title-color-dark: #737373;">Mathematics</a></div>
             <nav class="navigation" aria-label="Site navigation">
                 <a class="nav-button" href="/" style="--button-color: #111111; --button-color-dark: #737373;">Home</a>
 <a class="nav-button" href="/archives" style="--button-color: #4f6fd8; --button-color-dark: #4f6fd8;">Archives</a>
@@ -41,7 +41,7 @@
 
         <div class="page-layout">
             <main class="article">
-                <h1 class="article-title">Complex Integration</h1>
+                <h1 class="article-title">Basics of Complex Integration</h1>
                 <section class="article-section" id="fundamentals" style="--section-color: #d21683; --section-color-dark: #d21683;">
 <h2><span class="section-symbol">§</span> 1. Fundamentals</h2>
 
@@ -90,11 +90,11 @@
 <div class="math-environment definition" id="connectivity"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Definition</span> <span class="environment-number">5</span></span> <span class="environment-title">(Simply Connected and Multiply Connected Domains)</span></div><div class="environment-content"><p>A domain \(D\) is simply connected if every simple closed contour \(C\subset D\) encloses a region that lies entirely within \(D\). Informally, there are no holes. A domain is multiply connected if this property fails, so the domain contains holes that contours cannot shrink across.</p></div></div>
 <figure class="article-image" id="simply-connected-figure">
 <img src="https://raw.githubusercontent.com/VivekH90/mushrooms/master/resources/mathout/complex_analysis/lvl_one/complex_integration_basics/input/simply_connected.png" alt="Diagram of a simply connected region" loading="lazy">
-<figcaption>Simply connected region</figcaption>
+<figcaption><strong>Figure 1:</strong> Simply connected region</figcaption>
 </figure>
 <figure class="article-image" id="multiply-connected-figure">
 <img src="https://raw.githubusercontent.com/VivekH90/mushrooms/master/resources/mathout/complex_analysis/lvl_one/complex_integration_basics/input/multiply_connected.png" alt="Diagram of a multiply connected region" loading="lazy">
-<figcaption>Multiply connected region</figcaption>
+<figcaption><strong>Figure 2:</strong> Multiply connected region</figcaption>
 </figure>
 <div class="math-environment theorem" id="cauchy-goursat-theorem"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Theorem</span> <span class="environment-number">3</span></span> <span class="environment-title">(Cauchy-Goursat Theorem)</span></div><div class="environment-content"><p>Let \(D\) be a simply connected domain. If \(f(z)\) is analytic on \(D\), then for any simple closed contour \(C\subset D\),</p>
 <div class="math-display">\[\oint_C f(z)\,dz=0.\]</div></div></div>
@@ -110,11 +110,11 @@
 <div class="math-display">\[\oint_C f(z)\,dz+\sum_{k=1}^n\oint_{C_k}f(z)\,dz=0.\]</div></div></div>
 <figure class="article-image" id="cauchy1">
 <img src="https://raw.githubusercontent.com/VivekH90/mushrooms/master/resources/mathout/complex_analysis/lvl_one/complex_integration_basics/input/cauchy1.png" alt="Contour surrounding a hole in the domain" loading="lazy">
-<figcaption>We wish to evaluate the integral around a contour that contains a hole of the domain.</figcaption>
+<figcaption><strong>Figure 3:</strong> We wish to evaluate the integral around a contour that contains a hole of the domain.</figcaption>
 </figure>
 <figure class="article-image" id="cauchy2">
 <img src="https://raw.githubusercontent.com/VivekH90/mushrooms/master/resources/mathout/complex_analysis/lvl_one/complex_integration_basics/input/cauchy2.png" alt="Decomposition of a contour into smaller contours" loading="lazy">
-<figcaption>The contour is decomposed into pieces that avoid holes in their respective subdomains.</figcaption>
+<figcaption><strong>Figure 4:</strong> The contour is decomposed into pieces that avoid holes in their respective subdomains.</figcaption>
 </figure>
 <div class="math-environment corollary" id="topological-invariance"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Corollary</span> <span class="environment-number">1</span></span> <span class="environment-title">(Topological Invariance)</span></div><div class="environment-content"><p>If \(C_1\) and \(C_2\) are positively oriented simple closed contours, with \(C_1\) entirely inside \(C_2\), then for an analytic function \(f(z)\),</p>
 <div class="math-display">\[\oint_{C_2}f(z)\,dz=\oint_{C_1}f(z)\,dz.\]</div>
