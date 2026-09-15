@@ -14,8 +14,9 @@ For any integrable function \(w(t)\),
 \left|\int_a^b w(t)\,dt\right|\leq\int_a^b |w(t)|\,dt.
 \]
 
-@proof{
-    @enumerate{color = green,
+@proof{}
+
+@enumerate{color = green,
     @item{
         Suppose the complex integral has magnitude \(\rho_0\) and phase \(\theta_0\), so that
 \[
@@ -29,7 +30,7 @@ Taking real parts,
 \[
 \rho_0=\int_a^b\operatorname{Re}\!\left(w(t)e^{-i\theta_0}\right)dt.
 \]
-    }
+    },
     @item{
         Since the real part of a complex number is bounded above by its modulus,
 \[
@@ -37,10 +38,6 @@ Taking real parts,
 \]
     }
 }
-}
-
-
-
 
 @theorem{The ML Inequality, label = ml-inequality}
 Let \(C\) be a contour of length \(L\). If \(|f(z)|\leq M\) for all \(z\) on \(C\), then
@@ -103,18 +100,24 @@ Since \(f\) is analytic, the Cauchy-Riemann equations give
 \[
 u_x=v_y,\qquad u_y=-v_x.
 \]
-Thus the relevant differential forms have matching mixed partials. For example,
+By Green's theorem,
 \[
-\frac{\partial u}{\partial y}=u_y=-v_x=\frac{\partial(-v)}{\partial x}.
+\oint_C(u\,dx-v\,dy)=\iint_R(-v_x-u_y)\,dA=0,
 \]
-The simply connected hypothesis is essential when passing from these local differential conditions to global exactness.
-
-The Cauchy-Goursat theorem is closely tied to the existence of anti-derivatives on simply connected domains.
+and
+\[
+\oint_C(v\,dx+u\,dy)=\iint_R(u_x-v_y)\,dA=0.
+\]
+The simply connected hypothesis ensures that the region \(R\) enclosed by \(C\) lies in \(D\), where \(f\) is analytic. Hence both real and imaginary parts vanish, giving the result.
 
 @theorem{Deformation of Contours, label = deformation-of-contours}
-Suppose \(C\) is a simple closed contour containing disjoint simple closed contours \(C_1,\ldots,C_n\) in its interior. If \(f(z)\) is analytic on the region between \(C\) and the inner contours, then
+Suppose \(C\) is a simple closed contour containing disjoint simple closed contours \(C_1,\ldots,C_n\) in its interior. If \(f(z)\) is analytic on the region between \(C\) and the inner contours, with the inner contours oriented clockwise as induced boundary components, then
 \[
 \oint_C f(z)\,dz+\sum_{k=1}^n\oint_{C_k}f(z)\,dz=0.
+\]
+Equivalently, if all \(C_k\) are given positive (counterclockwise) orientation, then
+\[
+\oint_C f(z)\,dz=\sum_{k=1}^n\oint_{C_k}f(z)\,dz.
 \]
 
 @image{src = https://raw.githubusercontent.com/VivekH90/mushrooms/master/resources/mathout/complex_analysis/lvl_one/complex_integration_basics/input/cauchy1.png, alt = Contour surrounding a hole in the domain, caption = We wish to evaluate the integral around a contour that contains a hole of the domain., label = cauchy1}
@@ -122,7 +125,7 @@ Suppose \(C\) is a simple closed contour containing disjoint simple closed conto
 @image{src = https://raw.githubusercontent.com/VivekH90/mushrooms/master/resources/mathout/complex_analysis/lvl_one/complex_integration_basics/input/cauchy2.png, alt = Decomposition of a contour into smaller contours, caption = The contour is decomposed into pieces that avoid holes in their respective subdomains., label = cauchy2}
 
 @corollary{Topological Invariance, label = topological-invariance}
-If \(C_1\) and \(C_2\) are positively oriented simple closed contours, with \(C_1\) entirely inside \(C_2\), then for an analytic function \(f(z)\),
+If \(C_1\) and \(C_2\) are positively oriented simple closed contours, with \(C_1\) entirely inside \(C_2\), and \(f(z)\) analytic on the region between them, then
 \[
 \oint_{C_2}f(z)\,dz=\oint_{C_1}f(z)\,dz.
 \]
@@ -150,21 +153,17 @@ f(z_0)=\frac{1}{2\pi i}\oint_C\frac{f(z)}{z-z_0}\,dz.
 \]
 
 @proof{}
-We isolate \(f(z_0)\) by considering
+Define
 \[
-k=\oint_C\frac{f(z)}{z-z_0}\,dz-f(z_0)\oint_C\frac{dz}{z-z_0}.
+g(z)=\frac{f(z)-f(z_0)}{z-z_0}.
 \]
-Since
+The apparent singularity at \(z_0\) is removable, so \(g\) is analytic in a neighborhood of the closed region between \(C\) and a sufficiently small positively oriented circle \(C_1\) centered at \(z_0\). By deformation of contours,
 \[
-\oint_C\frac{dz}{z-z_0}=2\pi i,
+k:=\oint_C g(z)\,dz=\oint_{C_1}g(z)\,dz.
 \]
-we obtain
+By continuity of \(f\), for every \(\epsilon>0\) we can choose the radius \(r\) of \(C_1\) small enough that \(|f(z)-f(z_0)|<\epsilon\) on \(C_1\). Hence, by the ML inequality,
 \[
-k=\oint_C\frac{f(z)-f(z_0)}{z-z_0}\,dz.
-\]
-Let \(C_1\) be a small circle of radius \(r\) centered at \(z_0\). By continuity of \(f\), for every \(\epsilon>0\) we can choose \(r\) small enough that \(|f(z)-f(z_0)|<\epsilon\) on \(C_1\). Hence, by the ML inequality,
-\[
-|k|\leq\oint_{C_1}\frac{|f(z)-f(z_0)|}{|z-z_0|}|dz|<\frac{\epsilon}{r}\oint_{C_1}|dz|.
+|k|\leq\int_{C_1}\frac{|f(z)-f(z_0)|}{|z-z_0|}\,|dz|<\frac{\epsilon}{r}\int_{C_1}|dz|.
 \]
 The circumference of \(C_1\) is \(2\pi r\), so
 \[
@@ -172,19 +171,23 @@ The circumference of \(C_1\) is \(2\pi r\), so
 \]
 As \(\epsilon\) is arbitrary, \(k=0\). Therefore
 \[
-\oint_C\frac{f(z)}{z-z_0}\,dz=2\pi i f(z_0),
+\oint_C\frac{f(z)-f(z_0)}{z-z_0}\,dz=0,
+\]
+and consequently
+\[
+\oint_C\frac{f(z)}{z-z_0}\,dz=f(z_0)\oint_C\frac{dz}{z-z_0}=2\pi i f(z_0),
 \]
 which yields the formula.
 
 @theorem{Cauchy's Integral Formula for Derivatives, label = cauchys-derivatives}
-By differentiating under the integral sign, the \(n\)-th derivative satisfies
+Let \(n\geq0\). For a function \(f\) analytic on and inside a positively oriented simple closed contour \(C\),
 \[
 \oint_C\frac{f(z)}{(z-z_0)^{n+1}}\,dz=\frac{2\pi i}{n!}f^{(n)}(z_0).
 \]
-This may also be established by induction on \(n\). In particular, analyticity is inherited by the derivatives.
+This follows by differentiating the Cauchy integral formula under the integral sign, or by induction on \(n\). In particular, all derivatives of an analytic function are analytic.
 
 @theorem{Cauchy's Estimate, label = cauchys-estimate}
-Let \(f\) be analytic inside a circle \(C_R\) of radius \(R\) centered at \(z_0\). If \(M_R\) is the maximum value of \(|f(z)|\) on \(C_R\), then
+Let \(f\) be analytic on and inside a circle \(C_R\) of radius \(R\) centered at \(z_0\). If \(M_R\) is the maximum value of \(|f(z)|\) on \(C_R\), then
 \[
 |f^{(n)}(z_0)|\leq\frac{n!M_R}{R^n}.
 \]
@@ -196,7 +199,7 @@ f^{(n)}(z_0)=\frac{n!}{2\pi i}\oint_{C_R}\frac{f(z)}{(z-z_0)^{n+1}}\,dz.
 \]
 Taking moduli and applying the ML inequality,
 \[
-|f^{(n)}(z_0)|\leq\frac{n!}{2\pi}\oint_{C_R}\left|\frac{f(z)}{(z-z_0)^{n+1}}\right||dz|.
+|f^{(n)}(z_0)|\leq\frac{n!}{2\pi}\int_{C_R}\left|\frac{f(z)}{(z-z_0)^{n+1}}\right|\,|dz|.
 \]
 On \(C_R\), we have \(|f(z)|\leq M_R\) and \(|z-z_0|=R\), while the circumference is \(2\pi R\). Thus
 \[
@@ -305,14 +308,12 @@ g(z)=e^{-f(z)},\qquad e^{if(z)},\qquad e^{f(z)},\qquad e^{-if(z)},
 \]
 chosen according to which component and which extremum is being studied.
 
-@proof{
-    For example, suppose \(u\) has an interior minimum at \(z_0\). For \(g(z)=e^{-f(z)}\),
+@proof{}
+For example, suppose \(u\) has an interior minimum at \(z_0\). For \(g(z)=e^{-f(z)}\),
 \[
 |g(z)|=e^{-u(x,y)}.
 \]
 A minimum of \(u\) is therefore a maximum of \(|g|\). By the maximum-modulus principle, \(g\) is constant, forcing \(f\) to be constant, a contradiction. The other cases follow by choosing the corresponding exponential construction.
-}
-
 
 @relatedlinks{Mark Two, href = https://github.com/VivekH90/mark-two}
 @relatedlinks{Source notes, href = https://github.com/VivekH90/mushrooms/tree/master/resources/mathout/complex_analysis/lvl_one/complex_integration_basics}
