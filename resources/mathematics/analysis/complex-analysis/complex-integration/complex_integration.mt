@@ -32,7 +32,7 @@ Taking real parts,
 \]
     },
     @item{
-        Since the real part of a complex number is bounded above by its modulus,
+        Since the real part of a complex number is always less then or equal to its modulus,
 \[
 \rho_0\leq\int_a^b\left|w(t)e^{-i\theta_0}\right|dt=\int_a^b|w(t)|\,dt.
 \]
@@ -46,7 +46,7 @@ Let \(C\) be a contour of length \(L\). If \(|f(z)|\leq M\) for all \(z\) on \(C
 \]
 
 @proof{}
-Expanding the contour integral using a parametrization \(z=z(t)\),
+    Expanding the contour integral using a parametrization \(z=z(t)\),
 \[
 \left|\int_C f(z)\,dz\right|=\left|\int_a^b f(z(t))z'(t)\,dt\right|.
 \]
@@ -59,31 +59,14 @@ Because \(|f(z)|\leq M\) on \(C\),
 \int_a^b|f(z(t))|\,|z'(t)|\,dt\leq M\int_a^b|z'(t)|\,dt=ML.
 \]
 
+
+
 @subsection{Cauchy-Goursat Theorem, label = cauchy-goursat}
-
-@definition{Anti-derivative, label = antiderivative}
-A function \(F(z)\) is called an anti-derivative of \(f(z)\) on a domain \(D\) if
-\[
-F'(z)=f(z),\qquad\forall z\in D.
-\]
-
-@theorem{Fundamental Theorem for Complex Line Integrals, label = fundamental-line-integral}
-Let \(f(z)\) be continuous on a domain \(D\). If \(f(z)\) possesses an anti-derivative \(F(z)\) on \(D\), then for any contour \(C\) connecting \(z_1\) to \(z_2\),
-\[
-\int_{z_1}^{z_2}f(z)\,dz=F(z_2)-F(z_1).
-\]
-In particular, for any closed contour \(C\),
-\[
-\oint_C f(z)\,dz=0.
-\]
-The theorem does not assert that an anti-derivative always exists. It states what the integral becomes when one does exist.
 
 @definition{Simply Connected and Multiply Connected Domains, label = connectivity}
 A domain \(D\) is simply connected if every simple closed contour \(C\subset D\) encloses a region that lies entirely within \(D\). Informally, there are no holes. A domain is multiply connected if this property fails, so the domain contains holes that contours cannot shrink across.
 
-@image{src = https://raw.githubusercontent.com/VivekH90/mushrooms/master/resources/mathout/complex_analysis/lvl_one/complex_integration_basics/input/simply_connected.png, alt = Diagram of a simply connected region, caption = Simply connected region, label = simply-connected-figure}
-
-@image{src = https://raw.githubusercontent.com/VivekH90/mushrooms/master/resources/mathout/complex_analysis/lvl_one/complex_integration_basics/input/multiply_connected.png, alt = Diagram of a multiply connected region, caption = Multiply connected region, label = multiply-connected-figure}
+@image{image(1) = input/simply_connected.png, image(2) = input/multiply_connected.png, caption = Simply connected region and Multiply connected region, width(1) = 50%, label = simply-multiply-figure}
 
 @theorem{Cauchy-Goursat Theorem, label = cauchy-goursat-theorem}
 Let \(D\) be a simply connected domain. If \(f(z)\) is analytic on \(D\), then for any simple closed contour \(C\subset D\),
@@ -92,7 +75,7 @@ Let \(D\) be a simply connected domain. If \(f(z)\) is analytic on \(D\), then f
 \]
 
 @proof{}
-Write \(f(z)=u(x,y)+iv(x,y)\) and split the contour integral into real and imaginary parts:
+    Write \(f(z)=u(x,y)+iv(x,y)\) and split the contour integral into real and imaginary parts:
 \[
 \oint_C f(z)\,dz=\oint_C(u\,dx-v\,dy)+i\oint_C(v\,dx+u\,dy).
 \]
@@ -100,15 +83,12 @@ Since \(f\) is analytic, the Cauchy-Riemann equations give
 \[
 u_x=v_y,\qquad u_y=-v_x.
 \]
-By Green's theorem,
+Notice that these conditions imply that the differential forms \(u \, dx - v \, dy\) and \(v \, dx + u \, dy\) are exact differentials. For instance, taking the mixed partials:
 \[
-\oint_C(u\,dx-v\,dy)=\iint_R(-v_x-u_y)\,dA=0,
+\frac{\partial}{\partial y} (u) = u_y = -v_x = \frac{\partial}{\partial x} (-v).
 \]
-and
-\[
-\oint_C(v\,dx+u\,dy)=\iint_R(u_x-v_y)\,dA=0.
-\]
-The simply connected hypothesis ensures that the region \(R\) enclosed by \(C\) lies in \(D\), where \(f\) is analytic. Hence both real and imaginary parts vanish, giving the result.
+
+
 
 @theorem{Deformation of Contours, label = deformation-of-contours}
 Suppose \(C\) is a simple closed contour containing disjoint simple closed contours \(C_1,\ldots,C_n\) in its interior. If \(f(z)\) is analytic on the region between \(C\) and the inner contours, with the inner contours oriented clockwise as induced boundary components, then
@@ -120,9 +100,7 @@ Equivalently, if all \(C_k\) are given positive (counterclockwise) orientation, 
 \oint_C f(z)\,dz=\sum_{k=1}^n\oint_{C_k}f(z)\,dz.
 \]
 
-@image{src = https://raw.githubusercontent.com/VivekH90/mushrooms/master/resources/mathout/complex_analysis/lvl_one/complex_integration_basics/input/cauchy1.png, alt = Contour surrounding a hole in the domain, caption = We wish to evaluate the integral around a contour that contains a hole of the domain., label = cauchy1}
-
-@image{src = https://raw.githubusercontent.com/VivekH90/mushrooms/master/resources/mathout/complex_analysis/lvl_one/complex_integration_basics/input/cauchy2.png, alt = Decomposition of a contour into smaller contours, caption = The contour is decomposed into pieces that avoid holes in their respective subdomains., label = cauchy2}
+@image{image(1) = input/cauchy1.png, image(2) = input/cauchy2.png, width = 50%, caption = (1) We wish to evaluate the integral around a contour that contains a hole of the domain. (2) Decomposition of a contour into smaller contours , label = decomposition-contours}
 
 @corollary{Topological Invariance, label = topological-invariance}
 If \(C_1\) and \(C_2\) are positively oriented simple closed contours, with \(C_1\) entirely inside \(C_2\), and \(f(z)\) analytic on the region between them, then
