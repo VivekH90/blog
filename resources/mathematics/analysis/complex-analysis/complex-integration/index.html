@@ -47,16 +47,6 @@
 <div class="math-environment lemma" id="triangle-inequality"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Lemma</span> <span class="environment-number">1</span></span> <span class="environment-title">(Triangle Inequality for Integrals)</span></div><div class="environment-content"><p>For any integrable function \(w(t)\),</p>
 <div class="math-display">\[\left|\int_a^b w(t)\,dt\right|\leq\int_a^b |w(t)|\,dt.\]</div></div></div>
 <div class="proof-environment"><div class="proof-heading">Proof</div><div class="proof-content"></div><div class="proof-qed" aria-label="Q.E.D.">□</div></div>
-<ol class="mark-list" style="--list-color: green; --list-color-dark: #00e600;">
-<li><p>Suppose the complex integral has magnitude \(\rho_0\) and phase \(\theta_0\), so that</p>
-<div class="math-display">\[\int_a^b w(t)\,dt=\rho_0e^{i\theta_0}.\]</div>
-<p>Multiplying by \(e^{-i\theta_0}\) gives</p>
-<div class="math-display">\[\rho_0=\int_a^b w(t)e^{-i\theta_0}\,dt.\]</div>
-<p>Taking real parts,</p>
-<div class="math-display">\[\rho_0=\int_a^b\operatorname{Re}\!\left(w(t)e^{-i\theta_0}\right)dt.\]</div></li>
-<li><p>Since the real part of a complex number is bounded above by its modulus,</p>
-<div class="math-display">\[\rho_0\leq\int_a^b\left|w(t)e^{-i\theta_0}\right|dt=\int_a^b|w(t)|\,dt.\]</div></li>
-</ol>
 <div class="math-environment theorem" id="ml-inequality"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Theorem</span> <span class="environment-number">1</span></span> <span class="environment-title">(The ML Inequality)</span></div><div class="environment-content"><p>Let \(C\) be a contour of length \(L\). If \(|f(z)|\leq M\) for all \(z\) on \(C\), then</p>
 <div class="math-display">\[\left|\int_C f(z)\,dz\right|\leq ML.\]</div></div></div>
 <div class="proof-environment"><div class="proof-heading">Proof</div><div class="proof-content"><p>Expanding the contour integral using a parametrization \(z=z(t)\),</p>
