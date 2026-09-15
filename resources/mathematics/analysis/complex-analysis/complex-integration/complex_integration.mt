@@ -1,4 +1,4 @@
-@documenttitle{Mathematics, banner = com_int_banner.png}
+@documenttitle{Mathematics, banner = com_int_banner.png, color = #111111}
 
 @button{Home, href = /, color = #111111}
 @button{Archives, href = /archives, color = #4f6fd8}
