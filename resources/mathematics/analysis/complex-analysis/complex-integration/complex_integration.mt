@@ -327,12 +327,14 @@ g(z)=e^{-f(z)},\qquad e^{if(z)},\qquad e^{f(z)},\qquad e^{-if(z)},
 \]
 chosen according to which component and which extremum is being studied.
 
-@proof{}
-For example, suppose \(u\) has an interior minimum at \(z_0\). For \(g(z)=e^{-f(z)}\),
+@proof{
+    For example, suppose \(u\) has an interior minimum at \(z_0\). For \(g(z)=e^{-f(z)}\),
 \[
 |g(z)|=e^{-u(x,y)}.
 \]
 A minimum of \(u\) is therefore a maximum of \(|g|\). By the maximum-modulus principle, \(g\) is constant, forcing \(f\) to be constant, a contradiction. The other cases follow by choosing the corresponding exponential construction.
+}
+
 
 @relatedlinks{Mark Two, href = https://github.com/VivekH90/mark-two}
 @relatedlinks{Source notes, href = https://github.com/VivekH90/mushrooms/tree/master/resources/mathout/complex_analysis/lvl_one/complex_integration_basics}
