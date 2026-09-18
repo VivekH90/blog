@@ -1,12 +1,12 @@
 @documenttitle{Mathematics, banner = ../background.png, color = #f9f5f8}
 
-@button{Home, href = /, color = #111111}
-@button{Archives, href = /archives, color = #4f6fd8}
-@button{GitHub, href = https://github.com/VivekH90/blog, color = #4f9d69}
+@button{Home, href = /, color = #5b3a8a}
+@button{Archives, href = /archives, color = #7652a8}
+@button{GitHub, href = https://github.com/VivekH90/blog, color = #70458f}
 
 @title{Basics of Complex Integration}
 
-@section{Fundamentals, color = #d21683, label = fundamentals}
+@section{Fundamentals, color = #7b4fb3, label = fundamentals}
 
 @lemma{Triangle Inequality for Integrals, label = triangle-inequality}
 For any integrable function \(w(t)\),
@@ -16,7 +16,7 @@ For any integrable function \(w(t)\),
 
 @proof{}
 
-@enumerate{color = green,
+@enumerate{color = #7652a8,
     @item{
         Suppose the complex integral has magnitude \(\rho_0\) and phase \(\theta_0\), so that
 \[
@@ -188,7 +188,7 @@ On \(C_R\), we have \(|f(z)|\leq M_R\) and \(|z-z_0|=R\), while the circumferenc
 |f^{(n)}(z_0)|\leq\frac{n!}{2\pi}\frac{M_R}{R^{n+1}}(2\pi R)=\frac{n!M_R}{R^n}.
 \]
 
-@section{Problem Solving, color = #b22626, label = problem-solving}
+@section{Problem Solving, color = #8a5abf, label = problem-solving}
 
 @theorem{Liouville's Theorem, label = liouvilles-theorem}
 If \(f\) is entire and bounded, so that \(|f(z)|\leq M\) for all \(z\in\mathbb{C}\), then \(f\) is constant.
