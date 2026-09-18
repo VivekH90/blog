@@ -1,4 +1,4 @@
-@documenttitle{Mathematics, banner = ../background.png, color = #0b0008}
+@documenttitle{Mathematics, banner = ../background.png, color = #f9f5f8}
 
 @button{Home, href = /, color = #111111}
 @button{Archives, href = /archives, color = #4f6fd8}
