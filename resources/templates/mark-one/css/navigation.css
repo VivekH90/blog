@@ -5,40 +5,31 @@
     gap: 12px;
     margin-top: 14px;
 }
-
-.navbar a {
+.navbar a,
+.navbar .theme-toggle {
     min-height: 42px;
     padding: 7px 28px;
-
-    border: 1px solid #CBD2DE;
+    border: 1px solid var(--nav-border);
     border-radius: 999px;
-
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
     text-decoration: none;
-
-    color: #273247;
+    color: var(--nav-text);
     background: var(--nav-color);
-
     font-family: "Computer Modern Sans", sans-serif;
     font-size: 1.03rem;
     font-weight: 600;
 }
-
-.home-btn {
-    --nav-color: #DCEBFA;
+.navbar .theme-toggle {
+    --nav-color: var(--surface);
+    cursor: pointer;
 }
-
-.date-btn {
-    --nav-color: #F5E3CF;
-}
-
-.github-btn {
-    --nav-color: #DDEBDC;
-}
-
-.navbar a:hover {
-    text-decoration: underline;
-}
+.home-btn { --nav-color: #DCEBFA; }
+.date-btn { --nav-color: #F5E3CF; }
+.github-btn { --nav-color: #DDEBDC; }
+.navbar a:hover,
+.navbar .theme-toggle:hover { text-decoration: underline; }
+html.dark-mode .home-btn { --nav-color: #283444; }
+html.dark-mode .date-btn { --nav-color: #3B3028; }
+html.dark-mode .github-btn { --nav-color: #26352A; }
