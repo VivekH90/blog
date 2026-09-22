@@ -15,7 +15,7 @@
     font-family:
         "Computer Modern Serif",
         serif;
-    color: #273247;
+    color: var(--text);
 }
 
 /* environment header */
@@ -42,13 +42,13 @@
         serif;
     font-size: 1.55rem;
     font-weight: 700;
-    color: #273247;
+    color: var(--text);
 }
 
 /* environment title */
 .environment-name {
     font-size: 1.28rem;
-    color: #304A55;
+    color: var(--text);
 }
 
 /* environment tag */
@@ -101,7 +101,7 @@
     justify-content: center;
     border-radius: 50%;
     background: var(--env-dark-color);
-    color: #FFFFFF;
+    color: var(--surface);
     font-family:
         "Computer Modern Sans",
         sans-serif;
@@ -200,7 +200,7 @@
     justify-content: center;
     border-radius: 50%;
     background: var(--proof-color);
-    color: #FFFFFF;
+    color: var(--surface);
     font-family:
         "Computer Modern Sans",
         sans-serif;
@@ -242,8 +242,7 @@
     box-sizing: border-box;
     margin: 14px 0 0;
     padding: 18px 20px 14px;
-    background:
-        rgba(255, 255, 255, 0.42);
+    background: color-mix(in srgb, var(--surface) 42%, transparent);
     border:
         1px solid
         color-mix(
