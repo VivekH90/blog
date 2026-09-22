@@ -43,30 +43,4 @@ function initializeBanner() {
         source.replaceWith(banner);
     });
 
-    if (
-        window.location.pathname.includes(
-            "/computer-science/theory-of-computation/"
-        )
-    ) {
-        const style =
-            document.createElement("style");
-
-        style.textContent = `
-            .table-of-contents {
-                background: #17212B !important;
-                border-color: #344150 !important;
-            }
-
-            .table-of-contents h2 {
-                color: #F0F4F8 !important;
-                border-color: #344150 !important;
-            }
-
-            .toc-sections a {
-                color: #DCE3EA !important;
-            }
-        `;
-
-        document.head.appendChild(style);
-    }
 }
