@@ -36,7 +36,8 @@ html.dark-mode {
     --violet-soft: #4b3a59;
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; color-scheme: light; }
+html.dark-mode { color-scheme: dark; }
 body {
     margin: 0;
     background: var(--page-bg);
