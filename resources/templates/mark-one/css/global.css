@@ -1,22 +1,47 @@
-/* global */
-
-* {
-    box-sizing: border-box;
+/* Global Mark One theme contract. */
+:root {
+    --page-bg: #FBF8F2;
+    --text: #273247;
+    --muted-text: #69758A;
+    --border: #D1D6CC;
+    --surface: #FFFFFF;
+    --sidebar-surface: #EEF0EA;
+    --sidebar-text: #273247;
+    --toc-background: #F3F1E8;
+    --toc-border: #D3D2C5;
+    --toc-text: #273247;
+    --toc-accent: #765A75;
+    --nav-border: #CBD2DE;
+    --nav-text: #273247;
+    --banner-color: #FFFFFF;
+    --proof-background: #EEF7F2;
+    --proof-color: #1F6B4F;
 }
-
-/* smooth scrolling */
-html {
-    scroll-behavior: smooth;
+html.dark-mode {
+    --page-bg: #121016;
+    --text: #EEE7F4;
+    --muted-text: #BCAEC7;
+    --border: #40354A;
+    --surface: #1A161F;
+    --sidebar-surface: #201A25;
+    --sidebar-text: #EEE7F4;
+    --toc-background: #211B28;
+    --toc-border: #51425B;
+    --toc-text: #EEE7F4;
+    --toc-accent: #C18BE9;
+    --nav-border: #453A4E;
+    --nav-text: #EEE7F4;
+    --banner-color: #EEE7F4;
+    --proof-background: #211A29;
+    --proof-color: #D3B4E8;
 }
-
-/* default page styling */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; color-scheme: light; }
+html.dark-mode { color-scheme: dark; }
 body {
     margin: 0;
-
-    background: #FBF8F2;
-    color: #273247;
-
-    font-family:
-        "Computer Modern Serif",
-        serif;
+    background: var(--page-bg);
+    color: var(--text);
+    font-family: "Computer Modern Serif", serif;
+    transition: background 180ms ease, color 180ms ease;
 }
