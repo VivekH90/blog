@@ -4,13 +4,7 @@
     max-width: 1500px;
     margin: 12px auto 0;
 }
-
-/* banner variables */
-banner {
-    --banner-color: #FFFFFF;
-}
-
-/* banner */
+banner { --banner-color: var(--banner-color); }
 .banner {
     width: 100%;
     min-height: 190px;
@@ -25,8 +19,6 @@ banner {
     overflow: hidden;
     position: relative;
 }
-
-/* banner title */
 .banner h1 {
     position: relative;
     margin: 0;
@@ -36,3 +28,4 @@ banner {
     font-weight: 700;
     color: var(--banner-color);
 }
+html.dark-mode .banner h1 { color: var(--banner-color, var(--text)); }
