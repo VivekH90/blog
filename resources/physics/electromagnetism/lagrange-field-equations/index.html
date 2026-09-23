@@ -115,6 +115,203 @@
 <p>This is the basic equation we will generalize to fields. The central structural idea is that stationarity of an action turns a variational problem into a differential equation. For electromagnetism, the dynamical variable will no longer be a single function \(q(t)\), but a field with several components depending on spacetime.</p>
 </section>
 </section>
+<section class="article-section" id="lagrange-s-equation-for-multiple-variables" style="--section-color: #7b4fb3; --section-color-dark: #7b4fb3;">
+<h2><span class="section-symbol">§</span> 2. Lagrange&#x27;s equation for multiple variables</h2>
+<p>The single-variable Euler--Lagrange equation can be extended naturally when the Lagrangian depends on several independent dynamical variables. Consider two fields \(u(x,y)\) and \(v(x,y)\), with the action</p>
+<div class="math-display">\[S[u,v]
+=
+\int_G
+L(u,v,u_x,u_y,v_x,v_y)\,dx\,dy,\]</div>
+<p>where</p>
+<div class="math-display">\[u_x=\frac{\partial u}{\partial x},
+\qquad
+u_y=\frac{\partial u}{\partial y},
+\qquad
+v_x=\frac{\partial v}{\partial x},
+\qquad
+v_y=\frac{\partial v}{\partial y}.\]</div>
+<p>The important point is that \(u\) and \(v\) are <strong>independent fields</strong>. Therefore, when the action is varied, the variations \(\delta u\) and \(\delta v\) can be chosen independently.</p>
+<section class="article-subsection" id="variation-of-the-action">
+<h3>2.1. Variation of the action</h3>
+<p>Consider the variations</p>
+<div class="math-display">\[u\rightarrow u+\delta u,
+\qquad
+v\rightarrow v+\delta v.\]</div>
+<p>The variation of the action is</p>
+<div class="math-display">\[\delta S
+=
+\int_G
+\left[
+\frac{\partial L}{\partial u}\,\delta u
++
+\frac{\partial L}{\partial v}\,\delta v
++
+\frac{\partial L}{\partial u_x}\,\delta u_x
++
+\frac{\partial L}{\partial u_y}\,\delta u_y
++
+\frac{\partial L}{\partial v_x}\,\delta v_x
++
+\frac{\partial L}{\partial v_y}\,\delta v_y
+\right]dx\,dy.\]</div>
+<p>Since variation commutes with differentiation,</p>
+<div class="math-display">\[\delta u_x=\frac{\partial(\delta u)}{\partial x},
+\qquad
+\delta u_y=\frac{\partial(\delta u)}{\partial y},\]</div>
+<p>and similarly,</p>
+<div class="math-display">\[\delta v_x=\frac{\partial(\delta v)}{\partial x},
+\qquad
+\delta v_y=\frac{\partial(\delta v)}{\partial y}.\]</div>
+<p>We can therefore integrate each derivative term by parts. Assuming that the variations vanish on the boundary of \(G\), all boundary terms disappear. The variation becomes</p>
+<div class="math-display">\[\delta S
+=
+\int_G
+\left[
+\frac{\partial L}{\partial u}
+-
+\frac{\partial}{\partial x}
+\left(
+\frac{\partial L}{\partial u_x}
+\right)
+-
+\frac{\partial}{\partial y}
+\left(
+\frac{\partial L}{\partial u_y}
+\right)
+\right]\delta u\,dx\,dy\]</div>
+<div class="math-display">\[+
+\int_G
+\left[
+\frac{\partial L}{\partial v}
+-
+\frac{\partial}{\partial x}
+\left(
+\frac{\partial L}{\partial v_x}
+\right)
+-
+\frac{\partial}{\partial y}
+\left(
+\frac{\partial L}{\partial v_y}
+\right)
+\right]\delta v\,dx\,dy.\]</div>
+<p>Because \(\delta u\) and \(\delta v\) are independent and arbitrary in the interior of \(G\), each coefficient must vanish separately. We therefore obtain two Euler--Lagrange equations:</p>
+<div class="math-display">\[\frac{\partial L}{\partial u}
+-
+\frac{\partial}{\partial x}
+\left(
+\frac{\partial L}{\partial u_x}
+\right)
+-
+\frac{\partial}{\partial y}
+\left(
+\frac{\partial L}{\partial u_y}
+\right)
+=0,\]</div>
+<p>and</p>
+<div class="math-display">\[\frac{\partial L}{\partial v}
+-
+\frac{\partial}{\partial x}
+\left(
+\frac{\partial L}{\partial v_x}
+\right)
+-
+\frac{\partial}{\partial y}
+\left(
+\frac{\partial L}{\partial v_y}
+\right)
+=0.\]</div>
+<p>Thus, <strong>each independent field contributes its own Euler--Lagrange equation</strong>. This is the key step toward electromagnetism: the electromagnetic potential will be treated as a collection of field components, each of which is varied independently.</p>
+</section>
+</section>
+<section class="article-section" id="the-4-vector-generalization" style="--section-color: #7b4fb3; --section-color-dark: #7b4fb3;">
+<h2><span class="section-symbol">§</span> 3. The 4-vector generalization</h2>
+<p>The next generalization, and the one that is important for electromagnetism, is to let the dynamical variable itself be a vector. Its components form a collection of independent fields, so the Euler--Lagrange equation acquires a field-component index.</p>
+<p>Let the dynamical field be a vector \(a^\mu(x)\), with spacetime coordinates \(x^\nu\). Consider the action</p>
+<div class="math-display">\[S[a]
+=
+\int_G
+L\left(a^\mu,\partial_\nu a^\mu,x\right)\,d^4x.\]</div>
+<p>Here, \(\mu\) labels the components of the vector field, while \(\nu\) labels the spacetime derivative.</p>
+<section class="article-subsection" id="variation-of-the-vector-field">
+<h3>3.1. Variation of the vector field</h3>
+<p>We vary the vector field according to</p>
+<div class="math-display">\[a^\mu\rightarrow a^\mu+\delta a^\mu.\]</div>
+<p>The variation of the action is therefore</p>
+<div class="math-display">\[\delta S
+=
+\int_G
+\left[
+\frac{\partial L}{\partial a^\mu}\,\delta a^\mu
++
+\frac{\partial L}{\partial(\partial_\nu a^\mu)}
+\delta(\partial_\nu a^\mu)
+\right]d^4x.\]</div>
+<p>Because variation commutes with differentiation,</p>
+<div class="math-display">\[\delta(\partial_\nu a^\mu)
+=
+\partial_\nu(\delta a^\mu).\]</div>
+<p>Therefore,</p>
+<div class="math-display">\[\delta S
+=
+\int_G
+\left[
+\frac{\partial L}{\partial a^\mu}\,\delta a^\mu
++
+\frac{\partial L}{\partial(\partial_\nu a^\mu)}
+\partial_\nu(\delta a^\mu)
+\right]d^4x.\]</div>
+<p>Integrating the second term by parts gives</p>
+<div class="math-display">\[\delta S
+=
+\int_G
+\frac{\partial L}{\partial a^\mu}\,\delta a^\mu\,d^4x
+-
+\int_G
+\partial_\nu
+\left(
+\frac{\partial L}{\partial(\partial_\nu a^\mu)}
+\right)
+\delta a^\mu\,d^4x
++
+\text{boundary term}.\]</div>
+<p>For variations satisfying \(\delta a^\mu=0\) on the boundary, the boundary term vanishes. Hence</p>
+<div class="math-display">\[\delta S
+=
+\int_G
+\left[
+\frac{\partial L}{\partial a^\mu}
+-
+\partial_\nu
+\left(
+\frac{\partial L}{\partial(\partial_\nu a^\mu)}
+\right)
+\right]
+\delta a^\mu\,d^4x.\]</div>
+<p>Since the components \(\delta a^\mu\) are arbitrary and independent, we obtain the generalized Euler--Lagrange equation</p>
+<div class="math-display">\[\frac{\partial L}{\partial a^\mu}
+-
+\partial_\nu
+\left(
+\frac{\partial L}{\partial(\partial_\nu a^\mu)}
+\right)
+=0.\]</div>
+<p>This is the <strong>vector-field generalization</strong> of the Euler--Lagrange equation. It is simply the several-field equation written compactly, with the component label \(\mu\).</p>
+</section>
+<section class="article-subsection" id="index-bookkeeping">
+<h3>3.2. Index bookkeeping</h3>
+<p>There is an important distinction between the two indices in</p>
+<div class="math-display">\[\frac{\partial L}{\partial a^\mu}
+-
+\partial_\nu
+\left(
+\frac{\partial L}{\partial(\partial_\nu a^\mu)}
+\right)
+=0.\]</div>
+<p>The index \(\mu\) is <strong>free</strong>. It labels which component equation is being written. The repeated index \(\nu\) is <strong>summed</strong> according to the Einstein summation convention.</p>
+<p>Thus the single compact equation above actually represents one Euler--Lagrange equation for each component of \(a^\mu\).</p>
+<p>For electromagnetism, the field \(a^\mu\) will be identified with the electromagnetic four-potential \(A^\mu\). The field equations of electromagnetism will then follow by applying this generalized variational equation to an appropriate Lagrangian.</p>
+</section>
+</section>
             </main>
 
             <aside class="sidebar" aria-label="Article information">
@@ -128,6 +325,17 @@
                             <li><a href="#lagrange-s-equation-for-a-single-variable"><span class="toc-section-symbol">§</span> 1. Lagrange&#x27;s equation for a single variable</a>
 <ol class="toc-subsections">
 <li><a href="#deriving-the-euler-lagrange-equation">1.1. Deriving the Euler--Lagrange equation</a></li>
+</ol>
+</li>
+<li><a href="#lagrange-s-equation-for-multiple-variables"><span class="toc-section-symbol">§</span> 2. Lagrange&#x27;s equation for multiple variables</a>
+<ol class="toc-subsections">
+<li><a href="#variation-of-the-action">2.1. Variation of the action</a></li>
+</ol>
+</li>
+<li><a href="#the-4-vector-generalization"><span class="toc-section-symbol">§</span> 3. The 4-vector generalization</a>
+<ol class="toc-subsections">
+<li><a href="#variation-of-the-vector-field">3.1. Variation of the vector field</a></li>
+<li><a href="#index-bookkeeping">3.2. Index bookkeeping</a></li>
 </ol>
 </li>
                         </ol>
