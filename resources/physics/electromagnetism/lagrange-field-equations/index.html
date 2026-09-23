@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lagrange&#x27;s equation for the electromagnetic field | Physics</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sugina-dev/latin-modern-web@1.0.1/style/latinmodern-sans.css">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- MathJax 4 for standard TeX delimiters. -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true,
+                tags: 'ams'
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+        };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <div class="site-shell">
+        <header class="site-header">
+            <div class="site-banner"><img src="background.png" alt="" loading="eager"><a class="banner-title" href="#" style="--banner-title-color: #f9f5f8; --banner-title-color-dark: #f9f5f8;">Physics</a></div>
+            <nav class="navigation" aria-label="Site navigation">
+                <a class="nav-button" href="/" style="--button-color: #5b3a8a; --button-color-dark: #6b44a2;">Home</a>
+<a class="nav-button" href="/archives" style="--button-color: #7652a8; --button-color-dark: #7652a8;">Archives</a>
+<a class="nav-button" href="https://github.com/VivekH90/blog" style="--button-color: #70458f; --button-color-dark: #794b9b;">GitHub</a>
+                <button class="nav-button theme-toggle" type="button" aria-label="Enable dark mode" aria-pressed="false">
+                    <span class="theme-icon" aria-hidden="true">☾</span>
+                    <span class="theme-label">Dark Mode</span>
+                </button>
+            </nav>
+        </header>
+
+        <div class="page-layout">
+            <main class="article">
+                <h1 class="article-title">Lagrange&#x27;s equation for the electromagnetic field</h1>
+                <section class="article-section" id="lagrange-s-equation-for-a-single-variable" style="--section-color: #7b4fb3; --section-color-dark: #7b4fb3;">
+<h2><span class="section-symbol">§</span> 1. Lagrange&#x27;s equation for a single variable</h2>
+<p>The starting point of Lagrangian mechanics is the <strong>principle of stationary action</strong>. We consider a dynamical variable (q(t)) and define the action</p>
+<p>[</p>
+<p>S[q] = int_{t_1}^{t_2} Ligl(q,dot q,tigr),dt.</p>
+<p>]</p>
+<p>The physical trajectory is the one for which the action is stationary under small variations of the path,</p>
+<p>[</p>
+<p>delta S = 0.</p>
+<p>]</p>
+<p>It is important to be precise about what is held fixed in this variation. The endpoints of the trajectory are fixed,</p>
+<p>[</p>
+<p>delta q(t_1)=delta q(t_2)=0.</p>
+<p>]</p>
+<p>We are <em>not</em> assuming that every trial path has the same energy. The fixed-endpoint condition is what removes the boundary term in the variation. For a Lagrangian with no explicit time dependence, conservation of energy is instead a <strong>consequence</strong> of the Euler--Lagrange equation.</p>
+<section class="article-subsection" id="deriving-the-euler-lagrange-equation">
+<h3>1.1. Deriving the Euler--Lagrange equation</h3>
+<p>Under the variation</p>
+<p>[</p>
+<p>q(t)</p>
+<p>ightarrow q(t)+delta q(t),</p>
+<p>]</p>
+<p>the action changes by</p>
+<p>[</p>
+<p>delta S</p>
+<p>=</p>
+<p>int_{t_1}^{t_2}</p>
+<p>left(</p>
+<p>rac{partial L}{partial q},delta q</p>
+<p>+</p>
+<p>rac{partial L}{partial dot q},deltadot q</p>
+<p>ight)dt.</p>
+<p>]</p>
+<p>Since variation and differentiation commute,</p>
+<p>[</p>
+<p>deltadot q</p>
+<p>=</p>
+<p>rac{d}{dt}(delta q).</p>
+<p>]</p>
+<p>Therefore,</p>
+<p>[</p>
+<p>delta S</p>
+<p>=</p>
+<p>int_{t_1}^{t_2}</p>
+<p>left[</p>
+<p>rac{partial L}{partial q},delta q</p>
+<p>+</p>
+<p>rac{partial L}{partial dot q}</p>
+<p>rac{d}{dt}(delta q)</p>
+<p>ight]dt.</p>
+<p>]</p>
+<p>Integrating the second term by parts gives</p>
+<p>[</p>
+<p>delta S</p>
+<p>=</p>
+<p>int_{t_1}^{t_2}</p>
+<p>left[</p>
+<p>rac{partial L}{partial q}</p>
+<p>-</p>
+<p>rac{d}{dt}</p>
+<p>left(</p>
+<p>rac{partial L}{partial dot q}</p>
+<p>ight)</p>
+<p>ight]delta q,dt</p>
+<p>+</p>
+<p>left[</p>
+<p>rac{partial L}{partial dot q},delta q</p>
+<p>ight]_{t_1}^{t_2}.</p>
+<p>]</p>
+<p>Because the endpoint variations vanish,</p>
+<p>[</p>
+<p>delta q(t_1)=delta q(t_2)=0,</p>
+<p>]</p>
+<p>the boundary term is zero. The remaining variation must vanish for arbitrary (delta q(t)), so the coefficient of (delta q) must vanish:</p>
+<p>[</p>
+<p>rac{partial L}{partial q}</p>
+<p>-</p>
+<p>rac{d}{dt}</p>
+<p>left(</p>
+<p>rac{partial L}{partial dot q}</p>
+<p>ight)</p>
+<p>=0.</p>
+<p>]</p>
+<p>Hence the <strong>Euler--Lagrange equation</strong> is</p>
+<p>[</p>
+<p>oxed{</p>
+<p>rac{d}{dt}</p>
+<p>left(</p>
+<p>rac{partial L}{partial dot q}</p>
+<p>ight)</p>
+<p>-</p>
+<p>rac{partial L}{partial q}</p>
+<p>=0</p>
+<p>}.</p>
+<p>]</p>
+<p>This is the basic equation we will generalize to fields. The central structural idea is that stationarity of an action turns a variational problem into a differential equation. For electromagnetism, the dynamical variable will no longer be a single function (q(t)), but a field with several components depending on spacetime.</p>
+</section>
+</section>
+            </main>
+
+            <aside class="sidebar" aria-label="Article information">
+                <section class="sidebar-card toc-card">
+                    <div class="sidebar-heading">
+                        <h2>Table of Contents</h2>
+                        <button class="sidebar-toggle" type="button" aria-label="Toggle table of contents" aria-expanded="true">☷</button>
+                    </div>
+                    <nav class="toc" aria-label="Table of contents">
+                        <ol>
+                            <li><a href="#lagrange-s-equation-for-a-single-variable"><span class="toc-section-symbol">§</span> 1. Lagrange&#x27;s equation for a single variable</a>
+<ol class="toc-subsections">
+<li><a href="#deriving-the-euler-lagrange-equation">1.1. Deriving the Euler--Lagrange equation</a></li>
+</ol>
+</li>
+                        </ol>
+                    </nav>
+                </section>
+
+                <section class="sidebar-card related-card">
+                    <div class="sidebar-heading">
+                        <h2>Related Links</h2>
+                        <span class="link-symbol" aria-hidden="true">↗</span>
+                    </div>
+                    <ul class="related-links">
+                        
+                    </ul>
+                </section>
+            </aside>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

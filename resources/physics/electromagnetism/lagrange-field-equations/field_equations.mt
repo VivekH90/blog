@@ -1,4 +1,4 @@
-@documenttitle{Physics, banner = ../background.png, color = #f9f5f8}
+@documenttitle{Physics, banner = background.png, color = #f9f5f8}
 
 @button{Home, href = /, color = #5b3a8a}
 @button{Archives, href = /archives, color = #7652a8}
@@ -33,7 +33,8 @@ We are @italic{not} assuming that every trial path has the same energy. The fixe
 Under the variation
 
 [
-q(t)ightarrow q(t)+delta q(t),
+q(t)
+ightarrow q(t)+delta q(t),
 ]
 
 the action changes by
@@ -46,7 +47,8 @@ left(
 rac{partial L}{partial q},delta q
 +
 rac{partial L}{partial dot q},deltadot q
-ight)dt.
+
+ight)dt.
 ]
 
 Since variation and differentiation commute,
@@ -68,7 +70,8 @@ left[
 +
 rac{partial L}{partial dot q}
 rac{d}{dt}(delta q)
-ight]dt.
+
+ight]dt.
 ]
 
 Integrating the second term by parts gives
@@ -83,12 +86,15 @@ left[
 rac{d}{dt}
 left(
 rac{partial L}{partial dot q}
-ight)
-ight]delta q,dt
+
+ight)
+
+ight]delta q,dt
 +
 left[
 rac{partial L}{partial dot q},delta q
-ight]_{t_1}^{t_2}.
+
+ight]_{t_1}^{t_2}.
 ]
 
 Because the endpoint variations vanish,
@@ -105,7 +111,8 @@ the boundary term is zero. The remaining variation must vanish for arbitrary (de
 rac{d}{dt}
 left(
 rac{partial L}{partial dot q}
-ight)
+
+ight)
 =0.
 ]
 
@@ -116,7 +123,8 @@ Hence the @bold{Euler--Lagrange equation} is
 rac{d}{dt}
 left(
 rac{partial L}{partial dot q}
-ight)
+
+ight)
 -
 rac{partial L}{partial q}
 =0
