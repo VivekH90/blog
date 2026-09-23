@@ -4,7 +4,7 @@
 @button{Archives, href = /archives, color = #7652a8}
 @button{GitHub, href = https://github.com/VivekH90/blog, color = #70458f}
 
-@title{Generalisation of Lagrange's equation}
+@title{Electromagnetic Lagrangian}
 
 @section{Lagrange's equation for a single variable, color = #7b4fb3, label = single-variable}
 
