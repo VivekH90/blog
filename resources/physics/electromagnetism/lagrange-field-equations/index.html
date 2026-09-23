@@ -44,13 +44,14 @@
                 <h1 class="article-title">Generalisation of Lagrange&#x27;s equation</h1>
                 <section class="article-section" id="lagrange-s-equation-for-a-single-variable" style="--section-color: #7b4fb3; --section-color-dark: #7b4fb3;">
 <h2><span class="section-symbol">§</span> 1. Lagrange&#x27;s equation for a single variable</h2>
-<p>The starting point of Lagrangian mechanics is the <strong>principle of stationary action</strong>. We consider a dynamical variable \(q(t)\) and define the action</p>
-<div class="math-display">\[S[q] = \int_{t_1}^{t_2} L(q,\dot q,t)\,dt.\]</div>
-<p>The physical trajectory is the one for which the action is stationary under small variations of the path,</p>
+<div class="math-environment theorem" id="least-action"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Theorem</span> <span class="environment-number">1</span></span> <span class="environment-title">(Principle of Least Action)</span></div><div class="environment-content"><p>The physical trajectory of a system between two fixed endpoints is the path for which the action is stationary,</p>
 <div class="math-display">\[\delta S = 0.\]</div>
-<p>It is important to be precise about what is held fixed in this variation. The endpoints of the trajectory are fixed,</p>
+<p>where the action is defined by</p>
+<div class="math-display">\[S[q] = \int_{t_1}^{t_2} L(q,\dot q,t)\,dt.\]</div>
+<p class="mark-text">The principle does not mean that the action is necessarily the absolute minimum among all possible paths. The physical path is stationary under small variations of the path, meaning that the first-order change in the action vanishes.</p>
+<p class="mark-text">In the variational problem, the endpoints of the trajectory are held fixed. Thus the allowed variations satisfy</p>
 <div class="math-display">\[\delta q(t_1)=\delta q(t_2)=0.\]</div>
-<p>We are <em>not</em> assuming that every trial path has the same energy. The fixed-endpoint condition is what removes the boundary term in the variation. For a Lagrangian with no explicit time dependence, conservation of energy is instead a <strong>consequence</strong> of the Euler--Lagrange equation.</p>
+<p class="mark-text">We are not assuming that every trial path has the same energy. The fixed-endpoint condition is what removes the boundary term in the variation. For a Lagrangian with no explicit time dependence, conservation of energy is instead a consequence of the Euler--Lagrange equation.</p></div></div>
 <section class="article-subsection" id="deriving-the-euler-lagrange-equation">
 <h3>1.1. Deriving the Euler--Lagrange equation</h3>
 <p>Under the variation</p>
