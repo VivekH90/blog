@@ -44,100 +44,75 @@
                 <h1 class="article-title">Lagrange&#x27;s equation for the electromagnetic field</h1>
                 <section class="article-section" id="lagrange-s-equation-for-a-single-variable" style="--section-color: #7b4fb3; --section-color-dark: #7b4fb3;">
 <h2><span class="section-symbol">§</span> 1. Lagrange&#x27;s equation for a single variable</h2>
-<p>The starting point of Lagrangian mechanics is the <strong>principle of stationary action</strong>. We consider a dynamical variable (q(t)) and define the action</p>
-<p>[</p>
-<p>S[q] = int_{t_1}^{t_2} Ligl(q,dot q,tigr),dt.</p>
-<p>]</p>
+<p>The starting point of Lagrangian mechanics is the <strong>principle of stationary action</strong>. We consider a dynamical variable \(q(t)\) and define the action</p>
+<div class="math-display">\[S[q] = \int_{t_1}^{t_2} L(q,\dot q,t)\,dt.\]</div>
 <p>The physical trajectory is the one for which the action is stationary under small variations of the path,</p>
-<p>[</p>
-<p>delta S = 0.</p>
-<p>]</p>
+<div class="math-display">\[\delta S = 0.\]</div>
 <p>It is important to be precise about what is held fixed in this variation. The endpoints of the trajectory are fixed,</p>
-<p>[</p>
-<p>delta q(t_1)=delta q(t_2)=0.</p>
-<p>]</p>
+<div class="math-display">\[\delta q(t_1)=\delta q(t_2)=0.\]</div>
 <p>We are <em>not</em> assuming that every trial path has the same energy. The fixed-endpoint condition is what removes the boundary term in the variation. For a Lagrangian with no explicit time dependence, conservation of energy is instead a <strong>consequence</strong> of the Euler--Lagrange equation.</p>
 <section class="article-subsection" id="deriving-the-euler-lagrange-equation">
 <h3>1.1. Deriving the Euler--Lagrange equation</h3>
 <p>Under the variation</p>
-<p>[</p>
-<p>q(t)</p>
-<p>ightarrow q(t)+delta q(t),</p>
-<p>]</p>
+<div class="math-display">\[q(t)\rightarrow q(t)+\delta q(t),\]</div>
 <p>the action changes by</p>
-<p>[</p>
-<p>delta S</p>
-<p>=</p>
-<p>int_{t_1}^{t_2}</p>
-<p>left(</p>
-<p>rac{partial L}{partial q},delta q</p>
-<p>+</p>
-<p>rac{partial L}{partial dot q},deltadot q</p>
-<p>ight)dt.</p>
-<p>]</p>
+<div class="math-display">\[\delta S
+=
+\int_{t_1}^{t_2}
+\left(
+\frac{\partial L}{\partial q}\,\delta q
++
+\frac{\partial L}{\partial \dot q}\,\delta\dot q
+\right)dt.\]</div>
 <p>Since variation and differentiation commute,</p>
-<p>[</p>
-<p>deltadot q</p>
-<p>=</p>
-<p>rac{d}{dt}(delta q).</p>
-<p>]</p>
+<div class="math-display">\[\delta\dot q
+=
+\frac{d}{dt}(\delta q).\]</div>
 <p>Therefore,</p>
-<p>[</p>
-<p>delta S</p>
-<p>=</p>
-<p>int_{t_1}^{t_2}</p>
-<p>left[</p>
-<p>rac{partial L}{partial q},delta q</p>
-<p>+</p>
-<p>rac{partial L}{partial dot q}</p>
-<p>rac{d}{dt}(delta q)</p>
-<p>ight]dt.</p>
-<p>]</p>
+<div class="math-display">\[\delta S
+=
+\int_{t_1}^{t_2}
+\left[
+\frac{\partial L}{\partial q}\,\delta q
++
+\frac{\partial L}{\partial \dot q}
+\frac{d}{dt}(\delta q)
+\right]dt.\]</div>
 <p>Integrating the second term by parts gives</p>
-<p>[</p>
-<p>delta S</p>
-<p>=</p>
-<p>int_{t_1}^{t_2}</p>
-<p>left[</p>
-<p>rac{partial L}{partial q}</p>
-<p>-</p>
-<p>rac{d}{dt}</p>
-<p>left(</p>
-<p>rac{partial L}{partial dot q}</p>
-<p>ight)</p>
-<p>ight]delta q,dt</p>
-<p>+</p>
-<p>left[</p>
-<p>rac{partial L}{partial dot q},delta q</p>
-<p>ight]_{t_1}^{t_2}.</p>
-<p>]</p>
+<div class="math-display">\[\delta S
+=
+\int_{t_1}^{t_2}
+\left[
+\frac{\partial L}{\partial q}
+-
+\frac{d}{dt}
+\left(
+\frac{\partial L}{\partial \dot q}
+\right)
+\right]\delta q\,dt
++
+\left[
+\frac{\partial L}{\partial \dot q}\,\delta q
+\right]_{t_1}^{t_2}.\]</div>
 <p>Because the endpoint variations vanish,</p>
-<p>[</p>
-<p>delta q(t_1)=delta q(t_2)=0,</p>
-<p>]</p>
-<p>the boundary term is zero. The remaining variation must vanish for arbitrary (delta q(t)), so the coefficient of (delta q) must vanish:</p>
-<p>[</p>
-<p>rac{partial L}{partial q}</p>
-<p>-</p>
-<p>rac{d}{dt}</p>
-<p>left(</p>
-<p>rac{partial L}{partial dot q}</p>
-<p>ight)</p>
-<p>=0.</p>
-<p>]</p>
+<div class="math-display">\[\delta q(t_1)=\delta q(t_2)=0,\]</div>
+<p>the boundary term is zero. The remaining variation must vanish for arbitrary \(\delta q(t)\), so the coefficient of \(\delta q\) must vanish:</p>
+<div class="math-display">\[\frac{\partial L}{\partial q}
+-
+\frac{d}{dt}
+\left(
+\frac{\partial L}{\partial \dot q}
+\right)
+=0.\]</div>
 <p>Hence the <strong>Euler--Lagrange equation</strong> is</p>
-<p>[</p>
-<p>oxed{</p>
-<p>rac{d}{dt}</p>
-<p>left(</p>
-<p>rac{partial L}{partial dot q}</p>
-<p>ight)</p>
-<p>-</p>
-<p>rac{partial L}{partial q}</p>
-<p>=0</p>
-<p>}.</p>
-<p>]</p>
-<p>This is the basic equation we will generalize to fields. The central structural idea is that stationarity of an action turns a variational problem into a differential equation. For electromagnetism, the dynamical variable will no longer be a single function (q(t)), but a field with several components depending on spacetime.</p>
+<div class="math-display">\[\frac{d}{dt}
+\left(
+\frac{\partial L}{\partial \dot q}
+\right)
+-
+\frac{\partial L}{\partial q}
+=0.\]</div>
+<p>This is the basic equation we will generalize to fields. The central structural idea is that stationarity of an action turns a variational problem into a differential equation. For electromagnetism, the dynamical variable will no longer be a single function \(q(t)\), but a field with several components depending on spacetime.</p>
 </section>
 </section>
             </main>
