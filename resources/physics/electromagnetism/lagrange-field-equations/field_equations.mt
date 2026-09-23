@@ -270,3 +270,132 @@ and
 \]
 
 Thus, @bold{each independent field contributes its own Euler--Lagrange equation}. This is the key step toward electromagnetism: the electromagnetic potential will be treated as a collection of field components, each of which is varied independently.
+
+
+@section{The 4-vector generalization, color = #7b4fb3, label = four-vector-generalization}
+
+The next generalization, and the one that is important for electromagnetism, is to let the dynamical variable itself be a vector. Its components form a collection of independent fields, so the Euler--Lagrange equation acquires a field-component index.
+
+Let the dynamical field be a vector \(a^\mu(x)\), with spacetime coordinates \(x^\nu\). Consider the action
+
+\[
+S[a]
+=
+\int_G
+L\left(a^\mu,\partial_\nu a^\mu,x\right)\,d^4x.
+\]
+
+Here, \(\mu\) labels the components of the vector field, while \(\nu\) labels the spacetime derivative.
+
+@subsection{Variation of the vector field, label = four-vector-variation}
+
+We vary the vector field according to
+
+\[
+a^\mu\rightarrow a^\mu+\delta a^\mu.
+\]
+
+The variation of the action is therefore
+
+\[
+\delta S
+=
+\int_G
+\left[
+\frac{\partial L}{\partial a^\mu}\,\delta a^\mu
++
+\frac{\partial L}{\partial(\partial_\nu a^\mu)}
+\delta(\partial_\nu a^\mu)
+\right]d^4x.
+\]
+
+Because variation commutes with differentiation,
+
+\[
+\delta(\partial_\nu a^\mu)
+=
+\partial_\nu(\delta a^\mu).
+\]
+
+Therefore,
+
+\[
+\delta S
+=
+\int_G
+\left[
+\frac{\partial L}{\partial a^\mu}\,\delta a^\mu
++
+\frac{\partial L}{\partial(\partial_\nu a^\mu)}
+\partial_\nu(\delta a^\mu)
+\right]d^4x.
+\]
+
+Integrating the second term by parts gives
+
+\[
+\delta S
+=
+\int_G
+\frac{\partial L}{\partial a^\mu}\,\delta a^\mu\,d^4x
+-
+\int_G
+\partial_\nu
+\left(
+\frac{\partial L}{\partial(\partial_\nu a^\mu)}
+\right)
+\delta a^\mu\,d^4x
++
+\text{boundary term}.
+\]
+
+For variations satisfying \(\delta a^\mu=0\) on the boundary, the boundary term vanishes. Hence
+
+\[
+\delta S
+=
+\int_G
+\left[
+\frac{\partial L}{\partial a^\mu}
+-
+\partial_\nu
+\left(
+\frac{\partial L}{\partial(\partial_\nu a^\mu)}
+\right)
+\right]
+\delta a^\mu\,d^4x.
+\]
+
+Since the components \(\delta a^\mu\) are arbitrary and independent, we obtain the generalized Euler--Lagrange equation
+
+\[
+\frac{\partial L}{\partial a^\mu}
+-
+\partial_\nu
+\left(
+\frac{\partial L}{\partial(\partial_\nu a^\mu)}
+\right)
+=0.
+\]
+
+This is the @bold{vector-field generalization} of the Euler--Lagrange equation. It is simply the several-field equation written compactly, with the component label \(\mu\).
+
+@subsection{Index bookkeeping, label = four-vector-index-bookkeeping}
+
+There is an important distinction between the two indices in
+
+\[
+\frac{\partial L}{\partial a^\mu}
+-
+\partial_\nu
+\left(
+\frac{\partial L}{\partial(\partial_\nu a^\mu)}
+\right)
+=0.
+\]
+
+The index \(\mu\) is @bold{free}. It labels which component equation is being written. The repeated index \(\nu\) is @bold{summed} according to the Einstein summation convention.
+
+Thus the single compact equation above actually represents one Euler--Lagrange equation for each component of \(a^\mu\).
+
+For electromagnetism, the field \(a^\mu\) will be identified with the electromagnetic four-potential \(A^\mu\). The field equations of electromagnetism will then follow by applying this generalized variational equation to an appropriate Lagrangian.
