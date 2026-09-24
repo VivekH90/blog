@@ -294,6 +294,110 @@ L\left(a^\mu,\partial_\nu a^\mu,x\right)\,d^4x.\]</div>
 <p>This is the <strong>vector-field generalization</strong> of the Euler-Lagrange equation. It is simply the several-field equation written compactly, with the component label \(\mu\).</p></div><div class="proof-qed" aria-label="Q.E.D.">□</div></div>
 </section>
 </section>
+<section class="article-section" id="maxwell-s-equations" style="--section-color: #7b4fb3; --section-color-dark: #7b4fb3;">
+<h2><span class="section-symbol">§</span> 3. Maxwell&#x27;s equations</h2>
+<div class="math-environment axiom" id="maxwell-equations-axiom"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Axiom</span> <span class="environment-number">2</span></span> <span class="environment-title">(Maxwell&#x27;s equations)</span></div><div class="environment-content"><p>The electromagnetic fields are governed by the four Maxwell equations:</p>
+<div class="math-display">\[\nabla\cdot\mathbf E
+=
+\frac{\rho}{\varepsilon_0}.\]</div>
+<div class="math-display">\[\nabla\cdot\mathbf B
+=0.\]</div>
+<div class="math-display">\[\nabla\times\mathbf E
+=-\frac{\partial \mathbf B}{\partial t}.\]</div>
+<div class="math-display">\[\nabla\times\mathbf B
+=\mu_0\mathbf J
++
+\mu_0\varepsilon_0
+\frac{\partial \mathbf E}{\partial t}.\]</div></div></div>
+<p class="mark-text">These four equations, together with the appropriate charge and current distributions \(\rho\) and \(\mathbf J\), completely specify the dynamics of the electric and magnetic fields. They are empirical laws: their form is based on experimental observations and on the laws established by Gauss, Faraday, Ampère, and others. Maxwell unified these results into a single system and introduced the displacement-current term in the fourth equation.</p>
+<div class="math-environment definition" id="potential-fields"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Definition</span> <span class="environment-number">1</span></span> <span class="environment-title">(Electric and magnetic fields from the potentials)</span></div><div class="environment-content"><div class="math-display">\[\mathbf E
+=
+-\nabla\phi
+-
+\frac{\partial\mathbf A}{\partial t},
+\qquad
+\mathbf B
+=\nabla\times\mathbf A.\]</div>
+<div class="math-display">\[A^\mu
+=
+\left(
+\frac{\phi}{c},\mathbf A
+\right)
+=
+\left(
+\frac{\phi}{c},A_x,A_y,A_z
+\right).\]</div></div></div>
+<p class="mark-text">The scalar potential \(\phi\) and the vector potential \(\mathbf A\) can be combined into a single four-vector, the electromagnetic potential four-vector. Using \(x^0=ct\), we define</p>
+<p class="mark-text">Thus the temporal component of \(A^\mu\) contains the scalar potential, while its three spatial components form the vector potential. With \(A^0=\phi/c\), we have \(\phi=cA^0\), and since \(x^0=ct\), differentiation with respect to time is \(\partial_t=c\partial_0\). We can therefore rewrite the electric and magnetic fields directly in terms of the components of the four-potential.</p>
+<section class="article-subsection" id="electric-field-in-terms-of-the-4-potential">
+<h3>3.1. Electric field in terms of the 4-potential</h3>
+<p>Starting from</p>
+<div class="math-display">\[\mathbf E
+=
+-\nabla\phi
+-
+\frac{\partial\mathbf A}{\partial t},\]</div>
+<p>and using</p>
+<div class="math-display">\[\phi=cA^0,
+\qquad
+\frac{\partial}{\partial t}
+=c\frac{\partial}{\partial x^0}
+=c\partial_0,\]</div>
+<p>we obtain</p>
+<div class="math-display">\[\mathbf E
+=-c\nabla A^0
+-c\partial_0\mathbf A.\]</div>
+<p>Equivalently, for each spatial component,</p>
+<div class="math-display">\[E_i
+=-c\left(
+\partial_i A^0
++
+\partial_0 A^i
+\right),
+\qquad i=1,2,3,\]</div>
+<p>where \(A^1=A_x\), \(A^2=A_y\), and \(A^3=A_z\).</p>
+<p class="mark-text">To write this in a manifestly covariant form, introduce the electromagnetic field-strength tensor</p>
+<div class="math-display">\[F^{\mu\nu}
+=
+\partial^\mu A^\nu
+-
+\partial^\nu A^\mu.\]</div>
+<p class="mark-text">For the metric convention \(\eta^{\mu\nu}=\operatorname{diag}(1,-1,-1,-1)\), the time-space components give</p>
+<div class="math-display">\[F^{0i}
+=
+\partial^0A^i-\partial^iA^0
+=
+\partial_0A^i+\partial_iA^0
+=-\frac{E_i}{c}.\]</div>
+<p>Therefore,</p>
+<div class="math-display">\[E_i=-cF^{0i}.\]</div>
+</section>
+<section class="article-subsection" id="magnetic-field-in-terms-of-the-4-potential">
+<h3>3.2. Magnetic field in terms of the 4-potential</h3>
+<p>Starting from</p>
+<div class="math-display">\[\mathbf B
+=\nabla\times\mathbf A,\]</div>
+<p>we have in components</p>
+<div class="math-display">\[B_x
+=\partial_yA_z-\partial_zA_y,\]</div>
+<div class="math-display">\[B_y
+=\partial_zA_x-\partial_xA_z,\]</div>
+<div class="math-display">\[B_z
+=\partial_xA_y-\partial_yA_x.\]</div>
+<p>Using the spatial components of the field-strength tensor,</p>
+<div class="math-display">\[F^{ij}
+=
+\partial^iA^j-\partial^jA^i
+=-\partial_iA^j+\partial_jA^i,\]</div>
+<p>and the three-dimensional Levi-Civita symbol \(\epsilon_{ijk}\), these relations can be written as</p>
+<div class="math-display">\[F^{ij}
+=-\epsilon_{ijk}B_k.\]</div>
+<p>Contracting with \(\epsilon_{ijk}\) gives</p>
+<div class="math-display">\[B_i
+=-\frac{1}{2}\epsilon_{ijk}F^{jk}.\]</div>
+<p class="mark-text">Hence both electromagnetic fields are contained in the derivatives of the potential four-vector: the electric field comes from the time-space components of \(F^{\mu\nu}\), while the magnetic field comes from its purely spatial components. The four-potential is not unique: a gauge transformation \(A^\mu\rightarrow A^\mu+\partial^\mu\Lambda\) leaves \(\mathbf E\) and \(\mathbf B\) unchanged.</p>
+</section>
+</section>
             </main>
 
             <aside class="sidebar" aria-label="Article information">
@@ -309,6 +413,12 @@ L\left(a^\mu,\partial_\nu a^\mu,x\right)\,d^4x.\]</div>
 <li><a href="#lagrange-s-equation-for-multiple-variables"><span class="toc-section-symbol">§</span> 2. Lagrange&#x27;s equation for multiple variables</a>
 <ol class="toc-subsections">
 <li><a href="#the-4-vector-generalization">2.1. The 4-vector generalization</a></li>
+</ol>
+</li>
+<li><a href="#maxwell-s-equations"><span class="toc-section-symbol">§</span> 3. Maxwell&#x27;s equations</a>
+<ol class="toc-subsections">
+<li><a href="#electric-field-in-terms-of-the-4-potential">3.1. Electric field in terms of the 4-potential</a></li>
+<li><a href="#magnetic-field-in-terms-of-the-4-potential">3.2. Magnetic field in terms of the 4-potential</a></li>
 </ol>
 </li>
                         </ol>
