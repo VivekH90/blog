@@ -429,7 +429,7 @@ A^\mu
 \right).
 \]
 
-@text{text = "Thus the temporal component of \(A^\mu\) contains the scalar potential, while its three spatial components form the vector potential. With \(A^0=\phi/c\), we have \(\phi=cA^0\), and since \(x^0=ct\), differentiation with respect to time is \(\partial_t=c\partial_0\). We can therefore rewrite the electric and magnetic fields directly in terms of the components of the four-potential."}
+@text{text = "Thus the temporal component of \(A^\mu\) contains the scalar potential, while the three spatial components are the components of the vector potential. With \(A^0=\phi/c\), we have \(\phi=cA^0\), and since \(x^0=ct\), differentiation with respect to time is \(\partial_t=c\partial_0\). Before introducing any new tensor, we can simply rewrite the electric and magnetic fields directly using these components."}
 
 @subsection{Electric field in terms of the 4-potential, label = electric-field-four-potential}
 
@@ -443,39 +443,122 @@ Starting from
 \frac{\partial\mathbf A}{\partial t},
 \]
 
-and using
+we use
 
 \[
 \phi=cA^0,
 \qquad
 \frac{\partial}{\partial t}
-=c\frac{\partial}{\partial x^0}
-=c\partial_0,
+=c\partial_0.
 \]
 
-we obtain
+Therefore,
 
 \[
 \mathbf E
-=-c\nabla A^0
+=
+-c\nabla A^0
 -c\partial_0\mathbf A.
 \]
 
-Equivalently, for each spatial component,
+Writing the spatial components explicitly,
+
+\[
+E_x
+=
+-c\left(
+\partial_x A^0
++
+\partial_0 A^1
+\right),
+\]
+
+\[
+E_y
+=
+-c\left(
+\partial_y A^0
++
+\partial_0 A^2
+\right),
+\]
+
+\[
+E_z
+=
+-c\left(
+\partial_z A^0
++
+\partial_0 A^3
+\right).
+\]
+
+Hence, for \(i=1,2,3\),
 
 \[
 E_i
-=-c\left(
+=
+-c\left(
 \partial_i A^0
 +
 \partial_0 A^i
-\right),
-\qquad i=1,2,3,
+\right).
 \]
 
-where \(A^1=A_x\), \(A^2=A_y\), and \(A^3=A_z\).
+@subsection{Magnetic field in terms of the 4-potential, label = magnetic-field-four-potential}
 
-@text{text = "To write this in a manifestly covariant form, introduce the electromagnetic field-strength tensor"}
+Now consider
+
+\[
+\mathbf B
+=
+\nabla\times\mathbf A.
+\]
+
+In components,
+
+\[
+B_x
+=
+\partial_yA_z-\partial_zA_y,
+\]
+
+\[
+B_y
+=
+\partial_zA_x-\partial_xA_z,
+\]
+
+\[
+B_z
+=
+\partial_xA_y-\partial_yA_x.
+\]
+
+Since
+
+\[
+A^1=A_x,
+\qquad
+A^2=A_y,
+\qquad
+A^3=A_z,
+\]
+
+these three equations can be written compactly as
+
+\[
+B_i
+=
+\epsilon_{ijk}\,
+\partial_j A^k,
+\]
+
+where \(\epsilon_{ijk}\) is the three-dimensional Levi-Civita symbol.
+
+@text{text = "At this stage we have already expressed both \(\mathbf E\) and \(\mathbf B\) entirely in terms of derivatives of the four-potential. The expressions also show a useful pattern: the electric field involves the temporal component \(A^0\) and a spatial component \(A^i\), while the magnetic field involves two spatial components. We can package all of these combinations into a single antisymmetric four-dimensional object."}
+
+@text{text = "Define the electromagnetic field-strength tensor"}
 
 \[
 F^{\mu\nu}
@@ -485,70 +568,63 @@ F^{\mu\nu}
 \partial^\nu A^\mu.
 \]
 
-@text{text = "For the metric convention \(\eta^{\mu\nu}=\operatorname{diag}(1,-1,-1,-1)\), the time-space components give"}
+@text{text = "For the metric convention \(\eta^{\mu\nu}=\operatorname{diag}(1,-1,-1,-1)\), the time-space components become"}
 
 \[
 F^{0i}
 =
 \partial^0A^i-\partial^iA^0
 =
-\partial_0A^i+\partial_iA^0
-=-\frac{E_i}{c}.
+\partial_0A^i+\partial_iA^0.
 \]
 
-Therefore,
+Comparing with the expression obtained above,
 
 \[
-E_i=-cF^{0i}.
+E_i
+=
+-cF^{0i}.
 \]
 
-@subsection{Magnetic field in terms of the 4-potential, label = magnetic-field-four-potential}
-
-Starting from
-
-\[
-\mathbf B
-=\nabla\times\mathbf A,
-\]
-
-we have in components
-
-\[
-B_x
-=\partial_yA_z-\partial_zA_y,
-\]
-
-\[
-B_y
-=\partial_zA_x-\partial_xA_z,
-\]
-
-\[
-B_z
-=\partial_xA_y-\partial_yA_x.
-\]
-
-Using the spatial components of the field-strength tensor,
+@text{text = "The purely spatial components contain the magnetic field. Since"}
 
 \[
 F^{ij}
 =
-\partial^iA^j-\partial^jA^i
-=-\partial_iA^j+\partial_jA^i,
+\partial^iA^j-\partial^jA^i,
 \]
 
-and the three-dimensional Levi-Civita symbol \(\epsilon_{ijk}\), these relations can be written as
+we obtain
 
 \[
 F^{ij}
-=-\epsilon_{ijk}B_k.
+=
+-\partial_iA^j+\partial_jA^i.
+\]
+
+Using
+
+\[
+B_k
+=
+\epsilon_{kij}\partial_iA^j,
+\]
+
+the spatial components can therefore be written as
+
+\[
+F^{ij}
+=
+-\epsilon_{ijk}B_k.
 \]
 
 Contracting with \(\epsilon_{ijk}\) gives
 
 \[
 B_i
-=-\frac{1}{2}\epsilon_{ijk}F^{jk}.
+=
+-\frac{1}{2}
+\epsilon_{ijk}F^{jk}.
 \]
 
 @text{text = "Hence both electromagnetic fields are contained in the derivatives of the potential four-vector: the electric field comes from the time-space components of \(F^{\mu\nu}\), while the magnetic field comes from its purely spatial components. The four-potential is not unique: a gauge transformation \(A^\mu\rightarrow A^\mu+\partial^\mu\Lambda\) leaves \(\mathbf E\) and \(\mathbf B\) unchanged."}
