@@ -370,3 +370,185 @@ Since the components \(\delta a^\mu\) are arbitrary and independent, we obtain t
 \]
 
 This is the @bold{vector-field generalization} of the Euler-Lagrange equation. It is simply the several-field equation written compactly, with the component label \(\mu\).
+
+
+@section{Maxwell's equations, color = #7b4fb3, label = maxwell-equations}
+
+@axiom{Maxwell's equations, label = maxwell-equations-axiom}
+The electromagnetic fields are governed by the four Maxwell equations:
+
+\[
+\nabla\cdot\mathbf E
+=
+\frac{\rho}{\varepsilon_0}.
+\]
+
+\[
+\nabla\cdot\mathbf B
+=0.
+\]
+
+\[
+\nabla\times\mathbf E
+=-\frac{\partial \mathbf B}{\partial t}.
+\]
+
+\[
+\nabla\times\mathbf B
+=\mu_0\mathbf J
++
+\mu_0\varepsilon_0
+\frac{\partial \mathbf E}{\partial t}.
+\]
+
+@text{text = "These four equations, together with the appropriate charge and current distributions \(\rho\) and \(\mathbf J\), completely specify the dynamics of the electric and magnetic fields. They are empirical laws: their form is based on experimental observations and on the laws established by Gauss, Faraday, Ampère, and others. Maxwell unified these results into a single system and introduced the displacement-current term in the fourth equation."}
+
+@definition{Electric and magnetic fields from the potentials, label = potential-fields}
+\[
+\mathbf E
+=
+-\nabla\phi
+-
+\frac{\partial\mathbf A}{\partial t},
+\qquad
+\mathbf B
+=\nabla\times\mathbf A.
+\]
+
+@text{text = "The scalar potential \(\phi\) and the vector potential \(\mathbf A\) can be combined into a single four-vector, the electromagnetic potential four-vector. Using \(x^0=ct\), we define"}
+
+\[
+A^\mu
+=
+\left(
+\frac{\phi}{c},\mathbf A
+\right)
+=
+\left(
+\frac{\phi}{c},A_x,A_y,A_z
+\right).
+\]
+
+@text{text = "Thus the temporal component of \(A^\mu\) contains the scalar potential, while its three spatial components form the vector potential. With \(A^0=\phi/c\), we have \(\phi=cA^0\), and since \(x^0=ct\), differentiation with respect to time is \(\partial_t=c\partial_0\). We can therefore rewrite the electric and magnetic fields directly in terms of the components of the four-potential."}
+
+@subsection{Electric field in terms of the 4-potential, label = electric-field-four-potential}
+
+Starting from
+
+\[
+\mathbf E
+=
+-\nabla\phi
+-
+\frac{\partial\mathbf A}{\partial t},
+\]
+
+and using
+
+\[
+\phi=cA^0,
+\qquad
+\frac{\partial}{\partial t}
+=c\frac{\partial}{\partial x^0}
+=c\partial_0,
+\]
+
+we obtain
+
+\[
+\mathbf E
+=-c\nabla A^0
+-c\partial_0\mathbf A.
+\]
+
+Equivalently, for each spatial component,
+
+\[
+E_i
+=-c\left(
+\partial_i A^0
++
+\partial_0 A^i
+\right),
+\qquad i=1,2,3,
+\]
+
+where \(A^1=A_x\), \(A^2=A_y\), and \(A^3=A_z\).
+
+@text{text = "To write this in a manifestly covariant form, introduce the electromagnetic field-strength tensor"}
+
+\[
+F^{\mu\nu}
+=
+\partial^\mu A^\nu
+-
+\partial^\nu A^\mu.
+\]
+
+@text{text = "For the metric convention \(\eta^{\mu\nu}=\operatorname{diag}(1,-1,-1,-1)\), the time-space components give"}
+
+\[
+F^{0i}
+=
+\partial^0A^i-\partial^iA^0
+=
+\partial_0A^i+\partial_iA^0
+=-\frac{E_i}{c}.
+\]
+
+Therefore,
+
+\[
+E_i=-cF^{0i}.
+\]
+
+@subsection{Magnetic field in terms of the 4-potential, label = magnetic-field-four-potential}
+
+Starting from
+
+\[
+\mathbf B
+=\nabla\times\mathbf A,
+\]
+
+we have in components
+
+\[
+B_x
+=\partial_yA_z-\partial_zA_y,
+\]
+
+\[
+B_y
+=\partial_zA_x-\partial_xA_z,
+\]
+
+\[
+B_z
+=\partial_xA_y-\partial_yA_x.
+\]
+
+Using the spatial components of the field-strength tensor,
+
+\[
+F^{ij}
+=
+\partial^iA^j-\partial^jA^i
+=-\partial_iA^j+\partial_jA^i,
+\]
+
+and the three-dimensional Levi-Civita symbol \(\epsilon_{ijk}\), these relations can be written as
+
+\[
+F^{ij}
+=-\epsilon_{ijk}B_k.
+\]
+
+Contracting with \(\epsilon_{ijk}\) gives
+
+\[
+B_i
+=-\frac{1}{2}\epsilon_{ijk}F^{jk}.
+\]
+
+@text{text = "Hence both electromagnetic fields are contained in the derivatives of the potential four-vector: the electric field comes from the time-space components of \(F^{\mu\nu}\), while the magnetic field comes from its purely spatial components. The four-potential is not unique: a gauge transformation \(A^\mu\rightarrow A^\mu+\partial^\mu\Lambda\) leaves \(\mathbf E\) and \(\mathbf B\) unchanged."}
