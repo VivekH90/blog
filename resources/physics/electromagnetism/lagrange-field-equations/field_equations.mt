@@ -7,6 +7,7 @@
 @button{GitHub, href = https://github.com/VivekH90/blog, color = #70458f}
 
 @title{Electromagnetic Lagrangian}
+@tags{Electromagnetism, Classical Field Theory, Lagrangian Mechanics}
 
 @section{Lagrange's equation for a single variable, color = #7b4fb3, label = single-variable}
 
