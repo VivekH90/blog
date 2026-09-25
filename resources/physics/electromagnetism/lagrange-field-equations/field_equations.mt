@@ -9,7 +9,7 @@
 @title{Electromagnetic Lagrangian}
 @tags{Electromagnetism, Classical Field Theory, Lagrangian Mechanics}
 
-@section{Lagrange's equation for a single variable, color = #0c0c0d, label = single-variable}
+@section{Lagrange's equation for a single variable, label = single-variable}
 
 @axiom{Principle of Least Action, label = least-action}
 The physical trajectory of a system between two fixed endpoints is the path for which the action is stationary,
@@ -128,7 +128,7 @@ Hence the @bold{Euler-Lagrange equation} is
 =0.
 \]
 
-@section{Lagrange's equation for multiple variables, color = #7b4fb3, label = multiple-variables}
+@section{Lagrange's equation for multiple variables, label = multiple-variables}
 
 @theorem{Theorem Title, label = theorem-label}
 The single-variable Euler-Lagrange equation can be extended naturally when the Lagrangian depends on several independent dynamical variables. Consider two @bold{independent fields} \(u(x,y)\) and \(v(x,y)\), with the action
@@ -375,7 +375,7 @@ Since the components \(\delta a^\mu\) are arbitrary and independent, we obtain t
 This is the @bold{vector-field generalization} of the Euler-Lagrange equation. It is simply the several-field equation written compactly, with the component label \(\mu\).
 
 
-@section{Maxwell's equations, color = #7b4fb3, label = maxwell-equations}
+@section{Maxwell's equations, label = maxwell-equations}
 
 @axiom{Maxwell's equations, label = maxwell-equations-axiom}
 The electromagnetic fields are governed by the four Maxwell equations:
