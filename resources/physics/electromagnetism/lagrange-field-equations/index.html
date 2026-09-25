@@ -27,21 +27,35 @@
 <body>
     <div class="site-shell">
         <header class="site-header">
-            <div class="site-banner"><img src="background.png" alt="" loading="eager"><a class="banner-title" href="#" style="--banner-title-color: #f9f5f8; --banner-title-color-dark: #f9f5f8;">Physics</a></div>
-            <nav class="navigation" aria-label="Site navigation">
-                <a class="nav-button" href="/" style="--button-color: #5b3a8a; --button-color-dark: #6b44a2;">Home</a>
-<a class="nav-button" href="/archives" style="--button-color: #7652a8; --button-color-dark: #7652a8;">Archives</a>
-<a class="nav-button" href="https://github.com/VivekH90/blog" style="--button-color: #70458f; --button-color-dark: #794b9b;">GitHub</a>
-                <button class="nav-button theme-toggle" type="button" aria-label="Enable dark mode" aria-pressed="false">
+            <div class="hero-author">
+                <div class="author-kicker">Author</div>
+                <div class="author-name">Vivek</div>
+            </div>
+            <div class="hero-banner">
+                <div class="site-banner"><img src="background.png" alt="" loading="eager"></div>
+                <button class="theme-toggle" type="button" aria-label="Enable dark mode" aria-pressed="false">
                     <span class="theme-icon" aria-hidden="true">☾</span>
                     <span class="theme-label">Dark Mode</span>
                 </button>
-            </nav>
+            </div>
         </header>
 
         <div class="page-layout">
+            <aside class="left-sidebar" aria-label="Site navigation">
+                <section class="sidebar-card navigation-card">
+                    <div class="sidebar-heading">
+                        <h2>Navigation</h2>
+                    </div>
+                    <nav class="site-navigation">
+                        <a class="nav-button" href="/" style="--button-color: #5b3a8a; --button-color-dark: #6b44a2;">Home</a>
+<a class="nav-button" href="/archives" style="--button-color: #7652a8; --button-color-dark: #7652a8;">Archives</a>
+<a class="nav-button" href="https://github.com/VivekH90/blog" style="--button-color: #70458f; --button-color-dark: #794b9b;">GitHub</a>
+                    </nav>
+                </section>
+            </aside>
+
             <main class="article">
-                <h1 class="article-title">Electromagnetic Lagrangian</h1>
+                <h1 class="article-title">{{ARTICLE_TITLE}}</h1>
                 <section class="article-section" id="lagrange-s-equation-for-a-single-variable" style="--section-color: #7b4fb3; --section-color-dark: #7b4fb3;">
 <h2><span class="section-symbol">§</span> 1. Lagrange&#x27;s equation for a single variable</h2>
 <div class="math-environment axiom" id="least-action"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Axiom</span> <span class="environment-number">1</span></span> <span class="environment-title">(Principle of Least Action)</span></div><div class="environment-content"><p>The physical trajectory of a system between two fixed endpoints is the path for which the action is stationary,</p>
@@ -445,10 +459,10 @@ A^3=A_z,\]</div>
 </section>
             </main>
 
-            <aside class="sidebar" aria-label="Article information">
+            <aside class="right-sidebar" aria-label="Article information">
                 <section class="sidebar-card toc-card">
                     <div class="sidebar-heading">
-                        <h2>Table of Contents</h2>
+                        <h2>On this page</h2>
                         <button class="sidebar-toggle" type="button" aria-label="Toggle table of contents" aria-expanded="true">☷</button>
                     </div>
                     <nav class="toc" aria-label="Table of contents">
