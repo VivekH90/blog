@@ -9,7 +9,7 @@
 @title{Electromagnetic Lagrangian}
 @tags{Electromagnetism, Classical Field Theory, Lagrangian Mechanics}
 
-@section{Lagrange's equation for a single variable, color = #7b4fb3, label = single-variable}
+@section{Lagrange's equation for a single variable, color = #0c0c0d, label = single-variable}
 
 @axiom{Principle of Least Action, label = least-action}
 The physical trajectory of a system between two fixed endpoints is the path for which the action is stationary,
