@@ -7,6 +7,12 @@
 @button{GitHub, href = https://github.com/VivekH90/blog, color = #70458f}
 
 @title{Electromagnetic Lagrangian}
+@gallery{
+    source = NASA,
+    query = electromagnetic fields,
+    count = 7
+}
+
 @tags{Electromagnetism, Classical Field Theory, Lagrangian Mechanics}
 
 @section{Lagrange's equation for a single variable, label = single-variable}
