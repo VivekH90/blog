@@ -1,4 +1,6 @@
-@documenttitle{Physics, banner = background.png, color = #f9f5f8}
+@documenttitle{Physics, banner = background.png}
+
+@author{Vivek}
 
 @button{Home, href = /, color = #5b3a8a}
 @button{Archives, href = /archives, color = #7652a8}
