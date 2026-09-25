@@ -9,7 +9,7 @@
 @title{Electromagnetic Lagrangian}
 @gallery{
     source = NASA,
-    query = electromagnetic fields,
+    query = black hole,
     count = 7
 }
 
