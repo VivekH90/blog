@@ -1,8 +1,8 @@
 :root {
     --page-max: calc(100% - 10px);
-    --article-max: 1022px;
-    --left-sidebar-width: 232px;
-    --right-sidebar-width: 280px;
+    --article-max: 1042px;
+    --left-sidebar-width: 252px;
+    --right-sidebar-width: 300px;
     --page-pad: 0px;
 
     --text: #3f3a38;
@@ -88,8 +88,8 @@ button, input, select, textarea {
 
 .site-header {
     display: grid;
-    grid-template-columns: 230px minmax(0, 1fr);
-    min-height: 190px;
+    grid-template-columns: 250px minmax(0, 1fr);
+    min-height: 80px;
     overflow: hidden;
     border: 1px solid var(--border);
     border-radius: 22px;
@@ -132,7 +132,7 @@ button, input, select, textarea {
     position: relative;
     width: 100%;
     height: 100%;
-    min-height: 190px;
+    min-height: 80px;
     overflow: hidden;
 }
 
@@ -150,7 +150,7 @@ button, input, select, textarea {
     display: block;
     width: 100%;
     height: 100%;
-    min-height: 190px;
+    min-height: 80px;
     object-fit: cover;
     object-position: center;
     border-radius: 0;
@@ -278,10 +278,10 @@ html.dark-mode .theme-toggle:focus-visible {
 
 .page-layout {
     display: grid;
-    grid-template-columns: var(--left-sidebar-width) minmax(0, var(--article-max)) var(--right-sidebar-width);
-    justify-content: center;
+    grid-template-columns: var(--left-sidebar-width) minmax(0, 1fr) var(--right-sidebar-width);
+    justify-content: stretch;
     align-items: start;
-    gap: 28px;
+    gap: 10px;
     margin-top: 26px;
 }
 
@@ -310,7 +310,7 @@ html.dark-mode .theme-toggle:focus-visible {
 
 .sidebar-heading h2 {
     margin: 0;
-    color: var(--text);
+    color: #c7c1bd;
     font-size: 18px;
     line-height: 1.2;
     font-weight: 700;
@@ -333,8 +333,6 @@ html.dark-mode .theme-toggle:focus-visible {
     min-height: 40px;
     align-items: center;
     padding: 8px 11px;
-    border: 1px solid transparent;
-    border-left: 3px solid var(--button-color, var(--accent));
     border-radius: 11px;
     background: transparent;
     color: var(--text);
@@ -342,6 +340,26 @@ html.dark-mode .theme-toggle:focus-visible {
     font-size: 15px;
     font-weight: 600;
     transition: background 150ms ease, color 150ms ease, border-color 150ms ease, transform 150ms ease;
+}
+
+.nav-icon-wrap {
+    display: inline-flex;
+    width: 19px;
+    height: 19px;
+    flex: 0 0 19px;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.nav-icon {
+    display: block;
+    width: 18px;
+    height: 18px;
+}
+
+.nav-label {
+    min-width: 0;
 }
 
 .nav-button:hover,
@@ -353,7 +371,6 @@ html.dark-mode .theme-toggle:focus-visible {
 
 html.dark-mode .nav-button {
     color: var(--text);
-    border-left-color: var(--button-color-dark, var(--accent));
 }
 
 html.dark-mode .nav-button:hover,
