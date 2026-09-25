@@ -167,9 +167,68 @@ button, input, select, textarea {
     font-weight: 700;
 }
 
-.theme-toggle {
+.site-search {
     position: absolute;
     top: 16px;
+    right: 16px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    width: min(280px, calc(100% - 32px));
+    min-height: 40px;
+    padding: 0 12px;
+    border: 1px solid rgba(255, 255, 255, 0.60);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.66);
+    color: #453f3b;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.search-icon {
+    flex: 0 0 auto;
+    margin-right: 8px;
+    font-size: 20px;
+    line-height: 1;
+}
+
+.site-search input {
+    min-width: 0;
+    width: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.site-search input::placeholder {
+    color: currentColor;
+    opacity: 0.72;
+}
+
+.site-search:focus-within {
+    border-color: rgba(255, 255, 255, 0.88);
+    background: rgba(255, 255, 255, 0.82);
+}
+
+html.dark-mode .site-search {
+    border-color: rgba(236, 222, 244, 0.32);
+    background: rgba(25, 21, 30, 0.68);
+    color: #eee8f3;
+}
+
+html.dark-mode .site-search:focus-within {
+    border-color: rgba(236, 222, 244, 0.52);
+    background: rgba(25, 21, 30, 0.84);
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 64px;
     right: 16px;
     z-index: 3;
     display: inline-flex;
@@ -313,7 +372,7 @@ html.dark-mode .nav-button:focus-visible {
 }
 
 .article-title {
-    margin: 0 auto 32px;
+    margin: 0 auto 14px;
     max-width: var(--article-max);
     color: var(--text);
     text-align: left;
@@ -321,6 +380,81 @@ html.dark-mode .nav-button:focus-visible {
     line-height: 1.08;
     font-weight: 700;
     letter-spacing: -0.035em;
+}
+
+.article-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0 0 30px;
+}
+
+.article-tag {
+    display: inline-flex;
+    align-items: center;
+    min-height: 38px;
+    padding: 7px 16px;
+    border: 1px solid #f0c7c5;
+    border-radius: 15px;
+    background: #fde8e5;
+    color: #7e3f50;
+    font-size: 15px;
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+.article-tag:nth-child(5n + 2) {
+    border-color: #ddd0ea;
+    background: #f1eaf7;
+    color: #67507f;
+}
+
+.article-tag:nth-child(5n + 3) {
+    border-color: #e8dfb8;
+    background: #f8f2d7;
+    color: #75652d;
+}
+
+.article-tag:nth-child(5n + 4) {
+    border-color: #c9dced;
+    background: #e8f1f8;
+    color: #466681;
+}
+
+.article-tag:nth-child(5n + 5) {
+    border-color: #e2d0c3;
+    background: #f4ece6;
+    color: #765a46;
+}
+
+html.dark-mode .article-tag {
+    border-color: #5c3a46;
+    background: #31232b;
+    color: #e8b7c5;
+}
+
+html.dark-mode .article-tag:nth-child(5n + 2) {
+    border-color: #4c3f5b;
+    background: #2b2534;
+    color: #cfb8e2;
+}
+
+html.dark-mode .article-tag:nth-child(5n + 3) {
+    border-color: #575037;
+    background: #322f22;
+    color: #d8c98a;
+}
+
+html.dark-mode .article-tag:nth-child(5n + 4) {
+    border-color: #3d5264;
+    background: #24303a;
+    color: #aac9de;
+}
+
+html.dark-mode .article-tag:nth-child(5n + 5) {
+    border-color: #56473b;
+    background: #302a26;
+    color: #d5b7a1;
 }
 
 .article-section {
@@ -758,8 +892,14 @@ html.dark-mode .math-environment.warning { --environment-accent: #c08c98; --envi
         min-height: 210px;
     }
 
-    .theme-toggle {
+    .site-search {
         top: 12px;
+        right: 12px;
+        width: min(260px, calc(100% - 24px));
+    }
+
+    .theme-toggle {
+        top: 62px;
         right: 12px;
     }
 
@@ -808,4 +948,17 @@ html.dark-mode .math-environment.warning { --environment-accent: #c08c98; --envi
         margin-top: 22px;
         margin-bottom: 24px;
     }
+}
+
+
+.nav-static {
+    cursor: default;
+    pointer-events: none;
+}
+
+.nav-static:hover,
+.nav-static:focus-visible {
+    background: transparent;
+    color: var(--text);
+    transform: none;
 }
