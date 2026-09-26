@@ -162,6 +162,7 @@ v_x=\frac{\partial v}{\partial x},
 v_y=\frac{\partial v}{\partial y}.
 \]
 and the @bold{Euler-Lagrange} equation are given by:
+@end(theorem)
 
 @begin(proof)
 Consider the variations
@@ -270,7 +271,7 @@ Thus, @bold{each independent field contributes its own Euler-Lagrange equation}.
 
 @end(proof)
 
-@end(theorem)
+
 
 @subsection{The 4-vector generalization, label = four-vector-generalization}
 
@@ -293,6 +294,7 @@ The Euler-Lagrange equations are given by:
 \right)
 =0.
 \]
+@end(corollary)
 
 @begin(proof)
 We vary the vector field according to
@@ -388,7 +390,7 @@ This is the @bold{vector-field generalization} of the Euler-Lagrange equation. I
 
 @end(proof)
 
-@end(corollary)
+
 
 @section{Maxwell's equations, label = maxwell-equations}
 
@@ -651,3 +653,4 @@ B_i
 
 Hence both electromagnetic fields are contained in the derivatives of the potential four-vector: the electric field comes from the time-space components of \(F^{\mu\nu}\), while the magnetic field comes from its purely spatial components. The four-potential is not unique: a gauge transformation \(A^\mu\rightarrow A^\mu+\partial^\mu\Lambda\) leaves \(\mathbf E\) and \(\mathbf B\) unchanged.
 
+@relatedlinks{My GitHub, href = https://github.com/VivekH90}
