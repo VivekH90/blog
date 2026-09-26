@@ -17,7 +17,7 @@
 
 @section{Lagrange's equation for a single variable, label = single-variable}
 
-@axiom{Principle of Least Action, label = least-action}
+@begin(axiom = Principle of Least Action, label = least-action)
 The physical trajectory of a system between two fixed endpoints is the path for which the action is stationary,
 
 \[
@@ -40,9 +40,11 @@ And from the principle of least action, the equation of motion are given by:
 =0.
 \]
 
+@end(axiom)
+
 @image{src = input/least-action.png, alt = least-action, caption = , label = least action, width = 60%, height = auto}
 
-@proof{}
+@begin(proof)
 Under the variation
 
 \[
@@ -136,7 +138,7 @@ Hence the @bold{Euler-Lagrange equation} is
 
 @section{Lagrange's equation for multiple variables, label = multiple-variables}
 
-@theorem{Theorem Title, label = theorem-label}
+@begin(theorem = Theorem Title, label = theorem-label)
 The single-variable Euler-Lagrange equation can be extended naturally when the Lagrangian depends on several independent dynamical variables. Consider two @bold{independent fields} \(u(x,y)\) and \(v(x,y)\), with the action
 
 \[
@@ -159,8 +161,7 @@ v_y=\frac{\partial v}{\partial y}.
 \]
 and the @bold{Euler-Lagrange} equation are given by:
 
-@proof{}
-
+@begin(proof)
 Consider the variations
 
 \[
@@ -268,7 +269,7 @@ Thus, @bold{each independent field contributes its own Euler-Lagrange equation}.
 
 @subsection{The 4-vector generalization, label = four-vector-generalization}
 
-@corollary{4-vector generalization}
+@begin(corollary = 4-vector generalization)
 Let the dynamical field be a vector \(a^\mu(x)\), with spacetime coordinates \(x^\nu\). Consider the action (note that Einstein-convention is implied everywhere)
 
 \[
@@ -288,7 +289,7 @@ The Euler-Lagrange equations are given by:
 =0.
 \]
 
-@proof{}
+@begin(proof)
 We vary the vector field according to
 
 \[
@@ -380,10 +381,11 @@ Since the components \(\delta a^\mu\) are arbitrary and independent, we obtain t
 
 This is the @bold{vector-field generalization} of the Euler-Lagrange equation. It is simply the several-field equation written compactly, with the component label \(\mu\).
 
+@end(proof)
 
 @section{Maxwell's equations, label = maxwell-equations}
 
-@axiom{Maxwell's equations, label = maxwell-equations-axiom}
+@begin(axiom = Maxwell's equations, label = maxwell-equations-axiom)
 The electromagnetic fields are governed by the four Maxwell equations:
 
 \[
@@ -410,9 +412,11 @@ The electromagnetic fields are governed by the four Maxwell equations:
 \frac{\partial \mathbf E}{\partial t}.
 \]
 
-@text{text = "These four equations, together with the appropriate charge and current distributions \(\rho\) and \(\mathbf J\), completely specify the dynamics of the electric and magnetic fields. They are empirical laws: their form is based on experimental observations and on the laws established by Gauss, Faraday, Ampère, and others. Maxwell unified these results into a single system and introduced the displacement-current term in the fourth equation."}
+These four equations, together with the appropriate charge and current distributions \(\rho\) and \(\mathbf J\), completely specify the dynamics of the electric and magnetic fields. They are empirical laws: their form is based on experimental observations and on the laws established by Gauss, Faraday, Ampère, and others. Maxwell unified these results into a single system and introduced the displacement-current term in the fourth equation.
 
-@definition{Electric and magnetic fields from the potentials, label = potential-fields}
+@end(axiom)
+
+@begin(definition = Electric and magnetic fields from the potentials, label = potential-fields)
 \[
 \mathbf E
 =
@@ -424,7 +428,7 @@ The electromagnetic fields are governed by the four Maxwell equations:
 =\nabla\times\mathbf A.
 \]
 
-@text{text = "The scalar potential \(\phi\) and the vector potential \(\mathbf A\) can be combined into a single four-vector, the electromagnetic potential four-vector. Using \(x^0=ct\), we define"}
+The scalar potential \(\phi\) and the vector potential \(\mathbf A\) can be combined into a single four-vector, the electromagnetic potential four-vector. Using \(x^0=ct\), we define
 
 \[
 A^\mu
@@ -438,7 +442,9 @@ A^\mu
 \right).
 \]
 
-@text{text = "Thus the temporal component of \(A^\mu\) contains the scalar potential, while the three spatial components are the components of the vector potential. With \(A^0=\phi/c\), we have \(\phi=cA^0\), and since \(x^0=ct\), differentiation with respect to time is \(\partial_t=c\partial_0\). Before introducing any new tensor, we can simply rewrite the electric and magnetic fields directly using these components."}
+Thus the temporal component of \(A^\mu\) contains the scalar potential, while the three spatial components are the components of the vector potential. With \(A^0=\phi/c\), we have \(\phi=cA^0\), and since \(x^0=ct\), differentiation with respect to time is \(\partial_t=c\partial_0\). Before introducing any new tensor, we can simply rewrite the electric and magnetic fields directly using these components.
+
+@end(definition)
 
 @subsection{Electric field in terms of the 4-potential, label = electric-field-four-potential}
 
@@ -565,9 +571,9 @@ B_i
 
 where \(\epsilon_{ijk}\) is the three-dimensional Levi-Civita symbol.
 
-@text{text = "At this stage we have already expressed both \(\mathbf E\) and \(\mathbf B\) entirely in terms of derivatives of the four-potential. The expressions also show a useful pattern: the electric field involves the temporal component \(A^0\) and a spatial component \(A^i\), while the magnetic field involves two spatial components. We can package all of these combinations into a single antisymmetric four-dimensional object."}
+At this stage we have already expressed both \(\mathbf E\) and \(\mathbf B\) entirely in terms of derivatives of the four-potential. The expressions also show a useful pattern: the electric field involves the temporal component \(A^0\) and a spatial component \(A^i\), while the magnetic field involves two spatial components. We can package all of these combinations into a single antisymmetric four-dimensional object.
 
-@text{text = "Define the electromagnetic field-strength tensor"}
+Define the electromagnetic field-strength tensor
 
 \[
 F^{\mu\nu}
@@ -577,7 +583,7 @@ F^{\mu\nu}
 \partial^\nu A^\mu.
 \]
 
-@text{text = "For the metric convention \(\eta^{\mu\nu}=\operatorname{diag}(1,-1,-1,-1)\), the time-space components become"}
+For the metric convention \(\eta^{\mu\nu}=\operatorname{diag}(1,-1,-1,-1)\), the time-space components become
 
 \[
 F^{0i}
@@ -595,7 +601,7 @@ E_i
 -cF^{0i}.
 \]
 
-@text{text = "The purely spatial components contain the magnetic field. Since"}
+The purely spatial components contain the magnetic field. Since
 
 \[
 F^{ij}
@@ -636,4 +642,5 @@ B_i
 \epsilon_{ijk}F^{jk}.
 \]
 
-@text{text = "Hence both electromagnetic fields are contained in the derivatives of the potential four-vector: the electric field comes from the time-space components of \(F^{\mu\nu}\), while the magnetic field comes from its purely spatial components. The four-potential is not unique: a gauge transformation \(A^\mu\rightarrow A^\mu+\partial^\mu\Lambda\) leaves \(\mathbf E\) and \(\mathbf B\) unchanged."}
+Hence both electromagnetic fields are contained in the derivatives of the potential four-vector: the electric field comes from the time-space components of \(F^{\mu\nu}\), while the magnetic field comes from its purely spatial components. The four-potential is not unique: a gauge transformation \(A^\mu\rightarrow A^\mu+\partial^\mu\Lambda\) leaves \(\mathbf E\) and \(\mathbf B\) unchanged.
+
