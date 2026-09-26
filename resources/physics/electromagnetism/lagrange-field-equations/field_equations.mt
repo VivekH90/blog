@@ -386,6 +386,8 @@ This is the @bold{vector-field generalization} of the Euler-Lagrange equation. I
 
 @end(proof)
 
+@end(corollary)
+
 @section{Maxwell's equations, label = maxwell-equations}
 
 @begin(axiom = Maxwell's equations, label = maxwell-equations-axiom)
