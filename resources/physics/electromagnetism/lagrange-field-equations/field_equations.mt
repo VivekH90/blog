@@ -266,6 +266,9 @@ and
 
 Thus, @bold{each independent field contributes its own Euler-Lagrange equation}. This is the key step toward electromagnetism: the electromagnetic potential will be treated as a collection of field components, each of which is varied independently.
 
+@end(proof)
+
+@end(theorem)
 
 @subsection{The 4-vector generalization, label = four-vector-generalization}
 
