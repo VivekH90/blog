@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Electromagnetic Lagrangian</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sugina-dev/latin-modern-web@1.0.1/style/latinmodern-sans.css">
     <link rel="stylesheet" href="style.css">
 
-    <!-- MathJax 4 for standard TeX delimiters. -->
     <script>
         window.MathJax = {
             tex: {
@@ -25,52 +24,54 @@
     <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
 </head>
 <body>
-    <div class="site-shell">
-        <header class="site-header">
-            <div class="hero-author">
-                <div class="author-kicker">Author</div>
-                <div class="author-name">Vivek</div>
+    <div class="page">
+        <header class="hero chunk">
+            <div class="id">
+                <div class="avatar" aria-hidden="true"></div>
+                <div>
+                    <h1>Author</h1>
+                    <p>math, physics, and whatever proof kept me up last night</p>
+                </div>
             </div>
-            <div class="hero-banner">
-                <div class="site-banner"><img src="background.png" alt="" loading="eager"></div>
-                <form class="site-search" role="search">
-                    <label class="sr-only" for="site-search-input">Search</label>
-                    <span class="search-icon" aria-hidden="true">⌕</span>
-                    <input id="site-search-input" type="search" placeholder="Search" autocomplete="off">
-                </form>
-                <button class="theme-toggle" type="button" aria-label="Enable dark mode" aria-pressed="false">
-                    <span class="theme-icon" aria-hidden="true">☾</span>
-                    <span class="theme-label">Dark Mode</span>
-                </button>
-            </div>
+            <div class="est">est. 2026<br>IISER Mohali</div>
         </header>
 
-        <div class="page-layout">
-            <aside class="left-sidebar" aria-label="Site navigation">
-                <section class="sidebar-card navigation-card">
-                    <div class="sidebar-heading">
-                        <h2>Navigation</h2>
-                    </div>
-                    <nav class="site-navigation">
-                        <a class="nav-button" href="/" style="--button-color: #5b3a8a; --button-color-dark: #6b44a2;"><span class="nav-icon-wrap"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.8 12 3l9 7.8v9.2a1 1 0 0 1-1 1h-5.5v-6h-5v6H4a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.5 21v-6h7v6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span><span class="nav-label">Home</span></a>
+        <div class="strip" aria-hidden="true">
+            <div class="tile chunk"><svg viewBox="0 0 40 40"><path d="M4 30 C 12 6, 28 6, 36 24" stroke="#1E1B2E" stroke-width="2.5" fill="none"/></svg><span>curves</span></div>
+            <div class="tile chunk"><svg viewBox="0 0 40 40"><text x="6" y="28" font-size="22" fill="#1E1B2E" font-family="serif">∮</text></svg><span>fields</span></div>
+            <div class="tile chunk"><svg viewBox="0 0 40 40"><rect x="6" y="6" width="10" height="10" fill="none" stroke="#1E1B2E" stroke-width="2"/><rect x="20" y="20" width="10" height="10" fill="none" stroke="#1E1B2E" stroke-width="2"/></svg><span>tensors</span></div>
+            <div class="tile chunk"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="#1E1B2E" stroke-width="2"/><circle cx="20" cy="20" r="4" fill="#1E1B2E"/></svg><span>orbits</span></div>
+        </div>
+
+        <nav class="panel" aria-label="Site navigation">
+            <a class="nav-button" href="/" style="--button-color: #5b3a8a; --button-color-dark: #6b44a2;"><span class="nav-icon-wrap"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.8 12 3l9 7.8v9.2a1 1 0 0 1-1 1h-5.5v-6h-5v6H4a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.5 21v-6h7v6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span><span class="nav-label">Home</span></a>
 <a class="nav-button" href="/archives" style="--button-color: #7652a8; --button-color-dark: #7652a8;"><span class="nav-icon-wrap"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v14A1.5 1.5 0 0 1 18.5 21h-13A1.5 1.5 0 0 1 4 19.5z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 4v17M8 8h7M11 12h5M11 16h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="nav-label">Archives</span></a>
 <a class="nav-button" href="https://github.com/VivekH90/blog" style="--button-color: #70458f; --button-color-dark: #794b9b;"><span class="nav-icon-wrap"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .7a11.3 11.3 0 0 0-3.6 22c.6.1.8-.3.8-.6v-2.1c-3.1.7-3.8-1.3-3.8-1.3-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1 1.5-.7 1.8-1.1.1-.7.4-1.1.6-1.4-2.5-.3-5.2-1.2-5.2-5.6 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.5.1-3 0 0 .9-.3 3.1 1.1a10.7 10.7 0 0 1 5.6 0c2.2-1.4 3.1-1.1 3.1-1.1.6 1.5.2 2.7.1 3 .7.8 1.1 1.8 1.1 3 0 4.4-2.7 5.3-5.2 5.6.4.3.7.9.7 1.8v2.7c0 .3.2.7.8.6A11.3 11.3 0 0 0 12 .7Z"/></svg></span><span class="nav-label">GitHub</span></a>
-                        <span class="nav-button nav-static" style="--button-color: #b85c5c;" aria-hidden="true">Physics</span>
-                        <span class="nav-button nav-static" style="--button-color: #8a63b8;" aria-hidden="true">Mathematics</span>
-                        <span class="nav-button nav-static" style="--button-color: #5f7fa8;" aria-hidden="true">Computer Science</span>
-                        <span class="nav-button nav-static" style="--button-color: #a06f57;" aria-hidden="true">Thoughts</span>
-                    </nav>
-                </section>
-            </aside>
+        </nav>
 
-            <main class="article">
-                <section class="article-gallery" aria-label="Article image gallery"><figure class="gallery-item"><a href="https://images.nasa.gov/details/PIA14730" target="_blank" rel="noopener noreferrer"><img src="http://images-assets.nasa.gov/image/PIA14730/PIA14730~orig.jpg" alt="This artist concept illustrates what the flaring black hole called GX 339-4 might look like. Infrared observations from NASA WISE reveal the best information yet on the chaotic and extreme environments of this black hole jets." title="Flaring Black Hole Artist Concept" loading="lazy" referrerpolicy="no-referrer"></a><figcaption>JPL</figcaption></figure><figure class="gallery-item"><a href="https://images.nasa.gov/details/PIA23866" target="_blank" rel="noopener noreferrer"><img src="http://images-assets.nasa.gov/image/PIA23866/PIA23866~orig.jpg" alt="This animation shows the events that serve as the basis of an astrophysics technique called &quot;echo mapping,&quot; also known as reverberation mapping. At center is a supermassive black hole surrounded by a disk of material called an accretion disk. As the disk gets brighter it sometimes even releases short flares of visible light. Blue arrows show the light from this flash traveling away from the black hole, both toward an observer on Earth and toward an enormous, doughnut-shaped structure (called a torus) made of dust. The light gets absorbed, causing the dust to heat up and release infrared light. This brightening of the dust is a direct response to — or, one might, say an &quot;echo&quot; — of the changes happening in the disk. Red arrows show this light traveling away from the galaxy, in the same direction as the initial flash of visible light. Thus an observer would see the visible light first, and (with the right equipment) the infrared light later.  Astronomers have previously proposed using echo mapping as a means of measuring distances to cosmic objects. If scientists can observe both the initial flare of visible light and the subsequent infrared brightening in the dust, they could in theory use that information to measure the disk&#x27;s luminosity, which could then be used to measure the distance to that galaxy by comparing it to the galaxy&#x27;s brightness as seen from Earth.  The temperature in the part of the disk closest to the black hole can reach tens of thousands of degrees but decreases with distance. When it reaches about 2,200 degrees Fahrenheit (1,200 Celsius), it is cool enough for dust to form. The more luminous the disk, the farther away from it the dust forms and the longer it takes light from the disk to reach the dust and produce the &quot;echo.&quot;  The distance from the accretion disk to the inside of the dust doughnut can be billions or trillions of miles. Even light, traveling at 186,000 miles (300,000 kilometers) per second, can take months or years to cross it. NASA&#x27;s Near Earth Object Wide Field Infrared Survey Explorer (NEOWISE), previously named WISE, surveys the entire sky about once every six months and is on track to complete 16 such surveys by the end of 2020, providing astronomers with repeated opportunities to observe galaxies and look for signs of those light echoes. A study using data from WISE measured the luminosity of over 500 black hole accretion disks using echo mapping, but the subsequent distance measurements lacked precision compared to other distance measuring techniques. Additional data and an improved understanding of dust torus dynamics could improve those measurements.  Movie available at https://photojournal.jpl.nasa.gov/catalog/PIA23866" title="Echo Mapping in a Black Hole Accretion Disk and Torus (Animation)" loading="lazy" referrerpolicy="no-referrer"></a><figcaption>JPL</figcaption></figure><figure class="gallery-item"><a href="https://images.nasa.gov/details/PIA22085" target="_blank" rel="noopener noreferrer"><img src="http://images-assets.nasa.gov/image/PIA22085/PIA22085~orig.jpg" alt="This artist&#x27;s concept shows a black hole with an accretion disk -- a flat structure of material orbiting the black hole -- and a jet of hot gas, called plasma.  Using NASA&#x27;s NuSTAR space telescope and a fast camera called ULTRACAM on the William Herschel Observatory in La Palma, Spain, scientists have been able to measure the distance that particles in jets travel before they &quot;turn on&quot; and become bright sources of light. This distance is called the &quot;acceleration zone.&quot;  https://photojournal.jpl.nasa.gov/catalog/PIA22085" title="Black Hole With Jet (Artist&#x27;s Concept)" loading="lazy" referrerpolicy="no-referrer"></a><figcaption>JPL</figcaption></figure><figure class="gallery-item"><a href="https://images.nasa.gov/details/PIA13168" target="_blank" rel="noopener noreferrer"><img src="http://images-assets.nasa.gov/image/PIA13168/PIA13168~orig.jpg" alt="This artist concept shows a galaxy with a supermassive black hole at its core. The black hole is shooting out jets of radio waves." title="Backward Black Hole Shoots Powerful Jets Artist Concept" loading="lazy" referrerpolicy="no-referrer"></a><figcaption>JPL</figcaption></figure><figure class="gallery-item"><a href="https://images.nasa.gov/details/GSFC_20171208_Archive_e000608" target="_blank" rel="noopener noreferrer"><img src="http://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000608/GSFC_20171208_Archive_e000608~orig.jpg" alt="Nearly all black holes come in one of two sizes: stellar mass black holes that weigh up to a few dozen times the mass of our sun or supermassive black holes ranging from a million to several billion times the sun’s mass. Astronomers believe that medium-sized black holes between these two extremes exist, but evidence has been hard to come by, with roughly a half-dozen candidates described so far.  A team led by astronomers at the University of Maryland and NASA’s Goddard Space Flight Center has found evidence for a new intermediate-mass black hole about 5,000 times the mass of the sun. The discovery adds one more candidate to the list of potential medium-sized black holes, while strengthening the case that these objects do exist. The team reported its findings in the September 21, 2015 online edition of Astrophysical Journal Letters.  This image, taken with the European Southern Observatory’s Very Large Telescope, shows the central region of galaxy NGC1313. This galaxy is home to the ultraluminous X-ray source NCG1313X-1, which astronomers have now determined to be an intermediate-mass black hole candidate. NGC1313 is 50,000 light-years across and lies about 14 million light-years from the Milky Way in the southern constellation Reticulum.   Read more: &lt;a href=&quot;http://www.nasa.gov/feature/goddard/astronomers-identify-a-new-mid-size-black-hole&quot; rel=&quot;nofollow&quot;&gt;www.nasa.gov/feature/goddard/astronomers-identify-a-new-m...&lt;/a&gt;  Image credit: European Southern Observatory #nasagoddard #blackhole #space  &lt;b&gt;&lt;a href=&quot;http://www.nasa.gov/audience/formedia/features/MP_Photo_Guidelines.html&quot; rel=&quot;nofollow&quot;&gt;NASA image use policy.&lt;/a&gt;&lt;/b&gt;  &lt;b&gt;&lt;a href=&quot;http://www.nasa.gov/centers/goddard/home/index.html&quot; rel=&quot;nofollow&quot;&gt;NASA Goddard Space Flight Center&lt;/a&gt;&lt;/b&gt; enables NASA’s mission through four scientific endeavors: Earth Science, Heliophysics, Solar System Exploration, and Astrophysics. Goddard plays a leading role in NASA’s accomplishments by contributing compelling scientific knowledge to advance the Agency’s mission.  &lt;b&gt;Follow us on &lt;a href=&quot;http://twitter.com/NASAGoddardPix&quot; rel=&quot;nofollow&quot;&gt;Twitter&lt;/a&gt;&lt;/b&gt;  &lt;b&gt;Like us on &lt;a href=&quot;http://www.facebook.com/pages/Greenbelt-MD/NASA-Goddard/395013845897?ref=tsd&quot; rel=&quot;nofollow&quot;&gt;Facebook&lt;/a&gt;&lt;/b&gt;  &lt;b&gt;Find us on &lt;a href=&quot;http://instagrid.me/nasagoddard/?vm=grid&quot; rel=&quot;nofollow&quot;&gt;Instagram&lt;/a&gt;&lt;/b&gt;" title="Astronomers Identify a New Mid-size Black Hole" loading="lazy" referrerpolicy="no-referrer"></a><figcaption>GSFC</figcaption></figure><figure class="gallery-item"><a href="https://images.nasa.gov/details/PIA16697" target="_blank" rel="noopener noreferrer"><img src="http://images-assets.nasa.gov/image/PIA16697/PIA16697~orig.jpg" alt="Scientists measure the spin rates of supermassive black holes by spreading the X-ray light into different colors. The light comes from accretion disks that swirl around black holes, as shown in both of the artist concepts." title="Two Models of Black Hole Spin Artist Concept" loading="lazy" referrerpolicy="no-referrer"></a><figcaption>JPL</figcaption></figure><figure class="gallery-item"><a href="https://images.nasa.gov/details/PIA19822" target="_blank" rel="noopener noreferrer"><img src="http://images-assets.nasa.gov/image/PIA19822/PIA19822~orig.jpg" alt="This cartoon shows how magnetic waves, called Alfvén S-waves, propagate outward from the base of black hole jets. The jet is a flow of charged particles, called a plasma, which is launched by a black hole. The jet has a helical magnetic field (yellow coil) permeating the plasma. The waves then travel along the jet, in the direction of the plasma flow, but at a velocity determined by both the jet&#x27;s magnetic properties and the plasma flow speed. The BL Lac jet examined in a new study is several light-years long, and the wave speed is about 98 percent the speed of light.  Fast-moving magnetic waves emanating from a distant supermassive black hole undulate like a whip whose handle is being shaken by a giant hand, according to a study using data from the National Radio Astronomy Observatory&#x27;s Very Long Baseline Array. Scientists used this instrument to explore the galaxy/black hole system known as BL Lacertae (BL Lac) in high resolution.   http://photojournal.jpl.nasa.gov/catalog/PIA19822" title="Magnetic Black Hole Waves" loading="lazy" referrerpolicy="no-referrer"></a><figcaption>JPL</figcaption></figure></section>
-                <div class="article-breadcrumb" aria-label="Breadcrumb"><div class="breadcrumb-trail"><a class="breadcrumb-home" href="/" aria-label="Home"><svg class="breadcrumb-home-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.8 12 3l9 7.8v9.2a1 1 0 0 1-1 1h-5.5v-6h-5v6H4a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.5 21v-6h7v6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></a><span class="breadcrumb-separator" aria-hidden="true">›</span><span class="breadcrumb-text">Physics</span><span class="breadcrumb-separator" aria-hidden="true">›</span><span class="breadcrumb-text">Electromagnetism</span><span class="breadcrumb-separator" aria-hidden="true">›</span><span class="breadcrumb-current">Electromagnetic Lagrangian</span></div><time class="breadcrumb-date" datetime="2026-09-25">25 Sept, 2026</time></div>
-                <h1 class="article-title">Electromagnetic Lagrangian</h1>
-                <div class="article-tags" aria-label="Tags"><span class="article-tag">Electromagnetism</span>
+        <details class="side-mobile">
+            <summary>Contents & links</summary>
+            <div class="inner-mobile">
+                <nav class="toc" id="toc-mobile" aria-label="Table of contents"></nav>
+            </div>
+        </details>
+
+        <div class="layout">
+            <main class="mainbox chunk">
+                <section class="article-gallery" aria-label="Article image gallery"><figure class="gallery-item"><a href="https://images.nasa.gov/details/GSFC_20171208_Archive_e000386" target="_blank" rel="noopener noreferrer"><img src="http://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000386/GSFC_20171208_Archive_e000386~orig.jpg" alt="This computer-simulated image shows a supermassive black hole at the core of a galaxy. The black region in the center represents the black hole’s event horizon, where no light can escape the massive object’s gravitational grip. The black hole’s powerful gravity distorts space around it like a funhouse mirror. Light from background stars is stretched and smeared as the stars skim by the black hole.  Credits: NASA, ESA, and D. Coe, J. Anderson, and R. van der Marel (STScI)  More info: Astronomers have uncovered a near-record breaking supermassive black hole, weighing 17 billion suns, in an unlikely place: in the center of a galaxy in a sparsely populated area of the universe. The observations, made by NASA’s Hubble Space Telescope and the Gemini Telescope in Hawaii, may indicate that these monster objects may be more common than once thought.  Until now, the biggest supermassive black holes – those roughly 10 billion times the mass of our sun – have been found at the cores of very large galaxies in regions of the universe packed with other large galaxies. In fact, the current record holder tips the scale at 21 billion suns and resides in the crowded Coma galaxy cluster that consists of over 1,000 galaxies. More: &lt;a href=&quot;http://www.nasa.gov/feature/goddard/2016/behemoth-black-hole-found-in-an-unlikely-place&quot; rel=&quot;nofollow&quot;&gt;www.nasa.gov/feature/goddard/2016/behemoth-black-hole-fou...&lt;/a&gt;  &lt;b&gt;&lt;a href=&quot;http://www.nasa.gov/audience/formedia/features/MP_Photo_Guidelines.html&quot; rel=&quot;nofollow&quot;&gt;NASA image use policy.&lt;/a&gt;&lt;/b&gt;  &lt;b&gt;&lt;a href=&quot;http://www.nasa.gov/centers/goddard/home/index.html&quot; rel=&quot;nofollow&quot;&gt;NASA Goddard Space Flight Center&lt;/a&gt;&lt;/b&gt; enables NASA’s mission through four scientific endeavors: Earth Science, Heliophysics, Solar System Exploration, and Astrophysics. Goddard plays a leading role in NASA’s accomplishments by contributing compelling scientific knowledge to advance the Agency’s mission.  &lt;b&gt;Follow us on &lt;a href=&quot;http://twitter.com/NASAGoddardPix&quot; rel=&quot;nofollow&quot;&gt;Twitter&lt;/a&gt;&lt;/b&gt;  &lt;b&gt;Like us on &lt;a href=&quot;http://www.facebook.com/pages/Greenbelt-MD/NASA-Goddard/395013845897?ref=tsd&quot; rel=&quot;nofollow&quot;&gt;Facebook&lt;/a&gt;&lt;/b&gt;  &lt;b&gt;Find us on &lt;a href=&quot;http://instagrid.me/nasagoddard/?vm=grid&quot; rel=&quot;nofollow&quot;&gt;Instagram&lt;/a&gt;&lt;/b&gt;    " title="Behemoth Black Hole Found in an Unlikely Place" loading="lazy" referrerpolicy="no-referrer"></a><figcaption>GSFC</figcaption></figure><figure class="gallery-item"><a href="https://images.nasa.gov/details/GSFC_20171208_Archive_e000415" target="_blank" rel="noopener noreferrer"><img src="http://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000415/GSFC_20171208_Archive_e000415~orig.jpg" alt="When two black holes collide, they release massive amounts of energy in the form of gravitational waves that last a fraction of a second and can be &amp;quot;heard&amp;quot; throughout the universe - if you have the right instruments.   Today we learned that the #LIGO project heard the telltale chirp of black holes colliding, fulfilling Einstein&#x27;s General Theory of Relativity.   NASA&#x27;s LISA mission will look for direct evidence of gravitational waves. &lt;a href=&quot;http://go.nasa.gov/23ZbqoE&quot; rel=&quot;nofollow&quot;&gt;go.nasa.gov/23ZbqoE&lt;/a&gt;  This video illustrates what that collision might look like." title="Black Holes Collide" loading="lazy" referrerpolicy="no-referrer"></a><figcaption>GSFC</figcaption></figure><figure class="gallery-item"><a href="https://images.nasa.gov/details/PIA04207" target="_blank" rel="noopener noreferrer"><img src="http://images-assets.nasa.gov/image/PIA04207/PIA04207~orig.jpg" alt="This three-dimensional illustration shows how the rotating space around a black hole twists up the magnetic field in the plasma falling toward the black hole. The black sphere at the center of the figure is the black hole itself. http://photojournal.jpl.nasa.gov/catalog/PIA04207" title="Black Hole in 3-D" loading="lazy" referrerpolicy="no-referrer"></a><figcaption>NASA</figcaption></figure><figure class="gallery-item"><a href="https://images.nasa.gov/details/PIA23864" target="_blank" rel="noopener noreferrer"><img src="http://images-assets.nasa.gov/image/PIA23864/PIA23864~orig.jpg" alt="This two-panel illustration shows a black hole surrounded by a disk of gas, before and after the disk is partially dispersed. In the left panel, the ball of white light above the black hole is the black hole corona, a collection of ultra-hot gas particles that forms as gas from the disk falls into the black hole. The streak of debris falling toward the disk is what remains of a star that was torn apart by the black hole&#x27;s gravity. The right panel shows the black hole after the debris from the star has dispersed some of the gas in the disk, causing the corona to disappear.  https://photojournal.jpl.nasa.gov/catalog/PIA23864" title="Black Hole Corona&#x27;s Disappearing Act (Illustration)" loading="lazy" referrerpolicy="no-referrer"></a><figcaption>JPL</figcaption></figure><figure class="gallery-item"><a href="https://images.nasa.gov/details/PIA16697" target="_blank" rel="noopener noreferrer"><img src="http://images-assets.nasa.gov/image/PIA16697/PIA16697~orig.jpg" alt="Scientists measure the spin rates of supermassive black holes by spreading the X-ray light into different colors. The light comes from accretion disks that swirl around black holes, as shown in both of the artist concepts." title="Two Models of Black Hole Spin Artist Concept" loading="lazy" referrerpolicy="no-referrer"></a><figcaption>JPL</figcaption></figure><figure class="gallery-item"><a href="https://images.nasa.gov/details/PIA14803" target="_blank" rel="noopener noreferrer"><img src="http://images-assets.nasa.gov/image/PIA14803/PIA14803~orig.jpg" alt="Black Holes in Caloris" title="Black Holes in Caloris" loading="lazy" referrerpolicy="no-referrer"></a><figcaption>JPL</figcaption></figure><figure class="gallery-item"><a href="https://images.nasa.gov/details/GSFC_20171208_Archive_e000149" target="_blank" rel="noopener noreferrer"><img src="http://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000149/GSFC_20171208_Archive_e000149~orig.jpg" alt="The beautiful spiral galaxy visible in the center of the image is known as RX J1140.1+0307, a galaxy in the Virgo constellation imaged by the NASA/ESA Hubble Space Telescope, and it presents an interesting puzzle. At first glance, this galaxy appears to be a normal spiral galaxy, much like the Milky Way, but first appearances can be deceptive!  The Milky Way galaxy, like most large galaxies, has a supermassive black hole at its center, but some galaxies are centered on lighter, intermediate-mass black holes. RX J1140.1+0307 is such a galaxy — in fact, it is centered on one of the lowest black hole masses known in any luminous galactic core. What puzzles scientists about this particular galaxy is that the calculations don’t add up. With such a relatively low mass for the central black hole, models for the emission from the object cannot explain the observed spectrum. There must be other mechanisms at play in the interactions between the inner and outer parts of the accretion disk surrounding the black hole.   Credit: ESA/Hubble &amp;amp; NASA, Acknowledgement: Judy Schmidt  &lt;b&gt;&lt;a href=&quot;http://www.nasa.gov/audience/formedia/features/MP_Photo_Guidelines.html&quot; rel=&quot;nofollow&quot;&gt;NASA image use policy.&lt;/a&gt;&lt;/b&gt;  &lt;b&gt;&lt;a href=&quot;http://www.nasa.gov/centers/goddard/home/index.html&quot; rel=&quot;nofollow&quot;&gt;NASA Goddard Space Flight Center&lt;/a&gt;&lt;/b&gt; enables NASA’s mission through four scientific endeavors: Earth Science, Heliophysics, Solar System Exploration, and Astrophysics. Goddard plays a leading role in NASA’s accomplishments by contributing compelling scientific knowledge to advance the Agency’s mission.  &lt;b&gt;Follow us on &lt;a href=&quot;http://twitter.com/NASAGoddardPix&quot; rel=&quot;nofollow&quot;&gt;Twitter&lt;/a&gt;&lt;/b&gt;  &lt;b&gt;Like us on &lt;a href=&quot;http://www.facebook.com/pages/Greenbelt-MD/NASA-Goddard/395013845897?ref=tsd&quot; rel=&quot;nofollow&quot;&gt;Facebook&lt;/a&gt;&lt;/b&gt;  &lt;b&gt;Find us on &lt;a href=&quot;http://instagrid.me/nasagoddard/?vm=grid&quot; rel=&quot;nofollow&quot;&gt;Instagram&lt;/a&gt;&lt;/b&gt;    " title="Hubble Gazes Into a Black Hole of Puzzling Light" loading="lazy" referrerpolicy="no-referrer"></a><figcaption>GSFC</figcaption></figure></section>
+                <div class="article-breadcrumb" aria-label="Breadcrumb"><div class="breadcrumb-trail"><a class="breadcrumb-home" href="/" aria-label="Home"><svg class="breadcrumb-home-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.8 12 3l9 7.8v9.2a1 1 0 0 1-1 1h-5.5v-6h-5v6H4a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.5 21v-6h7v6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></a><span class="breadcrumb-separator" aria-hidden="true">›</span><span class="breadcrumb-text">Physics</span><span class="breadcrumb-separator" aria-hidden="true">›</span><span class="breadcrumb-current">Electromagnetic Lagrangian</span></div></div>
+                <div class="art-head">
+                    <h1 class="title">Electromagnetic Lagrangian</h1>
+                    <div class="article-meta">
+                        <strong>Author</strong>
+                    </div>
+                    <div class="article-tags" aria-label="Tags"><span class="article-tag">Electromagnetism</span>
 <span class="article-tag">Classical Field Theory</span>
 <span class="article-tag">Lagrangian Mechanics</span></div>
-                <section class="article-section" id="lagrange-s-equation-for-a-single-variable">
+                </div>
+
+                <article class="reading" id="article">
+                    <section class="article-section" id="lagrange-s-equation-for-a-single-variable">
 <h2><span class="section-number"><span class="section-symbol">§</span> 1</span><span class="section-heading-text">Lagrange&#x27;s equation for a single variable</span></h2>
 <div class="math-environment axiom" id="least-action"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Axiom</span> <span class="environment-number">1</span></span> <span class="environment-title">(Principle of Least Action)</span></div><div class="environment-content"><p>The physical trajectory of a system between two fixed endpoints is the path for which the action is stationary,</p>
 <div class="math-display">\[\delta S = 0.\]</div>
@@ -471,44 +472,34 @@ A^3=A_z,\]</div>
 <div class="text-environment"><p class="mark-text">Hence both electromagnetic fields are contained in the derivatives of the potential four-vector: the electric field comes from the time-space components of \(F^{\mu\nu}\), while the magnetic field comes from its purely spatial components. The four-potential is not unique: a gauge transformation \(A^\mu\rightarrow A^\mu+\partial^\mu\Lambda\) leaves \(\mathbf E\) and \(\mathbf B\) unchanged.</p></div>
 </section>
 </section>
+                </article>
             </main>
 
-            <aside class="right-sidebar" aria-label="Article information">
-                <section class="sidebar-card toc-card">
-                    <div class="sidebar-heading">
-                        <h2>On this page</h2>
-                        <button class="sidebar-toggle" type="button" aria-label="Toggle table of contents" aria-expanded="true">☷</button>
-                    </div>
-                    <nav class="toc" aria-label="Table of contents">
-                        <ol>
-                            <li><a href="#lagrange-s-equation-for-a-single-variable"><span class="toc-section-symbol">§</span> 1. Lagrange&#x27;s equation for a single variable</a>
-</li>
-<li><a href="#lagrange-s-equation-for-multiple-variables"><span class="toc-section-symbol">§</span> 2. Lagrange&#x27;s equation for multiple variables</a>
-<ol class="toc-subsections">
-<li><a href="#the-4-vector-generalization">2.1. The 4-vector generalization</a></li>
-</ol>
-</li>
-<li><a href="#maxwell-s-equations"><span class="toc-section-symbol">§</span> 3. Maxwell&#x27;s equations</a>
-<ol class="toc-subsections">
-<li><a href="#electric-field-in-terms-of-the-4-potential">3.1. Electric field in terms of the 4-potential</a></li>
-<li><a href="#magnetic-field-in-terms-of-the-4-potential">3.2. Magnetic field in terms of the 4-potential</a></li>
-</ol>
-</li>
-                        </ol>
-                    </nav>
-                </section>
+            <aside class="rail" aria-label="Article information">
+                <div class="rail-box toc chunk">
+                    <h4>Contents</h4>
+                    <nav class="toc" id="toc-desktop" aria-label="Table of contents"></nav>
+                </div>
 
-                <section class="sidebar-card related-card">
-                    <div class="sidebar-heading">
-                        <h2>Related Links</h2>
-                        <span class="link-symbol" aria-hidden="true">↗</span>
-                    </div>
-                    <ul class="related-links">
+                <div class="rail-box topics chunk">
+                    <h4>Topics</h4>
+                    <ul>
+                        <li><a href="#">Physics</a></li>
+                        <li><a href="#">Math</a></li>
+                        <li><a href="#">Notes</a></li>
+                    </ul>
+                </div>
+
+                <div class="rail-box related chunk">
+                    <h4>Related</h4>
+                    <ul>
                         
                     </ul>
-                </section>
+                </div>
             </aside>
         </div>
+
+        <footer>© 2026 Author — set in Latin Modern Sans. Best viewed with curiosity.</footer>
     </div>
 
     <script src="script.js"></script>
