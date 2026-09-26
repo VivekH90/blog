@@ -13,10 +13,12 @@ document.addEventListener("DOMContentLoaded", function(){
     large.alt=button.dataset.title || button.querySelector('img')?.alt || 'Image';
     caption.textContent=button.dataset.caption || large.alt;
     lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden','false');
     document.body.style.overflow='hidden';
   }
   function closeImage(){
     lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden','true');
     large.src='';
     document.body.style.overflow='';
   }
@@ -39,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function(){
       if(h.tagName==='H3') li.className='sub';
       var a=document.createElement('a');
       a.href='#'+h.id;
-      a.textContent=h.textContent.replace(/^\d+(\.\d+)?/, '').trim();
+      a.textContent=h.textContent.replace(/^\s*\d+(?:\.\d+)?\s*/,"").trim();
       li.appendChild(a); ul.appendChild(li); links.push(a);
     });
     root.replaceChildren(ul);
