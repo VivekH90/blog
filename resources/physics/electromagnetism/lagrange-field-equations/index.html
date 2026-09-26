@@ -1,79 +1,281 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <title>Electromagnetic Lagrangian</title>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Electromagnetic Lagrangian — Author</title><script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],tags:'ams'},chtml:{fontURL:'https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/output/chtml/fonts/woff-v2'}};</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" defer></script><style>  :root{
+    --ink:#221F2C; --sub:#6B6353;
+    --lav:#D8C4F5; --lav-b:#6B3FA8;
+    --peach:#F5C2A8; --peach-b:#9E2A16;
+    --mint:#B9DEE5; --mint-b:#0A5A63;
+    --cyan:#B8E3DE; --cyan-b:#1E6E69;
+    --yellow:#F5DE8A; --yellow-b:#A87A0A;
+    --coral:#F5C4B0; --coral-b:#A8451C;
+    --gray:#F2E9D8; --gray-b:#7A6438;
+    --body-bg:#FFFDF6; --dots:#E4D8BD;
+    --card-white:#fff;
+    --def-text:#0A3E3A; --axiom-text:#4E3705; --theorem-text:#5C1B08;
+    --xlink:#4A2A82; --xlink-b:#B79AE0;
+    --crumb-text:#5A1608;
+    --article-text:#2B2730;
+    --nav-brand-sub:#3A2E52;
+    --related-text:#0A3E3A; --related-hover:#062A27; --related-cat:#3A6E68;
+    box-sizing:border-box;
+  }
+  :root[data-theme="dark"]{
+    --ink:#F0EAD9; --sub:#B8AE97;
+    --lav:#3A2A5C; --lav-b:#B090E6;
+    --peach:#4A2416; --peach-b:#F0916A;
+    --mint:#0F3A3E; --mint-b:#6FE0D6;
+    --cyan:#123B38; --cyan-b:#6FD8CE;
+    --yellow:#4A3A0A; --yellow-b:#F0C94A;
+    --coral:#4A2214; --coral-b:#F0916A;
+    --gray:#2A2419; --gray-b:#C9AD6E;
+    --body-bg:#171512; --dots:#2E2A22;
+    --card-white:#211D16;
+    --def-text:#B7EDE6; --axiom-text:#F0DE9E; --theorem-text:#F5C5AE;
+    --xlink:#D8C4F5; --xlink-b:#6B3FA8;
+    --crumb-text:#F0C0A2;
+    --article-text:#EDE6D4;
+    --nav-brand-sub:#D8C4F5;
+    --related-text:#B7EDE6; --related-hover:#EAFBF8; --related-cat:#7FC4BC;
+  }
+  *,*::before,*::after{box-sizing:inherit;}
+  body{
+    margin:0;color:var(--ink);
+    background:var(--body-bg) radial-gradient(var(--dots) 1.4px, transparent 1.4px);
+    background-size:20px 20px;
+    font-family:"Latin Modern Sans","Computer Modern Sans Serif","Computer Modern Sans",sans-serif;
+    -webkit-font-smoothing:antialiased;
+    transition:background-color .2s,color .2s;
+  }
+  a{color:inherit;}
+  .page{max-width:1220px;margin:0 auto;padding:20px 4vw 60px;}
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sugina-dev/latin-modern-web@1.0.1/style/latinmodern-sans.css">
-    <link rel="stylesheet" href="style.css">
+  /* nav box */
+  .navbox{
+    background:var(--lav);border:3px solid var(--lav-b);border-radius:18px;
+    padding:14px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+    margin-bottom:16px;
+  }
+  .brand{display:flex;align-items:baseline;gap:10px;}
+  .brand b{font-size:16.5px;}
+  .brand span{font-size:12.5px;color:var(--nav-brand-sub);}
+  .navbox nav ul{list-style:none;display:flex;gap:8px;margin:0;padding:0;flex-wrap:wrap;}
+  .navbox nav a{
+    text-decoration:none;font-size:13.5px;font-weight:600;padding:7px 14px;border-radius:10px;
+    background:var(--card-white);border:2px solid var(--lav-b);color:var(--ink);
+  }
+  .navbox nav a:hover{background:var(--cyan);}
 
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['\\(', '\\)']],
-                displayMath: [['\\[', '\\]']],
-                processEscapes: true,
-                tags: 'ams'
-            },
-            options: {
-                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-            }
-        };
-    </script>
-    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
-</head>
-<body>
-    <div class="page">
-        <header class="hero chunk">
-            <div class="id">
-                <div class="avatar" aria-hidden="true"></div>
-                <div>
-                    <h1>Author</h1>
-                    <p>math, physics, and whatever proof kept me up last night</p>
-                </div>
-            </div>
-            <div class="est">est. 2026<br>IISER Mohali</div>
-        </header>
+  /* NASA image gallery */
+  .strip{
+    background:var(--peach);
+    border:3px solid var(--peach-b);
+    border-radius:16px;
+    padding:10px;
+    margin-bottom:16px;
+    display:flex;
+    gap:10px;
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scrollbar-width:thin;
+    scrollbar-color:var(--peach-b) transparent;
+  }
+  .strip::-webkit-scrollbar{height:8px;}
+  .strip::-webkit-scrollbar-track{background:transparent;}
+  .strip::-webkit-scrollbar-thumb{background:var(--peach-b);border-radius:999px;}
+  .strip .thumb{
+    position:relative;
+    width:170px;
+    height:105px;
+    background:var(--card-white);
+    border:2px solid var(--peach-b);
+    border-radius:10px;
+    display:block;
+    overflow:hidden;
+    flex:0 0 auto;
+    padding:0;
+    cursor:pointer;
+    transition:transform .16s ease,box-shadow .16s ease;
+  }
+  .strip .thumb:hover{
+    transform:translateY(-2px);
+    box-shadow:0 6px 14px rgba(0,0,0,.14);
+  }
+  .strip .thumb img{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+  .strip .thumb::after{
+    content:"";
+    position:absolute;
+    inset:auto 0 0 0;
+    height:34%;
+    background:linear-gradient(transparent,rgba(0,0,0,.34));
+    pointer-events:none;
+  }
+  .gallery-status{
+    padding:10px 14px;
+    color:var(--sub);
+    font-size:12.5px;
+    flex:0 0 auto;
+  }
 
-        <div class="strip" aria-hidden="true">
-            <div class="tile chunk"><svg viewBox="0 0 40 40"><path d="M4 30 C 12 6, 28 6, 36 24" stroke="#1E1B2E" stroke-width="2.5" fill="none"/></svg><span>curves</span></div>
-            <div class="tile chunk"><svg viewBox="0 0 40 40"><text x="6" y="28" font-size="22" fill="#1E1B2E" font-family="serif">∮</text></svg><span>fields</span></div>
-            <div class="tile chunk"><svg viewBox="0 0 40 40"><rect x="6" y="6" width="10" height="10" fill="none" stroke="#1E1B2E" stroke-width="2"/><rect x="20" y="20" width="10" height="10" fill="none" stroke="#1E1B2E" stroke-width="2"/></svg><span>tensors</span></div>
-            <div class="tile chunk"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="#1E1B2E" stroke-width="2"/><circle cx="20" cy="20" r="4" fill="#1E1B2E"/></svg><span>orbits</span></div>
-        </div>
+  /* gallery lightbox */
+  .gallery-lightbox{
+    position:fixed;
+    inset:0;
+    z-index:1000;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+    background:rgba(20,16,12,.78);
+  }
+  .gallery-lightbox.open{display:flex;}
+  .gallery-dialog{
+    position:relative;
+    width:min(1100px,96vw);
+    max-height:92vh;
+    padding:14px;
+    border:3px solid var(--peach-b);
+    border-radius:18px;
+    background:var(--card-white);
+    box-shadow:0 20px 70px rgba(0,0,0,.35);
+  }
+  .gallery-dialog img{
+    display:block;
+    width:100%;
+    max-height:78vh;
+    object-fit:contain;
+    background:var(--gray);
+    border-radius:10px;
+  }
+  .gallery-caption{
+    margin:10px 4px 2px;
+    color:var(--ink);
+    font-size:13px;
+    line-height:1.45;
+  }
+  .gallery-close{
+    position:absolute;
+    top:8px;
+    right:8px;
+    width:34px;
+    height:34px;
+    border:2px solid var(--peach-b);
+    border-radius:10px;
+    background:var(--card-white);
+    color:var(--ink);
+    font-size:18px;
+    font-weight:700;
+    cursor:pointer;
+  }
 
-        <nav class="panel" aria-label="Site navigation">
-            <a class="nav-button" href="/" style="--button-color: #5b3a8a; --button-color-dark: #6b44a2;"><span class="nav-icon-wrap"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.8 12 3l9 7.8v9.2a1 1 0 0 1-1 1h-5.5v-6h-5v6H4a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.5 21v-6h7v6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span><span class="nav-label">Home</span></a>
-<a class="nav-button" href="/archives" style="--button-color: #7652a8; --button-color-dark: #7652a8;"><span class="nav-icon-wrap"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v14A1.5 1.5 0 0 1 18.5 21h-13A1.5 1.5 0 0 1 4 19.5z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 4v17M8 8h7M11 12h5M11 16h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="nav-label">Archives</span></a>
-<a class="nav-button" href="https://github.com/VivekH90/blog" style="--button-color: #70458f; --button-color-dark: #794b9b;"><span class="nav-icon-wrap"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .7a11.3 11.3 0 0 0-3.6 22c.6.1.8-.3.8-.6v-2.1c-3.1.7-3.8-1.3-3.8-1.3-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1 1.5-.7 1.8-1.1.1-.7.4-1.1.6-1.4-2.5-.3-5.2-1.2-5.2-5.6 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.5.1-3 0 0 .9-.3 3.1 1.1a10.7 10.7 0 0 1 5.6 0c2.2-1.4 3.1-1.1 3.1-1.1.6 1.5.2 2.7.1 3 .7.8 1.1 1.8 1.1 3 0 4.4-2.7 5.3-5.2 5.6.4.3.7.9.7 1.8v2.7c0 .3.2.7.8.6A11.3 11.3 0 0 0 12 .7Z"/></svg></span><span class="nav-label">GitHub</span></a>
-        </nav>
+  @media (max-width:560px){
+    .strip .thumb{width:140px;height:90px;}
+  }
 
-        <details class="side-mobile">
-            <summary>Contents & links</summary>
-            <div class="inner-mobile">
-                <nav class="toc" id="toc-mobile" aria-label="Table of contents"></nav>
-            </div>
-        </details>
+  /* metabar: now holds breadcrumb (left) + icons (right) */
+  .metabar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:22px;
+    background:var(--mint);border:2.5px solid var(--mint-b);border-radius:20px;padding:9px 18px;}
+  nav.crumbs{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:13px;color:var(--crumb-text);}
+  nav.crumbs a{text-decoration:none;color:var(--crumb-text);}
+  nav.crumbs a:hover{text-decoration:underline;}
+  nav.crumbs .sep{color:var(--mint-b);}
+  nav.crumbs .current{font-weight:700;color:var(--ink);}
+  .metabar .icons{display:flex;gap:8px;}
+  .metabar .icons button,.metabar .icons a{
+    width:32px;height:32px;border-radius:10px;border:2px solid var(--gray-b);background:var(--card-white);
+    display:flex;align-items:center;justify-content:center;font-size:13px;text-decoration:none;color:var(--ink);
+    cursor:pointer;padding:0;
+  }
+  .metabar .icons svg{width:16px;height:16px;}
+  .metabar .icons .moon{display:none;}
+  :root[data-theme="dark"] .metabar .icons .sun{display:none;}
+  :root[data-theme="dark"] .metabar .icons .moon{display:flex;}
 
-        <div class="layout">
-            <main class="mainbox chunk">
-                <section class="article-gallery" aria-label="Article image gallery"><figure class="gallery-item"><a href="https://images.nasa.gov/details/GSFC_20171208_Archive_e000386" target="_blank" rel="noopener noreferrer"><img src="http://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000386/GSFC_20171208_Archive_e000386~orig.jpg" alt="This computer-simulated image shows a supermassive black hole at the core of a galaxy. The black region in the center represents the black hole’s event horizon, where no light can escape the massive object’s gravitational grip. The black hole’s powerful gravity distorts space around it like a funhouse mirror. Light from background stars is stretched and smeared as the stars skim by the black hole.  Credits: NASA, ESA, and D. Coe, J. Anderson, and R. van der Marel (STScI)  More info: Astronomers have uncovered a near-record breaking supermassive black hole, weighing 17 billion suns, in an unlikely place: in the center of a galaxy in a sparsely populated area of the universe. The observations, made by NASA’s Hubble Space Telescope and the Gemini Telescope in Hawaii, may indicate that these monster objects may be more common than once thought.  Until now, the biggest supermassive black holes – those roughly 10 billion times the mass of our sun – have been found at the cores of very large galaxies in regions of the universe packed with other large galaxies. In fact, the current record holder tips the scale at 21 billion suns and resides in the crowded Coma galaxy cluster that consists of over 1,000 galaxies. More: &lt;a href=&quot;http://www.nasa.gov/feature/goddard/2016/behemoth-black-hole-found-in-an-unlikely-place&quot; rel=&quot;nofollow&quot;&gt;www.nasa.gov/feature/goddard/2016/behemoth-black-hole-fou...&lt;/a&gt;  &lt;b&gt;&lt;a href=&quot;http://www.nasa.gov/audience/formedia/features/MP_Photo_Guidelines.html&quot; rel=&quot;nofollow&quot;&gt;NASA image use policy.&lt;/a&gt;&lt;/b&gt;  &lt;b&gt;&lt;a href=&quot;http://www.nasa.gov/centers/goddard/home/index.html&quot; rel=&quot;nofollow&quot;&gt;NASA Goddard Space Flight Center&lt;/a&gt;&lt;/b&gt; enables NASA’s mission through four scientific endeavors: Earth Science, Heliophysics, Solar System Exploration, and Astrophysics. Goddard plays a leading role in NASA’s accomplishments by contributing compelling scientific knowledge to advance the Agency’s mission.  &lt;b&gt;Follow us on &lt;a href=&quot;http://twitter.com/NASAGoddardPix&quot; rel=&quot;nofollow&quot;&gt;Twitter&lt;/a&gt;&lt;/b&gt;  &lt;b&gt;Like us on &lt;a href=&quot;http://www.facebook.com/pages/Greenbelt-MD/NASA-Goddard/395013845897?ref=tsd&quot; rel=&quot;nofollow&quot;&gt;Facebook&lt;/a&gt;&lt;/b&gt;  &lt;b&gt;Find us on &lt;a href=&quot;http://instagrid.me/nasagoddard/?vm=grid&quot; rel=&quot;nofollow&quot;&gt;Instagram&lt;/a&gt;&lt;/b&gt;    " title="Behemoth Black Hole Found in an Unlikely Place" loading="lazy" referrerpolicy="no-referrer"></a><figcaption>GSFC</figcaption></figure><figure class="gallery-item"><a href="https://images.nasa.gov/details/GSFC_20171208_Archive_e000415" target="_blank" rel="noopener noreferrer"><img src="http://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000415/GSFC_20171208_Archive_e000415~orig.jpg" alt="When two black holes collide, they release massive amounts of energy in the form of gravitational waves that last a fraction of a second and can be &amp;quot;heard&amp;quot; throughout the universe - if you have the right instruments.   Today we learned that the #LIGO project heard the telltale chirp of black holes colliding, fulfilling Einstein&#x27;s General Theory of Relativity.   NASA&#x27;s LISA mission will look for direct evidence of gravitational waves. &lt;a href=&quot;http://go.nasa.gov/23ZbqoE&quot; rel=&quot;nofollow&quot;&gt;go.nasa.gov/23ZbqoE&lt;/a&gt;  This video illustrates what that collision might look like." title="Black Holes Collide" loading="lazy" referrerpolicy="no-referrer"></a><figcaption>GSFC</figcaption></figure><figure class="gallery-item"><a href="https://images.nasa.gov/details/PIA04207" target="_blank" rel="noopener noreferrer"><img src="http://images-assets.nasa.gov/image/PIA04207/PIA04207~orig.jpg" alt="This three-dimensional illustration shows how the rotating space around a black hole twists up the magnetic field in the plasma falling toward the black hole. The black sphere at the center of the figure is the black hole itself. http://photojournal.jpl.nasa.gov/catalog/PIA04207" title="Black Hole in 3-D" loading="lazy" referrerpolicy="no-referrer"></a><figcaption>NASA</figcaption></figure><figure class="gallery-item"><a href="https://images.nasa.gov/details/PIA23864" target="_blank" rel="noopener noreferrer"><img src="http://images-assets.nasa.gov/image/PIA23864/PIA23864~orig.jpg" alt="This two-panel illustration shows a black hole surrounded by a disk of gas, before and after the disk is partially dispersed. In the left panel, the ball of white light above the black hole is the black hole corona, a collection of ultra-hot gas particles that forms as gas from the disk falls into the black hole. The streak of debris falling toward the disk is what remains of a star that was torn apart by the black hole&#x27;s gravity. The right panel shows the black hole after the debris from the star has dispersed some of the gas in the disk, causing the corona to disappear.  https://photojournal.jpl.nasa.gov/catalog/PIA23864" title="Black Hole Corona&#x27;s Disappearing Act (Illustration)" loading="lazy" referrerpolicy="no-referrer"></a><figcaption>JPL</figcaption></figure><figure class="gallery-item"><a href="https://images.nasa.gov/details/PIA16697" target="_blank" rel="noopener noreferrer"><img src="http://images-assets.nasa.gov/image/PIA16697/PIA16697~orig.jpg" alt="Scientists measure the spin rates of supermassive black holes by spreading the X-ray light into different colors. The light comes from accretion disks that swirl around black holes, as shown in both of the artist concepts." title="Two Models of Black Hole Spin Artist Concept" loading="lazy" referrerpolicy="no-referrer"></a><figcaption>JPL</figcaption></figure><figure class="gallery-item"><a href="https://images.nasa.gov/details/PIA14803" target="_blank" rel="noopener noreferrer"><img src="http://images-assets.nasa.gov/image/PIA14803/PIA14803~orig.jpg" alt="Black Holes in Caloris" title="Black Holes in Caloris" loading="lazy" referrerpolicy="no-referrer"></a><figcaption>JPL</figcaption></figure><figure class="gallery-item"><a href="https://images.nasa.gov/details/GSFC_20171208_Archive_e000149" target="_blank" rel="noopener noreferrer"><img src="http://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000149/GSFC_20171208_Archive_e000149~orig.jpg" alt="The beautiful spiral galaxy visible in the center of the image is known as RX J1140.1+0307, a galaxy in the Virgo constellation imaged by the NASA/ESA Hubble Space Telescope, and it presents an interesting puzzle. At first glance, this galaxy appears to be a normal spiral galaxy, much like the Milky Way, but first appearances can be deceptive!  The Milky Way galaxy, like most large galaxies, has a supermassive black hole at its center, but some galaxies are centered on lighter, intermediate-mass black holes. RX J1140.1+0307 is such a galaxy — in fact, it is centered on one of the lowest black hole masses known in any luminous galactic core. What puzzles scientists about this particular galaxy is that the calculations don’t add up. With such a relatively low mass for the central black hole, models for the emission from the object cannot explain the observed spectrum. There must be other mechanisms at play in the interactions between the inner and outer parts of the accretion disk surrounding the black hole.   Credit: ESA/Hubble &amp;amp; NASA, Acknowledgement: Judy Schmidt  &lt;b&gt;&lt;a href=&quot;http://www.nasa.gov/audience/formedia/features/MP_Photo_Guidelines.html&quot; rel=&quot;nofollow&quot;&gt;NASA image use policy.&lt;/a&gt;&lt;/b&gt;  &lt;b&gt;&lt;a href=&quot;http://www.nasa.gov/centers/goddard/home/index.html&quot; rel=&quot;nofollow&quot;&gt;NASA Goddard Space Flight Center&lt;/a&gt;&lt;/b&gt; enables NASA’s mission through four scientific endeavors: Earth Science, Heliophysics, Solar System Exploration, and Astrophysics. Goddard plays a leading role in NASA’s accomplishments by contributing compelling scientific knowledge to advance the Agency’s mission.  &lt;b&gt;Follow us on &lt;a href=&quot;http://twitter.com/NASAGoddardPix&quot; rel=&quot;nofollow&quot;&gt;Twitter&lt;/a&gt;&lt;/b&gt;  &lt;b&gt;Like us on &lt;a href=&quot;http://www.facebook.com/pages/Greenbelt-MD/NASA-Goddard/395013845897?ref=tsd&quot; rel=&quot;nofollow&quot;&gt;Facebook&lt;/a&gt;&lt;/b&gt;  &lt;b&gt;Find us on &lt;a href=&quot;http://instagrid.me/nasagoddard/?vm=grid&quot; rel=&quot;nofollow&quot;&gt;Instagram&lt;/a&gt;&lt;/b&gt;    " title="Hubble Gazes Into a Black Hole of Puzzling Light" loading="lazy" referrerpolicy="no-referrer"></a><figcaption>GSFC</figcaption></figure></section>
-                <div class="article-breadcrumb" aria-label="Breadcrumb"><div class="breadcrumb-trail"><a class="breadcrumb-home" href="/" aria-label="Home"><svg class="breadcrumb-home-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.8 12 3l9 7.8v9.2a1 1 0 0 1-1 1h-5.5v-6h-5v6H4a1 1 0 0 1-1-1z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.5 21v-6h7v6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></a><span class="breadcrumb-separator" aria-hidden="true">›</span><span class="breadcrumb-text">Physics</span><span class="breadcrumb-separator" aria-hidden="true">›</span><span class="breadcrumb-current">Electromagnetic Lagrangian</span></div></div>
-                <div class="art-head">
-                    <h1 class="title">Electromagnetic Lagrangian</h1>
-                    <div class="article-meta">
-                        <strong>Author</strong>
-                    </div>
-                    <div class="article-tags" aria-label="Tags"><span class="article-tag">Electromagnetism</span>
-<span class="article-tag">Classical Field Theory</span>
-<span class="article-tag">Lagrangian Mechanics</span></div>
-                </div>
+  /* layout */
+  .layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:26px;align-items:start;}
 
-                <article class="reading" id="article">
-                    <section class="article-section" id="lagrange-s-equation-for-a-single-variable">
-<h2><span class="section-number"><span class="section-symbol">§</span> 1</span><span class="section-heading-text">Lagrange&#x27;s equation for a single variable</span></h2>
-<div class="math-environment axiom" id="least-action"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Axiom</span> <span class="environment-number">1</span></span> <span class="environment-title">(Principle of Least Action)</span></div><div class="environment-content"><p>The physical trajectory of a system between two fixed endpoints is the path for which the action is stationary,</p>
+  .outerbox{background:var(--mint);border:3px solid var(--mint-b);border-radius:16px;padding:16px;}
+  .outerbox > h2.section-title{margin:2px 0 14px 4px;font-size:1.28rem;font-weight:800;color:var(--def-text);}
+  .innerbox{background:var(--gray);border:2.5px solid var(--gray-b);border-radius:12px;padding:24px 28px 32px;}
+
+  h1.title{font-size:clamp(1.8rem,3.6vw,2.5rem);line-height:1.16;font-weight:800;margin:0 0 14px;max-width:22ch;}
+  .article-meta{display:flex;flex-wrap:wrap;gap:14px;align-items:center;font-size:13.5px;color:var(--sub);}
+  .author b{color:var(--ink);font-weight:600;}
+  .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;}
+  .tags span{font-size:12px;padding:4px 11px;border-radius:9px;font-weight:600;}
+  .tags span:nth-child(1){background:var(--coral);border:2px solid var(--coral-b);color:var(--theorem-text);}
+  .tags span:nth-child(2){background:var(--cyan);border:2px solid var(--cyan-b);color:var(--def-text);}
+  .tags span:nth-child(3){background:var(--yellow);border:2px solid var(--yellow-b);color:var(--axiom-text);}
+
+  article.reading{font-size:1.06rem;line-height:1.77;max-width:70ch;color:var(--article-text);margin-top:18px;}
+  article.reading .lede{font-size:1.15rem;}
+  article.reading h2{font-size:1.42rem;font-weight:700;margin:44px 0 12px;scroll-margin-top:24px;display:flex;gap:11px;align-items:center;color:var(--ink);}
+  article.reading h2 .num{
+    font-size:13px;font-weight:700;color:var(--theorem-text);background:var(--coral);border:2px solid var(--coral-b);
+    width:28px;height:28px;border-radius:9px;flex:none;display:flex;align-items:center;justify-content:center;
+  }
+  article.reading h3{font-size:1.1rem;font-weight:700;margin:28px 0 8px;scroll-margin-top:24px;color:var(--ink);}
+  article.reading h3 .num{color:var(--cyan-b);margin-right:6px;}
+  article.reading p{margin:0 0 19px;}
+  article.reading a.xlink{color:var(--xlink);text-decoration:none;border-bottom:2px solid var(--xlink-b);}
+  article.reading a.xlink:hover{background:var(--lav);}
+
+  figure.diagram{margin:28px 0;padding:20px;background:var(--card-white);border:2.5px solid var(--gray-b);border-radius:14px;text-align:center;}
+  figure.diagram svg{max-width:300px;margin:0 auto;display:block;}
+  figcaption{font-size:12.5px;color:var(--sub);margin-top:10px;}
+
+  .box{margin:24px 0;padding:18px 22px;border-radius:14px;border:2.5px solid var(--b);background:var(--bg);}
+  .box .label{font-weight:700;font-size:14px;margin-bottom:7px;}
+  .box p{margin:0;}
+  .box.definition{--bg:var(--cyan);--b:var(--cyan-b);color:var(--def-text);}
+  .box.definition .label{color:var(--def-text);}
+  .box.axiom{--bg:var(--yellow);--b:var(--yellow-b);color:var(--axiom-text);}
+  .box.axiom .label{color:var(--axiom-text);}
+  .box.theorem,.box.proposition{--bg:var(--coral);--b:var(--coral-b);color:var(--theorem-text);}
+  .box.theorem .label,.box.proposition .label{color:var(--theorem-text);}
+  .box.proof{--bg:var(--card-white);--b:var(--gray-b);color:var(--article-text);}
+  .box.proof .label{font-style:italic;font-weight:600;color:var(--sub);}
+  .qed{float:right;color:var(--coral-b);font-weight:700;}
+
+  ol.refs{padding-left:1.2em;font-size:0.95rem;color:var(--article-text);}
+  ol.refs li{margin-bottom:9px;}
+
+  /* sidebar */
+  aside.rail{position:sticky;top:20px;}
+  .rail-card{border-radius:16px;padding:18px 20px;margin-bottom:22px;}
+  .rail-card.toc-card{background:var(--lav);border:3px solid var(--lav-b);}
+  .rail-card h4{margin:0 0 12px;font-size:12.5px;color:var(--nav-brand-sub);font-weight:700;letter-spacing:.01em;}
+  nav.toc ul{list-style:none;margin:0;padding:0;}
+  nav.toc li a{display:block;padding:5px 0;font-size:13px;text-decoration:none;color:var(--ink);}
+  nav.toc li.sub a{padding-left:15px;font-size:12px;color:var(--sub);}
+  nav.toc li a.active{color:var(--theorem-text);font-weight:700;}
+
+  .rail-card.related-card{background:var(--cyan);border:2.5px solid var(--cyan-b);}
+  .related-card ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px;}
+  .related-card li{background:var(--card-white);border-radius:11px;padding:11px 13px;border:2px solid var(--cyan-b);}
+  .related-card a{text-decoration:none;font-size:13px;font-weight:700;line-height:1.4;display:block;color:var(--related-text);}
+  .related-card a:hover{color:var(--related-hover);}
+  .related-card .cat{display:block;font-size:10.5px;color:var(--related-cat);font-weight:400;margin-top:3px;}
+
+  details.side-mobile{display:none;}
+
+  @media (max-width:980px){
+    .layout{grid-template-columns:1fr;}
+    aside.rail{display:none;}
+    details.side-mobile{display:block;margin:0 0 22px;background:var(--lav);border:3px solid var(--lav-b);
+      border-radius:16px;padding:14px 18px;}
+    details.side-mobile summary{cursor:pointer;font-weight:700;font-size:14px;}
+    details.side-mobile .inner-mobile{margin-top:12px;}
+  }
+  @media (max-width:560px){article.reading{font-size:1rem;} .strip .thumb{width:52px;height:44px;}}
+
+  footer{margin-top:24px;padding:14px 2px;font-size:12.5px;color:var(--sub);}
+  :focus-visible{outline:2px solid var(--lav-b);outline-offset:2px;}</style></head><body><div class="page"><div class="navbox"><div class="brand"><b>Author</b><span>notes on mathematics &amp; physics</span></div><nav><ul><li><a href="/">Home</a></li><li><a href="/archives">Archives</a></li><li><a href="https://github.com/VivekH90/blog">GitHub</a></li></ul></nav></div><div class="strip" id="nasa-gallery" aria-label="Article image gallery"><button class="thumb" type="button" data-full="http://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000386/GSFC_20171208_Archive_e000386~orig.jpg" data-title="Behemoth Black Hole Found in an Unlikely Place" data-caption="Behemoth Black Hole Found in an Unlikely Place" aria-label="Open Behemoth Black Hole Found in an Unlikely Place"><img src="http://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000386/GSFC_20171208_Archive_e000386~orig.jpg" alt="This computer-simulated image shows a supermassive black hole at the core of a galaxy. The black region in the center represents the black hole’s event horizon, where no light can escape the massive object’s gravitational grip. The black hole’s powerful gravity distorts space around it like a funhouse mirror. Light from background stars is stretched and smeared as the stars skim by the black hole.  Credits: NASA, ESA, and D. Coe, J. Anderson, and R. van der Marel (STScI)  More info: Astronomers have uncovered a near-record breaking supermassive black hole, weighing 17 billion suns, in an unlikely place: in the center of a galaxy in a sparsely populated area of the universe. The observations, made by NASA’s Hubble Space Telescope and the Gemini Telescope in Hawaii, may indicate that these monster objects may be more common than once thought.  Until now, the biggest supermassive black holes – those roughly 10 billion times the mass of our sun – have been found at the cores of very large galaxies in regions of the universe packed with other large galaxies. In fact, the current record holder tips the scale at 21 billion suns and resides in the crowded Coma galaxy cluster that consists of over 1,000 galaxies. More: &lt;a href=&quot;http://www.nasa.gov/feature/goddard/2016/behemoth-black-hole-found-in-an-unlikely-place&quot; rel=&quot;nofollow&quot;&gt;www.nasa.gov/feature/goddard/2016/behemoth-black-hole-fou...&lt;/a&gt;  &lt;b&gt;&lt;a href=&quot;http://www.nasa.gov/audience/formedia/features/MP_Photo_Guidelines.html&quot; rel=&quot;nofollow&quot;&gt;NASA image use policy.&lt;/a&gt;&lt;/b&gt;  &lt;b&gt;&lt;a href=&quot;http://www.nasa.gov/centers/goddard/home/index.html&quot; rel=&quot;nofollow&quot;&gt;NASA Goddard Space Flight Center&lt;/a&gt;&lt;/b&gt; enables NASA’s mission through four scientific endeavors: Earth Science, Heliophysics, Solar System Exploration, and Astrophysics. Goddard plays a leading role in NASA’s accomplishments by contributing compelling scientific knowledge to advance the Agency’s mission.  &lt;b&gt;Follow us on &lt;a href=&quot;http://twitter.com/NASAGoddardPix&quot; rel=&quot;nofollow&quot;&gt;Twitter&lt;/a&gt;&lt;/b&gt;  &lt;b&gt;Like us on &lt;a href=&quot;http://www.facebook.com/pages/Greenbelt-MD/NASA-Goddard/395013845897?ref=tsd&quot; rel=&quot;nofollow&quot;&gt;Facebook&lt;/a&gt;&lt;/b&gt;  &lt;b&gt;Find us on &lt;a href=&quot;http://instagrid.me/nasagoddard/?vm=grid&quot; rel=&quot;nofollow&quot;&gt;Instagram&lt;/a&gt;&lt;/b&gt;    " loading="lazy" referrerpolicy="no-referrer"></button><button class="thumb" type="button" data-full="http://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000415/GSFC_20171208_Archive_e000415~orig.jpg" data-title="Black Holes Collide" data-caption="Black Holes Collide" aria-label="Open Black Holes Collide"><img src="http://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000415/GSFC_20171208_Archive_e000415~orig.jpg" alt="When two black holes collide, they release massive amounts of energy in the form of gravitational waves that last a fraction of a second and can be &amp;quot;heard&amp;quot; throughout the universe - if you have the right instruments.   Today we learned that the #LIGO project heard the telltale chirp of black holes colliding, fulfilling Einstein&#x27;s General Theory of Relativity.   NASA&#x27;s LISA mission will look for direct evidence of gravitational waves. &lt;a href=&quot;http://go.nasa.gov/23ZbqoE&quot; rel=&quot;nofollow&quot;&gt;go.nasa.gov/23ZbqoE&lt;/a&gt;  This video illustrates what that collision might look like." loading="lazy" referrerpolicy="no-referrer"></button><button class="thumb" type="button" data-full="http://images-assets.nasa.gov/image/PIA04207/PIA04207~orig.jpg" data-title="Black Hole in 3-D" data-caption="Black Hole in 3-D" aria-label="Open Black Hole in 3-D"><img src="http://images-assets.nasa.gov/image/PIA04207/PIA04207~orig.jpg" alt="This three-dimensional illustration shows how the rotating space around a black hole twists up the magnetic field in the plasma falling toward the black hole. The black sphere at the center of the figure is the black hole itself. http://photojournal.jpl.nasa.gov/catalog/PIA04207" loading="lazy" referrerpolicy="no-referrer"></button><button class="thumb" type="button" data-full="http://images-assets.nasa.gov/image/PIA23864/PIA23864~orig.jpg" data-title="Black Hole Corona&#x27;s Disappearing Act (Illustration)" data-caption="Black Hole Corona&#x27;s Disappearing Act (Illustration)" aria-label="Open Black Hole Corona&#x27;s Disappearing Act (Illustration)"><img src="http://images-assets.nasa.gov/image/PIA23864/PIA23864~orig.jpg" alt="This two-panel illustration shows a black hole surrounded by a disk of gas, before and after the disk is partially dispersed. In the left panel, the ball of white light above the black hole is the black hole corona, a collection of ultra-hot gas particles that forms as gas from the disk falls into the black hole. The streak of debris falling toward the disk is what remains of a star that was torn apart by the black hole&#x27;s gravity. The right panel shows the black hole after the debris from the star has dispersed some of the gas in the disk, causing the corona to disappear.  https://photojournal.jpl.nasa.gov/catalog/PIA23864" loading="lazy" referrerpolicy="no-referrer"></button><button class="thumb" type="button" data-full="http://images-assets.nasa.gov/image/PIA16697/PIA16697~orig.jpg" data-title="Two Models of Black Hole Spin Artist Concept" data-caption="Two Models of Black Hole Spin Artist Concept" aria-label="Open Two Models of Black Hole Spin Artist Concept"><img src="http://images-assets.nasa.gov/image/PIA16697/PIA16697~orig.jpg" alt="Scientists measure the spin rates of supermassive black holes by spreading the X-ray light into different colors. The light comes from accretion disks that swirl around black holes, as shown in both of the artist concepts." loading="lazy" referrerpolicy="no-referrer"></button><button class="thumb" type="button" data-full="http://images-assets.nasa.gov/image/PIA14803/PIA14803~orig.jpg" data-title="Black Holes in Caloris" data-caption="Black Holes in Caloris" aria-label="Open Black Holes in Caloris"><img src="http://images-assets.nasa.gov/image/PIA14803/PIA14803~orig.jpg" alt="Black Holes in Caloris" loading="lazy" referrerpolicy="no-referrer"></button><button class="thumb" type="button" data-full="http://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000149/GSFC_20171208_Archive_e000149~orig.jpg" data-title="Hubble Gazes Into a Black Hole of Puzzling Light" data-caption="Hubble Gazes Into a Black Hole of Puzzling Light" aria-label="Open Hubble Gazes Into a Black Hole of Puzzling Light"><img src="http://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000149/GSFC_20171208_Archive_e000149~orig.jpg" alt="The beautiful spiral galaxy visible in the center of the image is known as RX J1140.1+0307, a galaxy in the Virgo constellation imaged by the NASA/ESA Hubble Space Telescope, and it presents an interesting puzzle. At first glance, this galaxy appears to be a normal spiral galaxy, much like the Milky Way, but first appearances can be deceptive!  The Milky Way galaxy, like most large galaxies, has a supermassive black hole at its center, but some galaxies are centered on lighter, intermediate-mass black holes. RX J1140.1+0307 is such a galaxy — in fact, it is centered on one of the lowest black hole masses known in any luminous galactic core. What puzzles scientists about this particular galaxy is that the calculations don’t add up. With such a relatively low mass for the central black hole, models for the emission from the object cannot explain the observed spectrum. There must be other mechanisms at play in the interactions between the inner and outer parts of the accretion disk surrounding the black hole.   Credit: ESA/Hubble &amp;amp; NASA, Acknowledgement: Judy Schmidt  &lt;b&gt;&lt;a href=&quot;http://www.nasa.gov/audience/formedia/features/MP_Photo_Guidelines.html&quot; rel=&quot;nofollow&quot;&gt;NASA image use policy.&lt;/a&gt;&lt;/b&gt;  &lt;b&gt;&lt;a href=&quot;http://www.nasa.gov/centers/goddard/home/index.html&quot; rel=&quot;nofollow&quot;&gt;NASA Goddard Space Flight Center&lt;/a&gt;&lt;/b&gt; enables NASA’s mission through four scientific endeavors: Earth Science, Heliophysics, Solar System Exploration, and Astrophysics. Goddard plays a leading role in NASA’s accomplishments by contributing compelling scientific knowledge to advance the Agency’s mission.  &lt;b&gt;Follow us on &lt;a href=&quot;http://twitter.com/NASAGoddardPix&quot; rel=&quot;nofollow&quot;&gt;Twitter&lt;/a&gt;&lt;/b&gt;  &lt;b&gt;Like us on &lt;a href=&quot;http://www.facebook.com/pages/Greenbelt-MD/NASA-Goddard/395013845897?ref=tsd&quot; rel=&quot;nofollow&quot;&gt;Facebook&lt;/a&gt;&lt;/b&gt;  &lt;b&gt;Find us on &lt;a href=&quot;http://instagrid.me/nasagoddard/?vm=grid&quot; rel=&quot;nofollow&quot;&gt;Instagram&lt;/a&gt;&lt;/b&gt;    " loading="lazy" referrerpolicy="no-referrer"></button></div><div class="gallery-lightbox" id="gallery-lightbox" role="dialog" aria-modal="true" aria-label="Image viewer"><div class="gallery-dialog"><button class="gallery-close" id="gallery-close" type="button" aria-label="Close image">×</button><img id="gallery-large" alt=""><div class="gallery-caption" id="gallery-caption"></div></div></div><div class="metabar"><nav class="crumbs"><a href="/">Home</a><span class="sep">›</span><a href="#">Physics</a><span class="sep">›</span><span class="current">Electromagnetic Lagrangian</span></nav><div class="icons"><a href="/" aria-label="Home">⌂</a><a href="https://github.com/VivekH90/blog" aria-label="GitHub">GH</a><button class="theme-toggle" type="button" aria-label="Toggle dark mode">◐</button></div></div><details class="side-mobile"><summary>Contents &amp; related</summary><div class="inner-mobile"><nav class="toc" id="toc-mobile"></nav></div></details><div class="layout"><div class="outerbox"><h2 class="section-title">Reading — Physics</h2><div class="innerbox"><h1 class="title">Electromagnetic Lagrangian</h1><div class="article-meta"><div class="author"><b>Author</b></div></div><div class="tags"><span>Electromagnetism</span><span>Classical Field Theory</span><span>Lagrangian Mechanics</span></div><article class="reading" id="article">
+                    <section class="article-section" id="lagrange-s-equation-for-a-single-variable"><h2><span class="num">1</span>Lagrange&#x27;s equation for a single variable</h2>
+<div class="box axiom" id="least-action"><div class="label">Axiom 1 — Principle of Least Action</div><p>The physical trajectory of a system between two fixed endpoints is the path for which the action is stationary,</p>
 <div class="math-display">\[\delta S = 0.\]</div>
 <p>where the action is defined by</p>
 <div class="math-display">\[S[q] = \int_{t_1}^{t_2} L(q,\dot q,t)\,dt.\]</div>
@@ -85,10 +287,10 @@
 -
 \frac{\partial L}{\partial q}
 =0.\]</div></div></div>
-<figure class="article-image" id="least action">
-<img src="input/least-action.png" alt="least-action" loading="lazy" style="width: 60%">
+<figure class="diagram" id="least action">
+<img src="input/least-action.png" alt="least-action" loading="lazy" style="max-width:60%;height:auto;">
 </figure>
-<div class="proof-environment"><div class="proof-heading">Proof</div><div class="proof-content"><p>Under the variation</p>
+<div class="box proof"><div class="label">Proof</div><div class="proof-content"><p>Under the variation</p>
 <div class="math-display">\[q(t)\rightarrow q(t)+\delta q(t),\]</div>
 <p>the action changes by</p>
 <div class="math-display">\[\delta S
@@ -146,11 +348,10 @@
 \right)
 -
 \frac{\partial L}{\partial q}
-=0.\]</div></div><div class="proof-qed" aria-label="Q.E.D.">□</div></div>
+=0.\]</div></div><div class="qed">□</div></div>
 </section>
-<section class="article-section" id="lagrange-s-equation-for-multiple-variables">
-<h2><span class="section-number"><span class="section-symbol">§</span> 2</span><span class="section-heading-text">Lagrange&#x27;s equation for multiple variables</span></h2>
-<div class="math-environment theorem" id="theorem-label"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Theorem</span> <span class="environment-number">1</span></span> <span class="environment-title">(Theorem Title)</span></div><div class="environment-content"><p>The single-variable Euler-Lagrange equation can be extended naturally when the Lagrangian depends on several independent dynamical variables. Consider two <strong>independent fields</strong> \(u(x,y)\) and \(v(x,y)\), with the action</p>
+<section class="article-section" id="lagrange-s-equation-for-multiple-variables"><h2><span class="num">2</span>Lagrange&#x27;s equation for multiple variables</h2>
+<div class="box theorem" id="theorem-label"><div class="label">Theorem 1 — Theorem Title</div><p>The single-variable Euler-Lagrange equation can be extended naturally when the Lagrangian depends on several independent dynamical variables. Consider two <strong>independent fields</strong> \(u(x,y)\) and \(v(x,y)\), with the action</p>
 <div class="math-display">\[S[u,v]
 =
 \int_G
@@ -164,7 +365,7 @@ v_x=\frac{\partial v}{\partial x},
 \qquad
 v_y=\frac{\partial v}{\partial y}.\]</div>
 <p>and the <strong>Euler-Lagrange</strong> equation are given by:</p></div></div>
-<div class="proof-environment"><div class="proof-heading">Proof</div><div class="proof-content"><p>Consider the variations</p>
+<div class="box proof"><div class="label">Proof</div><div class="proof-content"><p>Consider the variations</p>
 <div class="math-display">\[u\rightarrow u+\delta u,
 \qquad
 v\rightarrow v+\delta v.\]</div>
@@ -243,10 +444,10 @@ v\rightarrow v+\delta v.\]</div>
 \frac{\partial L}{\partial v_y}
 \right)
 =0.\]</div>
-<p>Thus, <strong>each independent field contributes its own Euler-Lagrange equation</strong>. This is the key step toward electromagnetism: the electromagnetic potential will be treated as a collection of field components, each of which is varied independently.</p></div><div class="proof-qed" aria-label="Q.E.D.">□</div></div>
+<p>Thus, <strong>each independent field contributes its own Euler-Lagrange equation</strong>. This is the key step toward electromagnetism: the electromagnetic potential will be treated as a collection of field components, each of which is varied independently.</p></div><div class="qed">□</div></div>
 <section class="article-subsection" id="the-4-vector-generalization">
 <h3>2.1. The 4-vector generalization</h3>
-<div class="math-environment corollary"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Corollary</span> <span class="environment-number">1</span></span> <span class="environment-title">(4-vector generalization)</span></div><div class="environment-content"><p>Let the dynamical field be a vector \(a^\mu(x)\), with spacetime coordinates \(x^\nu\). Consider the action (note that Einstein-convention is implied everywhere)</p>
+<div class="box corollary"><div class="label">Corollary 1 — 4-vector generalization</div><p>Let the dynamical field be a vector \(a^\mu(x)\), with spacetime coordinates \(x^\nu\). Consider the action (note that Einstein-convention is implied everywhere)</p>
 <div class="math-display">\[S[a]
 =
 \int_G
@@ -259,7 +460,7 @@ L\left(a^\mu,\partial_\nu a^\mu,x\right)\,d^4x.\]</div>
 \frac{\partial L}{\partial(\partial_\nu a^\mu)}
 \right)
 =0.\]</div></div></div>
-<div class="proof-environment"><div class="proof-heading">Proof</div><div class="proof-content"><p>We vary the vector field according to</p>
+<div class="box proof"><div class="label">Proof</div><div class="proof-content"><p>We vary the vector field according to</p>
 <div class="math-display">\[a^\mu\rightarrow a^\mu+\delta a^\mu.\]</div>
 <p>The variation of the action is therefore</p>
 <div class="math-display">\[\delta S
@@ -320,12 +521,11 @@ L\left(a^\mu,\partial_\nu a^\mu,x\right)\,d^4x.\]</div>
 \frac{\partial L}{\partial(\partial_\nu a^\mu)}
 \right)
 =0.\]</div>
-<p>This is the <strong>vector-field generalization</strong> of the Euler-Lagrange equation. It is simply the several-field equation written compactly, with the component label \(\mu\).</p></div><div class="proof-qed" aria-label="Q.E.D.">□</div></div>
+<p>This is the <strong>vector-field generalization</strong> of the Euler-Lagrange equation. It is simply the several-field equation written compactly, with the component label \(\mu\).</p></div><div class="qed">□</div></div>
 </section>
 </section>
-<section class="article-section" id="maxwell-s-equations">
-<h2><span class="section-number"><span class="section-symbol">§</span> 3</span><span class="section-heading-text">Maxwell&#x27;s equations</span></h2>
-<div class="math-environment axiom" id="maxwell-equations-axiom"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Axiom</span> <span class="environment-number">2</span></span> <span class="environment-title">(Maxwell&#x27;s equations)</span></div><div class="environment-content"><p>The electromagnetic fields are governed by the four Maxwell equations:</p>
+<section class="article-section" id="maxwell-s-equations"><h2><span class="num">3</span>Maxwell&#x27;s equations</h2>
+<div class="box axiom" id="maxwell-equations-axiom"><div class="label">Axiom 2 — Maxwell&#x27;s equations</div><p>The electromagnetic fields are governed by the four Maxwell equations:</p>
 <div class="math-display">\[\nabla\cdot\mathbf E
 =
 \frac{\rho}{\varepsilon_0}.\]</div>
@@ -339,7 +539,7 @@ L\left(a^\mu,\partial_\nu a^\mu,x\right)\,d^4x.\]</div>
 \mu_0\varepsilon_0
 \frac{\partial \mathbf E}{\partial t}.\]</div></div></div>
 <div class="text-environment"><p class="mark-text">These four equations, together with the appropriate charge and current distributions \(\rho\) and \(\mathbf J\), completely specify the dynamics of the electric and magnetic fields. They are empirical laws: their form is based on experimental observations and on the laws established by Gauss, Faraday, Ampère, and others. Maxwell unified these results into a single system and introduced the displacement-current term in the fourth equation.</p></div>
-<div class="math-environment definition" id="potential-fields"><div class="environment-heading"><span class="environment-label"><span class="environment-kind">Definition</span> <span class="environment-number">1</span></span> <span class="environment-title">(Electric and magnetic fields from the potentials)</span></div><div class="environment-content"><div class="math-display">\[\mathbf E
+<div class="box definition" id="potential-fields"><div class="label">Definition 1 — Electric and magnetic fields from the potentials</div><div class="math-display">\[\mathbf E
 =
 -\nabla\phi
 -
@@ -472,36 +672,4 @@ A^3=A_z,\]</div>
 <div class="text-environment"><p class="mark-text">Hence both electromagnetic fields are contained in the derivatives of the potential four-vector: the electric field comes from the time-space components of \(F^{\mu\nu}\), while the magnetic field comes from its purely spatial components. The four-potential is not unique: a gauge transformation \(A^\mu\rightarrow A^\mu+\partial^\mu\Lambda\) leaves \(\mathbf E\) and \(\mathbf B\) unchanged.</p></div>
 </section>
 </section>
-                </article>
-            </main>
-
-            <aside class="rail" aria-label="Article information">
-                <div class="rail-box toc chunk">
-                    <h4>Contents</h4>
-                    <nav class="toc" id="toc-desktop" aria-label="Table of contents"></nav>
-                </div>
-
-                <div class="rail-box topics chunk">
-                    <h4>Topics</h4>
-                    <ul>
-                        <li><a href="#">Physics</a></li>
-                        <li><a href="#">Math</a></li>
-                        <li><a href="#">Notes</a></li>
-                    </ul>
-                </div>
-
-                <div class="rail-box related chunk">
-                    <h4>Related</h4>
-                    <ul>
-                        
-                    </ul>
-                </div>
-            </aside>
-        </div>
-
-        <footer>© 2026 Author — set in Latin Modern Sans. Best viewed with curiosity.</footer>
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
+                </article></div></div><aside class="rail"><div class="rail-card toc-card"><h4>Contents</h4><nav class="toc" id="toc-desktop"></nav></div><div class="rail-card related-card"><h4>Related</h4><ul></ul></div></aside></div><footer>© 2026 Author — set in Latin Modern Sans.</footer></div><script src="script.js"></script></body></html>
