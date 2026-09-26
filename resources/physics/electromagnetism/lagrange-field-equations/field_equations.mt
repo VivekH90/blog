@@ -136,6 +136,8 @@ Hence the @bold{Euler-Lagrange equation} is
 =0.
 \]
 
+@end(proof)
+
 @section{Lagrange's equation for multiple variables, label = multiple-variables}
 
 @begin(theorem = Theorem Title, label = theorem-label)
