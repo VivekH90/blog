@@ -9,16 +9,263 @@ window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],tags
 (function(){try{var s=localStorage.getItem('theme');var t=s||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');if(t==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}})();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" defer></script>
-<link rel="stylesheet" href="style.css">
+<style>
+  :root{
+    --ink:#221F2C; --sub:#6B6353;
+    --lav:#D8C4F5; --lav-b:#6B3FA8;
+    --peach:#F5C2A8; --peach-b:#9E2A16;
+    --mint:#B9DEE5; --mint-b:#0A5A63;
+    --cyan:#B8E3DE; --cyan-b:#1E6E69;
+    --yellow:#F5DE8A; --yellow-b:#A87A0A;
+    --coral:#F5C4B0; --coral-b:#A8451C;
+    --gray:#F2E9D8; --gray-b:#7A6438;
+    --body-bg:#FFFDF6; --dots:#E4D8BD;
+    --card-white:#fff;
+    --def-text:#0A3E3A; --axiom-text:#4E3705; --theorem-text:#5C1B08;
+    --xlink:#4A2A82; --xlink-b:#B79AE0;
+    --crumb-text:#5A1608;
+    --article-text:#2B2730;
+    --nav-brand-sub:#3A2E52;
+    --related-text:#0A3E3A; --related-hover:#062A27; --related-cat:#3A6E68;
+    box-sizing:border-box;
+  }
+  :root[data-theme="dark"]{
+    --ink:#F0EAD9; --sub:#B8AE97;
+    --lav:#3A2A5C; --lav-b:#B090E6;
+    --peach:#4A2416; --peach-b:#F0916A;
+    --mint:#0F3A3E; --mint-b:#6FE0D6;
+    --cyan:#123B38; --cyan-b:#6FD8CE;
+    --yellow:#4A3A0A; --yellow-b:#F0C94A;
+    --coral:#4A2214; --coral-b:#F0916A;
+    --gray:#2A2419; --gray-b:#C9AD6E;
+    --body-bg:#171512; --dots:#2E2A22;
+    --card-white:#211D16;
+    --def-text:#B7EDE6; --axiom-text:#F0DE9E; --theorem-text:#F5C5AE;
+    --xlink:#D8C4F5; --xlink-b:#6B3FA8;
+    --crumb-text:#F0C0A2;
+    --article-text:#EDE6D4;
+    --nav-brand-sub:#D8C4F5;
+    --related-text:#B7EDE6; --related-hover:#EAFBF8; --related-cat:#7FC4BC;
+  }
+  *,*::before,*::after{box-sizing:inherit;}
+  body{
+    margin:0;color:var(--ink);
+    background:var(--body-bg) radial-gradient(var(--dots) 1.4px, transparent 1.4px);
+    background-size:20px 20px;
+    font-family:"Latin Modern Sans","Computer Modern Sans Serif","Computer Modern Sans",sans-serif;
+    -webkit-font-smoothing:antialiased;
+    transition:background-color .2s,color .2s;
+  }
+  a{color:inherit;}
+  .page{max-width:1220px;margin:0 auto;padding:20px 4vw 60px;}
+
+  /* nav box */
+  .navbox{
+    background:var(--lav);border:3px solid var(--lav-b);border-radius:18px;
+    padding:14px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+    margin-bottom:16px;
+  }
+  .brand{display:flex;align-items:baseline;gap:10px;}
+  .brand b{font-size:16.5px;}
+  .navbox nav ul{list-style:none;display:flex;gap:8px;margin:0;padding:0;flex-wrap:wrap;}
+  .navbox nav a{
+    text-decoration:none;font-size:13.5px;font-weight:600;padding:7px 14px;border-radius:10px;
+    background:var(--card-white);border:2px solid var(--lav-b);color:var(--ink);
+  }
+  .navbox nav a:hover{background:var(--cyan);}
+
+  /* NASA image gallery */
+  .strip{
+    background:var(--peach);
+    border:3px solid var(--peach-b);
+    border-radius:16px;
+    padding:10px;
+    margin-bottom:16px;
+    display:flex;
+    gap:10px;
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scrollbar-width:thin;
+    scrollbar-color:var(--peach-b) transparent;
+  }
+  .strip::-webkit-scrollbar{height:8px;}
+  .strip::-webkit-scrollbar-track{background:transparent;}
+  .strip::-webkit-scrollbar-thumb{background:var(--peach-b);border-radius:999px;}
+  .strip .thumb{
+    position:relative;
+    width:170px;
+    height:105px;
+    background:var(--card-white);
+    border:2px solid var(--peach-b);
+    border-radius:10px;
+    display:block;
+    overflow:hidden;
+    flex:0 0 auto;
+    padding:0;
+    cursor:pointer;
+    transition:transform .16s ease,box-shadow .16s ease;
+  }
+  .strip .thumb:hover{
+    transform:translateY(-2px);
+    box-shadow:0 6px 14px rgba(0,0,0,.14);
+  }
+  .strip .thumb img{
+    display:block;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+  .strip .thumb::after{
+    content:"";
+    position:absolute;
+    inset:auto 0 0 0;
+    height:34%;
+    background:linear-gradient(transparent,rgba(0,0,0,.34));
+    pointer-events:none;
+  }
+  .gallery-status{
+    padding:10px 14px;
+    color:var(--sub);
+    font-size:12.5px;
+    flex:0 0 auto;
+  }
+
+  @media (max-width:560px){
+    .strip .thumb{width:140px;height:90px;}
+  }
+
+  /* metabar: now holds breadcrumb (left) + icons (right) */
+  .metabar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:22px;
+    background:var(--mint);border:2.5px solid var(--mint-b);border-radius:20px;padding:9px 18px;}
+  nav.crumbs{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:13px;color:var(--crumb-text);}
+  nav.crumbs a{text-decoration:none;color:var(--crumb-text);}
+  nav.crumbs a:hover{text-decoration:underline;}
+  nav.crumbs .sep{color:var(--mint-b);}
+  nav.crumbs .current{font-weight:700;color:var(--ink);}
+  .metabar .icons{display:flex;gap:8px;}
+  .metabar .icons button,.metabar .icons a{
+    width:34px;height:34px;border-radius:10px;border:2px solid var(--gray-b);background:var(--card-white);
+    display:flex;align-items:center;justify-content:center;font-size:13px;text-decoration:none;color:var(--ink);
+    cursor:pointer;padding:0;transition:background .15s ease,border-color .15s ease,transform .15s ease;
+  }
+  .metabar .icons button:hover,.metabar .icons a:hover{
+    background:var(--mint);border-color:var(--mint-b);transform:translateY(-1px);
+  }
+  .metabar .icons svg{width:18px;height:18px;display:block;}
+  .metabar .icons .moon{display:none;}
+  :root[data-theme="dark"] .metabar .icons .sun{display:none;}
+  :root[data-theme="dark"] .metabar .icons .moon{display:flex;}
+
+  /* layout */
+  .layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:26px;align-items:start;}
+
+  .outerbox{background:var(--mint);border:3px solid var(--mint-b);border-radius:16px;padding:16px;}
+  .outerbox > h2.section-title{margin:2px 0 14px 4px;font-size:1.28rem;font-weight:800;color:var(--def-text);}
+  .innerbox{background:var(--gray);border:2.5px solid var(--gray-b);border-radius:12px;padding:24px 28px 32px;}
+
+  h1.title{font-size:clamp(1.8rem,3.6vw,2.5rem);line-height:1.16;font-weight:800;margin:0 0 14px;max-width:22ch;}
+  .article-meta{display:flex;flex-wrap:wrap;gap:14px;align-items:center;font-size:13.5px;color:var(--sub);}
+  .author b{color:var(--ink);font-weight:600;}
+  .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;}
+  .tags span{font-size:12px;padding:4px 11px;border-radius:9px;font-weight:600;}
+  .tags span:nth-child(1){background:var(--coral);border:2px solid var(--coral-b);color:var(--theorem-text);}
+  .tags span:nth-child(2){background:var(--cyan);border:2px solid var(--cyan-b);color:var(--def-text);}
+  .tags span:nth-child(3){background:var(--yellow);border:2px solid var(--yellow-b);color:var(--axiom-text);}
+
+  article.reading{font-size:1.06rem;line-height:1.77;max-width:70ch;color:var(--article-text);margin-top:18px;}
+  article.reading .lede{font-size:1.15rem;}
+  article.reading h2{font-size:1.42rem;font-weight:700;margin:44px 0 12px;scroll-margin-top:24px;display:flex;gap:11px;align-items:center;color:var(--ink);}
+  article.reading h2 .num{
+    font-size:13px;font-weight:700;color:var(--theorem-text);background:var(--coral);border:2px solid var(--coral-b);
+    width:28px;height:28px;border-radius:9px;flex:none;display:flex;align-items:center;justify-content:center;
+  }
+  article.reading h3{font-size:1.1rem;font-weight:700;margin:28px 0 8px;scroll-margin-top:24px;color:var(--ink);}
+  article.reading h3 .num{color:var(--cyan-b);margin-right:6px;}
+  article.reading p{margin:0 0 19px;}
+  article.reading a.xlink{color:var(--xlink);text-decoration:none;border-bottom:2px solid var(--xlink-b);}
+  article.reading a.xlink:hover{background:var(--lav);}
+
+  figure.diagram{margin:28px 0;padding:20px;background:var(--card-white);border:2.5px solid var(--gray-b);border-radius:14px;text-align:center;}
+  figure.diagram svg{max-width:300px;margin:0 auto;display:block;}
+  figcaption{font-size:12.5px;color:var(--sub);margin-top:10px;}
+
+  .box{margin:24px 0;padding:18px 22px;border-radius:14px;border:2.5px solid var(--b);background:var(--bg);}
+  .box .label{font-weight:700;font-size:14px;margin-bottom:7px;}
+  .box p{margin:0;}
+  .box.definition{--bg:var(--cyan);--b:var(--cyan-b);color:var(--def-text);}
+  .box.definition .label{color:var(--def-text);}
+  .box.axiom{--bg:var(--yellow);--b:var(--yellow-b);color:var(--axiom-text);}
+  .box.axiom .label{color:var(--axiom-text);}
+  .box.theorem,.box.proposition{--bg:var(--coral);--b:var(--coral-b);color:var(--theorem-text);}
+  .box.theorem .label,.box.proposition .label{color:var(--theorem-text);}
+  .box.proof{--bg:var(--card-white);--b:var(--gray-b);color:var(--article-text);}
+  .box.proof .label{font-style:italic;font-weight:600;color:var(--sub);}
+  .qed{float:right;color:var(--coral-b);font-weight:700;}
+
+  ol.refs{padding-left:1.2em;font-size:0.95rem;color:var(--article-text);}
+  ol.refs li{margin-bottom:9px;}
+
+  /* sidebar */
+  aside.rail{position:sticky;top:20px;}
+  .rail-card{border-radius:16px;padding:18px 20px;margin-bottom:22px;}
+  .rail-card.toc-card{background:var(--lav);border:3px solid var(--lav-b);}
+  .rail-card h4{margin:0 0 12px;font-size:12.5px;color:var(--nav-brand-sub);font-weight:700;letter-spacing:.01em;}
+  nav.toc ul{list-style:none;margin:0;padding:0;}
+  nav.toc li a{display:block;padding:5px 0;font-size:13px;text-decoration:none;color:var(--ink);}
+  nav.toc li.sub a{padding-left:15px;font-size:12px;color:var(--sub);}
+  nav.toc li a.active{color:var(--theorem-text);font-weight:700;}
+
+  .rail-card.related-card{background:var(--cyan);border:2.5px solid var(--cyan-b);}
+  .related-card ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px;}
+  .related-card li{background:var(--card-white);border-radius:11px;padding:11px 13px;border:2px solid var(--cyan-b);}
+  .related-card a{text-decoration:none;font-size:13px;font-weight:700;line-height:1.4;display:block;color:var(--related-text);}
+  .related-card a:hover{color:var(--related-hover);}
+  .related-card .cat{display:block;font-size:10.5px;color:var(--related-cat);font-weight:400;margin-top:3px;}
+
+  details.side-mobile{display:none;}
+
+  @media (max-width:980px){
+    .layout{grid-template-columns:1fr;}
+    aside.rail{display:none;}
+    details.side-mobile{display:block;margin:0 0 22px;background:var(--lav);border:3px solid var(--lav-b);
+      border-radius:16px;padding:14px 18px;}
+    details.side-mobile summary{cursor:pointer;font-weight:700;font-size:14px;}
+    details.side-mobile .inner-mobile{margin-top:12px;}
+  }
+  @media (max-width:560px){article.reading{font-size:1rem;} .strip .thumb{width:52px;height:44px;}}
+
+    :focus-visible{outline:2px solid var(--lav-b);outline-offset:2px;}
+/* Layout hardening */
+.outerbox,.innerbox,.reading,.box,.rail,.rail-card{min-width:0;}
+.reading{overflow-wrap:anywhere;}
+.reading mjx-container{max-width:100%;overflow-x:auto;overflow-y:hidden;}
+.reading .math-display{overflow-x:auto;}
+.box .math-display{overflow-x:auto;}
+.box-content,.proof-content{min-width:0;}
+figure.diagram{max-width:100%;overflow:hidden;}
+figure.diagram img,figure.diagram svg{max-width:100%;height:auto;}
+.rail-card ul{max-width:100%;}
+.rail-card li{overflow-wrap:anywhere;}
+
+/* Final responsive hardening */
+.navbox nav{min-width:0}.navbox nav ul{min-width:0}.brand{overflow-wrap:anywhere}
+.mobile-related{margin-top:16px}.mobile-related h4{margin:0 0 10px;font-size:12.5px;color:var(--nav-brand-sub);font-weight:700}
+.mobile-related ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
+.mobile-related li{background:var(--card-white);border-radius:11px;padding:11px 13px;border:2px solid var(--cyan-b);overflow-wrap:anywhere}
+.mobile-related a{text-decoration:none;font-size:13px;font-weight:700;line-height:1.4;display:block;color:var(--related-text)}
+.mobile-related a:hover{color:var(--related-hover)}
+
+</style>
 </head>
 <body>
 <div class="page">
-<header class="navbox"><div class="brand"><b>Author</b><span>notes on mathematics &amp; physics</span></div><nav aria-label="Site navigation"><ul><li><a href="/" style="--button-color: #5b3a8a;">Home</a></li>
+<header class="navbox"><div class="brand"><b>Author</b></div><nav aria-label="Site navigation"><ul><li><a href="/" style="--button-color: #5b3a8a;">Home</a></li>
 <li><a href="/archives" style="--button-color: #7652a8;">Archives</a></li>
 <li><a href="https://github.com/VivekH90/blog" style="--button-color: #70458f;">GitHub</a></li></ul></nav></header>
-<div class="strip" id="nasa-gallery" aria-label="Article image gallery"><button class="thumb" type="button" data-full="https://images.nasa.gov/details/PIA19822" data-title="Magnetic Black Hole Waves" data-caption="Magnetic Black Hole Waves" aria-label="Open Magnetic Black Hole Waves"><img src="http://images-assets.nasa.gov/image/PIA19822/PIA19822~orig.jpg" alt="This cartoon shows how magnetic waves, called Alfvén S-waves, propagate outward from the base of black hole jets. The jet is a flow of charged particles, called a plasma, which is launched by a black hole. The jet has a helical magnetic field (yellow coil) permeating the plasma. The waves then travel along the jet, in the direction of the plasma flow, but at a velocity determined by both the jet&#x27;s magnetic properties and the plasma flow speed. The BL Lac jet examined in a new study is several light-years long, and the wave speed is about 98 percent the speed of light.  Fast-moving magnetic waves emanating from a distant supermassive black hole undulate like a whip whose handle is being shaken by a giant hand, according to a study using data from the National Radio Astronomy Observatory&#x27;s Very Long Baseline Array. Scientists used this instrument to explore the galaxy/black hole system known as BL Lacertae (BL Lac) in high resolution.   http://photojournal.jpl.nasa.gov/catalog/PIA19822" loading="lazy" referrerpolicy="no-referrer"></button><button class="thumb" type="button" data-full="https://images.nasa.gov/details/PIA17567" data-title="Different Flavors of Black Holes" data-caption="Different Flavors of Black Holes" aria-label="Open Different Flavors of Black Holes"><img src="http://images-assets.nasa.gov/image/PIA17567/PIA17567~orig.jpg" alt="A range of supermassive black holes lights up this new image from NASA NuSTAR. All of the dots are active black holes tucked inside the hearts of galaxies, with colors representing different energies of X-ray light." loading="lazy" referrerpolicy="no-referrer"></button><button class="thumb" type="button" data-full="https://images.nasa.gov/details/PIA14730" data-title="Flaring Black Hole Artist Concept" data-caption="Flaring Black Hole Artist Concept" aria-label="Open Flaring Black Hole Artist Concept"><img src="http://images-assets.nasa.gov/image/PIA14730/PIA14730~orig.jpg" alt="This artist concept illustrates what the flaring black hole called GX 339-4 might look like. Infrared observations from NASA WISE reveal the best information yet on the chaotic and extreme environments of this black hole jets." loading="lazy" referrerpolicy="no-referrer"></button><button class="thumb" type="button" data-full="https://images.nasa.gov/details/PIA04207" data-title="Black Hole in 3-D" data-caption="Black Hole in 3-D" aria-label="Open Black Hole in 3-D"><img src="http://images-assets.nasa.gov/image/PIA04207/PIA04207~orig.jpg" alt="This three-dimensional illustration shows how the rotating space around a black hole twists up the magnetic field in the plasma falling toward the black hole. The black sphere at the center of the figure is the black hole itself. http://photojournal.jpl.nasa.gov/catalog/PIA04207" loading="lazy" referrerpolicy="no-referrer"></button><button class="thumb" type="button" data-full="https://images.nasa.gov/details/GSFC_20171208_Archive_e000149" data-title="Hubble Gazes Into a Black Hole of Puzzling Light" data-caption="Hubble Gazes Into a Black Hole of Puzzling Light" aria-label="Open Hubble Gazes Into a Black Hole of Puzzling Light"><img src="http://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000149/GSFC_20171208_Archive_e000149~orig.jpg" alt="The beautiful spiral galaxy visible in the center of the image is known as RX J1140.1+0307, a galaxy in the Virgo constellation imaged by the NASA/ESA Hubble Space Telescope, and it presents an interesting puzzle. At first glance, this galaxy appears to be a normal spiral galaxy, much like the Milky Way, but first appearances can be deceptive!  The Milky Way galaxy, like most large galaxies, has a supermassive black hole at its center, but some galaxies are centered on lighter, intermediate-mass black holes. RX J1140.1+0307 is such a galaxy — in fact, it is centered on one of the lowest black hole masses known in any luminous galactic core. What puzzles scientists about this particular galaxy is that the calculations don’t add up. With such a relatively low mass for the central black hole, models for the emission from the object cannot explain the observed spectrum. There must be other mechanisms at play in the interactions between the inner and outer parts of the accretion disk surrounding the black hole.   Credit: ESA/Hubble &amp;amp; NASA, Acknowledgement: Judy Schmidt  &lt;b&gt;&lt;a href=&quot;http://www.nasa.gov/audience/formedia/features/MP_Photo_Guidelines.html&quot; rel=&quot;nofollow&quot;&gt;NASA image use policy.&lt;/a&gt;&lt;/b&gt;  &lt;b&gt;&lt;a href=&quot;http://www.nasa.gov/centers/goddard/home/index.html&quot; rel=&quot;nofollow&quot;&gt;NASA Goddard Space Flight Center&lt;/a&gt;&lt;/b&gt; enables NASA’s mission through four scientific endeavors: Earth Science, Heliophysics, Solar System Exploration, and Astrophysics. Goddard plays a leading role in NASA’s accomplishments by contributing compelling scientific knowledge to advance the Agency’s mission.  &lt;b&gt;Follow us on &lt;a href=&quot;http://twitter.com/NASAGoddardPix&quot; rel=&quot;nofollow&quot;&gt;Twitter&lt;/a&gt;&lt;/b&gt;  &lt;b&gt;Like us on &lt;a href=&quot;http://www.facebook.com/pages/Greenbelt-MD/NASA-Goddard/395013845897?ref=tsd&quot; rel=&quot;nofollow&quot;&gt;Facebook&lt;/a&gt;&lt;/b&gt;  &lt;b&gt;Find us on &lt;a href=&quot;http://instagrid.me/nasagoddard/?vm=grid&quot; rel=&quot;nofollow&quot;&gt;Instagram&lt;/a&gt;&lt;/b&gt;    " loading="lazy" referrerpolicy="no-referrer"></button><button class="thumb" type="button" data-full="https://images.nasa.gov/details/PIA19348" data-title="NuSTAR Seeks Hidden Black Holes" data-caption="NuSTAR Seeks Hidden Black Holes" aria-label="Open NuSTAR Seeks Hidden Black Holes"><img src="http://images-assets.nasa.gov/image/PIA19348/PIA19348~orig.jpg" alt="Top: An illustration of NASA&#x27;s Nuclear Spectroscopic Telescope Array, or NuSTAR, in orbit. The unique school bus-long mast allows NuSTAR to focus high energy X-rays.  Lower-left: A color image from NASA&#x27;s Hubble Space Telescope of one of the nine galaxies targeted by NuSTAR in search of hidden black holes.  Bottom-right: An artist&#x27;s illustration of a supermassive black hole, actively feasting on its surroundings. The central black hole is hidden from direct view by a thick layer of encircling gas and dust.   http://photojournal.jpl.nasa.gov/catalog/PIA19348" loading="lazy" referrerpolicy="no-referrer"></button><button class="thumb" type="button" data-full="https://images.nasa.gov/details/PIA23866" data-title="Echo Mapping in a Black Hole Accretion Disk and Torus (Animation)" data-caption="Echo Mapping in a Black Hole Accretion Disk and Torus (Animation)" aria-label="Open Echo Mapping in a Black Hole Accretion Disk and Torus (Animation)"><img src="http://images-assets.nasa.gov/image/PIA23866/PIA23866~orig.jpg" alt="This animation shows the events that serve as the basis of an astrophysics technique called &quot;echo mapping,&quot; also known as reverberation mapping. At center is a supermassive black hole surrounded by a disk of material called an accretion disk. As the disk gets brighter it sometimes even releases short flares of visible light. Blue arrows show the light from this flash traveling away from the black hole, both toward an observer on Earth and toward an enormous, doughnut-shaped structure (called a torus) made of dust. The light gets absorbed, causing the dust to heat up and release infrared light. This brightening of the dust is a direct response to — or, one might, say an &quot;echo&quot; — of the changes happening in the disk. Red arrows show this light traveling away from the galaxy, in the same direction as the initial flash of visible light. Thus an observer would see the visible light first, and (with the right equipment) the infrared light later.  Astronomers have previously proposed using echo mapping as a means of measuring distances to cosmic objects. If scientists can observe both the initial flare of visible light and the subsequent infrared brightening in the dust, they could in theory use that information to measure the disk&#x27;s luminosity, which could then be used to measure the distance to that galaxy by comparing it to the galaxy&#x27;s brightness as seen from Earth.  The temperature in the part of the disk closest to the black hole can reach tens of thousands of degrees but decreases with distance. When it reaches about 2,200 degrees Fahrenheit (1,200 Celsius), it is cool enough for dust to form. The more luminous the disk, the farther away from it the dust forms and the longer it takes light from the disk to reach the dust and produce the &quot;echo.&quot;  The distance from the accretion disk to the inside of the dust doughnut can be billions or trillions of miles. Even light, traveling at 186,000 miles (300,000 kilometers) per second, can take months or years to cross it. NASA&#x27;s Near Earth Object Wide Field Infrared Survey Explorer (NEOWISE), previously named WISE, surveys the entire sky about once every six months and is on track to complete 16 such surveys by the end of 2020, providing astronomers with repeated opportunities to observe galaxies and look for signs of those light echoes. A study using data from WISE measured the luminosity of over 500 black hole accretion disks using echo mapping, but the subsequent distance measurements lacked precision compared to other distance measuring techniques. Additional data and an improved understanding of dust torus dynamics could improve those measurements.  Movie available at https://photojournal.jpl.nasa.gov/catalog/PIA23866" loading="lazy" referrerpolicy="no-referrer"></button></div>
-<div class="gallery-lightbox" id="gallery-lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" aria-hidden="true"><div class="gallery-dialog"><button class="gallery-close" id="gallery-close" type="button" aria-label="Close image">×</button><img id="gallery-large" alt=""><div class="gallery-caption" id="gallery-caption"></div></div></div>
-<div class="metabar"><nav class="crumbs"><a href="/">Home</a><span class="sep">›</span><a href="#">Physics</a><span class="sep">›</span><span class="current">Electromagnetic Lagrangian</span></nav><div class="icons"><a href="/" aria-label="Home" title="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-7 9 7"/><path d="M5 10v9h14v-9"/></svg></a><a href="https://github.com/VivekH90/blog" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.17c0 4.49 2.87 8.3 6.84 9.65.5.1.68-.22.68-.49 0-.24-.01-1.03-.01-1.87-2.79.61-3.38-1.22-3.38-1.22-.46-1.19-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.55 2.34 1.1 2.91.84.09-.66.35-1.1.63-1.35-2.23-.26-4.57-1.14-4.57-5.06 0-1.12.39-2.03 1.03-2.75.1-.26-.45-1.3.1-2.7 0 0 .84-.27 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.4.2 2.44.1 2.7-.64.72-1.03 1.63-1.03 2.75 0 3.93 2.34 4.79 4.58 5.05-.36.32-.68.94-.68 1.9v2.81c0 .34.18.6.69.49A10.02 10.02 0 0 0 22 12.17C22 6.58 17.52 2 12 2z"/></svg></a><button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.2M12 19.8V22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2 12h2.2M19.8 12H22M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"/></svg><svg class="moon" viewBox="0 0 24 24" fill="currentColor"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg></button></div></div>
+<div class="strip" id="nasa-gallery" aria-label="Article image gallery"><a class="thumb" href="https://images.nasa.gov/details/GSFC_20171208_Archive_e000608" target="_blank" rel="noopener noreferrer" aria-label="Open Astronomers Identify a New Mid-size Black Hole source"><img src="http://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000608/GSFC_20171208_Archive_e000608~orig.jpg" alt="Nearly all black holes come in one of two sizes: stellar mass black holes that weigh up to a few dozen times the mass of our sun or supermassive black holes ranging from a million to several billion times the sun’s mass. Astronomers believe that medium-sized black holes between these two extremes exist, but evidence has been hard to come by, with roughly a half-dozen candidates described so far.  A team led by astronomers at the University of Maryland and NASA’s Goddard Space Flight Center has found evidence for a new intermediate-mass black hole about 5,000 times the mass of the sun. The discovery adds one more candidate to the list of potential medium-sized black holes, while strengthening the case that these objects do exist. The team reported its findings in the September 21, 2015 online edition of Astrophysical Journal Letters.  This image, taken with the European Southern Observatory’s Very Large Telescope, shows the central region of galaxy NGC1313. This galaxy is home to the ultraluminous X-ray source NCG1313X-1, which astronomers have now determined to be an intermediate-mass black hole candidate. NGC1313 is 50,000 light-years across and lies about 14 million light-years from the Milky Way in the southern constellation Reticulum.   Read more: &lt;a href=&quot;http://www.nasa.gov/feature/goddard/astronomers-identify-a-new-mid-size-black-hole&quot; rel=&quot;nofollow&quot;&gt;www.nasa.gov/feature/goddard/astronomers-identify-a-new-m...&lt;/a&gt;  Image credit: European Southern Observatory #nasagoddard #blackhole #space  &lt;b&gt;&lt;a href=&quot;http://www.nasa.gov/audience/formedia/features/MP_Photo_Guidelines.html&quot; rel=&quot;nofollow&quot;&gt;NASA image use policy.&lt;/a&gt;&lt;/b&gt;  &lt;b&gt;&lt;a href=&quot;http://www.nasa.gov/centers/goddard/home/index.html&quot; rel=&quot;nofollow&quot;&gt;NASA Goddard Space Flight Center&lt;/a&gt;&lt;/b&gt; enables NASA’s mission through four scientific endeavors: Earth Science, Heliophysics, Solar System Exploration, and Astrophysics. Goddard plays a leading role in NASA’s accomplishments by contributing compelling scientific knowledge to advance the Agency’s mission.  &lt;b&gt;Follow us on &lt;a href=&quot;http://twitter.com/NASAGoddardPix&quot; rel=&quot;nofollow&quot;&gt;Twitter&lt;/a&gt;&lt;/b&gt;  &lt;b&gt;Like us on &lt;a href=&quot;http://www.facebook.com/pages/Greenbelt-MD/NASA-Goddard/395013845897?ref=tsd&quot; rel=&quot;nofollow&quot;&gt;Facebook&lt;/a&gt;&lt;/b&gt;  &lt;b&gt;Find us on &lt;a href=&quot;http://instagrid.me/nasagoddard/?vm=grid&quot; rel=&quot;nofollow&quot;&gt;Instagram&lt;/a&gt;&lt;/b&gt;" loading="lazy" referrerpolicy="no-referrer"></a><a class="thumb" href="https://images.nasa.gov/details/PIA23866" target="_blank" rel="noopener noreferrer" aria-label="Open Echo Mapping in a Black Hole Accretion Disk and Torus (Animation) source"><img src="http://images-assets.nasa.gov/image/PIA23866/PIA23866~orig.jpg" alt="This animation shows the events that serve as the basis of an astrophysics technique called &quot;echo mapping,&quot; also known as reverberation mapping. At center is a supermassive black hole surrounded by a disk of material called an accretion disk. As the disk gets brighter it sometimes even releases short flares of visible light. Blue arrows show the light from this flash traveling away from the black hole, both toward an observer on Earth and toward an enormous, doughnut-shaped structure (called a torus) made of dust. The light gets absorbed, causing the dust to heat up and release infrared light. This brightening of the dust is a direct response to — or, one might, say an &quot;echo&quot; — of the changes happening in the disk. Red arrows show this light traveling away from the galaxy, in the same direction as the initial flash of visible light. Thus an observer would see the visible light first, and (with the right equipment) the infrared light later.  Astronomers have previously proposed using echo mapping as a means of measuring distances to cosmic objects. If scientists can observe both the initial flare of visible light and the subsequent infrared brightening in the dust, they could in theory use that information to measure the disk&#x27;s luminosity, which could then be used to measure the distance to that galaxy by comparing it to the galaxy&#x27;s brightness as seen from Earth.  The temperature in the part of the disk closest to the black hole can reach tens of thousands of degrees but decreases with distance. When it reaches about 2,200 degrees Fahrenheit (1,200 Celsius), it is cool enough for dust to form. The more luminous the disk, the farther away from it the dust forms and the longer it takes light from the disk to reach the dust and produce the &quot;echo.&quot;  The distance from the accretion disk to the inside of the dust doughnut can be billions or trillions of miles. Even light, traveling at 186,000 miles (300,000 kilometers) per second, can take months or years to cross it. NASA&#x27;s Near Earth Object Wide Field Infrared Survey Explorer (NEOWISE), previously named WISE, surveys the entire sky about once every six months and is on track to complete 16 such surveys by the end of 2020, providing astronomers with repeated opportunities to observe galaxies and look for signs of those light echoes. A study using data from WISE measured the luminosity of over 500 black hole accretion disks using echo mapping, but the subsequent distance measurements lacked precision compared to other distance measuring techniques. Additional data and an improved understanding of dust torus dynamics could improve those measurements.  Movie available at https://photojournal.jpl.nasa.gov/catalog/PIA23866" loading="lazy" referrerpolicy="no-referrer"></a><a class="thumb" href="https://images.nasa.gov/details/PIA22355" target="_blank" rel="noopener noreferrer" aria-label="Open Black Hole vs. Star: A Tidal Disruption Event (Artist&#x27;s Concept) source"><img src="http://images-assets.nasa.gov/image/PIA22355/PIA22355~orig.jpg" alt="An artist&#x27;s concept of a tidal disruption event (TDE) that happens when a star passes fatally close to a supermassive black hole, which reacts by launching a relativistic jet.   https://photojournal.jpl.nasa.gov/catalog/PIA22355" loading="lazy" referrerpolicy="no-referrer"></a><a class="thumb" href="https://images.nasa.gov/details/PIA19348" target="_blank" rel="noopener noreferrer" aria-label="Open NuSTAR Seeks Hidden Black Holes source"><img src="http://images-assets.nasa.gov/image/PIA19348/PIA19348~orig.jpg" alt="Top: An illustration of NASA&#x27;s Nuclear Spectroscopic Telescope Array, or NuSTAR, in orbit. The unique school bus-long mast allows NuSTAR to focus high energy X-rays.  Lower-left: A color image from NASA&#x27;s Hubble Space Telescope of one of the nine galaxies targeted by NuSTAR in search of hidden black holes.  Bottom-right: An artist&#x27;s illustration of a supermassive black hole, actively feasting on its surroundings. The central black hole is hidden from direct view by a thick layer of encircling gas and dust.   http://photojournal.jpl.nasa.gov/catalog/PIA19348" loading="lazy" referrerpolicy="no-referrer"></a><a class="thumb" href="https://images.nasa.gov/details/PIA25440" target="_blank" rel="noopener noreferrer" aria-label="Open A Black Hole Destroys a Star (Illustration) source"><img src="http://images-assets.nasa.gov/image/PIA25440/PIA25440~orig.jpg" alt="A disk of hot gas swirls around a black hole in this illustration. Some of the gas came from a star that was pulled apart by the black hole, forming the long stream of hot gas on the right, feeding into the disk. These events are formally known as tidal disruption events, or TDEs. It can take just a matter or weeks or months from the destruction of the star to the formation of the disk. The gas gets hotter the closer it gets to the black hole, but the hottest material can be found above the black hole. This hottest material is cloud of plasma (gas atoms with their electrons stripped away) known as a corona.      Most TDEs that result in the formation of a corona also produce jets of material that spew into space away from the black hole at its poles. A TDE called AT2021ehb is the first confirmed example of a corona forming without jets in a tidal disruption event. The observation of AT2021ehb makes it possible for scientists to study the formation of jets and coronae separately.  https://photojournal.jpl.nasa.gov/catalog/PIA25440" loading="lazy" referrerpolicy="no-referrer"></a><a class="thumb" href="https://images.nasa.gov/details/PIA14803" target="_blank" rel="noopener noreferrer" aria-label="Open Black Holes in Caloris source"><img src="http://images-assets.nasa.gov/image/PIA14803/PIA14803~orig.jpg" alt="Black Holes in Caloris" loading="lazy" referrerpolicy="no-referrer"></a><a class="thumb" href="https://images.nasa.gov/details/GSFC_20171208_Archive_e000386" target="_blank" rel="noopener noreferrer" aria-label="Open Behemoth Black Hole Found in an Unlikely Place source"><img src="http://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000386/GSFC_20171208_Archive_e000386~orig.jpg" alt="This computer-simulated image shows a supermassive black hole at the core of a galaxy. The black region in the center represents the black hole’s event horizon, where no light can escape the massive object’s gravitational grip. The black hole’s powerful gravity distorts space around it like a funhouse mirror. Light from background stars is stretched and smeared as the stars skim by the black hole.  Credits: NASA, ESA, and D. Coe, J. Anderson, and R. van der Marel (STScI)  More info: Astronomers have uncovered a near-record breaking supermassive black hole, weighing 17 billion suns, in an unlikely place: in the center of a galaxy in a sparsely populated area of the universe. The observations, made by NASA’s Hubble Space Telescope and the Gemini Telescope in Hawaii, may indicate that these monster objects may be more common than once thought.  Until now, the biggest supermassive black holes – those roughly 10 billion times the mass of our sun – have been found at the cores of very large galaxies in regions of the universe packed with other large galaxies. In fact, the current record holder tips the scale at 21 billion suns and resides in the crowded Coma galaxy cluster that consists of over 1,000 galaxies. More: &lt;a href=&quot;http://www.nasa.gov/feature/goddard/2016/behemoth-black-hole-found-in-an-unlikely-place&quot; rel=&quot;nofollow&quot;&gt;www.nasa.gov/feature/goddard/2016/behemoth-black-hole-fou...&lt;/a&gt;  &lt;b&gt;&lt;a href=&quot;http://www.nasa.gov/audience/formedia/features/MP_Photo_Guidelines.html&quot; rel=&quot;nofollow&quot;&gt;NASA image use policy.&lt;/a&gt;&lt;/b&gt;  &lt;b&gt;&lt;a href=&quot;http://www.nasa.gov/centers/goddard/home/index.html&quot; rel=&quot;nofollow&quot;&gt;NASA Goddard Space Flight Center&lt;/a&gt;&lt;/b&gt; enables NASA’s mission through four scientific endeavors: Earth Science, Heliophysics, Solar System Exploration, and Astrophysics. Goddard plays a leading role in NASA’s accomplishments by contributing compelling scientific knowledge to advance the Agency’s mission.  &lt;b&gt;Follow us on &lt;a href=&quot;http://twitter.com/NASAGoddardPix&quot; rel=&quot;nofollow&quot;&gt;Twitter&lt;/a&gt;&lt;/b&gt;  &lt;b&gt;Like us on &lt;a href=&quot;http://www.facebook.com/pages/Greenbelt-MD/NASA-Goddard/395013845897?ref=tsd&quot; rel=&quot;nofollow&quot;&gt;Facebook&lt;/a&gt;&lt;/b&gt;  &lt;b&gt;Find us on &lt;a href=&quot;http://instagrid.me/nasagoddard/?vm=grid&quot; rel=&quot;nofollow&quot;&gt;Instagram&lt;/a&gt;&lt;/b&gt;    " loading="lazy" referrerpolicy="no-referrer"></a></div>
+
+<div class="metabar"><nav class="crumbs"><a href="/">Home</a><span class="sep">›</span><a href="#">Physics</a><span class="sep">›</span><span class="current">Electromagnetic Lagrangian</span></nav><div class="icons"><a class="icon-button" href="/" aria-label="Home" title="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l-2 0l9 -9l9 9l-2 0"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"/><path d="M10 12h4v4h-4l0 -4"/></svg></a><a class="icon-button" href="https://github.com/VivekH90/blog" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"/></svg></a><button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/><path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"/></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454l0 .008"/></svg></button></div></div>
 <details class="side-mobile"><summary>Contents &amp; related</summary><div class="inner-mobile"><nav class="toc" id="toc-mobile"></nav><div class="mobile-related"><h4>Related</h4><ul></ul></div></div></details>
 <div class="layout">
 <main class="outerbox">
@@ -27,11 +274,11 @@ window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],tags
 <h1 class="title">Electromagnetic Lagrangian</h1><div class="article-meta"><div class="author"><b>Author</b></div></div><div class="tags"><span>Electromagnetism</span><span>Classical Field Theory</span><span>Lagrangian Mechanics</span></div>
 <article class="reading" id="article"><section class="article-section">
 <h2 id="lagrange-s-equation-for-a-single-variable"><span class="num">1</span>Lagrange&#x27;s equation for a single variable</h2>
-<div class="box axiom" id="least-action"><div class="label">Axiom 1 — Principle of Least Action</div><div class="box-content"><p>The physical trajectory of a system between two fixed endpoints is the path for which the action is stationary,</p>
+<div class="box axiom" id="least-action"><div class="label">Axiom 1 — Principle of Least Action</div><div class="box-content"><div class="text-environment"><p class="mark-text">The physical trajectory of a system between two fixed endpoints is the path for which the action is stationary,</p></div>
 <div class="math-display">\[\delta S = 0.\]</div>
-<p>where the action is defined by</p>
+<div class="text-environment"><p class="mark-text">where the action is defined by</p></div>
 <div class="math-display">\[S[q] = \int_{t_1}^{t_2} L(q,\dot q,t)\,dt.\]</div>
-<p>And from the principle of least action, the equation of motion are given by:</p>
+<div class="text-environment"><p class="mark-text">And from the principle of least action, the equation of motion are given by:</p></div>
 <div class="math-display">\[\frac{d}{dt}
 \left(
 \frac{\partial L}{\partial \dot q}
@@ -42,9 +289,9 @@ window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],tags
 <figure class="diagram" id="least action">
 <img src="input/least-action.png" alt="least-action" loading="lazy" style="width: 60%">
 </figure>
-<div class="box proof"><div class="label">Proof</div><div class="proof-content"><p>Under the variation</p>
+<div class="box proof"><div class="label">Proof</div><div class="proof-content"><div class="text-environment"><p class="mark-text">Under the variation</p></div>
 <div class="math-display">\[q(t)\rightarrow q(t)+\delta q(t),\]</div>
-<p>the action changes by</p>
+<div class="text-environment"><p class="mark-text">the action changes by</p></div>
 <div class="math-display">\[\delta S
 =
 \int_{t_1}^{t_2}
@@ -53,11 +300,11 @@ window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],tags
 +
 \frac{\partial L}{\partial \dot q}\,\delta\dot q
 \right)dt.\]</div>
-<p>Since variation and differentiation commute,</p>
+<div class="text-environment"><p class="mark-text">Since variation and differentiation commute,</p></div>
 <div class="math-display">\[\delta\dot q
 =
 \frac{d}{dt}(\delta q).\]</div>
-<p>Therefore,</p>
+<div class="text-environment"><p class="mark-text">Therefore,</p></div>
 <div class="math-display">\[\delta S
 =
 \int_{t_1}^{t_2}
@@ -67,7 +314,7 @@ window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],tags
 \frac{\partial L}{\partial \dot q}
 \frac{d}{dt}(\delta q)
 \right]dt.\]</div>
-<p>Integrating the second term by parts gives</p>
+<div class="text-environment"><p class="mark-text">Integrating the second term by parts gives</p></div>
 <div class="math-display">\[\delta S
 =
 \int_{t_1}^{t_2}
@@ -83,9 +330,9 @@ window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],tags
 \left[
 \frac{\partial L}{\partial \dot q}\,\delta q
 \right]_{t_1}^{t_2}.\]</div>
-<p>Because the endpoint variations vanish,</p>
+<div class="text-environment"><p class="mark-text">Because the endpoint variations vanish,</p></div>
 <div class="math-display">\[\delta q(t_1)=\delta q(t_2)=0,\]</div>
-<p>the boundary term is zero. The remaining variation must vanish for arbitrary \(\delta q(t)\), so the coefficient of \(\delta q\) must vanish:</p>
+<div class="text-environment"><p class="mark-text">the boundary term is zero. The remaining variation must vanish for arbitrary \(\delta q(t)\), so the coefficient of \(\delta q\) must vanish:</p></div>
 <div class="math-display">\[\frac{\partial L}{\partial q}
 -
 \frac{d}{dt}
@@ -93,7 +340,7 @@ window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],tags
 \frac{\partial L}{\partial \dot q}
 \right)
 =0.\]</div>
-<p>Hence the <strong>Euler-Lagrange equation</strong> is</p>
+<div class="text-environment"><p class="mark-text">Hence the <strong>Euler-Lagrange equation</strong> is</p></div>
 <div class="math-display">\[\frac{d}{dt}
 \left(
 \frac{\partial L}{\partial \dot q}
@@ -104,12 +351,12 @@ window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],tags
 </section>
 <section class="article-section">
 <h2 id="lagrange-s-equation-for-multiple-variables"><span class="num">2</span>Lagrange&#x27;s equation for multiple variables</h2>
-<div class="box theorem" id="theorem-label"><div class="label">Theorem 1 — Theorem Title</div><div class="box-content"><p>The single-variable Euler-Lagrange equation can be extended naturally when the Lagrangian depends on several independent dynamical variables. Consider two <strong>independent fields</strong> \(u(x,y)\) and \(v(x,y)\), with the action</p>
+<div class="box theorem" id="theorem-label"><div class="label">Theorem 1 — Theorem Title</div><div class="box-content"><div class="text-environment"><p class="mark-text">The single-variable Euler-Lagrange equation can be extended naturally when the Lagrangian depends on several independent dynamical variables. Consider two <strong>independent fields</strong> \(u(x,y)\) and \(v(x,y)\), with the action</p></div>
 <div class="math-display">\[S[u,v]
 =
 \int_G
 L(u,v,u_x,u_y,v_x,v_y)\,dx\,dy,\]</div>
-<p>where</p>
+<div class="text-environment"><p class="mark-text">where</p></div>
 <div class="math-display">\[u_x=\frac{\partial u}{\partial x},
 \qquad
 u_y=\frac{\partial u}{\partial y},
@@ -117,12 +364,12 @@ u_y=\frac{\partial u}{\partial y},
 v_x=\frac{\partial v}{\partial x},
 \qquad
 v_y=\frac{\partial v}{\partial y}.\]</div>
-<p>and the <strong>Euler-Lagrange</strong> equation are given by:</p></div></div>
-<div class="box proof"><div class="label">Proof</div><div class="proof-content"><p>Consider the variations</p>
+<div class="text-environment"><p class="mark-text">and the <strong>Euler-Lagrange</strong> equation are given by:</p></div></div></div>
+<div class="box proof"><div class="label">Proof</div><div class="proof-content"><div class="text-environment"><p class="mark-text">Consider the variations</p></div>
 <div class="math-display">\[u\rightarrow u+\delta u,
 \qquad
 v\rightarrow v+\delta v.\]</div>
-<p>The variation of the action is</p>
+<div class="text-environment"><p class="mark-text">The variation of the action is</p></div>
 <div class="math-display">\[\delta S
 =
 \int_G
@@ -139,7 +386,7 @@ v\rightarrow v+\delta v.\]</div>
 +
 \frac{\partial L}{\partial v_y}\,\delta v_y
 \right]dx\,dy.\]</div>
-<p>Assuming that the variations vanish on the boundary of \(G\), all boundary terms disappear. The variation becomes</p>
+<div class="text-environment"><p class="mark-text">Assuming that the variations vanish on the boundary of \(G\), all boundary terms disappear. The variation becomes</p></div>
 <div class="math-display">\[\delta S
 =
 \int_G
@@ -171,7 +418,7 @@ v\rightarrow v+\delta v.\]</div>
 \frac{\partial L}{\partial v_y}
 \right)
 \right]\delta v\,dx\,dy.\]</div>
-<p>Because \(\delta u\) and \(\delta v\) are independent and arbitrary in the interior of \(G\), each coefficient must vanish separately. We therefore obtain two Euler-Lagrange equations:</p>
+<div class="text-environment"><p class="mark-text">Because \(\delta u\) and \(\delta v\) are independent and arbitrary in the interior of \(G\), each coefficient must vanish separately. We therefore obtain two Euler-Lagrange equations:</p></div>
 <div class="math-display">\[\frac{\partial L}{\partial u}
 -
 \frac{\partial}{\partial x}
@@ -184,7 +431,7 @@ v\rightarrow v+\delta v.\]</div>
 \frac{\partial L}{\partial u_y}
 \right)
 =0,\]</div>
-<p>and</p>
+<div class="text-environment"><p class="mark-text">and</p></div>
 <div class="math-display">\[\frac{\partial L}{\partial v}
 -
 \frac{\partial}{\partial x}
@@ -197,15 +444,15 @@ v\rightarrow v+\delta v.\]</div>
 \frac{\partial L}{\partial v_y}
 \right)
 =0.\]</div>
-<p>Thus, <strong>each independent field contributes its own Euler-Lagrange equation</strong>. This is the key step toward electromagnetism: the electromagnetic potential will be treated as a collection of field components, each of which is varied independently.</p></div><div class="qed" aria-label="Q.E.D.">□</div></div>
+<div class="text-environment"><p class="mark-text">Thus, <strong>each independent field contributes its own Euler-Lagrange equation</strong>. This is the key step toward electromagnetism: the electromagnetic potential will be treated as a collection of field components, each of which is varied independently.</p></div></div><div class="qed" aria-label="Q.E.D.">□</div></div>
 <section class="article-subsection">
 <h3 id="the-4-vector-generalization"><span class="num">2.1</span>The 4-vector generalization</h3>
-<div class="box corollary"><div class="label">Corollary 1 — 4-vector generalization</div><div class="box-content"><p>Let the dynamical field be a vector \(a^\mu(x)\), with spacetime coordinates \(x^\nu\). Consider the action (note that Einstein-convention is implied everywhere)</p>
+<div class="box corollary"><div class="label">Corollary 1 — 4-vector generalization</div><div class="box-content"><div class="text-environment"><p class="mark-text">Let the dynamical field be a vector \(a^\mu(x)\), with spacetime coordinates \(x^\nu\). Consider the action (note that Einstein-convention is implied everywhere)</p></div>
 <div class="math-display">\[S[a]
 =
 \int_G
 L\left(a^\mu,\partial_\nu a^\mu,x\right)\,d^4x.\]</div>
-<p>The Euler-Lagrange equations are given by:</p>
+<div class="text-environment"><p class="mark-text">The Euler-Lagrange equations are given by:</p></div>
 <div class="math-display">\[\frac{\partial L}{\partial a^\mu}
 -
 \partial_\nu
@@ -213,9 +460,9 @@ L\left(a^\mu,\partial_\nu a^\mu,x\right)\,d^4x.\]</div>
 \frac{\partial L}{\partial(\partial_\nu a^\mu)}
 \right)
 =0.\]</div></div></div>
-<div class="box proof"><div class="label">Proof</div><div class="proof-content"><p>We vary the vector field according to</p>
+<div class="box proof"><div class="label">Proof</div><div class="proof-content"><div class="text-environment"><p class="mark-text">We vary the vector field according to</p></div>
 <div class="math-display">\[a^\mu\rightarrow a^\mu+\delta a^\mu.\]</div>
-<p>The variation of the action is therefore</p>
+<div class="text-environment"><p class="mark-text">The variation of the action is therefore</p></div>
 <div class="math-display">\[\delta S
 =
 \int_G
@@ -225,11 +472,11 @@ L\left(a^\mu,\partial_\nu a^\mu,x\right)\,d^4x.\]</div>
 \frac{\partial L}{\partial(\partial_\nu a^\mu)}
 \delta(\partial_\nu a^\mu)
 \right]d^4x.\]</div>
-<p>Because variation commutes with differentiation,</p>
+<div class="text-environment"><p class="mark-text">Because variation commutes with differentiation,</p></div>
 <div class="math-display">\[\delta(\partial_\nu a^\mu)
 =
 \partial_\nu(\delta a^\mu).\]</div>
-<p>Therefore,</p>
+<div class="text-environment"><p class="mark-text">Therefore,</p></div>
 <div class="math-display">\[\delta S
 =
 \int_G
@@ -239,7 +486,7 @@ L\left(a^\mu,\partial_\nu a^\mu,x\right)\,d^4x.\]</div>
 \frac{\partial L}{\partial(\partial_\nu a^\mu)}
 \partial_\nu(\delta a^\mu)
 \right]d^4x.\]</div>
-<p>Integrating the second term by parts gives</p>
+<div class="text-environment"><p class="mark-text">Integrating the second term by parts gives</p></div>
 <div class="math-display">\[\delta S
 =
 \int_G
@@ -253,7 +500,7 @@ L\left(a^\mu,\partial_\nu a^\mu,x\right)\,d^4x.\]</div>
 \delta a^\mu\,d^4x
 +
 \text{boundary term}.\]</div>
-<p>For variations satisfying \(\delta a^\mu=0\) on the boundary, the boundary term vanishes. Hence</p>
+<div class="text-environment"><p class="mark-text">For variations satisfying \(\delta a^\mu=0\) on the boundary, the boundary term vanishes. Hence</p></div>
 <div class="math-display">\[\delta S
 =
 \int_G
@@ -266,7 +513,7 @@ L\left(a^\mu,\partial_\nu a^\mu,x\right)\,d^4x.\]</div>
 \right)
 \right]
 \delta a^\mu\,d^4x.\]</div>
-<p>Since the components \(\delta a^\mu\) are arbitrary and independent, we obtain the generalized Euler-Lagrange equation</p>
+<div class="text-environment"><p class="mark-text">Since the components \(\delta a^\mu\) are arbitrary and independent, we obtain the generalized Euler-Lagrange equation</p></div>
 <div class="math-display">\[\frac{\partial L}{\partial a^\mu}
 -
 \partial_\nu
@@ -274,12 +521,12 @@ L\left(a^\mu,\partial_\nu a^\mu,x\right)\,d^4x.\]</div>
 \frac{\partial L}{\partial(\partial_\nu a^\mu)}
 \right)
 =0.\]</div>
-<p>This is the <strong>vector-field generalization</strong> of the Euler-Lagrange equation. It is simply the several-field equation written compactly, with the component label \(\mu\).</p></div><div class="qed" aria-label="Q.E.D.">□</div></div>
+<div class="text-environment"><p class="mark-text">This is the <strong>vector-field generalization</strong> of the Euler-Lagrange equation. It is simply the several-field equation written compactly, with the component label \(\mu\).</p></div></div><div class="qed" aria-label="Q.E.D.">□</div></div>
 </section>
 </section>
 <section class="article-section">
 <h2 id="maxwell-s-equations"><span class="num">3</span>Maxwell&#x27;s equations</h2>
-<div class="box axiom" id="maxwell-equations-axiom"><div class="label">Axiom 2 — Maxwell&#x27;s equations</div><div class="box-content"><p>The electromagnetic fields are governed by the four Maxwell equations:</p>
+<div class="box axiom" id="maxwell-equations-axiom"><div class="label">Axiom 2 — Maxwell&#x27;s equations</div><div class="box-content"><div class="text-environment"><p class="mark-text">The electromagnetic fields are governed by the four Maxwell equations:</p></div>
 <div class="math-display">\[\nabla\cdot\mathbf E
 =
 \frac{\rho}{\varepsilon_0}.\]</div>
@@ -291,8 +538,8 @@ L\left(a^\mu,\partial_\nu a^\mu,x\right)\,d^4x.\]</div>
 =\mu_0\mathbf J
 +
 \mu_0\varepsilon_0
-\frac{\partial \mathbf E}{\partial t}.\]</div></div></div>
-<div class="text-environment"><p class="mark-text">These four equations, together with the appropriate charge and current distributions \(\rho\) and \(\mathbf J\), completely specify the dynamics of the electric and magnetic fields. They are empirical laws: their form is based on experimental observations and on the laws established by Gauss, Faraday, Ampère, and others. Maxwell unified these results into a single system and introduced the displacement-current term in the fourth equation.</p></div>
+\frac{\partial \mathbf E}{\partial t}.\]</div>
+<div class="text-environment"><p class="mark-text">These four equations, together with the appropriate charge and current distributions \(\rho\) and \(\mathbf J\), completely specify the dynamics of the electric and magnetic fields. They are empirical laws: their form is based on experimental observations and on the laws established by Gauss, Faraday, Ampère, and others. Maxwell unified these results into a single system and introduced the displacement-current term in the fourth equation.</p></div></div></div>
 <div class="box definition" id="potential-fields"><div class="label">Definition 1 — Electric and magnetic fields from the potentials</div><div class="box-content"><div class="math-display">\[\mathbf E
 =
 -\nabla\phi
@@ -300,8 +547,9 @@ L\left(a^\mu,\partial_\nu a^\mu,x\right)\,d^4x.\]</div>
 \frac{\partial\mathbf A}{\partial t},
 \qquad
 \mathbf B
-=\nabla\times\mathbf A.\]</div></div></div>
-<div class="text-environment"><p class="mark-text">The scalar potential \(\phi\) and the vector potential \(\mathbf A\) can be combined into a single four-vector, the electromagnetic potential four-vector. Using \(x^0=ct\), we define</p><div class="text-content"><div class="math-display">\[A^\mu
+=\nabla\times\mathbf A.\]</div>
+<div class="text-environment"><p class="mark-text">The scalar potential \(\phi\) and the vector potential \(\mathbf A\) can be combined into a single four-vector, the electromagnetic potential four-vector. Using \(x^0=ct\), we define</p></div>
+<div class="math-display">\[A^\mu
 =
 \left(
 \frac{\phi}{c},\mathbf A
@@ -309,27 +557,27 @@ L\left(a^\mu,\partial_\nu a^\mu,x\right)\,d^4x.\]</div>
 =
 \left(
 \frac{\phi}{c},A_x,A_y,A_z
-\right).\]</div></div></div>
-<div class="text-environment"><p class="mark-text">Thus the temporal component of \(A^\mu\) contains the scalar potential, while the three spatial components are the components of the vector potential. With \(A^0=\phi/c\), we have \(\phi=cA^0\), and since \(x^0=ct\), differentiation with respect to time is \(\partial_t=c\partial_0\). Before introducing any new tensor, we can simply rewrite the electric and magnetic fields directly using these components.</p></div>
+\right).\]</div>
+<div class="text-environment"><p class="mark-text">Thus the temporal component of \(A^\mu\) contains the scalar potential, while the three spatial components are the components of the vector potential. With \(A^0=\phi/c\), we have \(\phi=cA^0\), and since \(x^0=ct\), differentiation with respect to time is \(\partial_t=c\partial_0\). Before introducing any new tensor, we can simply rewrite the electric and magnetic fields directly using these components.</p></div></div></div>
 <section class="article-subsection">
 <h3 id="electric-field-in-terms-of-the-4-potential"><span class="num">3.1</span>Electric field in terms of the 4-potential</h3>
-<p>Starting from</p>
+<div class="text-environment"><p class="mark-text">Starting from</p></div>
 <div class="math-display">\[\mathbf E
 =
 -\nabla\phi
 -
 \frac{\partial\mathbf A}{\partial t},\]</div>
-<p>we use</p>
+<div class="text-environment"><p class="mark-text">we use</p></div>
 <div class="math-display">\[\phi=cA^0,
 \qquad
 \frac{\partial}{\partial t}
 =c\partial_0.\]</div>
-<p>Therefore,</p>
+<div class="text-environment"><p class="mark-text">Therefore,</p></div>
 <div class="math-display">\[\mathbf E
 =
 -c\nabla A^0
 -c\partial_0\mathbf A.\]</div>
-<p>Writing the spatial components explicitly,</p>
+<div class="text-environment"><p class="mark-text">Writing the spatial components explicitly,</p></div>
 <div class="math-display">\[E_x
 =
 -c\left(
@@ -351,7 +599,7 @@ L\left(a^\mu,\partial_\nu a^\mu,x\right)\,d^4x.\]</div>
 +
 \partial_0 A^3
 \right).\]</div>
-<p>Hence, for \(i=1,2,3\),</p>
+<div class="text-environment"><p class="mark-text">Hence, for \(i=1,2,3\),</p></div>
 <div class="math-display">\[E_i
 =
 -c\left(
@@ -362,11 +610,11 @@ L\left(a^\mu,\partial_\nu a^\mu,x\right)\,d^4x.\]</div>
 </section>
 <section class="article-subsection">
 <h3 id="magnetic-field-in-terms-of-the-4-potential"><span class="num">3.2</span>Magnetic field in terms of the 4-potential</h3>
-<p>Now consider</p>
+<div class="text-environment"><p class="mark-text">Now consider</p></div>
 <div class="math-display">\[\mathbf B
 =
 \nabla\times\mathbf A.\]</div>
-<p>In components,</p>
+<div class="text-environment"><p class="mark-text">In components,</p></div>
 <div class="math-display">\[B_x
 =
 \partial_yA_z-\partial_zA_y,\]</div>
@@ -376,53 +624,56 @@ L\left(a^\mu,\partial_\nu a^\mu,x\right)\,d^4x.\]</div>
 <div class="math-display">\[B_z
 =
 \partial_xA_y-\partial_yA_x.\]</div>
-<p>Since</p>
+<div class="text-environment"><p class="mark-text">Since</p></div>
 <div class="math-display">\[A^1=A_x,
 \qquad
 A^2=A_y,
 \qquad
 A^3=A_z,\]</div>
-<p>these three equations can be written compactly as</p>
+<div class="text-environment"><p class="mark-text">these three equations can be written compactly as</p></div>
 <div class="math-display">\[B_i
 =
 \epsilon_{ijk}\,
 \partial_j A^k,\]</div>
-<p>where \(\epsilon_{ijk}\) is the three-dimensional Levi-Civita symbol.</p>
+<div class="text-environment"><p class="mark-text">where \(\epsilon_{ijk}\) is the three-dimensional Levi-Civita symbol.</p></div>
 <div class="text-environment"><p class="mark-text">At this stage we have already expressed both \(\mathbf E\) and \(\mathbf B\) entirely in terms of derivatives of the four-potential. The expressions also show a useful pattern: the electric field involves the temporal component \(A^0\) and a spatial component \(A^i\), while the magnetic field involves two spatial components. We can package all of these combinations into a single antisymmetric four-dimensional object.</p></div>
-<div class="text-environment"><p class="mark-text">Define the electromagnetic field-strength tensor</p><div class="text-content"><div class="math-display">\[F^{\mu\nu}
+<div class="text-environment"><p class="mark-text">Define the electromagnetic field-strength tensor</p></div>
+<div class="math-display">\[F^{\mu\nu}
 =
 \partial^\mu A^\nu
 -
-\partial^\nu A^\mu.\]</div></div></div>
-<div class="text-environment"><p class="mark-text">For the metric convention \(\eta^{\mu\nu}=\operatorname{diag}(1,-1,-1,-1)\), the time-space components become</p><div class="text-content"><div class="math-display">\[F^{0i}
+\partial^\nu A^\mu.\]</div>
+<div class="text-environment"><p class="mark-text">For the metric convention \(\eta^{\mu\nu}=\operatorname{diag}(1,-1,-1,-1)\), the time-space components become</p></div>
+<div class="math-display">\[F^{0i}
 =
 \partial^0A^i-\partial^iA^0
 =
 \partial_0A^i+\partial_iA^0.\]</div>
-<p>Comparing with the expression obtained above,</p>
+<div class="text-environment"><p class="mark-text">Comparing with the expression obtained above,</p></div>
 <div class="math-display">\[E_i
 =
--cF^{0i}.\]</div></div></div>
-<div class="text-environment"><p class="mark-text">The purely spatial components contain the magnetic field. Since</p><div class="text-content"><div class="math-display">\[F^{ij}
+-cF^{0i}.\]</div>
+<div class="text-environment"><p class="mark-text">The purely spatial components contain the magnetic field. Since</p></div>
+<div class="math-display">\[F^{ij}
 =
 \partial^iA^j-\partial^jA^i,\]</div>
-<p>we obtain</p>
+<div class="text-environment"><p class="mark-text">we obtain</p></div>
 <div class="math-display">\[F^{ij}
 =
 -\partial_iA^j+\partial_jA^i.\]</div>
-<p>Using</p>
+<div class="text-environment"><p class="mark-text">Using</p></div>
 <div class="math-display">\[B_k
 =
 \epsilon_{kij}\partial_iA^j,\]</div>
-<p>the spatial components can therefore be written as</p>
+<div class="text-environment"><p class="mark-text">the spatial components can therefore be written as</p></div>
 <div class="math-display">\[F^{ij}
 =
 -\epsilon_{ijk}B_k.\]</div>
-<p>Contracting with \(\epsilon_{ijk}\) gives</p>
+<div class="text-environment"><p class="mark-text">Contracting with \(\epsilon_{ijk}\) gives</p></div>
 <div class="math-display">\[B_i
 =
 -\frac{1}{2}
-\epsilon_{ijk}F^{jk}.\]</div></div></div>
+\epsilon_{ijk}F^{jk}.\]</div>
 <div class="text-environment"><p class="mark-text">Hence both electromagnetic fields are contained in the derivatives of the potential four-vector: the electric field comes from the time-space components of \(F^{\mu\nu}\), while the magnetic field comes from its purely spatial components. The four-potential is not unique: a gauge transformation \(A^\mu\rightarrow A^\mu+\partial^\mu\Lambda\) leaves \(\mathbf E\) and \(\mathbf B\) unchanged.</p></div>
 </section>
 </section></article>
@@ -432,8 +683,52 @@ A^3=A_z,\]</div>
 <div class="rail-card related-card"><h4>Related</h4><ul></ul></div>
 </aside>
 </div>
-<footer>© 2026 Author — set in Latin Modern Sans.</footer>
 </div>
-<script src="script.js"></script>
+<script>
+"use strict";
+document.addEventListener("DOMContentLoaded", function(){
+(function(){
+  var headings=document.querySelectorAll('#article h2, #article h3');
+  var lists=[document.getElementById('toc-desktop'),document.getElementById('toc-mobile')];
+  var links=[];
+  lists.forEach(function(root){
+    if(!root) return;
+    var ul=document.createElement('ul');
+    headings.forEach(function(h){
+      var li=document.createElement('li');
+      if(h.tagName==='H3') li.className='sub';
+      var a=document.createElement('a');
+      a.href='#'+h.id;
+      a.textContent=h.textContent.replace(/^\s*\d+(?:\.\d+)?\s*/,"").trim();
+      li.appendChild(a); ul.appendChild(li); links.push(a);
+    });
+    root.replaceChildren(ul);
+  });
+  var byId={};
+  links.forEach(function(a){ var id=a.getAttribute('href').slice(1); (byId[id]=byId[id]||[]).push(a); });
+  if('IntersectionObserver' in window){
+    var obs=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(!e.isIntersecting) return;
+        links.forEach(function(a){a.classList.remove('active');});
+        (byId[e.target.id]||[]).forEach(function(a){a.classList.add('active');});
+      });
+    },{rootMargin:'-15% 0px -70% 0px'});
+    headings.forEach(function(h){obs.observe(h);});
+  }
+})();
+(function(){
+  var btn=document.querySelector('.theme-toggle');
+  if(btn){
+    btn.addEventListener('click',function(){
+      var root=document.documentElement;
+      var dark=root.getAttribute('data-theme')==='dark';
+      if(dark) root.removeAttribute('data-theme'); else root.setAttribute('data-theme','dark');
+      try{localStorage.setItem('theme',dark?'light':'dark');}catch(e){}
+    });
+  }
+})();
+});
+</script>
 </body>
 </html>

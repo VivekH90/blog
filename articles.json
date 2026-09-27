@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "articles": [
+    {
+      "id": "resources/physics/electromagnetism/lagrange-field-equations/field_equations",
+      "title": "Electromagnetic Lagrangian",
+      "subject": "Physics",
+      "folder": "",
+      "author": "Author",
+      "date": "",
+      "tags": [
+        "Electromagnetism",
+        "Classical Field Theory",
+        "Lagrangian Mechanics"
+      ],
+      "url": "/resources/physics/electromagnetism/lagrange-field-equations/",
+      "source": "resources/physics/electromagnetism/lagrange-field-equations/field_equations.mt",
+      "sections": [
+        "Lagrange's equation for a single variable",
+        "Lagrange's equation for multiple variables",
+        "Maxwell's equations"
+      ]
+    }
+  ]
+}
