@@ -29,7 +29,10 @@ where the action is defined by
 \[
 S[q] = \int_{t_1}^{t_2} L(q,\dot q,t)\,dt.
 \]
-And from the principle of least action, the equation of motion are given by:
+@end(axiom)
+
+@begin(theorem = Euler-Lagrange equation, label = Euler-Lagrange equation)
+ From the principle of least action, the equation of motion are given by:
 \[
 \frac{d}{dt}
 \left(
@@ -39,8 +42,7 @@ And from the principle of least action, the equation of motion are given by:
 \frac{\partial L}{\partial q}
 =0.
 \]
-
-@end(axiom)
+@end(theorem)
 
 @image{src = input/least-action.png, alt = least-action, caption = , label = least action, width = 60%, height = auto}
 
@@ -267,8 +269,7 @@ and
 =0.
 \]
 
-Thus, @bold{each independent field contributes its own Euler-Lagrange equation}. This is the key step toward electromagnetism: the electromagnetic potential will be treated as a collection of field components, each of which is varied independently.
-
+Thus, @bold{each independent field contributes its own Euler-Lagrange equation}.
 @end(proof)
 
 
@@ -295,102 +296,6 @@ The Euler-Lagrange equations are given by:
 =0.
 \]
 @end(corollary)
-
-@begin(proof)
-We vary the vector field according to
-
-\[
-a^\mu\rightarrow a^\mu+\delta a^\mu.
-\]
-
-The variation of the action is therefore
-
-\[
-\delta S
-=
-\int_G
-\left[
-\frac{\partial L}{\partial a^\mu}\,\delta a^\mu
-+
-\frac{\partial L}{\partial(\partial_\nu a^\mu)}
-\delta(\partial_\nu a^\mu)
-\right]d^4x.
-\]
-
-Because variation commutes with differentiation,
-
-\[
-\delta(\partial_\nu a^\mu)
-=
-\partial_\nu(\delta a^\mu).
-\]
-
-Therefore,
-
-\[
-\delta S
-=
-\int_G
-\left[
-\frac{\partial L}{\partial a^\mu}\,\delta a^\mu
-+
-\frac{\partial L}{\partial(\partial_\nu a^\mu)}
-\partial_\nu(\delta a^\mu)
-\right]d^4x.
-\]
-
-Integrating the second term by parts gives
-
-\[
-\delta S
-=
-\int_G
-\frac{\partial L}{\partial a^\mu}\,\delta a^\mu\,d^4x
--
-\int_G
-\partial_\nu
-\left(
-\frac{\partial L}{\partial(\partial_\nu a^\mu)}
-\right)
-\delta a^\mu\,d^4x
-+
-\text{boundary term}.
-\]
-
-For variations satisfying \(\delta a^\mu=0\) on the boundary, the boundary term vanishes. Hence
-
-\[
-\delta S
-=
-\int_G
-\left[
-\frac{\partial L}{\partial a^\mu}
--
-\partial_\nu
-\left(
-\frac{\partial L}{\partial(\partial_\nu a^\mu)}
-\right)
-\right]
-\delta a^\mu\,d^4x.
-\]
-
-Since the components \(\delta a^\mu\) are arbitrary and independent, we obtain the generalized Euler-Lagrange equation
-
-\[
-\frac{\partial L}{\partial a^\mu}
--
-\partial_\nu
-\left(
-\frac{\partial L}{\partial(\partial_\nu a^\mu)}
-\right)
-=0.
-\]
-
-This is the @bold{vector-field generalization} of the Euler-Lagrange equation. It is simply the several-field equation written compactly, with the component label \(\mu\).
-
-@end(proof)
-
-
 
 @section{Maxwell's equations, label = maxwell-equations}
 
@@ -420,12 +325,10 @@ The electromagnetic fields are governed by the four Maxwell equations:
 \mu_0\varepsilon_0
 \frac{\partial \mathbf E}{\partial t}.
 \]
-
-These four equations, together with the appropriate charge and current distributions \(\rho\) and \(\mathbf J\), completely specify the dynamics of the electric and magnetic fields. They are empirical laws: their form is based on experimental observations and on the laws established by Gauss, Faraday, Ampère, and others. Maxwell unified these results into a single system and introduced the displacement-current term in the fourth equation.
-
 @end(axiom)
 
 @begin(definition = Electric and magnetic fields from the potentials, label = potential-fields)
+From the Maxwell's equations we define the potentials \(\mathbf A\) and \(\phi\) to be such that:
 \[
 \mathbf E
 =
@@ -436,7 +339,7 @@ These four equations, together with the appropriate charge and current distribut
 \mathbf B
 =\nabla\times\mathbf A.
 \]
-
+@end(definition)
 The scalar potential \(\phi\) and the vector potential \(\mathbf A\) can be combined into a single four-vector, the electromagnetic potential four-vector. Using \(x^0=ct\), we define
 
 \[
@@ -450,10 +353,6 @@ A^\mu
 \frac{\phi}{c},A_x,A_y,A_z
 \right).
 \]
-
-Thus the temporal component of \(A^\mu\) contains the scalar potential, while the three spatial components are the components of the vector potential. With \(A^0=\phi/c\), we have \(\phi=cA^0\), and since \(x^0=ct\), differentiation with respect to time is \(\partial_t=c\partial_0\). Before introducing any new tensor, we can simply rewrite the electric and magnetic fields directly using these components.
-
-@end(definition)
 
 @subsection{Electric field in terms of the 4-potential, label = electric-field-four-potential}
 
@@ -483,38 +382,6 @@ Therefore,
 =
 -c\nabla A^0
 -c\partial_0\mathbf A.
-\]
-
-Writing the spatial components explicitly,
-
-\[
-E_x
-=
--c\left(
-\partial_x A^0
-+
-\partial_0 A^1
-\right),
-\]
-
-\[
-E_y
-=
--c\left(
-\partial_y A^0
-+
-\partial_0 A^2
-\right),
-\]
-
-\[
-E_z
-=
--c\left(
-\partial_z A^0
-+
-\partial_0 A^3
-\right).
 \]
 
 Hence, for \(i=1,2,3\),
@@ -559,16 +426,6 @@ B_z
 \partial_xA_y-\partial_yA_x.
 \]
 
-Since
-
-\[
-A^1=A_x,
-\qquad
-A^2=A_y,
-\qquad
-A^3=A_z,
-\]
-
 these three equations can be written compactly as
 
 \[
@@ -578,11 +435,7 @@ B_i
 \partial_j A^k,
 \]
 
-where \(\epsilon_{ijk}\) is the three-dimensional Levi-Civita symbol.
-
-At this stage we have already expressed both \(\mathbf E\) and \(\mathbf B\) entirely in terms of derivatives of the four-potential. The expressions also show a useful pattern: the electric field involves the temporal component \(A^0\) and a spatial component \(A^i\), while the magnetic field involves two spatial components. We can package all of these combinations into a single antisymmetric four-dimensional object.
-
-Define the electromagnetic field-strength tensor
+By symmetry you can define a quantity:
 
 \[
 F^{\mu\nu}
@@ -651,5 +504,5 @@ B_i
 \epsilon_{ijk}F^{jk}.
 \]
 
-Hence both electromagnetic fields are contained in the derivatives of the potential four-vector: the electric field comes from the time-space components of \(F^{\mu\nu}\), while the magnetic field comes from its purely spatial components. The four-potential is not unique: a gauge transformation \(A^\mu\rightarrow A^\mu+\partial^\mu\Lambda\) leaves \(\mathbf E\) and \(\mathbf B\) unchanged.
+Hence both electromagnetic fields are contained in the derivatives of the potential four-vector: the electric field comes from the time-space components of \(F^{\mu\nu}\), while the magnetic field comes from its purely spatial components. 
 
