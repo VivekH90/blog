@@ -506,3 +506,5 @@ B_i
 
 Hence both electromagnetic fields are contained in the derivatives of the potential four-vector: the electric field comes from the time-space components of \(F^{\mu\nu}\), while the magnetic field comes from its purely spatial components. 
 
+@image{src = https://cdn.jsdelivr.net/gh/VivekH90/blog@master/resources/physics/electromagnetism/lagrange-field-equations/input/field_tensor.png, alt = Description, caption = The electromagnetic field tensor, label = figure-label, width = 90%, height = auto}
+
