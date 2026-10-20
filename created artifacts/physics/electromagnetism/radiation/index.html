@@ -1,0 +1,1814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Introduction to Radiation — Vivek Kalita</title>
+<script>
+window.MathJax={
+  tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],tags:'ams'},
+  chtml:{fontURL:'https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/output/chtml/fonts/woff-v2'}
+};
+(function(){
+  try{
+    var saved=localStorage.getItem('mark-two-theme-v2');
+    var theme=saved||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+    if(theme==='dark') document.documentElement.setAttribute('data-theme','dark');
+  }catch(e){}
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" defer></script>
+<style>
+@import url("https://cdn.jsdelivr.net/npm/computer-modern@0.1.3/cmu-serif.css");
+@import url("https://cdn.jsdelivr.net/npm/computer-modern@0.1.3/cmu-sans-serif.css");
+
+:root{
+  --bg:#fbfaf6;
+  --fg:#1c1d24;
+  --muted:#5c5f6b;
+  --rule:#dcd8cc;
+  --link:#3a43a8;
+  --crim:#b45f06;
+  --accent2:#0f766e;
+  --box:#f1efe7;
+  --card:#ffffff;
+  --glow:rgba(58,67,168,.08);
+
+  /* Old article palette, carried into Mark Two's semantic environments. */
+  --blue-soft:#eef0fb;
+  --blue-ink:#2f3690;
+  --orange-soft:#fffaf0;
+  --orange-border:#c9812b;
+  --orange-ink:#94500a;
+  --question-soft:#ecf6f3;
+  --question-border:color-mix(in srgb,var(--accent2) 40%,transparent);
+  --axiom-ink:#8f6d00;
+  --warning-ink:#b45f06;
+  --citation-border:#4fb8c9;
+
+  --primary-bg:var(--blue-soft);
+  --primary-border:var(--link);
+  --primary-title:var(--blue-ink);
+
+  --example-bg:var(--orange-soft);
+  --example-border:var(--orange-border);
+  --example-title:var(--orange-ink);
+
+  --axiom-border:var(--axiom-ink);
+  --warning-border:var(--warning-ink);
+
+  /* TeX typography: Roman for reading, Sans for structural headings/UI. */
+  --serif:"CMU Serif",serif;
+  --sans:"CMU Sans Serif",sans-serif;
+
+  /* Solid, paper-like theorem palette. */
+  --theorem-bg:#eeeafc;
+  --theorem-border:#6552b8;
+  --theorem-ink:#4f3f99;
+  --definition-bg:#eaf7ef;
+  --definition-border:#2f7d58;
+  --definition-ink:#236344;
+  --example-bg:#fff1dd;
+  --example-border:#bd6d1f;
+  --example-ink:#8f4f10;
+  --lemma-bg:#f0edff;
+  --lemma-border:#7258b8;
+  --lemma-ink:#594298;
+  --remark-bg:#f1f0f5;
+  --remark-border:#77707f;
+  --remark-ink:#5c5664;
+  --axiom-bg:#fff0ef;
+  --axiom-border-solid:#b84c4c;
+  --axiom-ink-solid:#8f3838;
+  --notation-bg:#eaf6f6;
+  --notation-border:#2e7778;
+  --notation-ink:#256365;
+  --warning-bg:#fff4df;
+  --warning-border-solid:#b86d18;
+  --warning-ink-solid:#8d5313;
+
+  --section-symbol:#b51f4b;
+  --section-sub:#72506a;
+  --section-rule:#e3d9df;
+
+  /* Solid surfaces with deliberately contrasting, uniform borders. */
+  --theorem-bg:#f2efff;
+  --theorem-border:#6658b7;
+  --theorem-ink:#493d88;
+  --lemma-bg:#f7f1ff;
+  --lemma-border:#8a68bd;
+  --lemma-ink:#5d458d;
+  --definition-bg:#edf8f1;
+  --definition-border:#4b9368;
+  --definition-ink:#2c6948;
+  --proposition-bg:#eef4ff;
+  --proposition-border:#587bbc;
+  --proposition-ink:#385681;
+  --example-bg:#fff3e3;
+  --example-border:#c27a25;
+  --example-ink:#885213;
+  --axiom-bg:#fff0f0;
+  --axiom-border-solid:#ba5b5b;
+  --axiom-ink-solid:#8d3f3f;
+  --remark-bg:#f3f2f0;
+  --remark-border:#918b83;
+  --remark-ink:#625d56;
+  --conjecture-bg:#fff0f7;
+  --conjecture-border:#b06d94;
+  --conjecture-ink:#7d4d6b;
+  --notation-bg:#edf8f8;
+  --notation-border:#4d9092;
+  --notation-ink:#356b6d;
+  --warning-bg:#fff3df;
+  --warning-border-solid:#bf771e;
+  --warning-ink-solid:#875112;
+  --question-border-solid:#3e8b83;
+  --conclusion-bg:#edf7f5;
+  --conclusion-border:#3f8d83;
+  --conclusion-ink:#28685f;
+  --colourbox-bg:#fff6d8;
+  --colourbox-border:#9b6b12;
+  --colourbox-ink:#6b4a08;
+
+  --toc-bg:#f5f1ff;
+  --toc-border:#b8a9df;
+  --toc-ink:#55458d;
+  --related-bg:#f1f8f3;
+  --related-border:#afd0b9;
+  --related-ink:#356c4a;
+  color-scheme:light;
+}
+
+:root[data-theme="dark"]{
+  --bg:#12141a;
+  --fg:#e8e6df;
+  --muted:#a4a5ad;
+  --rule:#2e313b;
+  --link:#9aa3ff;
+  --crim:#f0a64a;
+  --accent2:#5fd0c0;
+  --box:#1b1e26;
+  --card:#1a1d25;
+  --glow:rgba(154,163,255,.10);
+
+  --blue-soft:#1b1d33;
+  --blue-ink:#b5baff;
+  --orange-soft:#241f17;
+  --orange-border:#d99a52;
+  --orange-ink:#f0b36a;
+  --question-soft:#15262a;
+  --question-border:color-mix(in srgb,var(--accent2) 40%,transparent);
+  --axiom-ink:#f0c94a;
+  --warning-ink:#f0a64a;
+  --citation-border:#68c9d7;
+
+  --primary-bg:var(--blue-soft);
+  --primary-border:var(--link);
+  --primary-title:var(--blue-ink);
+
+  --example-bg:var(--orange-soft);
+  --example-border:var(--orange-border);
+  --example-title:var(--orange-ink);
+
+  --axiom-border:var(--axiom-ink);
+  --warning-border:var(--warning-ink);
+
+  --theorem-bg:#272242;
+  --theorem-border:#9a8be6;
+  --theorem-ink:#d9d3ff;
+  --definition-bg:#183326;
+  --definition-border:#67b58b;
+  --definition-ink:#b9e8c9;
+  --example-bg:#352716;
+  --example-border:#d99a52;
+  --example-ink:#ffd59b;
+  --lemma-bg:#29213b;
+  --lemma-border:#a58ae0;
+  --lemma-ink:#dacdff;
+  --remark-bg:#25252c;
+  --remark-border:#a3a0aa;
+  --remark-ink:#d7d5dc;
+  --axiom-bg:#351f22;
+  --axiom-border-solid:#d47a7a;
+  --axiom-ink-solid:#ffc1c1;
+  --notation-bg:#1c3131;
+  --notation-border:#65b9ba;
+  --notation-ink:#b6e9e9;
+  --warning-bg:#372815;
+  --warning-border-solid:#dfa052;
+  --warning-ink-solid:#ffd79e;
+
+  --section-symbol:#e58aa8;
+  --section-sub:#c9b3c7;
+  --section-rule:#453b46;
+
+  --theorem-bg:#292447;
+  --theorem-border:#9b8be5;
+  --theorem-ink:#ddd7ff;
+  --lemma-bg:#2e2640;
+  --lemma-border:#aa89df;
+  --lemma-ink:#dfd1ff;
+  --definition-bg:#1a3526;
+  --definition-border:#6fbd92;
+  --definition-ink:#c4ebd1;
+  --proposition-bg:#202d45;
+  --proposition-border:#78a0dc;
+  --proposition-ink:#d0e0ff;
+  --example-bg:#392a19;
+  --example-border:#e0a45d;
+  --example-ink:#ffd7a1;
+  --axiom-bg:#3b2325;
+  --axiom-border-solid:#db7c7c;
+  --axiom-ink-solid:#ffc7c7;
+  --remark-bg:#292a2d;
+  --remark-border:#aaa7ad;
+  --remark-ink:#ddd9e0;
+  --conjecture-bg:#392432;
+  --conjecture-border:#d08cae;
+  --conjecture-ink:#f1c8dd;
+  --notation-bg:#1f3535;
+  --notation-border:#6bbabb;
+  --notation-ink:#c4eded;
+  --warning-bg:#392b1a;
+  --warning-border-solid:#dfa45c;
+  --warning-ink-solid:#ffd7a1;
+  --question-border-solid:#65c2b4;
+  --conclusion-bg:#19312f;
+  --conclusion-border:#68c5b8;
+  --conclusion-ink:#b7e6df;
+  --colourbox-bg:#332a17;
+  --colourbox-border:#e1bd55;
+  --colourbox-ink:#f8e6a5;
+
+  --toc-bg:#25213a;
+  --toc-border:#5e5180;
+  --toc-ink:#ddd5ff;
+  --related-bg:#1f3027;
+  --related-border:#537b61;
+  --related-ink:#c5e5cf;
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:5rem}
+body{
+  margin:0;
+  min-height:100%;
+  background:
+    radial-gradient(60rem 24rem at 50% -8rem,var(--glow),transparent) no-repeat,
+    var(--bg);
+  color:var(--fg);
+  font-family:var(--serif);
+  font-size:1.08rem;
+  line-height:1.78;
+  -webkit-font-smoothing:antialiased;
+}
+button,input,select,textarea,.site-nav,.theme-toggle,.reading h2,.reading h3,.article-header h1,.runhead,.tags,.toc,.related{font-family:var(--sans)}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--link);outline-offset:3px}
+p{margin:.9rem 0}
+img{max-width:100%;height:auto}
+
+.wrap{max-width:66rem;margin:0 auto;padding:0 1.4rem}
+
+/* Header */
+header.top{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:color-mix(in srgb,var(--bg) 90%,transparent);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--rule);
+}
+.top-wrap{
+  display:flex;
+  align-items:center;
+  gap:.9rem 1.5rem;
+  min-height:4.2rem;
+}
+.brand{
+  margin-right:auto;
+  color:var(--fg);
+  font-weight:700;
+  display:flex;
+  align-items:center;
+  gap:.55rem;
+  text-decoration:none;
+}
+.brand:hover{text-decoration:none}
+.brand-mark{
+  display:inline-grid;
+  place-items:center;
+  width:1.9rem;
+  height:1.9rem;
+  border-radius:50%;
+  background:var(--link);
+  color:var(--bg);
+  font-size:1rem;
+}
+.site-nav ul{
+  list-style:none;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:1rem;
+  margin:0;
+  padding:0;
+}
+.site-nav a{
+  color:var(--muted);
+  font-size:.92rem;
+  padding:.15rem 0;
+  border-bottom:2px solid transparent;
+}
+.site-nav a:hover{
+  color:var(--fg);
+  text-decoration:none;
+  border-bottom-color:var(--accent2);
+}
+.theme-toggle{
+  display:inline-grid;
+  place-items:center;
+  width:2rem;
+  height:2rem;
+  padding:0;
+  border:1px solid var(--rule);
+  border-radius:999px;
+  background:var(--card);
+  color:var(--fg);
+  cursor:pointer;
+}
+.theme-toggle svg{width:15px;height:15px}
+.theme-toggle .moon{display:none}
+:root[data-theme="dark"] .theme-toggle .sun{display:none}
+:root[data-theme="dark"] .theme-toggle .moon{display:block}
+
+#bar{
+  position:absolute;
+  left:0;
+  bottom:-1px;
+  height:3px;
+  width:0;
+  background:var(--accent2);
+  pointer-events:none;
+}
+
+/* Article layout */
+.article-shell{padding:3rem 0 4.5rem}
+.article-layout{
+  display:grid;
+  grid-template-columns:minmax(0,44rem) 16rem;
+  column-gap:4rem;
+  align-items:start;
+}
+.article-column{min-width:0}
+.article-header{margin-bottom:2rem}
+
+/* Running head: a small piece of print-like ornament carried over from the old article. */
+.runhead{
+  display:flex;
+  justify-content:space-between;
+  gap:1rem;
+  font-size:.9rem;
+  color:var(--muted);
+  border-bottom:1.5px solid var(--rule);
+  padding-bottom:.3rem;
+  margin-bottom:1.7rem;
+  position:relative;
+}
+.runhead::before,.runhead::after{
+  content:"";
+  position:absolute;
+  bottom:-4px;
+  width:7px;
+  height:7px;
+  border:1px solid var(--rule);
+  background:var(--bg);
+  transform:rotate(45deg);
+}
+.runhead::before{left:-3px}
+.runhead::after{right:-3px}
+.runhead b{color:var(--fg)}
+
+.article-header h1{
+  font-family:var(--sans);
+  margin:0 0 .6rem;
+  font-size:clamp(2rem,4vw,3.1rem);
+  line-height:1.15;
+  letter-spacing:-.012em;
+}
+.lead{
+  color:var(--muted);
+  font-size:1.18rem;
+  max-width:34rem;
+  margin:.1rem 0 .8rem;
+}
+.article-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.6rem;
+  align-items:center;
+  color:var(--muted);
+  font-size:.9rem;
+}
+.tags{
+  margin:.55rem 0 0;
+  line-height:1.1;
+  display:flex;
+  flex-wrap:wrap;
+  gap:.35rem .45rem;
+}
+.tags span{
+  display:inline-block;
+  font-size:.78rem;
+  line-height:1;
+  padding:.34rem .7rem;
+  border:1px solid var(--rule);
+  border-radius:999px;
+  background:var(--card);
+  color:var(--fg);
+}
+
+/* Running example / prototype note, matching the original article treatment. */
+.proto{
+  color:var(--crim);
+  font-style:italic;
+  margin:.2rem 0 .9rem;
+}
+
+/* Main prose */
+.reading{
+  max-width:44rem;
+  min-width:0;
+  overflow-wrap:anywhere;
+  counter-reset:sec;
+}
+.reading h2{
+  font-family:var(--sans);
+  counter-increment:sec;
+  display:flex;
+  align-items:baseline;
+  gap:.72rem;
+  font-size:clamp(1.75rem,2.8vw,2.08rem);
+  line-height:1.2;
+  margin:3.25rem 0 1rem;
+  padding:0;
+  border:0;
+  letter-spacing:-.008em;
+  scroll-margin-top:5.5rem;
+}
+.reading h2::after{
+  content:"";
+  flex:1;
+  min-width:1.5rem;
+  border-bottom:1.5px solid var(--section-rule);
+  transform:translateY(-.22em);
+}
+.reading h2 .section-number{
+  flex:none;
+  color:var(--section-symbol);
+  font-size:.92em;
+  font-weight:700;
+  letter-spacing:0;
+}
+.reading h2 .section-title{
+  color:var(--fg);
+  font-weight:700;
+}
+.reading h3{
+  font-family:var(--sans);
+  display:flex;
+  align-items:baseline;
+  gap:.55rem;
+  font-size:1.18rem;
+  line-height:1.35;
+  margin:2.05rem 0 .6rem;
+  color:var(--fg);
+  scroll-margin-top:5.5rem;
+  font-weight:700;
+  letter-spacing:-.003em;
+}
+.reading h3 .section-number{
+  flex:none;
+  color:var(--section-sub);
+  font-size:.9em;
+  font-weight:700;
+  letter-spacing:0;
+}
+.reading h3 .section-title{
+  color:var(--fg);
+  font-weight:700;
+}
+/* Mathematical environments */
+.box{
+  margin:1.9rem 0;
+  padding:1.18rem 1.35rem 1.22rem;
+  color:var(--fg);
+  border:1.6px solid var(--box-accent,var(--rule));
+  border-radius:15px;
+  background:var(--box-fill,var(--card));
+}
+.box .label{
+  margin:0 0 .65rem;
+  padding:0 0 .48rem;
+  font-family:var(--sans);
+  font-size:1rem;
+  line-height:1.35;
+  font-weight:700;
+  border-bottom:1px solid color-mix(in srgb,var(--box-accent) 30%,var(--box-fill));
+}
+.box .box-content,.box .proof-content{min-width:0}
+.box p{margin:.5rem 0}
+.box .math-display{margin:.9rem 0}
+.box ul,.box ol{margin:.6rem 0 .85rem}
+
+/* Mathematical statement cards use a uniform outline. The fill and outline
+   are intentionally contrasting so the card reads clearly without a heavy
+   leading stripe. */
+.box.theorem,
+.box.corollary{
+  --box-fill:var(--theorem-bg);
+  --box-accent:var(--theorem-border);
+}
+.box.theorem .label,
+.box.corollary .label{color:var(--theorem-ink)}
+
+.box.proposition{
+  --box-fill:var(--proposition-bg);
+  --box-accent:var(--proposition-border);
+}
+.box.proposition .label{color:var(--proposition-ink)}
+
+.box.lemma{
+  --box-fill:var(--lemma-bg);
+  --box-accent:var(--lemma-border);
+}
+.box.lemma .label{color:var(--lemma-ink)}
+
+.box.definition{
+  --box-fill:var(--definition-bg);
+  --box-accent:var(--definition-border);
+}
+.box.definition .label{color:var(--definition-ink)}
+
+.box.example{
+  --box-fill:var(--example-bg);
+  --box-accent:var(--example-border);
+}
+.box.example .label{color:var(--example-ink)}
+
+.box.axiom{
+  --box-fill:var(--axiom-bg);
+  --box-accent:var(--axiom-border-solid);
+}
+.box.axiom .label{color:var(--axiom-ink-solid)}
+
+.box.remark{
+  --box-fill:var(--remark-bg);
+  --box-accent:var(--remark-border);
+}
+.box.remark .label{color:var(--remark-ink)}
+
+.box.conjecture{
+  --box-fill:var(--conjecture-bg);
+  --box-accent:var(--conjecture-border);
+}
+.box.conjecture .label{color:var(--conjecture-ink)}
+
+.box.notation{
+  --box-fill:var(--notation-bg);
+  --box-accent:var(--notation-border);
+}
+.box.notation .label{color:var(--notation-ink)}
+
+.box.warning{
+  --box-fill:var(--warning-bg);
+  --box-accent:var(--warning-border-solid);
+}
+.box.warning .label{color:var(--warning-ink-solid)}
+
+.box.conclusion{
+  --box-fill:var(--conclusion-bg);
+  --box-accent:var(--conclusion-border);
+}
+.box.conclusion .label{color:var(--conclusion-ink)}
+
+.box.proof{
+  position:relative;
+  margin:1.55rem 0 1.8rem;
+  border:0;
+  border-left:0;
+  border-radius:0;
+  padding:.15rem 0 .55rem;
+  background:transparent;
+}
+.box.proof .label{
+  margin:0 0 .48rem;
+  padding:0;
+  border:0;
+  color:var(--muted);
+  font-style:italic;
+  font-weight:500;
+}
+/* Titleless emphasis environment */
+.box.colourbox{
+  margin:1.65rem 0;
+  padding:1.22rem 1.42rem 1.28rem;
+  border:2px solid var(--colourbox-border);
+  border-left-width:6px;
+  border-radius:18px;
+  background:var(--colourbox-bg);
+  color:var(--colourbox-ink);
+  box-shadow:
+    0 7px 18px color-mix(in srgb,var(--colourbox-border) 12%,transparent),
+    inset 0 0 0 1px color-mix(in srgb,var(--colourbox-border) 14%,transparent);
+}
+
+.box.colourbox .box-content{
+  min-width:0;
+}
+
+.box.colourbox p:first-child{margin-top:.1rem}
+.box.colourbox p:last-child{margin-bottom:.1rem}
+.box.colourbox .math-display{
+  color:var(--fg);
+}
+
+/* Interactive animations
+   The shell belongs to Mark Two. Content, CSS, and JavaScript inside it are
+   author-controlled and may be used for interactive figures and simulations. */
+.mt-animation{
+  position:relative;
+  width:100%;
+  max-width:100%;
+  min-width:0;
+  margin:2rem 0;
+  padding:0;
+  overflow:hidden;
+  border:1.6px solid var(--rule);
+  border-radius:18px;
+  background:var(--card);
+  color:var(--fg);
+  font-family:var(--sans);
+  line-height:1.5;
+  isolation:isolate;
+  contain:layout paint;
+}
+.mt-animation *,
+.mt-animation *::before,
+.mt-animation *::after{
+  box-sizing:border-box;
+}
+.mt-animation canvas,
+.mt-animation svg,
+.mt-animation img,
+.mt-animation video,
+.mt-animation iframe{
+  display:block;
+  max-width:100%;
+}
+.mt-animation button,
+.mt-animation input,
+.mt-animation select,
+.mt-animation textarea{
+  font:inherit;
+}
+.mt-animation :where(button,input,select,textarea){
+  max-width:100%;
+}
+
+/* Inline mathematical emphasis */
+.term{
+  color:var(--link);
+  font-weight:700;
+  border-bottom:2px dotted var(--link);
+}
+.cross-reference{
+  color:var(--fg);
+  border:1px solid var(--muted);
+  padding:0 .3em;
+  border-radius:2px;
+  text-decoration:none;
+}
+.cross-reference:hover{
+  color:var(--fg);
+  text-decoration:none;
+  border-color:var(--link);
+}
+.inline-color{color:var(--inline-color)}
+:root[data-theme="dark"] .inline-color{color:var(--inline-color-dark)}
+
+/* Math, figures, links */
+.math-display{
+  overflow-x:auto;
+  overflow-y:hidden;
+  max-width:100%;
+  margin:1.1rem 0;
+}
+.reading mjx-container{
+  max-width:100%;
+  overflow-x:auto;
+  overflow-y:hidden;
+}
+figure.diagram{
+  margin:1.8rem 0;
+  text-align:center;
+  background:none;
+  border:0;
+}
+figure.diagram svg,
+figure.diagram img{width:100%;max-width:30rem;height:auto;margin:0 auto}
+figure.diagram figcaption{
+  font-size:.92rem;
+  line-height:1.55;
+  max-width:28rem;
+  margin:.6rem auto 0;
+  text-align:left;
+  color:var(--muted);
+}
+.image-row{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(0,1fr));
+  gap:10px;
+}
+.mark-label{display:block;position:relative;top:-5rem}
+
+/* Sidebar navigation cards */
+.side{
+  position:sticky;
+  top:5.5rem;
+  align-self:start;
+  max-height:calc(100vh - 6.5rem);
+  overflow:auto;
+}
+.toc,
+.related{
+  border:1.6px solid var(--toc-border);
+  border-radius:15px;
+  background:var(--toc-bg);
+  padding:1.02rem 1.05rem 1.08rem;
+  box-shadow:none;
+}
+.toc{
+  font-size:.95rem;
+}
+.toc b,
+.related b{
+  display:block;
+  margin:0 0 .7rem;
+  color:var(--toc-ink);
+  font-weight:700;
+  font-size:1rem;
+  padding-bottom:.48rem;
+  border-bottom:1px solid color-mix(in srgb,var(--toc-border) 45%,var(--toc-bg));
+}
+.toc ul{
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+.toc li{
+  margin:.22rem 0;
+  line-height:1.48;
+}
+.toc li.sub{
+  padding-left:.85rem;
+}
+.toc a{
+  color:var(--muted);
+  font-size:.88rem;
+}
+.toc a:hover,
+.toc a.active{
+  color:var(--toc-ink);
+  text-decoration:none;
+}
+.related{
+  margin-top:1rem;
+  border-color:var(--related-border);
+  background:var(--related-bg);
+}
+.related b{
+  color:var(--related-ink);
+  border-bottom-color:color-mix(in srgb,var(--related-border) 45%,var(--related-bg));
+}
+.related ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+.related li{
+  margin:.38rem 0;
+}
+.related a{
+  color:var(--muted);
+}
+.related a:hover{
+  color:var(--related-ink);
+}
+.mobile-contents{
+  display:none;
+}
+
+/* Q&A/exercise surfaces retain the old article's pale green accent. */
+.box.exercise,
+.box.question{
+  --box-fill:var(--question-soft);
+  --box-accent:var(--question-border-solid);
+  border-color:var(--question-border-solid);
+  border-radius:15px;
+}
+.box.exercise .label,
+.box.question .label{color:var(--accent2)}
+
+/* Footer */
+.article-footer{
+  display:none;
+  margin-top:3rem;
+  padding-top:.9rem;
+  border-top:1px solid var(--rule);
+}
+.article-footer ul{
+  margin:.3rem 0 0;
+  padding-left:1.2rem;
+}
+.article-footer li{margin:.25rem 0}
+.article-footer::before{
+  content:"Related";
+  display:block;
+  color:var(--accent2);
+  font-weight:700;
+  font-size:.95rem;
+  margin-bottom:.25rem;
+}
+
+@media (max-width:999px){
+  .article-layout{
+    grid-template-columns:minmax(0,44rem);
+  }
+  .side{display:none}
+  .mobile-contents{
+    display:block;
+    margin:0 0 2rem;
+    padding:.95rem 1rem 1rem;
+    border:1.6px solid var(--toc-border);
+    border-radius:15px;
+    background:var(--toc-bg);
+  }
+  .mobile-contents summary{
+    cursor:pointer;
+    color:var(--toc-ink);
+    font-weight:700;
+    font-family:var(--sans);
+  }
+  .mobile-contents .toc{
+    margin-top:.8rem;
+    padding:0;
+    border:0;
+    background:transparent;
+  }
+  .article-footer{display:block}
+}
+
+@media (max-width:560px){
+  body{font-size:1rem}
+  .wrap{padding:0 1rem}
+  .article-shell{padding-top:2rem}
+  .top-wrap{min-height:3.7rem}
+  .site-nav{display:none}
+  .article-header h1{font-size:2.2rem}
+  .lead{font-size:1.08rem}
+  .reading h2{font-size:1.45rem}
+  .runhead{font-size:.82rem}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-wrap">
+    <a class="brand" href="../../../">
+      <span class="brand-mark">∫</span>
+      <span>Vivek Kalita</span>
+    </a>
+    <nav class="site-nav" aria-label="Site navigation">
+      <ul>
+        <li><a href="../../../">Home</a></li>
+        <li><a href="../../../archive/">Archive</a></li>
+        <li><a href="../../../about/">About</a></li>
+        <li><a href="https://github.com/VivekH90" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.2M12 19.8V22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2 12h2.2M19.8 12H22M4.2 19.8l1.6-1.6M18.2 18.2l1.6-1.6"/></svg>
+      <svg class="moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+    </button>
+  </div>
+  <div id="bar" aria-hidden="true"></div>
+</header>
+
+<main class="article-shell">
+  <div class="wrap">
+    <div class="article-layout">
+      <article class="article-column">
+        <header class="article-header">
+          <div class="runhead">
+            <b>Physics</b>
+            <span>by <i>Vivek Kalita</i></span>
+          </div>
+          <h1>Introduction to Radiation</h1>
+          <p class="lead">Introduction to the production of radiation in classical electrodynamic theory</p>
+          <div class="article-meta">
+            <span>Vivek Kalita</span>
+            <span>·</span><time>18 October 2026</time>
+          </div>
+          <div class="tags"><span>Electrodynamics</span><span>Radiation</span></div>
+        </header>
+
+        <details class="mobile-contents">
+          <summary>Contents</summary>
+          <nav class="toc" id="toc-mobile"></nav>
+        </details>
+
+        <article class="reading" id="article">
+          <section class="article-section">
+<h2 id="introduction"><span class="section-number">§1</span><span class="section-title">Introduction</span></h2>
+<div class="text-environment"><p class="mark-text">A charge at rest produces a Coulomb field proportional to \(1/R^2\).</p></div>
+<div class="text-environment"><p class="mark-text">For a charge moving with constant velocity, the resulting field is a Lorentz-transformed version of the Coulomb field1. It thus retains the \(1/R^2\) dependence.</p></div>
+<div class="text-environment"><p class="mark-text">The charge also produces a magnetic field. The two fields are related by</p></div>
+<div class="math-display">\[\mathbf B=\frac{1}{c^2}\mathbf v\times\mathbf E\]</div>
+<div class="text-environment"><p class="mark-text">Thus, the magnetic field also retains the \(1/R^2\) dependence.</p></div>
+<div class="mt-animation" data-mark-two-animation="true" id="uniform-velocity-charge">
+<style>
+
+.uc-anim { width: 100%; color: var(--fg); box-sizing: border-box; padding: 4px 8px 16px; }
+.uc-anim figure { margin: 0; padding: 8px 4px 8px; }
+
+.uc-anim .wrap {
+    position: relative; width: 100%; max-width: 680px; aspect-ratio: 400 / 384;
+    margin: 0 auto; background: var(--card); border-radius: 6px; overflow: hidden;
+}
+.uc-anim .wrap canvas { position: absolute; left: 0; top: 0; width: 100%; height: 65.1%; display: block; }
+.uc-anim .wrap svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: block; }
+
+.uc-anim .frm { fill: none; stroke: #fff; stroke-opacity: .85; stroke-width: 2.4; }
+.uc-anim .halo { fill: none; stroke: rgba(0,0,0,.55); stroke-width: 2.8; stroke-linecap: round; stroke-linejoin: round; }
+.uc-anim .vec { fill: none; stroke: #fff; stroke-width: 1.15; stroke-linecap: round; stroke-linejoin: round; }
+.uc-anim .lnh { fill: none; stroke: rgba(0,0,0,.5); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.uc-anim .lnw { fill: none; stroke: #fff; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.uc-anim .pc { fill: none; stroke: #fff; stroke-width: 1.1; stroke-dasharray: 4 4; opacity: .75; }
+.uc-anim .pd { fill: var(--sg-c3); stroke: #fff; stroke-width: 1.6; }
+.uc-anim .qring { fill: #ff4d3d; stroke: #fff; stroke-width: 1.6; }
+.uc-anim .qsign { stroke: #fff; stroke-width: 1.7; stroke-linecap: round; }
+.uc-anim .vel { stroke: #34d27b; stroke-width: 2.4; stroke-linecap: round; fill: none; }
+.uc-anim .velh { fill: #34d27b; }
+
+.uc-anim .wrap.nomap .frm { stroke: var(--fg); stroke-opacity: 1; }
+.uc-anim .wrap.nomap .halo, .uc-anim .wrap.nomap .lnh { stroke: var(--card); }
+.uc-anim .wrap.nomap .vec, .uc-anim .wrap.nomap .lnw { stroke: var(--fg); }
+.uc-anim .wrap.nomap .pc { stroke: var(--fg); }
+.uc-anim .wrap.nomap .pd { stroke: var(--fg); }
+.uc-anim .wrap.nomap .pl { color: var(--fg); text-shadow: none; }
+
+.uc-anim {
+    --sg-c1: #2f6db5;
+    --sg-c3: #c9821f;
+}
+:root[data-theme="dark"] .uc-anim {
+    --sg-c1: #4f86d1;
+    --sg-c3: #d9962f;
+}
+
+.uc-anim .ax { stroke: var(--muted); stroke-width: 1; fill: none; }
+.uc-anim .ref { stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 3 3; fill: none; }
+.uc-anim .curve { stroke: var(--sg-c3); stroke-width: 2.2; stroke-linejoin: round; fill: color-mix(in srgb, var(--sg-c3) 16%, var(--card)); }
+.uc-anim .ray { stroke: var(--sg-c3); stroke-width: 1; opacity: .7; fill: none; }
+.uc-anim .tx { font-family: var(--sans); font-size: 9.5px; fill: var(--muted); }
+
+.uc-anim .fl {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; line-height: 1; white-space: nowrap;
+    font-family: var(--serif);
+    color: var(--fg);
+}
+.uc-anim .fl .katex { font-size: 1em; }
+.uc-anim .pl { color: #fff; text-shadow: 0 0 3px rgba(0,0,0,.85), 0 0 2px rgba(0,0,0,.85); }
+
+.uc-anim .controls {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    width: 100%; max-width: 680px; margin: 10px auto 0;
+}
+
+.uc-anim button {
+    font-family: var(--sans); font-size: .85rem; color: var(--fg);
+    background: var(--card); border: 1px solid var(--rule);
+    border-radius: 8px; padding: 6px 11px; cursor: pointer; white-space: nowrap;
+}
+.uc-anim button:hover { border-color: var(--fg); }
+.uc-anim button:focus-visible,
+.uc-anim input:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+.uc-anim button.play { min-width: 68px; }
+.uc-anim button[aria-current="true"] { background: var(--link); border-color: var(--link); color: var(--bg); }
+.uc-anim label.rt { font-family: var(--serif); font-size: 1rem; color: var(--fg); display: flex; align-items: center; gap: 10px; flex: 1; min-width: 220px; }
+.uc-anim label.rt .katex { font-size: 1.05em; }
+.uc-anim label.rt b { font-weight: 400; min-width: 2.8em; font-family: var(--serif); }
+.uc-anim input[type="range"] { flex: 1; min-width: 90px; accent-color: var(--link); }
+
+@media (max-width: 520px) {
+    .uc-anim figure { padding-left: 0; padding-right: 0; }
+    .uc-anim .controls { gap: 6px; }
+    .uc-anim button { font-size: .8rem; padding: 5px 9px; }
+}
+
+</style>
+
+<div class="uc-anim">
+
+<figure>
+<div class="wrap" id="uc-wrap">
+<canvas id="uc-cv" width="200" height="125"></canvas>
+<svg id="uc-svg" viewBox="0 0 400 384" role="img" aria-label="Electric field of a point charge moving at constant velocity: a heat map of the field strength, field vectors and field lines, and a polar plot of the field strength against angle"></svg>
+</div>
+</figure>
+
+<div class="controls">
+<label class="rt"><span id="uc-lab"></span>
+<input id="uc-beta" type="range" min="0" max="0.99" step="0.01" value="0.9" aria-label="Speed of the charge as a fraction of the speed of light">
+<b id="uc-val"></b></label>
+</div>
+
+<div class="controls">
+<button id="uc-play" class="play">Pause</button>
+<button id="uc-map">Heat map</button>
+<button id="uc-vec">Vectors</button>
+<button id="uc-lin">Field lines</button>
+</div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+
+<script>
+(function(){
+
+if(!document.querySelector('link[href*="katex"]')){
+    var lk=document.createElement('link');
+    lk.rel='stylesheet';
+    lk.href='https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css';
+    document.head.appendChild(lk);
+}
+
+var NS='http://www.w3.org/2000/svg';
+var $=function(i){return document.getElementById(i)};
+
+/* units: c = 1, q/(4 pi eps0) = 1. Uniform motion along +x with speed B.
+   Field at displacement (x, y) from the charge's PRESENT position (Heaviside):
+   E = gamma * r / (gamma^2 x^2 + y^2)^(3/2) */
+var B=0.9, G=1/Math.sqrt(1-0.9*0.9), ex=0, ey=0;
+
+function setBeta(b){ B=b; G=1/Math.sqrt(1-b*b); }
+
+function field(x,y){
+    var d=G*G*x*x+y*y;
+    if(d<1e-6){ d=1e-6; }
+    var k=G/(d*Math.sqrt(d));
+    ex=k*x; ey=k*y;
+}
+
+/* strength at fixed distance R from the charge, in units of q/R^2, at angle psi to the motion */
+function fpsi(psi){
+    var s=Math.sin(psi);
+    return (1-B*B)/Math.pow(1-B*B*s*s,1.5);
+}
+
+
+/* screen geometry: 25 px per unit, the map covers x in [-8,8], y in [-5,5] */
+var K=25, MW=400, MH=250, CY=125, XH=8, YH=5, GW=200, GH=125, VIS=5;
+var PCX=290, PCY=322, PR=34;                       /* polar plot centre and unit radius */
+var xq=0, travel=0, probe=0, playing=true, showMap=true, showVec=true, showLin=true, raf=0, last=0;
+var svg, cv, ctx, img, dyn, haloV, vecP, lnH, lnW, pcirc, pdot, qC, qH, qV, velL, velH, velLab;
+var curve, ray, pdotP, valEl, vecs=[];
+var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function el(t,at,par){
+    var e=document.createElementNS(NS,t);
+    for(var k in at){ e.setAttribute(k,at[k]); }
+    if(par){ par.appendChild(e); }
+    return e;
+}
+function tex(s){ return katex.renderToString(s,{throwOnError:false,output:'html'}); }
+
+function lab(par,t,w,cls,color){
+    var fo=el('foreignObject',{width:w,height:24},par);
+    fo.style.overflow='visible';
+    var d=document.createElement('div');
+    d.className='fl'+(cls ? ' '+cls : '');
+    if(color){ d.style.color=color; }
+    d.innerHTML=tex(t);
+    fo.appendChild(d);
+    fo.put=function(cx,cy){
+        fo.setAttribute('x',cx-w/2);
+        fo.setAttribute('y',cy-12);
+        return fo;
+    };
+    fo.set=function(s){ d.innerHTML=tex(s); };
+    return fo;
+}
+
+/* inferno-style colour map */
+var STOPS=[[0,0,4],[40,11,84],[101,21,110],[159,42,99],[212,72,66],[245,125,21],[250,193,39],[252,255,164]];
+var LUT=new Uint8Array(768);
+(function(){
+    for(var i=0;i<256;i++){
+        var p=i/255*(STOPS.length-1), k=Math.min(STOPS.length-2,Math.floor(p)), f=p-k;
+        for(var c=0;c<3;c++){ LUT[3*i+c]=Math.round(STOPS[k][c]+(STOPS[k+1][c]-STOPS[k][c])*f); }
+    }
+})();
+
+/* log scale: weak fields at the dark end, the charge's own field at the bright end */
+function level(mag){
+    var v=(Math.log(mag+1e-9)*0.4342944819+2.25)/2.65;
+    return v<0 ? 0 : v>1 ? 1 : v;
+}
+
+/* radius on the polar plot: logarithmic, the dashed circle is the field of a charge at rest */
+function rp(f){ return Math.max(1.5,PR+20*Math.log(f)*0.4342944819); }
+
+function build(){
+    svg=$('uc-svg'); cv=$('uc-cv'); ctx=cv.getContext('2d');
+    img=ctx.createImageData(GW,GH);
+    var i, defs='<defs><linearGradient id="uc-grad" x1="0" x2="1" y1="0" y2="0">';
+    for(i=0;i<STOPS.length;i++){
+        defs+='<stop offset="'+(i/(STOPS.length-1))+'" stop-color="rgb('+STOPS[i].join(',')+')"/>';
+    }
+    svg.innerHTML=defs+'</linearGradient><clipPath id="uc-clip"><rect x="0" y="0" width="'+MW+'" height="'+MH+'"/></clipPath></defs>';
+
+    /* everything that moves with the charge sits in one clipped, fadeable group */
+    dyn=el('g',{'clip-path':'url(#uc-clip)'},svg);
+    lnH=el('path',{class:'lnh'},dyn);
+    lnW=el('path',{class:'lnw'},dyn);
+    haloV=el('path',{class:'halo'},dyn);
+    vecP=el('path',{class:'vec'},dyn);
+    pcirc=el('circle',{r:2*K,class:'pc'},dyn);
+    pdot=el('circle',{r:4,class:'pd'},dyn);
+    velL=el('line',{class:'vel'},dyn);
+    velH=el('polygon',{class:'velh'},dyn);
+    velLab=lab(dyn,'\\mathbf{v}',16,'pl');
+    qC=el('circle',{r:6,class:'qring'},dyn);
+    qH=el('line',{class:'qsign'},dyn);
+    qV=el('line',{class:'qsign'},dyn);
+
+    el('rect',{x:0,y:0,width:MW,height:MH,class:'frm'},svg);
+
+    /* colour bar */
+    el('rect',{x:34,y:300,width:120,height:8,fill:'url(#uc-grad)',stroke:'var(--fg)','stroke-width':.7},svg);
+    var t1=el('text',{x:26,y:307.6,'text-anchor':'end',class:'tx'},svg); t1.textContent='weak';
+    var t2=el('text',{x:162,y:307.6,'text-anchor':'start',class:'tx'},svg); t2.textContent='strong';
+    lab(svg,'\\lvert\\mathbf{E}\\rvert',60).put(94,324);
+
+    /* polar plot of |E| R^2 against the angle psi from the direction of motion */
+    el('line',{x1:PCX-60,y1:PCY,x2:PCX+60,y2:PCY,class:'ax'},svg);
+    el('line',{x1:PCX,y1:PCY-55,x2:PCX,y2:PCY+55,class:'ax'},svg);
+    el('circle',{cx:PCX,cy:PCY,r:PR,class:'ref'},svg);
+    curve=el('path',{class:'curve'},svg);
+    ray=el('line',{x1:PCX,y1:PCY,class:'ray'},svg);
+    pdotP=el('circle',{r:3.6,style:'fill:var(--sg-c3);stroke:var(--card);stroke-width:1.4'},svg);
+    lab(svg,'x',14).put(PCX+68,PCY);
+    lab(svg,'E(\\psi)',44).put(PCX-46,266);
+    /* legend */
+    el('line',{x1:34,y1:350,x2:62,y2:350,class:'ref'},svg);
+    lab(svg,'\\beta=0',40).put(88,350);
+    el('line',{x1:34,y1:368,x2:62,y2:368,style:'stroke:var(--sg-c3);stroke-width:2.2'},svg);
+    lab(svg,'\\beta',20).put(78,368);
+
+    /* grid of field vectors, one per unit length */
+    vecs=[];
+    var gx,gy;
+    for(gy=-4.5;gy<=4.5;gy+=1){
+        for(gx=-7.5;gx<=7.5;gx+=1){ vecs.push([gx,gy]); }
+    }
+}
+
+function drawCurve(){
+    var s=[], i, psi, f, r;
+    for(i=0;i<=180;i++){
+        psi=2*Math.PI*i/180;
+        r=rp(fpsi(psi));
+        s.push((i ? 'L' : 'M')+(PCX+r*Math.cos(psi)).toFixed(2)+','+(PCY-r*Math.sin(psi)).toFixed(2));
+    }
+    curve.setAttribute('d',s.join('')+'Z');
+}
+
+function drawMap(){
+    var i,j,X,Y,p=0,idx,d=img.data;
+    for(j=0;j<GH;j++){
+        Y=YH-(j+.5)*2*YH/GH;
+        for(i=0;i<GW;i++){
+            X=-XH+(i+.5)*2*XH/GW;
+            field(X-xq,Y);
+            idx=(level(Math.sqrt(ex*ex+ey*ey))*255)|0;
+            d[p]=LUT[3*idx]; d[p+1]=LUT[3*idx+1]; d[p+2]=LUT[3*idx+2]; d[p+3]=255;
+            p+=4;
+        }
+    }
+    ctx.putImageData(img,0,0);
+}
+
+function arrowPath(px,py,ux,uy,len){
+    var tx0=px-ux*len/2, ty0=py-uy*len/2, tx1=px+ux*len/2, ty1=py+uy*len/2;
+    var hs=Math.min(5.5,len*.42), hx=tx1-ux*hs, hy=ty1-uy*hs;
+    return 'M'+tx0.toFixed(1)+','+ty0.toFixed(1)+'L'+tx1.toFixed(1)+','+ty1.toFixed(1)+
+           'M'+(hx-uy*hs*.5).toFixed(1)+','+(hy+ux*hs*.5).toFixed(1)+
+           'L'+tx1.toFixed(1)+','+ty1.toFixed(1)+
+           'L'+(hx+uy*hs*.5).toFixed(1)+','+(hy-ux*hs*.5).toFixed(1);
+}
+
+function drawVecs(){
+    var s=[], i, v, m, ux, uy;
+    for(i=0;i<vecs.length;i++){
+        v=vecs[i];
+        field(v[0]-xq,v[1]);
+        m=Math.sqrt(ex*ex+ey*ey);
+        if(m<1e-9){ continue; }
+        ux=ex/m; uy=-ey/m;                       /* screen y points down */
+        s.push(arrowPath(MW/2+v[0]*K,CY-v[1]*K,ux,uy,(0.28+0.58*level(m))*K));
+    }
+    var d=s.join('');
+    haloV.setAttribute('d',d);
+    vecP.setAttribute('d',d);
+}
+
+/* straight field lines through the present position; equal flux between neighbours:
+   rest-frame angles with equally spaced cos(theta'), then direction (cos th'/gamma, sin th') */
+function drawLines(){
+    var N=8, s=[], j, th, dx, dy, n, sg, cx=MW/2+xq*K, L=15*K, r0=.45*K, rc=2.7*K, c=7;
+    for(j=0;j<N;j++){
+        th=Math.acos(1-(2*j+1)/N);
+        dx=Math.cos(th)/G; dy=Math.sin(th);
+        n=Math.sqrt(dx*dx+dy*dy); dx/=n; dy/=n;
+        for(sg=-1;sg<=1;sg+=2){
+            var ux=dx, uy=-sg*dy;               /* screen direction */
+            s.push('M'+(cx+ux*r0).toFixed(1)+','+(CY+uy*r0).toFixed(1)+'L'+(cx+ux*L).toFixed(1)+','+(CY+uy*L).toFixed(1));
+            var qx=cx+ux*rc, qy=CY+uy*rc;
+            s.push('M'+(qx-ux*c-uy*c*.45).toFixed(1)+','+(qy-uy*c+ux*c*.45).toFixed(1)+
+                   'L'+qx.toFixed(1)+','+qy.toFixed(1)+
+                   'L'+(qx-ux*c+uy*c*.45).toFixed(1)+','+(qy-uy*c-ux*c*.45).toFixed(1));
+        }
+    }
+    var d=s.join('');
+    lnH.setAttribute('d',d);
+    lnW.setAttribute('d',d);
+}
+
+function drawCharge(){
+    var sx=MW/2+xq*K;
+    qC.setAttribute('cx',sx); qC.setAttribute('cy',CY);
+    qH.setAttribute('x1',sx-3); qH.setAttribute('x2',sx+3); qH.setAttribute('y1',CY); qH.setAttribute('y2',CY);
+    qV.setAttribute('x1',sx); qV.setAttribute('x2',sx); qV.setAttribute('y1',CY-3); qV.setAttribute('y2',CY+3);
+    /* velocity arrow, longer for faster motion */
+    var show=B>.03, vis=show ? '' : 'none';
+    velL.style.display=vis; velH.style.display=vis; velLab.style.display=vis;
+    if(show){
+        var len=10+34*B, y=CY-15, x1=sx+len;
+        velL.setAttribute('x1',sx); velL.setAttribute('x2',x1-3); velL.setAttribute('y1',y); velL.setAttribute('y2',y);
+        velH.setAttribute('points',[x1,y, x1-6,y-3.4, x1-6,y+3.4].join(' '));
+        velLab.put(x1+9,y-8);
+    }
+    /* probe: a ring of radius two units around the present position, and its point on the polar plot */
+    pcirc.setAttribute('cx',sx); pcirc.setAttribute('cy',CY);
+    pdot.setAttribute('cx',sx+2*K*Math.cos(probe)); pdot.setAttribute('cy',CY-2*K*Math.sin(probe));
+    var r=rp(fpsi(probe)), px=PCX+r*Math.cos(probe), py=PCY-r*Math.sin(probe);
+    pdotP.setAttribute('cx',px); pdotP.setAttribute('cy',py);
+    ray.setAttribute('x2',px); ray.setAttribute('y2',py);
+}
+
+function render(){
+    var x=xq, fade=1;
+    if(B>.03 && !reduce){ fade=Math.max(0,Math.min(1,(x+9)/1)*Math.min(1,(9-x)/1)); }
+    cv.style.opacity=fade; dyn.style.opacity=fade;
+    if(showMap){ drawMap(); }
+    if(showVec){ drawVecs(); }
+    if(showLin){ drawLines(); }
+    drawCharge();
+}
+
+function frame(now){
+    raf=requestAnimationFrame(frame);
+    var dt=Math.min(.05,(now-last)/1000);
+    last=now;
+    if(!playing){ return; }
+    probe=(probe+dt*.9)%(2*Math.PI);
+    if(B>.03){
+        travel+=dt*B*VIS;
+        if(travel>18){ travel-=18; }
+        xq=-9+travel;
+    }else{
+        xq=0;
+    }
+    render();
+}
+
+function setPlay(on){
+    playing=on;
+    $('uc-play').textContent=on ? 'Pause' : 'Play';
+}
+
+function sync(){
+    $('uc-wrap').className='wrap'+(showMap ? '' : ' nomap');
+    cv.style.visibility=showMap ? 'visible' : 'hidden';
+    haloV.style.display=showVec ? '' : 'none';
+    vecP.style.display=showVec ? '' : 'none';
+    lnH.style.display=showLin ? '' : 'none';
+    lnW.style.display=showLin ? '' : 'none';
+    $('uc-map').setAttribute('aria-current',String(showMap));
+    $('uc-vec').setAttribute('aria-current',String(showVec));
+    $('uc-lin').setAttribute('aria-current',String(showLin));
+    drawCurve();
+    $('uc-val').innerHTML=tex(B.toFixed(2));
+    if(B<=.03){ xq=0; travel=9; }
+    render();
+}
+
+$('uc-play').onclick=function(){ setPlay(!playing); };
+$('uc-map').onclick=function(){ showMap=!showMap; sync(); };
+$('uc-vec').onclick=function(){ showVec=!showVec; sync(); };
+$('uc-lin').onclick=function(){ showLin=!showLin; sync(); };
+$('uc-beta').oninput=function(){
+    setBeta(+this.value);
+    sync();
+};
+
+$('uc-lab').innerHTML=tex('v/c');
+
+build();
+setBeta(+$('uc-beta').value);
+travel=9; xq=0;
+sync();
+
+if(reduce){
+    xq=-2;
+    setPlay(false);
+    render();
+}else{
+    last=performance.now();
+    raf=requestAnimationFrame(frame);
+}
+
+})();
+</script>
+</div>
+<div class="text-environment"><p class="mark-text">The important question is whether this field could carry a non-zero amount of energy to arbitrarily large distances. This is measured by the electromagnetic flux, the Poynting vector.  And it is proportional to \(\mathbf{E} \times \mathbf B\), would scale as \(1/R^4\). Consequently, the net power per unit time crossing a sphere of radius \(R\) would scale as \(1/R^2\).</p></div>
+<div class="text-environment"><p class="mark-text">This would tend to zero as \(R \rightarrow \infty\). Thus, charges moving with constant velocity do not radiate energy.</p></div>
+<div class="text-environment"><p class="mark-text">This, however, is not the case for accelerating charges.</p></div>
+<div class="text-environment"><p class="mark-text">If the charge suddenly changes its velocity, it produces a disturbance in the field.</p></div>
+<div class="mt-animation" data-mark-two-animation="true" id="accelerating-charge">
+<style>
+
+.ec-anim { width: 100%; color: var(--fg); box-sizing: border-box; padding: 4px 8px 16px; }
+.ec-anim figure { margin: 0; padding: 8px 4px 8px; }
+
+.ec-anim .wrap {
+    position: relative; width: 100%; max-width: 680px; aspect-ratio: 400 / 284;
+    margin: 0 auto; background: var(--card); border-radius: 6px; overflow: hidden;
+}
+.ec-anim .wrap canvas { position: absolute; left: 0; top: 0; width: 100%; height: 88.03%; display: block; }
+.ec-anim .wrap svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; display: block; }
+
+.ec-anim .frm { fill: none; stroke: #fff; stroke-opacity: .85; stroke-width: 2.4; }
+.ec-anim .wrap.nomap .frm { stroke: var(--fg); stroke-opacity: 1; }
+.ec-anim .halo { fill: none; stroke: rgba(0,0,0,.55); stroke-width: 2.8; stroke-linecap: round; stroke-linejoin: round; }
+.ec-anim .vec { fill: none; stroke: #fff; stroke-width: 1.15; stroke-linecap: round; stroke-linejoin: round; }
+.ec-anim .wrap.nomap .halo { stroke: var(--card); }
+.ec-anim .wrap.nomap .vec { stroke: var(--fg); }
+.ec-anim .qring { fill: #ff4d3d; stroke: #fff; stroke-width: 1.6; }
+.ec-anim .qsign { stroke: #fff; stroke-width: 1.7; stroke-linecap: round; }
+.ec-anim .acc { stroke: #7fe3ff; stroke-width: 2.2; stroke-linecap: round; fill: none; }
+.ec-anim .acch { fill: #7fe3ff; }
+.ec-anim .tx { font-family: var(--sans); font-size: 9.5px; fill: var(--muted); }
+
+.ec-anim .fl {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; line-height: 1; white-space: nowrap;
+    font-family: var(--serif);
+    color: var(--fg);
+}
+.ec-anim .fl .katex { font-size: 1em; }
+.ec-anim .pl { color: #fff; text-shadow: 0 0 3px rgba(0,0,0,.85), 0 0 2px rgba(0,0,0,.85); }
+
+.ec-anim .controls {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    width: 100%; max-width: 680px; margin: 10px auto 0;
+}
+
+.ec-anim button {
+    font-family: var(--sans); font-size: .85rem; color: var(--fg);
+    background: var(--card); border: 1px solid var(--rule);
+    border-radius: 8px; padding: 6px 11px; cursor: pointer; white-space: nowrap;
+}
+.ec-anim button:hover { border-color: var(--fg); }
+.ec-anim button:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+.ec-anim button.play { min-width: 68px; }
+.ec-anim button[aria-current="true"] { background: var(--link); border-color: var(--link); color: var(--bg); }
+
+@media (max-width: 520px) {
+    .ec-anim figure { padding-left: 0; padding-right: 0; }
+    .ec-anim .controls { gap: 6px; }
+    .ec-anim button { font-size: .8rem; padding: 5px 9px; }
+}
+
+</style>
+
+<div class="ec-anim">
+
+<figure>
+<div class="wrap" id="ec-wrap">
+<canvas id="ec-cv" width="200" height="125"></canvas>
+<svg id="ec-svg" viewBox="0 0 400 284" role="img" aria-label="Electric field of an accelerating point charge, shown as a heat map of the field strength and as field vectors"></svg>
+</div>
+</figure>
+
+<div class="controls">
+<button id="ec-play" class="play">Pause</button>
+<button data-mode="o">Oscillate</button>
+<button data-mode="k">Kick</button>
+</div>
+
+<div class="controls">
+<button id="ec-map">Heat map</button>
+<button id="ec-vec">Vectors</button>
+<button id="ec-rad">Radiation only</button>
+</div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+
+<script>
+(function(){
+
+if(!document.querySelector('link[href*="katex"]')){
+    var lk=document.createElement('link');
+    lk.rel='stylesheet';
+    lk.href='https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css';
+    document.head.appendChild(lk);
+}
+
+var NS='http://www.w3.org/2000/svg';
+var $=function(i){return document.getElementById(i)};
+
+/* units: c = 1, charge q/(4 pi eps0) = 1. The charge moves along the x axis;
+   the field is evaluated in the plane of the page (z = 0) from the retarded position. */
+var OM=2*Math.PI/5, AO=0.55/OM;
+var V=0.55, D=0.7, T1=1, T2=4, T3=5.5, T4=8.5, P=19.5;
+var mode='o', radOnly=false;
+var tx=0, tb=0, ta=0, ex=0, ey=0;
+
+function S(u){ return u<=0 ? 0 : u>=1 ? 1 : u*u*(3-2*u); }
+function dS(u){ return (u<=0||u>=1) ? 0 : 6*u*(1-u); }
+function IS(u){ return u<=0 ? 0 : u<1 ? u*u*u-u*u*u*u/2 : u-.5; }
+
+/* position, velocity and acceleration of the charge at time t */
+function traj(t){
+    if(mode==='o'){
+        var ph=OM*t;
+        tx=AO*Math.sin(ph);
+        tb=AO*OM*Math.cos(ph);
+        ta=-AO*OM*OM*Math.sin(ph);
+    }else{
+        t=t-P*Math.floor(t/P);
+        var a1=(t-T1)/D, a2=(t-T2)/D, a3=(t-T3)/D, a4=(t-T4)/D;
+        tb=V*(S(a1)-S(a2)-S(a3)+S(a4));
+        ta=V/D*(dS(a1)-dS(a2)-dS(a3)+dS(a4));
+        tx=V*D*(IS(a1)-IS(a2)-IS(a3)+IS(a4));
+    }
+}
+
+/* Lienard-Wiechert field at (X,Y) and time t; result in ex, ey */
+function field(X,Y,t){
+    var i, dx, R, tau, g, kap, nx, ny, k3;
+    traj(t);
+    dx=X-tx; R=Math.sqrt(dx*dx+Y*Y);
+    tau=t-R;
+    for(i=0;i<4;i++){
+        traj(tau);
+        dx=X-tx; R=Math.sqrt(dx*dx+Y*Y);
+        if(R<1e-3){ R=1e-3; }
+        g=t-tau-R;
+        kap=1-(dx/R)*tb;
+        tau+=g/kap;
+    }
+    traj(tau);
+    dx=X-tx; R=Math.sqrt(dx*dx+Y*Y);
+    if(R<1e-3){ R=1e-3; }
+    nx=dx/R; ny=Y/R;
+    kap=1-nx*tb;
+    k3=kap*kap*kap;
+    /* radiation (acceleration) part: a/(kappa^3 R) (-ny^2, nx ny) */
+    var rx=-ta*ny*ny/(k3*R), ry=ta*nx*ny/(k3*R);
+    if(radOnly){ ex=rx; ey=ry; return; }
+    /* velocity part: (n - beta)(1 - beta^2)/(kappa^3 R^2) */
+    var q=(1-tb*tb)/(k3*R*R);
+    ex=(nx-tb)*q+rx;
+    ey=ny*q+ry;
+}
+
+
+/* screen geometry: 25 px per unit, the map covers x in [-8,8], y in [-5,5] */
+var K=25, MW=400, MH=250, CY=125, XH=8, YH=5, GW=200, GH=125, TS=2;
+var simT=0, playing=true, showMap=true, showVec=true, raf=0, last=0;
+var svg, cv, ctx, img, haloP, vecP, qC, qH, qV, accL, accH, accLab, eLab, vecs=[];
+var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function el(t,at,par){
+    var e=document.createElementNS(NS,t);
+    for(var k in at){ e.setAttribute(k,at[k]); }
+    if(par){ par.appendChild(e); }
+    return e;
+}
+function tex(s){ return katex.renderToString(s,{throwOnError:false,output:'html'}); }
+
+function lab(par,t,w,cls){
+    var fo=el('foreignObject',{width:w,height:24},par);
+    fo.style.overflow='visible';
+    var d=document.createElement('div');
+    d.className='fl'+(cls ? ' '+cls : '');
+    d.innerHTML=tex(t);
+    fo.appendChild(d);
+    fo.put=function(cx,cy){
+        fo.setAttribute('x',cx-w/2);
+        fo.setAttribute('y',cy-12);
+        return fo;
+    };
+    fo.set=function(s){ d.innerHTML=tex(s); };
+    return fo;
+}
+
+/* inferno-style colour map */
+var STOPS=[[0,0,4],[40,11,84],[101,21,110],[159,42,99],[212,72,66],[245,125,21],[250,193,39],[252,255,164]];
+var LUT=new Uint8Array(768);
+(function(){
+    for(var i=0;i<256;i++){
+        var p=i/255*(STOPS.length-1), k=Math.min(STOPS.length-2,Math.floor(p)), f=p-k;
+        for(var c=0;c<3;c++){ LUT[3*i+c]=Math.round(STOPS[k][c]+(STOPS[k+1][c]-STOPS[k][c])*f); }
+    }
+})();
+
+/* log scale: weak fields at the dark end, the charge's own field at the bright end */
+function level(mag){
+    var v=(Math.log(mag+1e-9)*0.4342944819+1.9)/2.4;
+    return v<0 ? 0 : v>1 ? 1 : v;
+}
+
+function build(){
+    svg=$('ec-svg'); cv=$('ec-cv'); ctx=cv.getContext('2d');
+    img=ctx.createImageData(GW,GH);
+    var i, defs='<defs><linearGradient id="ec-grad" x1="0" x2="1" y1="0" y2="0">';
+    for(i=0;i<STOPS.length;i++){
+        defs+='<stop offset="'+(i/(STOPS.length-1))+'" stop-color="rgb('+STOPS[i].join(',')+')"/>';
+    }
+    svg.innerHTML=defs+'</linearGradient></defs>';
+
+    haloP=el('path',{class:'halo'},svg);
+    vecP=el('path',{class:'vec'},svg);
+
+    el('rect',{x:0,y:0,width:MW,height:MH,class:'frm'},svg);
+
+    /* colour bar */
+    el('rect',{x:140,y:260,width:120,height:8,fill:'url(#ec-grad)',stroke:'var(--fg)','stroke-width':.7},svg);
+    var t1=el('text',{x:132,y:267.6,'text-anchor':'end',class:'tx'},svg); t1.textContent='weak';
+    var t2=el('text',{x:268,y:267.6,'text-anchor':'start',class:'tx'},svg); t2.textContent='strong';
+    eLab=lab(svg,'\\lvert\\mathbf{E}\\rvert',60).put(200,278);
+
+    /* acceleration arrow */
+    accL=el('line',{class:'acc'},svg);
+    accH=el('polygon',{class:'acch'},svg);
+    accLab=lab(svg,'\\mathbf{a}',16,'pl');
+
+    /* the charge */
+    qC=el('circle',{r:6,class:'qring'},svg);
+    qH=el('line',{class:'qsign'},svg);
+    qV=el('line',{class:'qsign'},svg);
+
+    /* grid of field vectors, one per unit length */
+    vecs=[];
+    var gx,gy;
+    for(gy=-4.5;gy<=4.5;gy+=1){
+        for(gx=-7.5;gx<=7.5;gx+=1){ vecs.push([gx,gy]); }
+    }
+}
+
+function drawMap(){
+    var i,j,X,Y,p=0,idx,d=img.data;
+    for(j=0;j<GH;j++){
+        Y=YH-(j+.5)*2*YH/GH;
+        for(i=0;i<GW;i++){
+            X=-XH+(i+.5)*2*XH/GW;
+            field(X,Y,simT);
+            idx=(level(Math.sqrt(ex*ex+ey*ey))*255)|0;
+            d[p]=LUT[3*idx]; d[p+1]=LUT[3*idx+1]; d[p+2]=LUT[3*idx+2]; d[p+3]=255;
+            p+=4;
+        }
+    }
+    ctx.putImageData(img,0,0);
+}
+
+function drawVecs(){
+    var s=[], i, v, px, py, m, len, ux, uy, hx, hy, tx0, ty0, tx1, ty1, hs;
+    for(i=0;i<vecs.length;i++){
+        v=vecs[i];
+        field(v[0],v[1],simT);
+        m=Math.sqrt(ex*ex+ey*ey);
+        if(m<1e-9){ continue; }
+        ux=ex/m; uy=-ey/m;                      /* screen y points down */
+        len=(0.28+0.58*level(m))*K;             /* length in px encodes strength */
+        px=MW/2+v[0]*K; py=CY-v[1]*K;
+        tx0=px-ux*len/2; ty0=py-uy*len/2;
+        tx1=px+ux*len/2; ty1=py+uy*len/2;
+        hs=Math.min(5.5,len*.42);
+        hx=tx1-ux*hs; hy=ty1-uy*hs;
+        s.push('M'+tx0.toFixed(1)+','+ty0.toFixed(1)+'L'+tx1.toFixed(1)+','+ty1.toFixed(1)+
+               'M'+(hx-uy*hs*.5).toFixed(1)+','+(hy+ux*hs*.5).toFixed(1)+
+               'L'+tx1.toFixed(1)+','+ty1.toFixed(1)+
+               'L'+(hx+uy*hs*.5).toFixed(1)+','+(hy-ux*hs*.5).toFixed(1));
+    }
+    var d=s.join('');
+    haloP.setAttribute('d',d);
+    vecP.setAttribute('d',d);
+}
+
+function drawCharge(){
+    traj(simT);
+    var sx=MW/2+tx*K;
+    qC.setAttribute('cx',sx); qC.setAttribute('cy',CY);
+    qH.setAttribute('x1',sx-3); qH.setAttribute('x2',sx+3); qH.setAttribute('y1',CY); qH.setAttribute('y2',CY);
+    qV.setAttribute('x1',sx); qV.setAttribute('x2',sx); qV.setAttribute('y1',CY-3); qV.setAttribute('y2',CY+3);
+    var a=ta, show=Math.abs(a)>.03;
+    var vis=show ? '' : 'none';
+    accL.style.display=vis; accH.style.display=vis; accLab.style.display=vis;
+    if(show){
+        var dir=a>0 ? 1 : -1, len=10+30*Math.min(1,Math.abs(a)/.6), y=CY-15;
+        var x1=sx+dir*len;
+        accL.setAttribute('x1',sx); accL.setAttribute('x2',x1-dir*3); accL.setAttribute('y1',y); accL.setAttribute('y2',y);
+        accH.setAttribute('points',[x1,y, x1-dir*6,y-3.4, x1-dir*6,y+3.4].join(' '));
+        accLab.put(x1+dir*9,y-8);
+    }
+}
+
+function render(){
+    if(showMap){ drawMap(); }
+    if(showVec){ drawVecs(); }
+    drawCharge();
+}
+
+function frame(now){
+    raf=requestAnimationFrame(frame);
+    var dt=Math.min(.05,(now-last)/1000);
+    last=now;
+    if(!playing){ return; }
+    simT+=dt*TS;
+    simT=mode==='o' ? simT%(2*Math.PI/OM) : simT%P;
+    render();
+}
+
+function setPlay(on){
+    playing=on;
+    $('ec-play').textContent=on ? 'Pause' : 'Play';
+}
+
+function sync(){
+    $('ec-wrap').className='wrap'+(showMap ? '' : ' nomap');
+    cv.style.visibility=showMap ? 'visible' : 'hidden';
+    haloP.style.display=showVec ? '' : 'none';
+    vecP.style.display=showVec ? '' : 'none';
+    $('ec-map').setAttribute('aria-current',String(showMap));
+    $('ec-vec').setAttribute('aria-current',String(showVec));
+    $('ec-rad').setAttribute('aria-current',String(radOnly));
+    document.querySelectorAll('.ec-anim button[data-mode]').forEach(function(bt){
+        bt.setAttribute('aria-current',String(bt.getAttribute('data-mode')===mode));
+    });
+    eLab.set(radOnly ? '\\lvert\\mathbf{E}_{\\mathrm{rad}}\\rvert' : '\\lvert\\mathbf{E}\\rvert');
+    render();
+}
+
+$('ec-play').onclick=function(){ setPlay(!playing); };
+$('ec-map').onclick=function(){ showMap=!showMap; sync(); };
+$('ec-vec').onclick=function(){ showVec=!showVec; sync(); };
+$('ec-rad').onclick=function(){ radOnly=!radOnly; sync(); };
+document.querySelectorAll('.ec-anim button[data-mode]').forEach(function(bt){
+    bt.onclick=function(){
+        mode=bt.getAttribute('data-mode');
+        simT=0;
+        sync();
+    };
+});
+
+build();
+sync();
+
+if(reduce){
+    simT=3.1;
+    setPlay(false);
+    render();
+}else{
+    last=performance.now();
+    raf=requestAnimationFrame(frame);
+}
+
+})();
+</script>
+</div>
+<div class="text-environment"><p class="mark-text">This disturbance scales as \(1/R\) (as we will soon see), so that the Poynting vector due to this disturbance scales as \(1/R^2\). sConsequently, the power crossing a sphere can remain finite and nonzero as its radius tends to infinity. This is the essential feature of <strong>radiation</strong>.</p></div>
+</section>
+        </article>
+
+        <footer class="article-footer">
+          <ul></ul>
+        </footer>
+      </article>
+
+      <aside class="side" aria-label="Article navigation">
+        <nav class="toc">
+          <b>Contents</b>
+          <div id="toc-desktop"></div>
+        </nav>
+        <div class="related">
+          <b>Related</b>
+          <ul></ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</main>
+<script>
+"use strict";
+document.addEventListener("DOMContentLoaded", function(){
+(function(){
+  var headings=document.querySelectorAll('#article h2, #article h3');
+  var lists=[document.getElementById('toc-desktop'),document.getElementById('toc-mobile')];
+  var links=[];
+  lists.forEach(function(root){
+    if(!root) return;
+    var ul=document.createElement('ul');
+    headings.forEach(function(h){
+      var li=document.createElement('li');
+      if(h.tagName==='H3') li.className='sub';
+      var a=document.createElement('a');
+      a.href='#'+h.id;
+      a.textContent=h.textContent.replace(/^\s*§?\s*\d+(?:\.\d+)?\s*/,"").trim();
+      li.appendChild(a); ul.appendChild(li); links.push(a);
+    });
+    root.replaceChildren(ul);
+  });
+  var byId={};
+  links.forEach(function(a){ var id=a.getAttribute('href').slice(1); (byId[id]=byId[id]||[]).push(a); });
+  if('IntersectionObserver' in window){
+    var obs=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(!e.isIntersecting) return;
+        links.forEach(function(a){a.classList.remove('active');});
+        (byId[e.target.id]||[]).forEach(function(a){a.classList.add('active');});
+      });
+    },{rootMargin:'-15% 0px -70% 0px'});
+    headings.forEach(function(h){obs.observe(h);});
+  }
+})();
+(function(){
+  var bar=document.getElementById('bar');
+  var article=document.getElementById('article');
+  function updateProgress(){
+    if(!bar || !article){ return; }
+    var rect=article.getBoundingClientRect();
+    var total=rect.height - window.innerHeight * 0.6;
+    var progress=total > 0 ? (-rect.top / total) * 100 : 0;
+    progress=Math.min(100,Math.max(0,progress));
+    bar.style.width=progress+'%';
+  }
+  updateProgress();
+  window.addEventListener('scroll',updateProgress,{passive:true});
+  window.addEventListener('resize',updateProgress);
+
+})();
+(function(){
+  var btn=document.querySelector('.theme-toggle');
+  if(btn){
+    btn.addEventListener('click',function(){
+      var root=document.documentElement;
+      var dark=root.getAttribute('data-theme')==='dark';
+      if(dark) root.removeAttribute('data-theme'); else root.setAttribute('data-theme','dark');
+      try{localStorage.setItem('mark-two-theme-v2',dark?'light':'dark');}catch(e){}
+    });
+  }
+})();
+});
+</script>
+</body>
+</html>

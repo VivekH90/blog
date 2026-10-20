@@ -1,24 +1,152 @@
 {
-  "version": 1,
+  "version": 2,
   "articles": [
     {
-      "id": "resources/physics/electromagnetism/lagrange-field-equations/field_equations",
-      "title": "Electromagnetic Lagrangian",
+      "id": "resources/mathematics/analysis/real-analysis/rational-density/density_of_rational_numbers",
+      "doctype": "notes",
+      "title": "Density of Rational Numbers",
+      "description": "A rudimentary exploration of the notion of density of numbers",
+      "subject": "Mathematics",
+      "folder": "",
+      "author": "Vivek Kalita",
+      "date": "2 October 2026",
+      "tags": [
+        "Real Analysis",
+        "Rational numbers",
+        "Ordered Fields"
+      ],
+      "url": "/mathematics/analysis/real-analysis/rational-density/",
+      "source": "resources/mathematics/analysis/real-analysis/rational-density/density_of_rational_numbers.mt",
+      "sections": [
+        "Introduction",
+        "Archimedean Property",
+        "Rational numbers are dense",
+        "A final thought"
+      ]
+    },
+    {
+      "id": "resources/mathematics/number-theory/prime-counting-function-basic/main",
+      "doctype": "notes",
+      "title": "Bertrand's Postulate",
+      "description": "An elementary exploration of Bertrand's postulate using the central binomial coefficient and prime-exponent estimates.",
+      "subject": "Mathematics",
+      "folder": "",
+      "author": "Vivek Kalita",
+      "date": "4 October 2026",
+      "tags": [
+        "Bertrand's Postulate",
+        "Prime Counting Function",
+        "Number Theory",
+        "Prime Numbers"
+      ],
+      "url": "/mathematics/number-theory/prime-counting-function-basic/",
+      "source": "resources/mathematics/number-theory/prime-counting-function-basic/main.mt",
+      "sections": [
+        "Bertrand's Theorem"
+      ]
+    },
+    {
+      "id": "resources/mathematics/analysis/real-analysis/cauchy-viewpoint/main",
+      "doctype": "notes",
+      "title": "Cauchy's view on sequences",
+      "description": "A rudimentary exploration of the ideas of Cauchy sequences and Cauchy criterion",
+      "subject": "Mathematics",
+      "folder": "",
+      "author": "Vivek Kalita",
+      "date": "4 October 2026",
+      "tags": [
+        "Real Analysis",
+        "Cauchy Criterion",
+        "Cauchy Sequences"
+      ],
+      "url": "/mathematics/analysis/real-analysis/cauchy-viewpoint/",
+      "source": "resources/mathematics/analysis/real-analysis/cauchy-viewpoint/main.mt",
+      "sections": [
+        "Introduction",
+        "The Cauchy Criterion"
+      ]
+    },
+    {
+      "id": "resources/mathematics/analysis/real-analysis/series-test/main",
+      "doctype": "notes",
+      "title": "Abel and Dirichlet tests for series",
+      "description": "A rudimentary exploration of some of the basic tests of convergence: Abel and Dirichlet",
+      "subject": "Mathematics",
+      "folder": "",
+      "author": "Vivek Kalita",
+      "date": "5 October 2026",
+      "tags": [
+        "Real Analysis",
+        "Convergence",
+        "Abel's test",
+        "Dirichlet's test"
+      ],
+      "url": "/mathematics/analysis/real-analysis/series-test/",
+      "source": "resources/mathematics/analysis/real-analysis/series-test/main.mt",
+      "sections": [
+        "Introduction"
+      ]
+    },
+    {
+      "id": "resources/physics/quantum-mechanics/stern-gerlach-experiment/main",
+      "doctype": "notes",
+      "title": "The Stern–Gerlach Experiment",
+      "description": "An informal introduction to quantum mechanics through the Stern–Gerlach experiment.",
       "subject": "Physics",
       "folder": "",
-      "author": "Author",
-      "date": "",
+      "author": "Vivek Kalita",
+      "date": "10 October 2026",
       "tags": [
-        "Electromagnetism",
-        "Classical Field Theory",
-        "Lagrangian Mechanics"
+        "Quantum Mechanics",
+        "Fundamental Experiments"
       ],
-      "url": "/resources/physics/electromagnetism/lagrange-field-equations/",
-      "source": "resources/physics/electromagnetism/lagrange-field-equations/field_equations.mt",
+      "url": "/physics/quantum-mechanics/stern-gerlach-experiment/",
+      "source": "resources/physics/quantum-mechanics/stern-gerlach-experiment/main.mt",
       "sections": [
-        "Lagrange's equation for a single variable",
-        "Lagrange's equation for multiple variables",
-        "Maxwell's equations"
+        "Introduction",
+        "Expectations and Results"
+      ]
+    },
+    {
+      "id": "resources/physics/classical-mechanics/one_d_strings/main",
+      "doctype": "notes",
+      "title": "Energy Transmission in One-Dimensional Strings",
+      "description": "Energy conservation, travelling waves, Fourier spectra, and transmission at a junction between strings.",
+      "subject": "Physics",
+      "folder": "",
+      "author": "Vivek Kalita",
+      "date": "17 October 2026",
+      "tags": [
+        "Classical Mechanics",
+        "Wave Mechanics",
+        "Energy Conservation",
+        "Fourier Analysis"
+      ],
+      "url": "/physics/classical-mechanics/one_d_strings/",
+      "source": "resources/physics/classical-mechanics/one_d_strings/main.mt",
+      "sections": [
+        "1. Introduction",
+        "2. Energy and Related Concepts",
+        "3. A Discontinuous Medium"
+      ]
+    },
+    {
+      "id": "resources/physics/electromagnetism/radiation/main",
+      "doctype": "notes",
+      "title": "Introduction to Radiation",
+      "description": "Introduction to the production of radiation in classical electrodynamic theory",
+      "subject": "Physics",
+      "folder": "",
+      "author": "Vivek Kalita",
+      "date": "18 October 2026",
+      "tags": [
+        "Electrodynamics",
+        "Radiation"
+      ],
+      "url": "/physics/electromagnetism/radiation/",
+      "source": "resources/physics/electromagnetism/radiation/main.mt",
+      "sections": [
+        "Introduction"
       ]
     }
   ]

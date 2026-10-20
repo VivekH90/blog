@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Energy Transmission in One-Dimensional Strings — Vivek Kalita</title>
+<script>
+window.MathJax={
+  tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']],tags:'ams'},
+  chtml:{fontURL:'https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/output/chtml/fonts/woff-v2'}
+};
+(function(){
+  try{
+    var saved=localStorage.getItem('mark-two-theme-v2');
+    var theme=saved||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+    if(theme==='dark') document.documentElement.setAttribute('data-theme','dark');
+  }catch(e){}
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js" defer></script>
+<style>
+@import url("https://cdn.jsdelivr.net/npm/computer-modern@0.1.3/cmu-serif.css");
+@import url("https://cdn.jsdelivr.net/npm/computer-modern@0.1.3/cmu-sans-serif.css");
+
+:root{
+  --bg:#fbfaf6;
+  --fg:#1c1d24;
+  --muted:#5c5f6b;
+  --rule:#dcd8cc;
+  --link:#3a43a8;
+  --crim:#b45f06;
+  --accent2:#0f766e;
+  --box:#f1efe7;
+  --card:#ffffff;
+  --glow:rgba(58,67,168,.08);
+
+  /* Old article palette, carried into Mark Two's semantic environments. */
+  --blue-soft:#eef0fb;
+  --blue-ink:#2f3690;
+  --orange-soft:#fffaf0;
+  --orange-border:#c9812b;
+  --orange-ink:#94500a;
+  --question-soft:#ecf6f3;
+  --question-border:color-mix(in srgb,var(--accent2) 40%,transparent);
+  --axiom-ink:#8f6d00;
+  --warning-ink:#b45f06;
+  --citation-border:#4fb8c9;
+
+  --primary-bg:var(--blue-soft);
+  --primary-border:var(--link);
+  --primary-title:var(--blue-ink);
+
+  --example-bg:var(--orange-soft);
+  --example-border:var(--orange-border);
+  --example-title:var(--orange-ink);
+
+  --axiom-border:var(--axiom-ink);
+  --warning-border:var(--warning-ink);
+
+  /* TeX typography: Roman for reading, Sans for structural headings/UI. */
+  --serif:"CMU Serif",serif;
+  --sans:"CMU Sans Serif",sans-serif;
+
+  /* Solid, paper-like theorem palette. */
+  --theorem-bg:#eeeafc;
+  --theorem-border:#6552b8;
+  --theorem-ink:#4f3f99;
+  --definition-bg:#eaf7ef;
+  --definition-border:#2f7d58;
+  --definition-ink:#236344;
+  --example-bg:#fff1dd;
+  --example-border:#bd6d1f;
+  --example-ink:#8f4f10;
+  --lemma-bg:#f0edff;
+  --lemma-border:#7258b8;
+  --lemma-ink:#594298;
+  --remark-bg:#f1f0f5;
+  --remark-border:#77707f;
+  --remark-ink:#5c5664;
+  --axiom-bg:#fff0ef;
+  --axiom-border-solid:#b84c4c;
+  --axiom-ink-solid:#8f3838;
+  --notation-bg:#eaf6f6;
+  --notation-border:#2e7778;
+  --notation-ink:#256365;
+  --warning-bg:#fff4df;
+  --warning-border-solid:#b86d18;
+  --warning-ink-solid:#8d5313;
+
+  --section-symbol:#b51f4b;
+  --section-sub:#72506a;
+  --section-rule:#e3d9df;
+
+  /* Solid surfaces with deliberately contrasting, uniform borders. */
+  --theorem-bg:#f2efff;
+  --theorem-border:#6658b7;
+  --theorem-ink:#493d88;
+  --lemma-bg:#f7f1ff;
+  --lemma-border:#8a68bd;
+  --lemma-ink:#5d458d;
+  --definition-bg:#edf8f1;
+  --definition-border:#4b9368;
+  --definition-ink:#2c6948;
+  --proposition-bg:#eef4ff;
+  --proposition-border:#587bbc;
+  --proposition-ink:#385681;
+  --example-bg:#fff3e3;
+  --example-border:#c27a25;
+  --example-ink:#885213;
+  --axiom-bg:#fff0f0;
+  --axiom-border-solid:#ba5b5b;
+  --axiom-ink-solid:#8d3f3f;
+  --remark-bg:#f3f2f0;
+  --remark-border:#918b83;
+  --remark-ink:#625d56;
+  --conjecture-bg:#fff0f7;
+  --conjecture-border:#b06d94;
+  --conjecture-ink:#7d4d6b;
+  --notation-bg:#edf8f8;
+  --notation-border:#4d9092;
+  --notation-ink:#356b6d;
+  --warning-bg:#fff3df;
+  --warning-border-solid:#bf771e;
+  --warning-ink-solid:#875112;
+  --question-border-solid:#3e8b83;
+  --conclusion-bg:#edf7f5;
+  --conclusion-border:#3f8d83;
+  --conclusion-ink:#28685f;
+  --colourbox-bg:#fff6d8;
+  --colourbox-border:#9b6b12;
+  --colourbox-ink:#6b4a08;
+
+  --toc-bg:#f5f1ff;
+  --toc-border:#b8a9df;
+  --toc-ink:#55458d;
+  --related-bg:#f1f8f3;
+  --related-border:#afd0b9;
+  --related-ink:#356c4a;
+  color-scheme:light;
+}
+
+:root[data-theme="dark"]{
+  --bg:#12141a;
+  --fg:#e8e6df;
+  --muted:#a4a5ad;
+  --rule:#2e313b;
+  --link:#9aa3ff;
+  --crim:#f0a64a;
+  --accent2:#5fd0c0;
+  --box:#1b1e26;
+  --card:#1a1d25;
+  --glow:rgba(154,163,255,.10);
+
+  --blue-soft:#1b1d33;
+  --blue-ink:#b5baff;
+  --orange-soft:#241f17;
+  --orange-border:#d99a52;
+  --orange-ink:#f0b36a;
+  --question-soft:#15262a;
+  --question-border:color-mix(in srgb,var(--accent2) 40%,transparent);
+  --axiom-ink:#f0c94a;
+  --warning-ink:#f0a64a;
+  --citation-border:#68c9d7;
+
+  --primary-bg:var(--blue-soft);
+  --primary-border:var(--link);
+  --primary-title:var(--blue-ink);
+
+  --example-bg:var(--orange-soft);
+  --example-border:var(--orange-border);
+  --example-title:var(--orange-ink);
+
+  --axiom-border:var(--axiom-ink);
+  --warning-border:var(--warning-ink);
+
+  --theorem-bg:#272242;
+  --theorem-border:#9a8be6;
+  --theorem-ink:#d9d3ff;
+  --definition-bg:#183326;
+  --definition-border:#67b58b;
+  --definition-ink:#b9e8c9;
+  --example-bg:#352716;
+  --example-border:#d99a52;
+  --example-ink:#ffd59b;
+  --lemma-bg:#29213b;
+  --lemma-border:#a58ae0;
+  --lemma-ink:#dacdff;
+  --remark-bg:#25252c;
+  --remark-border:#a3a0aa;
+  --remark-ink:#d7d5dc;
+  --axiom-bg:#351f22;
+  --axiom-border-solid:#d47a7a;
+  --axiom-ink-solid:#ffc1c1;
+  --notation-bg:#1c3131;
+  --notation-border:#65b9ba;
+  --notation-ink:#b6e9e9;
+  --warning-bg:#372815;
+  --warning-border-solid:#dfa052;
+  --warning-ink-solid:#ffd79e;
+
+  --section-symbol:#e58aa8;
+  --section-sub:#c9b3c7;
+  --section-rule:#453b46;
+
+  --theorem-bg:#292447;
+  --theorem-border:#9b8be5;
+  --theorem-ink:#ddd7ff;
+  --lemma-bg:#2e2640;
+  --lemma-border:#aa89df;
+  --lemma-ink:#dfd1ff;
+  --definition-bg:#1a3526;
+  --definition-border:#6fbd92;
+  --definition-ink:#c4ebd1;
+  --proposition-bg:#202d45;
+  --proposition-border:#78a0dc;
+  --proposition-ink:#d0e0ff;
+  --example-bg:#392a19;
+  --example-border:#e0a45d;
+  --example-ink:#ffd7a1;
+  --axiom-bg:#3b2325;
+  --axiom-border-solid:#db7c7c;
+  --axiom-ink-solid:#ffc7c7;
+  --remark-bg:#292a2d;
+  --remark-border:#aaa7ad;
+  --remark-ink:#ddd9e0;
+  --conjecture-bg:#392432;
+  --conjecture-border:#d08cae;
+  --conjecture-ink:#f1c8dd;
+  --notation-bg:#1f3535;
+  --notation-border:#6bbabb;
+  --notation-ink:#c4eded;
+  --warning-bg:#392b1a;
+  --warning-border-solid:#dfa45c;
+  --warning-ink-solid:#ffd7a1;
+  --question-border-solid:#65c2b4;
+  --conclusion-bg:#19312f;
+  --conclusion-border:#68c5b8;
+  --conclusion-ink:#b7e6df;
+  --colourbox-bg:#332a17;
+  --colourbox-border:#e1bd55;
+  --colourbox-ink:#f8e6a5;
+
+  --toc-bg:#25213a;
+  --toc-border:#5e5180;
+  --toc-ink:#ddd5ff;
+  --related-bg:#1f3027;
+  --related-border:#537b61;
+  --related-ink:#c5e5cf;
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:5rem}
+body{
+  margin:0;
+  min-height:100%;
+  background:
+    radial-gradient(60rem 24rem at 50% -8rem,var(--glow),transparent) no-repeat,
+    var(--bg);
+  color:var(--fg);
+  font-family:var(--serif);
+  font-size:1.08rem;
+  line-height:1.78;
+  -webkit-font-smoothing:antialiased;
+}
+button,input,select,textarea,.site-nav,.theme-toggle,.reading h2,.reading h3,.article-header h1,.runhead,.tags,.toc,.related{font-family:var(--sans)}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--link);outline-offset:3px}
+p{margin:.9rem 0}
+img{max-width:100%;height:auto}
+
+.wrap{max-width:66rem;margin:0 auto;padding:0 1.4rem}
+
+/* Header */
+header.top{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:color-mix(in srgb,var(--bg) 90%,transparent);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--rule);
+}
+.top-wrap{
+  display:flex;
+  align-items:center;
+  gap:.9rem 1.5rem;
+  min-height:4.2rem;
+}
+.brand{
+  margin-right:auto;
+  color:var(--fg);
+  font-weight:700;
+  display:flex;
+  align-items:center;
+  gap:.55rem;
+  text-decoration:none;
+}
+.brand:hover{text-decoration:none}
+.brand-mark{
+  display:inline-grid;
+  place-items:center;
+  width:1.9rem;
+  height:1.9rem;
+  border-radius:50%;
+  background:var(--link);
+  color:var(--bg);
+  font-size:1rem;
+}
+.site-nav ul{
+  list-style:none;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:1rem;
+  margin:0;
+  padding:0;
+}
+.site-nav a{
+  color:var(--muted);
+  font-size:.92rem;
+  padding:.15rem 0;
+  border-bottom:2px solid transparent;
+}
+.site-nav a:hover{
+  color:var(--fg);
+  text-decoration:none;
+  border-bottom-color:var(--accent2);
+}
+.theme-toggle{
+  display:inline-grid;
+  place-items:center;
+  width:2rem;
+  height:2rem;
+  padding:0;
+  border:1px solid var(--rule);
+  border-radius:999px;
+  background:var(--card);
+  color:var(--fg);
+  cursor:pointer;
+}
+.theme-toggle svg{width:15px;height:15px}
+.theme-toggle .moon{display:none}
+:root[data-theme="dark"] .theme-toggle .sun{display:none}
+:root[data-theme="dark"] .theme-toggle .moon{display:block}
+
+#bar{
+  position:absolute;
+  left:0;
+  bottom:-1px;
+  height:3px;
+  width:0;
+  background:var(--accent2);
+  pointer-events:none;
+}
+
+/* Article layout */
+.article-shell{padding:3rem 0 4.5rem}
+.article-layout{
+  display:grid;
+  grid-template-columns:minmax(0,44rem) 16rem;
+  column-gap:4rem;
+  align-items:start;
+}
+.article-column{min-width:0}
+.article-header{margin-bottom:2rem}
+
+/* Running head: a small piece of print-like ornament carried over from the old article. */
+.runhead{
+  display:flex;
+  justify-content:space-between;
+  gap:1rem;
+  font-size:.9rem;
+  color:var(--muted);
+  border-bottom:1.5px solid var(--rule);
+  padding-bottom:.3rem;
+  margin-bottom:1.7rem;
+  position:relative;
+}
+.runhead::before,.runhead::after{
+  content:"";
+  position:absolute;
+  bottom:-4px;
+  width:7px;
+  height:7px;
+  border:1px solid var(--rule);
+  background:var(--bg);
+  transform:rotate(45deg);
+}
+.runhead::before{left:-3px}
+.runhead::after{right:-3px}
+.runhead b{color:var(--fg)}
+
+.article-header h1{
+  font-family:var(--sans);
+  margin:0 0 .6rem;
+  font-size:clamp(2rem,4vw,3.1rem);
+  line-height:1.15;
+  letter-spacing:-.012em;
+}
+.lead{
+  color:var(--muted);
+  font-size:1.18rem;
+  max-width:34rem;
+  margin:.1rem 0 .8rem;
+}
+.article-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.6rem;
+  align-items:center;
+  color:var(--muted);
+  font-size:.9rem;
+}
+.tags{
+  margin:.55rem 0 0;
+  line-height:1.1;
+  display:flex;
+  flex-wrap:wrap;
+  gap:.35rem .45rem;
+}
+.tags span{
+  display:inline-block;
+  font-size:.78rem;
+  line-height:1;
+  padding:.34rem .7rem;
+  border:1px solid var(--rule);
+  border-radius:999px;
+  background:var(--card);
+  color:var(--fg);
+}
+
+/* Running example / prototype note, matching the original article treatment. */
+.proto{
+  color:var(--crim);
+  font-style:italic;
+  margin:.2rem 0 .9rem;
+}
+
+/* Main prose */
+.reading{
+  max-width:44rem;
+  min-width:0;
+  overflow-wrap:anywhere;
+  counter-reset:sec;
+}
+.reading h2{
+  font-family:var(--sans);
+  counter-increment:sec;
+  display:flex;
+  align-items:baseline;
+  gap:.72rem;
+  font-size:clamp(1.75rem,2.8vw,2.08rem);
+  line-height:1.2;
+  margin:3.25rem 0 1rem;
+  padding:0;
+  border:0;
+  letter-spacing:-.008em;
+  scroll-margin-top:5.5rem;
+}
+.reading h2::after{
+  content:"";
+  flex:1;
+  min-width:1.5rem;
+  border-bottom:1.5px solid var(--section-rule);
+  transform:translateY(-.22em);
+}
+.reading h2 .section-number{
+  flex:none;
+  color:var(--section-symbol);
+  font-size:.92em;
+  font-weight:700;
+  letter-spacing:0;
+}
+.reading h2 .section-title{
+  color:var(--fg);
+  font-weight:700;
+}
+.reading h3{
+  font-family:var(--sans);
+  display:flex;
+  align-items:baseline;
+  gap:.55rem;
+  font-size:1.18rem;
+  line-height:1.35;
+  margin:2.05rem 0 .6rem;
+  color:var(--fg);
+  scroll-margin-top:5.5rem;
+  font-weight:700;
+  letter-spacing:-.003em;
+}
+.reading h3 .section-number{
+  flex:none;
+  color:var(--section-sub);
+  font-size:.9em;
+  font-weight:700;
+  letter-spacing:0;
+}
+.reading h3 .section-title{
+  color:var(--fg);
+  font-weight:700;
+}
+/* Mathematical environments */
+.box{
+  margin:1.9rem 0;
+  padding:1.18rem 1.35rem 1.22rem;
+  color:var(--fg);
+  border:1.6px solid var(--box-accent,var(--rule));
+  border-radius:15px;
+  background:var(--box-fill,var(--card));
+}
+.box .label{
+  margin:0 0 .65rem;
+  padding:0 0 .48rem;
+  font-family:var(--sans);
+  font-size:1rem;
+  line-height:1.35;
+  font-weight:700;
+  border-bottom:1px solid color-mix(in srgb,var(--box-accent) 30%,var(--box-fill));
+}
+.box .box-content,.box .proof-content{min-width:0}
+.box p{margin:.5rem 0}
+.box .math-display{margin:.9rem 0}
+.box ul,.box ol{margin:.6rem 0 .85rem}
+
+/* Mathematical statement cards use a uniform outline. The fill and outline
+   are intentionally contrasting so the card reads clearly without a heavy
+   leading stripe. */
+.box.theorem,
+.box.corollary{
+  --box-fill:var(--theorem-bg);
+  --box-accent:var(--theorem-border);
+}
+.box.theorem .label,
+.box.corollary .label{color:var(--theorem-ink)}
+
+.box.proposition{
+  --box-fill:var(--proposition-bg);
+  --box-accent:var(--proposition-border);
+}
+.box.proposition .label{color:var(--proposition-ink)}
+
+.box.lemma{
+  --box-fill:var(--lemma-bg);
+  --box-accent:var(--lemma-border);
+}
+.box.lemma .label{color:var(--lemma-ink)}
+
+.box.definition{
+  --box-fill:var(--definition-bg);
+  --box-accent:var(--definition-border);
+}
+.box.definition .label{color:var(--definition-ink)}
+
+.box.example{
+  --box-fill:var(--example-bg);
+  --box-accent:var(--example-border);
+}
+.box.example .label{color:var(--example-ink)}
+
+.box.axiom{
+  --box-fill:var(--axiom-bg);
+  --box-accent:var(--axiom-border-solid);
+}
+.box.axiom .label{color:var(--axiom-ink-solid)}
+
+.box.remark{
+  --box-fill:var(--remark-bg);
+  --box-accent:var(--remark-border);
+}
+.box.remark .label{color:var(--remark-ink)}
+
+.box.conjecture{
+  --box-fill:var(--conjecture-bg);
+  --box-accent:var(--conjecture-border);
+}
+.box.conjecture .label{color:var(--conjecture-ink)}
+
+.box.notation{
+  --box-fill:var(--notation-bg);
+  --box-accent:var(--notation-border);
+}
+.box.notation .label{color:var(--notation-ink)}
+
+.box.warning{
+  --box-fill:var(--warning-bg);
+  --box-accent:var(--warning-border-solid);
+}
+.box.warning .label{color:var(--warning-ink-solid)}
+
+.box.conclusion{
+  --box-fill:var(--conclusion-bg);
+  --box-accent:var(--conclusion-border);
+}
+.box.conclusion .label{color:var(--conclusion-ink)}
+
+.box.proof{
+  position:relative;
+  margin:1.55rem 0 1.8rem;
+  border:0;
+  border-left:0;
+  border-radius:0;
+  padding:.15rem 0 .55rem;
+  background:transparent;
+}
+.box.proof .label{
+  margin:0 0 .48rem;
+  padding:0;
+  border:0;
+  color:var(--muted);
+  font-style:italic;
+  font-weight:500;
+}
+/* Titleless emphasis environment */
+.box.colourbox{
+  margin:1.65rem 0;
+  padding:1.22rem 1.42rem 1.28rem;
+  border:2px solid var(--colourbox-border);
+  border-left-width:6px;
+  border-radius:18px;
+  background:var(--colourbox-bg);
+  color:var(--colourbox-ink);
+  box-shadow:
+    0 7px 18px color-mix(in srgb,var(--colourbox-border) 12%,transparent),
+    inset 0 0 0 1px color-mix(in srgb,var(--colourbox-border) 14%,transparent);
+}
+
+.box.colourbox .box-content{
+  min-width:0;
+}
+
+.box.colourbox p:first-child{margin-top:.1rem}
+.box.colourbox p:last-child{margin-bottom:.1rem}
+.box.colourbox .math-display{
+  color:var(--fg);
+}
+
+/* Interactive animations
+   The shell belongs to Mark Two. Content, CSS, and JavaScript inside it are
+   author-controlled and may be used for interactive figures and simulations. */
+.mt-animation{
+  position:relative;
+  width:100%;
+  max-width:100%;
+  min-width:0;
+  margin:2rem 0;
+  padding:0;
+  overflow:hidden;
+  border:1.6px solid var(--rule);
+  border-radius:18px;
+  background:var(--card);
+  color:var(--fg);
+  font-family:var(--sans);
+  line-height:1.5;
+  isolation:isolate;
+  contain:layout paint;
+}
+.mt-animation *,
+.mt-animation *::before,
+.mt-animation *::after{
+  box-sizing:border-box;
+}
+.mt-animation canvas,
+.mt-animation svg,
+.mt-animation img,
+.mt-animation video,
+.mt-animation iframe{
+  display:block;
+  max-width:100%;
+}
+.mt-animation button,
+.mt-animation input,
+.mt-animation select,
+.mt-animation textarea{
+  font:inherit;
+}
+.mt-animation :where(button,input,select,textarea){
+  max-width:100%;
+}
+
+/* Inline mathematical emphasis */
+.term{
+  color:var(--link);
+  font-weight:700;
+  border-bottom:2px dotted var(--link);
+}
+.cross-reference{
+  color:var(--fg);
+  border:1px solid var(--muted);
+  padding:0 .3em;
+  border-radius:2px;
+  text-decoration:none;
+}
+.cross-reference:hover{
+  color:var(--fg);
+  text-decoration:none;
+  border-color:var(--link);
+}
+.inline-color{color:var(--inline-color)}
+:root[data-theme="dark"] .inline-color{color:var(--inline-color-dark)}
+
+/* Math, figures, links */
+.math-display{
+  overflow-x:auto;
+  overflow-y:hidden;
+  max-width:100%;
+  margin:1.1rem 0;
+}
+.reading mjx-container{
+  max-width:100%;
+  overflow-x:auto;
+  overflow-y:hidden;
+}
+figure.diagram{
+  margin:1.8rem 0;
+  text-align:center;
+  background:none;
+  border:0;
+}
+figure.diagram svg,
+figure.diagram img{width:100%;max-width:30rem;height:auto;margin:0 auto}
+figure.diagram figcaption{
+  font-size:.92rem;
+  line-height:1.55;
+  max-width:28rem;
+  margin:.6rem auto 0;
+  text-align:left;
+  color:var(--muted);
+}
+.image-row{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(0,1fr));
+  gap:10px;
+}
+.mark-label{display:block;position:relative;top:-5rem}
+
+/* Sidebar navigation cards */
+.side{
+  position:sticky;
+  top:5.5rem;
+  align-self:start;
+  max-height:calc(100vh - 6.5rem);
+  overflow:auto;
+}
+.toc,
+.related{
+  border:1.6px solid var(--toc-border);
+  border-radius:15px;
+  background:var(--toc-bg);
+  padding:1.02rem 1.05rem 1.08rem;
+  box-shadow:none;
+}
+.toc{
+  font-size:.95rem;
+}
+.toc b,
+.related b{
+  display:block;
+  margin:0 0 .7rem;
+  color:var(--toc-ink);
+  font-weight:700;
+  font-size:1rem;
+  padding-bottom:.48rem;
+  border-bottom:1px solid color-mix(in srgb,var(--toc-border) 45%,var(--toc-bg));
+}
+.toc ul{
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+.toc li{
+  margin:.22rem 0;
+  line-height:1.48;
+}
+.toc li.sub{
+  padding-left:.85rem;
+}
+.toc a{
+  color:var(--muted);
+  font-size:.88rem;
+}
+.toc a:hover,
+.toc a.active{
+  color:var(--toc-ink);
+  text-decoration:none;
+}
+.related{
+  margin-top:1rem;
+  border-color:var(--related-border);
+  background:var(--related-bg);
+}
+.related b{
+  color:var(--related-ink);
+  border-bottom-color:color-mix(in srgb,var(--related-border) 45%,var(--related-bg));
+}
+.related ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+.related li{
+  margin:.38rem 0;
+}
+.related a{
+  color:var(--muted);
+}
+.related a:hover{
+  color:var(--related-ink);
+}
+.mobile-contents{
+  display:none;
+}
+
+/* Q&A/exercise surfaces retain the old article's pale green accent. */
+.box.exercise,
+.box.question{
+  --box-fill:var(--question-soft);
+  --box-accent:var(--question-border-solid);
+  border-color:var(--question-border-solid);
+  border-radius:15px;
+}
+.box.exercise .label,
+.box.question .label{color:var(--accent2)}
+
+/* Footer */
+.article-footer{
+  display:none;
+  margin-top:3rem;
+  padding-top:.9rem;
+  border-top:1px solid var(--rule);
+}
+.article-footer ul{
+  margin:.3rem 0 0;
+  padding-left:1.2rem;
+}
+.article-footer li{margin:.25rem 0}
+.article-footer::before{
+  content:"Related";
+  display:block;
+  color:var(--accent2);
+  font-weight:700;
+  font-size:.95rem;
+  margin-bottom:.25rem;
+}
+
+@media (max-width:999px){
+  .article-layout{
+    grid-template-columns:minmax(0,44rem);
+  }
+  .side{display:none}
+  .mobile-contents{
+    display:block;
+    margin:0 0 2rem;
+    padding:.95rem 1rem 1rem;
+    border:1.6px solid var(--toc-border);
+    border-radius:15px;
+    background:var(--toc-bg);
+  }
+  .mobile-contents summary{
+    cursor:pointer;
+    color:var(--toc-ink);
+    font-weight:700;
+    font-family:var(--sans);
+  }
+  .mobile-contents .toc{
+    margin-top:.8rem;
+    padding:0;
+    border:0;
+    background:transparent;
+  }
+  .article-footer{display:block}
+}
+
+@media (max-width:560px){
+  body{font-size:1rem}
+  .wrap{padding:0 1rem}
+  .article-shell{padding-top:2rem}
+  .top-wrap{min-height:3.7rem}
+  .site-nav{display:none}
+  .article-header h1{font-size:2.2rem}
+  .lead{font-size:1.08rem}
+  .reading h2{font-size:1.45rem}
+  .runhead{font-size:.82rem}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-wrap">
+    <a class="brand" href="../../../">
+      <span class="brand-mark">∫</span>
+      <span>Vivek Kalita</span>
+    </a>
+    <nav class="site-nav" aria-label="Site navigation">
+      <ul>
+        <li><a href="../../../">Home</a></li>
+        <li><a href="../../../archive/">Archive</a></li>
+        <li><a href="../../../about/">About</a></li>
+        <li><a href="https://github.com/VivekH90" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.2M12 19.8V22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2 12h2.2M19.8 12H22M4.2 19.8l1.6-1.6M18.2 18.2l1.6-1.6"/></svg>
+      <svg class="moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+    </button>
+  </div>
+  <div id="bar" aria-hidden="true"></div>
+</header>
+
+<main class="article-shell">
+  <div class="wrap">
+    <div class="article-layout">
+      <article class="article-column">
+        <header class="article-header">
+          <div class="runhead">
+            <b>Physics</b>
+            <span>by <i>Vivek Kalita</i></span>
+          </div>
+          <h1>Energy Transmission in One-Dimensional Strings</h1>
+          <p class="lead">Energy conservation, travelling waves, Fourier spectra, and transmission at a junction between strings.</p>
+          <div class="article-meta">
+            <span>Vivek Kalita</span>
+            <span>·</span><time>17 October 2026</time>
+          </div>
+          <div class="tags"><span>Classical Mechanics</span><span>Wave Mechanics</span><span>Energy Conservation</span><span>Fourier Analysis</span></div>
+        </header>
+
+        <details class="mobile-contents">
+          <summary>Contents</summary>
+          <nav class="toc" id="toc-mobile"></nav>
+        </details>
+
+        <article class="reading" id="article">
+          <section class="article-section">
+<h2 id="1-introduction"><span class="section-number">§1</span><span class="section-title">1. Introduction</span></h2>
+<div class="text-environment"><p class="mark-text">The aim of this article is to understand the basic ideas of energy propagation and transmission in one-dimensional strings. We would also explore the idea of impedance, which essentially captures how a medium responds to a travelling disturbance.</p></div>
+</section>
+<section class="article-section">
+<h2 id="2-energy-and-related-concepts"><span class="section-number">§2</span><span class="section-title">2. Energy and Related Concepts</span></h2>
+
+<section class="article-subsection">
+<h3 id="2-1-the-lagrangian-and-hamiltonian-description"><span class="section-number">§2.1</span><span class="section-title">2.1. The Lagrangian and Hamiltonian Description</span></h3>
+<div class="text-environment"><p class="mark-text">For a linear string with mass density \(\mu\) and tension \(T\), the Lagrangian density is given by</p></div>
+<div class="math-display">\[\mathcal{L}
+=\frac12\mu\left(\frac{\partial y}{\partial t}\right)^2
+-\frac12T\left(\frac{\partial y}{\partial x}\right)^2.\]</div>
+<div class="text-environment"><p class="mark-text">From this, we obtain the conjugate momentum density:</p></div>
+<div class="math-display">\[\pi(x,t)=\frac{\partial\mathcal{L}}{\partial y_t}
+=\mu y_t.\]</div>
+<div class="text-environment"><p class="mark-text">The Hamiltonian density is therefore</p></div>
+<div class="math-display">\[\mathcal{H}=\pi y_t-\mathcal{L},\]</div>
+<div class="text-environment"><p class="mark-text">so that</p></div>
+<div class="math-display">\[\mathcal{H}
+=\frac{\pi^2}{2\mu}+\frac{T}{2}y_x^2
+=\frac12\mu y_t^2+\frac12T y_x^2.\]</div>
+</section>
+<section class="article-subsection">
+<h3 id="2-2-power-and-local-energy-conservation-the-discrete-picture"><span class="section-number">§2.2</span><span class="section-title">2.2. Power and Local Energy Conservation: The Discrete Picture</span></h3>
+<div class="text-environment"><p class="mark-text">At first, one might think that the energy within every small segment of a string must be conserved, so that no energy is transferred into or out of it.</p></div>
+<div class="text-environment"><p class="mark-text">This, however, is not the case.</p></div>
+<div class="text-environment"><p class="mark-text">To see why, consider a discrete model of the string.</p></div>
+<div class="text-environment"><p class="mark-text">The force on the \(n\)-th particle, to first order, is given by</p></div>
+<div class="math-display">\[F_n=\frac{T}{a}(y_{n+1}-y_n)
+-\frac{T}{a}(y_n-y_{n-1}),\]</div>
+<div class="text-environment"><p class="mark-text">where \(a\) is the separation between adjacent masses.</p></div>
+<div class="text-environment"><p class="mark-text">Define</p></div>
+<div class="math-display">\[q_n=y_{n+1}-y_n,\qquad
+q_{n-1}=y_n-y_{n-1}.\]</div>
+<div class="text-environment"><p class="mark-text">The kinetic energy of the \(n\)-th particle is</p></div>
+<div class="math-display">\[K_n=\frac12m\dot y_n^2.\]</div>
+<div class="text-environment"><p class="mark-text">Hence,</p></div>
+<div class="math-display">\[\frac{dK_n}{dt}
+=m\dot y_n\ddot y_n
+=\frac{T}{a}\dot y_n(q_n-q_{n-1}).\]</div>
+<div class="text-environment"><p class="mark-text">Likewise, the potential energy can be written as</p></div>
+<div class="math-display">\[U_n=\frac{T}{4a}(q_{n-1}^2+q_n^2).\]</div>
+<div class="text-environment"><p class="mark-text">Differentiating, we obtain</p></div>
+<div class="math-display">\[\frac{dU_n}{dt}
+=\frac{T}{2a}
+\left(q_{n-1}\dot q_{n-1}+q_n\dot q_n\right).\]</div>
+<div class="text-environment"><p class="mark-text">The total energy associated with the \(n\)-th particle is \(E_n=K_n+U_n\). Therefore,</p></div>
+<div class="math-display">\[\begin{aligned}
+\frac{dE_n}{dt}
+&amp;=\frac{dK_n}{dt}+\frac{dU_n}{dt}\\
+&amp;=\frac{T}{2a}\big[
+q_n(\dot y_{n+1}+\dot y_n)\\
+&amp;\qquad-q_{n-1}(\dot y_n+\dot y_{n-1})
+\big].
+\end{aligned}\]</div>
+<div class="text-environment"><p class="mark-text">In general, this is not zero:</p></div>
+<div class="math-display">\[\frac{dE_n}{dt}\neq0.\]</div>
+<div class="text-environment"><p class="mark-text">However, we can define the energy fluxes across the adjacent links as</p></div>
+<div class="math-display">\[P_{n+\frac12}
+=-\frac{T}{2a}q_n(\dot y_{n+1}+\dot y_n),\]</div>
+<div class="text-environment"><p class="mark-text">and</p></div>
+<div class="math-display">\[P_{n-\frac12}
+=-\frac{T}{2a}q_{n-1}(\dot y_n+\dot y_{n-1}).\]</div>
+<div class="text-environment"><p class="mark-text">Our energy equation becomes</p></div>
+<div class="math-display">\[\frac{dE_n}{dt}
+=P_{n-\frac12}-P_{n+\frac12}.\]</div>
+<div class="text-environment"><p class="mark-text">For an isolated string, we see that</p></div>
+<div class="math-display">\[\sum_n\frac{dE_n}{dt}=0.\]</div>
+<div class="text-environment"><p class="mark-text">Hence, the total energy is conserved.</p></div>
+</section>
+<section class="article-subsection">
+<h3 id="2-3-the-continuum-limit"><span class="section-number">§2.3</span><span class="section-title">2.3. The Continuum Limit</span></h3>
+<div class="text-environment"><p class="mark-text">Let</p></div>
+<div class="math-display">\[x=na,\qquad y_n\longrightarrow y,\qquad a\longrightarrow0.\]</div>
+<div class="text-environment"><p class="mark-text">Then,</p></div>
+<div class="math-display">\[y_{n+1}-y_n\sim a\frac{\partial y}{\partial x},\]</div>
+<div class="text-environment"><p class="mark-text">and</p></div>
+<div class="math-display">\[\dot y_{n+1}+\dot y_n
+\sim2\frac{\partial y}{\partial t}.\]</div>
+<div class="text-environment"><p class="mark-text">Thus,</p></div>
+<div class="math-display">\[\begin{aligned}
+P_{n+\frac12}
+&amp;\sim-\frac{T}{2a}
+\left(a\frac{\partial y}{\partial x}\right)
+\left(2\frac{\partial y}{\partial t}\right).
+\end{aligned}\]</div>
+<div class="text-environment"><p class="mark-text">Consequently, the energy flux becomes</p></div>
+<div class="math-display">\[P(x,t)=-T\frac{\partial y}{\partial x}
+\frac{\partial y}{\partial t}.\]</div>
+<div class="text-environment"><p class="mark-text">The discrete energy conservation equation,</p></div>
+<div class="math-display">\[\frac{dE_n}{dt}
+=P_{n-\frac12}-P_{n+\frac12},\]</div>
+<div class="text-environment"><p class="mark-text">becomes the local energy conservation equation</p></div>
+<div class="math-display">\[\frac{\partial u}{\partial t}
++\frac{\partial P}{\partial x}=0,\]</div>
+<div class="text-environment"><p class="mark-text">where \(u(x,t)\) is the energy per unit length.</p></div>
+</section>
+<section class="article-subsection">
+<h3 id="2-4-a-single-travelling-wave"><span class="section-number">§2.4</span><span class="section-title">2.4. A Single Travelling Wave</span></h3>
+<div class="text-environment"><p class="mark-text">For a right-moving sinusoidal wave,</p></div>
+<div class="math-display">\[y(x,t)=A\cos(kx-\omega t),
+\qquad \omega=vk,\]</div>
+<div class="text-environment"><p class="mark-text">we have</p></div>
+<div class="math-display">\[P(x,t)=TA^2k\omega\sin^2(kx-\omega t).\]</div>
+<div class="text-environment"><p class="mark-text">Taking the time average gives</p></div>
+<div class="math-display">\[\begin{aligned}
+\langle P\rangle
+&amp;=\frac12TA^2k\omega\\
+&amp;=\frac12\mu v\omega^2A^2,
+\end{aligned}\]</div>
+<div class="text-environment"><p class="mark-text">where \(v=\sqrt{T/\mu}\).</p></div>
+</section>
+<section class="article-subsection">
+<h3 id="2-5-superposition-and-the-fourier-spectrum"><span class="section-number">§2.5</span><span class="section-title">2.5. Superposition and the Fourier Spectrum</span></h3>
+<div class="text-environment"><p class="mark-text">For two waves,</p></div>
+<div class="math-display">\[y=A_1\cos\theta_1+A_2\cos\theta_2,\]</div>
+<div class="text-environment"><p class="mark-text">where</p></div>
+<div class="math-display">\[\theta_j=k_jx-\omega_jt,\]</div>
+<div class="text-environment"><p class="mark-text">we have</p></div>
+<div class="math-display">\[\begin{aligned}
+P={}&amp;TA_1^2k_1\omega_1\sin^2\theta_1\\
+&amp;+TA_2^2k_2\omega_2\sin^2\theta_2\\
+&amp;+TA_1A_2(k_1\omega_2+k_2\omega_1)
+\sin\theta_1\sin\theta_2.
+\end{aligned}\]</div>
+<div class="text-environment"><p class="mark-text">For distinct frequencies, the time average of the cross term vanishes. Hence,</p></div>
+<div class="math-display">\[\langle P\rangle
+=\frac12TA_1^2k_1\omega_1
++\frac12TA_2^2k_2\omega_2.\]</div>
+<div class="text-environment"><p class="mark-text">In general, for discrete Fourier modes,</p></div>
+<div class="math-display">\[y=\sum_j A_j\cos\theta_j,\]</div>
+<div class="text-environment"><p class="mark-text">the average power is</p></div>
+<div class="math-display">\[\langle P\rangle
+=\frac12\sum_j TA_j^2k_j\omega_j,\]</div>
+<div class="text-environment"><p class="mark-text">assuming distinct frequencies so that the cross terms average to zero.</p></div>
+</section>
+<section class="article-subsection">
+<h3 id="2-6-a-complete-fourier-spectrum"><span class="section-number">§2.6</span><span class="section-title">2.6. A Complete Fourier Spectrum</span></h3>
+<div class="text-environment"><p class="mark-text">A complete Fourier spectrum is represented by</p></div>
+<div class="math-display">\[y(x,t)=\frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^{+\infty}
+A(k)e^{ik(x-vt)}\,dk.\]</div>
+<div class="text-environment"><p class="mark-text">For a right-moving profile,</p></div>
+<div class="math-display">\[y_t=-vy_x.\]</div>
+<div class="text-environment"><p class="mark-text">The instantaneous power is therefore</p></div>
+<div class="math-display">\[P(x,t)=Tv[y_x(x,t)]^2.\]</div>
+<div class="text-environment"><p class="mark-text">Using the Fourier representation,</p></div>
+<div class="math-display">\[P(x,t)=\frac{Tv}{2\pi}
+\left|
+\int_{-\infty}^{+\infty}
+ikA(k)e^{ik(x-vt)}\,dk
+\right|^2.\]</div>
+<div class="text-environment"><p class="mark-text">Parseval&#x27;s theorem then gives the total energy:</p></div>
+<div class="math-display">\[E=T\int_{-\infty}^{+\infty}
+k^2|A(k)|^2\,dk.\]</div>
+</section>
+</section>
+<section class="article-section">
+<h2 id="3-a-discontinuous-medium"><span class="section-number">§3</span><span class="section-title">3. A Discontinuous Medium</span></h2>
+<div class="text-environment"><p class="mark-text">Consider two strings joined at \(x=0\).</p></div>
+<div class="text-environment"><p class="mark-text">The left string has mass density \(\mu_L\), and the right string has mass density \(\mu_R\). The tension must be the same in both strings because the junction does not move horizontally.</p></div>
+<div class="text-environment"><p class="mark-text">The boundary conditions are</p></div>
+<div class="math-display">\[y_L(0,t)=y_R(0,t),\]</div>
+<div class="text-environment"><p class="mark-text">and</p></div>
+<div class="math-display">\[\frac{\partial y_L(0,t)}{\partial x}
+=\frac{\partial y_R(0,t)}{\partial x}.\]</div>
+<div class="text-environment"><p class="mark-text">For a wave incident from the left,</p></div>
+<div class="math-display">\[y_L=A_I\cos(k_Lx-\omega t)
++A_R\cos(k_Lx+\omega t),
+\qquad x&lt;0,\]</div>
+<div class="text-environment"><p class="mark-text">and</p></div>
+<div class="math-display">\[y_R=A_T\cos(k_Rx-\omega t),
+\qquad x&gt;0.\]</div>
+<div class="text-environment"><p class="mark-text">Applying the boundary conditions, we obtain</p></div>
+<div class="math-display">\[A_I+A_R=A_T,\]</div>
+<div class="text-environment"><p class="mark-text">and</p></div>
+<div class="math-display">\[k_L(A_I-A_R)=k_RA_T.\]</div>
+<div class="text-environment"><p class="mark-text">Defining the reflection and transmission coefficients by</p></div>
+<div class="math-display">\[r=\frac{A_R}{A_I},
+\qquad
+t=\frac{A_T}{A_I},\]</div>
+<div class="text-environment"><p class="mark-text">we find</p></div>
+<div class="math-display">\[r=\frac{k_L-k_R}{k_L+k_R}
+=\frac{\sqrt{\mu_L}-\sqrt{\mu_R}}
+{\sqrt{\mu_L}+\sqrt{\mu_R}},\]</div>
+<div class="text-environment"><p class="mark-text">and</p></div>
+<div class="math-display">\[t=\frac{2k_L}{k_L+k_R}
+=\frac{2\sqrt{\mu_L}}
+{\sqrt{\mu_L}+\sqrt{\mu_R}}.\]</div>
+<div class="text-environment"><p class="mark-text">Here, we have used \(k=\omega\sqrt{\mu/T}\), with equal tension and equal angular frequency in both strings.</p></div>
+<section class="article-subsection">
+<h3 id="3-1-transmission-of-energy-and-power"><span class="section-number">§3.1</span><span class="section-title">3.1. Transmission of Energy and Power</span></h3>
+<div class="text-environment"><p class="mark-text">Define</p></div>
+<div class="math-display">\[\phi_I=k_Lx-\omega t,\]</div>
+<div class="math-display">\[\phi_R=k_Lx+\omega t,\]</div>
+<div class="text-environment"><p class="mark-text">and</p></div>
+<div class="math-display">\[\phi_T=k_Rx-\omega t.\]</div>
+<div class="text-environment"><p class="mark-text">The energy density in the left string is</p></div>
+<div class="math-display">\[u_L=\mu_L\omega^2
+\left(
+A_I^2\sin^2\phi_I+
+A_R^2\sin^2\phi_R
+\right),\]</div>
+<div class="text-environment"><p class="mark-text">so that</p></div>
+<div class="math-display">\[\langle u_L\rangle
+=\frac12\mu_L\omega^2(A_I^2+A_R^2).\]</div>
+<div class="text-environment"><p class="mark-text">In the right string,</p></div>
+<div class="math-display">\[u_R=\mu_R\omega^2A_T^2\sin^2\phi_T,\]</div>
+<div class="text-environment"><p class="mark-text">and therefore</p></div>
+<div class="math-display">\[\langle u_R\rangle
+=\frac12\mu_R\omega^2A_T^2.\]</div>
+<div class="text-environment"><p class="mark-text">The power fluxes are given by</p></div>
+<div class="math-display">\[P_L=Tk_L\omega
+\left(
+A_I^2\sin^2\phi_I
+-A_R^2\sin^2\phi_R
+\right),\]</div>
+<div class="text-environment"><p class="mark-text">and</p></div>
+<div class="math-display">\[P_R=Tk_R\omega A_T^2\sin^2\phi_T.\]</div>
+<div class="text-environment"><p class="mark-text">At the junction, the squared sine factors coincide because</p></div>
+<div class="math-display">\[\sin^2(-\omega t)=\sin^2(\omega t).\]</div>
+<div class="text-environment"><p class="mark-text">The amplitude relations also give</p></div>
+<div class="math-display">\[k_L(A_I^2-A_R^2)=k_RA_T^2.\]</div>
+<div class="text-environment"><p class="mark-text">Consequently,</p></div>
+<div class="math-display">\[P_L(0,t)
+=Tk_L\omega(A_I^2-A_R^2)\sin^2\omega t,\]</div>
+<div class="text-environment"><p class="mark-text">while</p></div>
+<div class="math-display">\[P_R(0,t)
+=Tk_R\omega A_T^2\sin^2\omega t.\]</div>
+<div class="text-environment"><p class="mark-text">Thus,</p></div>
+<div class="math-display">\[P_L(0,t)=P_R(0,t).\]</div>
+<div class="text-environment"><p class="mark-text">The reflected and transmitted fractions of the incident power are</p></div>
+<div class="math-display">\[\begin{aligned}
+R
+&amp;=\frac{\langle P_{\mathrm{ref}}\rangle}
+{\langle P_I\rangle}\\
+&amp;=\left(
+\frac{\sqrt{\mu_L}-\sqrt{\mu_R}}
+{\sqrt{\mu_L}+\sqrt{\mu_R}}
+\right)^2,
+\end{aligned}\]</div>
+<div class="text-environment"><p class="mark-text">and</p></div>
+<div class="math-display">\[\begin{aligned}
+\mathcal{T}
+&amp;=\frac{\langle P_T\rangle}{\langle P_I\rangle}\\
+&amp;=\frac{4\sqrt{\mu_L\mu_R}}
+{\left(\sqrt{\mu_L}+\sqrt{\mu_R}\right)^2}.
+\end{aligned}\]</div>
+<div class="text-environment"><p class="mark-text">In particular,</p></div>
+<div class="math-display">\[R+\mathcal{T}=1.\]</div>
+<div class="text-environment"><p class="mark-text">This confirms that, for an ideal junction without energy dissipation, the incident energy is divided between reflection and transmission.</p></div>
+</section>
+</section>
+        </article>
+
+        <footer class="article-footer">
+          <ul></ul>
+        </footer>
+      </article>
+
+      <aside class="side" aria-label="Article navigation">
+        <nav class="toc">
+          <b>Contents</b>
+          <div id="toc-desktop"></div>
+        </nav>
+        <div class="related">
+          <b>Related</b>
+          <ul></ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</main>
+<script>
+"use strict";
+document.addEventListener("DOMContentLoaded", function(){
+(function(){
+  var headings=document.querySelectorAll('#article h2, #article h3');
+  var lists=[document.getElementById('toc-desktop'),document.getElementById('toc-mobile')];
+  var links=[];
+  lists.forEach(function(root){
+    if(!root) return;
+    var ul=document.createElement('ul');
+    headings.forEach(function(h){
+      var li=document.createElement('li');
+      if(h.tagName==='H3') li.className='sub';
+      var a=document.createElement('a');
+      a.href='#'+h.id;
+      a.textContent=h.textContent.replace(/^\s*§?\s*\d+(?:\.\d+)?\s*/,"").trim();
+      li.appendChild(a); ul.appendChild(li); links.push(a);
+    });
+    root.replaceChildren(ul);
+  });
+  var byId={};
+  links.forEach(function(a){ var id=a.getAttribute('href').slice(1); (byId[id]=byId[id]||[]).push(a); });
+  if('IntersectionObserver' in window){
+    var obs=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(!e.isIntersecting) return;
+        links.forEach(function(a){a.classList.remove('active');});
+        (byId[e.target.id]||[]).forEach(function(a){a.classList.add('active');});
+      });
+    },{rootMargin:'-15% 0px -70% 0px'});
+    headings.forEach(function(h){obs.observe(h);});
+  }
+})();
+(function(){
+  var bar=document.getElementById('bar');
+  var article=document.getElementById('article');
+  function updateProgress(){
+    if(!bar || !article){ return; }
+    var rect=article.getBoundingClientRect();
+    var total=rect.height - window.innerHeight * 0.6;
+    var progress=total > 0 ? (-rect.top / total) * 100 : 0;
+    progress=Math.min(100,Math.max(0,progress));
+    bar.style.width=progress+'%';
+  }
+  updateProgress();
+  window.addEventListener('scroll',updateProgress,{passive:true});
+  window.addEventListener('resize',updateProgress);
+
+})();
+(function(){
+  var btn=document.querySelector('.theme-toggle');
+  if(btn){
+    btn.addEventListener('click',function(){
+      var root=document.documentElement;
+      var dark=root.getAttribute('data-theme')==='dark';
+      if(dark) root.removeAttribute('data-theme'); else root.setAttribute('data-theme','dark');
+      try{localStorage.setItem('mark-two-theme-v2',dark?'light':'dark');}catch(e){}
+    });
+  }
+})();
+});
+</script>
+</body>
+</html>
