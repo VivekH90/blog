@@ -110,8 +110,8 @@
     {
       "id": "resources/physics/classical-mechanics/one_d_strings/main",
       "doctype": "notes",
-      "title": "Energy Transmission in One-Dimensional Strings",
-      "description": "Energy conservation, travelling waves, Fourier spectra, and transmission at a junction between strings.",
+      "title": "Waves and Energy considerations in \\(1\\)D systems",
+      "description": "Here we consider the basic energy transfer phenomenon in simple \\(1\\)D strings",
       "subject": "Physics",
       "folder": "",
       "author": "Vivek Kalita",
@@ -125,9 +125,9 @@
       "url": "/physics/classical-mechanics/one_d_strings/",
       "source": "resources/physics/classical-mechanics/one_d_strings/main.mt",
       "sections": [
-        "1. Introduction",
-        "2. Energy and Related Concepts",
-        "3. A Discontinuous Medium"
+        "Introduction",
+        "Energy transfer",
+        "Energy Transfer between strings"
       ]
     },
     {
@@ -146,7 +146,9 @@
       "url": "/physics/electromagnetism/radiation/",
       "source": "resources/physics/electromagnetism/radiation/main.mt",
       "sections": [
-        "Introduction"
+        "Introduction",
+        "Radiation Fields",
+        "Radiation momentum and power"
       ]
     }
   ]

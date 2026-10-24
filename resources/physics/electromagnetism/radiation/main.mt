@@ -813,3 +813,685 @@ if(reduce){
 @end(animation)
 
 This disturbance scales as \(1/R\) (as we will soon see), so that the Poynting vector due to this disturbance scales as \(1/R^2\). Consequently, the power crossing a sphere can remain finite and nonzero as its radius tends to infinity. This is the essential feature of @bold{radiation}.
+
+@section{Radiation Fields, label = section-label}
+
+Let a point charge \(q\) follow some trajectory \(\mathbf r_q(t')\). We observe the field at position \(\mathbf r\) and time \(t\).
+
+The source event that can influence the observation, however, lies in the past light cone and is specified by the @bold{retarded time} \(t_\text{ret}\):
+
+\[
+t-t_{\mathrm{ret}}=\frac{R}{c},
+\qquad
+\mathbf{R}=\mathbf{r}-\mathbf{r}_q(t_{\mathrm{ret}}),
+\qquad
+R=|\mathbf{R}|.
+\]
+
+It is useful to introduce the unit vector pointing from the retarded source position to the observation point, together with the dimensionless retarded velocity:
+
+\[
+\mathbf n=\frac{\mathbf R}{R},
+\qquad
+\boldsymbol{\beta}=\frac{\mathbf v(t_{\mathrm{ret}})}{c},
+\qquad
+\dot{\boldsymbol{\beta}}
+=\frac{d\boldsymbol{\beta}}{dt_{\mathrm{ret}}}
+=\frac{\mathbf a(t_{\mathrm{ret}})}{c}.
+\]
+
+We also define the quantity
+\[
+\kappa=1-\mathbf n\cdot\boldsymbol{\beta}.
+\]
+
+Thus,
+\[
+\frac{\partial t_{\mathrm{ret}}}{\partial t}
+=\frac{1}{\kappa},
+\qquad
+\nabla t_{\mathrm{ret}}
+=-\frac{\mathbf n}{c\kappa}.
+\]
+
+@begin(animation, label = retarded-time)
+
+<style>
+
+.rv-anim { width: 100%; color: var(--fg); box-sizing: border-box; padding: 4px 8px 16px; }
+.rv-anim figure { margin: 0; padding: 8px 4px 8px; }
+.rv-anim svg { display: block; width: 100%; max-width: 680px; height: auto; margin: 0 auto; touch-action: none; }
+
+.rv-anim {
+    --sg-c1: #2f6db5;
+    --sg-c3: #c9821f;
+    --rv-q: #e0392b;
+}
+:root[data-theme="dark"] .rv-anim {
+    --sg-c1: #4f86d1;
+    --sg-c3: #d9962f;
+    --rv-q: #ff5a4d;
+}
+
+.rv-anim .pan { fill: color-mix(in srgb, var(--muted) 7%, var(--card)); stroke: var(--rule); stroke-width: 1; }
+.rv-anim .axis { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 4; opacity: .6; fill: none; }
+.rv-anim .trail { stroke: var(--rv-q); stroke-width: 2; opacity: .28; stroke-linecap: round; }
+.rv-anim .disk { fill: color-mix(in srgb, var(--sg-c3) 9%, transparent); stroke: none; }
+.rv-anim .ring { fill: none; stroke: var(--sg-c3); stroke-width: 2.6; }
+.rv-anim .flash { fill: var(--sg-c3); stroke: none; }
+.rv-anim .rad { stroke: var(--sg-c3); stroke-width: 1.8; stroke-dasharray: 2 4; stroke-linecap: round; fill: none; }
+.rv-anim .sig { stroke: var(--sg-c3); stroke-width: 2.2; stroke-linecap: round; fill: none; }
+.rv-anim .sigh { fill: var(--sg-c3); }
+.rv-anim .ghost { fill: color-mix(in srgb, var(--sg-c3) 14%, var(--card)); stroke: var(--sg-c3); stroke-width: 2.2; }
+.rv-anim .gs { stroke: var(--sg-c3); stroke-width: 1.5; stroke-linecap: round; }
+.rv-anim .qd { fill: var(--rv-q); stroke: var(--card); stroke-width: 1.4; }
+.rv-anim .qs { stroke: #fff; stroke-width: 1.5; stroke-linecap: round; }
+.rv-anim .disp { stroke: var(--rv-q); stroke-width: 1.6; fill: none; stroke-linecap: round; }
+.rv-anim .dispd { fill: var(--rv-q); }
+.rv-anim .pd { fill: var(--card); stroke: var(--sg-c1); stroke-width: 2.2; cursor: grab; }
+.rv-anim .pd.got { fill: var(--sg-c1); }
+.rv-anim .rip { fill: none; stroke: var(--sg-c1); stroke-width: 1.8; }
+.rv-anim .surf { fill: transparent; cursor: grab; }
+.rv-anim .surf:active { cursor: grabbing; }
+.rv-anim .surf:focus-visible { outline: 2px solid var(--link); outline-offset: -2px; }
+
+.rv-anim .tax { stroke: var(--fg); stroke-width: 1.4; fill: none; }
+.rv-anim .ttk { stroke: var(--muted); stroke-width: 1; }
+.rv-anim .tfl { stroke: var(--sg-c3); stroke-width: 2.2; stroke-linecap: round; }
+.rv-anim .tfh { fill: var(--sg-c3); }
+.rv-anim .tcur { stroke: var(--fg); stroke-width: 1.8; stroke-linecap: round; }
+.rv-anim .tcd { fill: var(--fg); }
+.rv-anim .tbr { stroke: var(--sg-c3); stroke-width: 2.2; fill: none; stroke-linecap: round; }
+.rv-anim .tx { font-family: var(--sans); font-size: 9.5px; fill: var(--muted); }
+
+.rv-anim .fl {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12.5px; line-height: 1; white-space: nowrap;
+    font-family: var(--serif);
+    color: var(--fg);
+}
+.rv-anim .fl .katex { font-size: 1em; }
+
+.rv-anim .controls {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    width: 100%; max-width: 680px; margin: 10px auto 0;
+}
+.rv-anim button {
+    font-family: var(--sans); font-size: .85rem; color: var(--fg);
+    background: var(--card); border: 1px solid var(--rule);
+    border-radius: 8px; padding: 6px 11px; cursor: pointer; white-space: nowrap;
+}
+.rv-anim button:hover { border-color: var(--fg); }
+.rv-anim button:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+.rv-anim button.play { min-width: 68px; }
+
+@media (max-width: 520px) {
+    .rv-anim figure { padding-left: 0; padding-right: 0; }
+    .rv-anim .controls { gap: 6px; }
+    .rv-anim button { font-size: .8rem; padding: 5px 9px; }
+}
+
+</style>
+
+<div class="rv-anim">
+
+<figure>
+<svg id="rv-svg" viewBox="0 0 400 300" role="img" aria-label="A moving charge emits a pulse from its retarded position; the pulse takes the time t minus t_ret to reach the point P, by which time the charge has moved on"></svg>
+</figure>
+
+<div class="controls">
+<button id="rv-play" class="play">Pause</button>
+<button id="rv-replay">Replay</button>
+</div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+
+<script>
+(function(){
+
+if(!document.querySelector('link[href*="katex"]')){
+    var lk=document.createElement('link');
+    lk.rel='stylesheet';
+    lk.href='https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css';
+    document.head.appendChild(lk);
+}
+
+var NS='http://www.w3.org/2000/svg';
+var $=function(i){return document.getElementById(i)};
+
+/* units: c = 1. The charge moves along the x axis at constant speed BETA, starting at X0.
+   At time TE it is at XE and emits one pulse. That event is (t_ret, r_ret).
+   The pulse spreads at speed c and reaches P after R/c, so t - t_ret = R/c with R = |P - r_ret|. */
+var BETA=.6, X0=-7, XE=-5, TE=(XE-X0)/BETA, TS=2.4, HOLD=3.4;
+var xP=3.6, yP=2.2;
+
+var S=25, CX=200, AY=101;
+var TY=240, T0=22, PT=20.5;
+
+var t=0, holdT=0, hold=false, playing=true, drag=false, fade=1, ripT=0, raf=0, last=0;
+var svg, gA, gB, L={};
+var trail, disk, ring, flash, rad, sig, sigH, ghost, gsA, gsB, dispL, dispH1, dispH2, qC, qH, qV, pD, rip, surf;
+var tFl, tFh, tCur, tCd, tBr, tBr1, tBr2;
+var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function xq(tt){ return X0+BETA*tt; }
+function arrivalT(){ return TE+Math.sqrt((xP-XE)*(xP-XE)+yP*yP); }
+
+function el(tg,at,par){
+    var e=document.createElementNS(NS,tg);
+    for(var k in at){ e.setAttribute(k,at[k]); }
+    if(par){ par.appendChild(e); }
+    return e;
+}
+function tex(s){ return katex.renderToString(s,{throwOnError:false,output:'html'}); }
+function lab(par,s,w){
+    var fo=el('foreignObject',{width:w,height:24},par);
+    fo.style.overflow='visible';
+    var d=document.createElement('div');
+    d.className='fl';
+    d.innerHTML=tex(s);
+    fo.appendChild(d);
+    fo.put=function(cx,cy){
+        fo.setAttribute('x',cx-w/2);
+        fo.setAttribute('y',cy-12);
+        return fo;
+    };
+    fo.show=function(on){ fo.style.display=on ? '' : 'none'; };
+    return fo;
+}
+function txt(par,x,y,s,anchor){
+    var e=el('text',{x:x,y:y,'text-anchor':anchor||'start',class:'tx'},par);
+    e.textContent=s;
+    return e;
+}
+function PX(x){ return CX+S*x; }
+function PY(y){ return AY-S*y; }
+function TX(tt){ return T0+PT*tt; }
+function cl(x){ return Math.max(0,Math.min(1,x)); }
+
+function arrowHead(p,x0,y0,x1,y1,sz){
+    var dx=x1-x0, dy=y1-y0, n=Math.sqrt(dx*dx+dy*dy)||1, ux=dx/n, uy=dy/n;
+    p.setAttribute('points',[x1,y1, x1-ux*sz-uy*sz*.45,y1-uy*sz+ux*sz*.45, x1-ux*sz+uy*sz*.45,y1-uy*sz-ux*sz*.45].join(' '));
+}
+
+function build(){
+    svg=$('rv-svg');
+    svg.innerHTML='<defs><clipPath id="rv-ca"><rect x="1" y="6" width="398" height="190"/></clipPath></defs>';
+    var i;
+
+    el('rect',{x:1,y:6,width:398,height:190,class:'pan'},svg);
+    el('rect',{x:1,y:206,width:398,height:90,class:'pan'},svg);
+
+    gA=el('g',{'clip-path':'url(#rv-ca)'},svg);
+    el('line',{x1:1,y1:AY,x2:399,y2:AY,class:'axis'},gA);
+    trail=el('line',{class:'trail'},gA);
+    disk=el('circle',{class:'disk'},gA);
+    ring=el('circle',{class:'ring'},gA);
+    flash=el('circle',{class:'flash'},gA);
+    rad=el('line',{class:'rad'},gA);
+    sig=el('line',{class:'sig'},gA);
+    sigH=el('polygon',{class:'sigh'},gA);
+    dispL=el('line',{class:'disp'},gA);
+    dispH1=el('polygon',{class:'dispd'},gA);
+    dispH2=el('polygon',{class:'dispd'},gA);
+    ghost=el('circle',{r:6.5,class:'ghost'},gA);
+    gsA=el('line',{class:'gs'},gA);
+    gsB=el('line',{class:'gs'},gA);
+    qC=el('circle',{r:6.5,class:'qd'},gA);
+    qH=el('line',{class:'qs'},gA);
+    qV=el('line',{class:'qs'},gA);
+    rip=el('circle',{class:'rip'},gA);
+    pD=el('circle',{r:7,class:'pd'},gA);
+
+    L.p=lab(gA,'P',16);
+    L.hint=txt(gA,0,0,'drag P','middle');
+    L.ret=lab(gA,'\\mathbf{r}_{\\mathrm{ret}}',58);
+    L.q=lab(gA,'\\mathbf{r}_q(t)',50);
+    L.rad=lab(gA,'c\\,(t-t_{\\mathrm{ret}})',92);
+    L.R=lab(gA,'R=c\\,(t-t_{\\mathrm{ret}})',118);
+    L.disp=lab(gA,'v\\,(t-t_{\\mathrm{ret}})',92);
+
+    gB=el('g',{},svg);
+    el('line',{x1:T0-8,y1:TY,x2:382,y2:TY,class:'tax'},gB);
+    el('polygon',{points:'390,240 382,236 382,244',style:'fill:var(--fg)'},gB);
+    for(i=0;i<=17;i++){ el('line',{x1:TX(i),y1:TY,x2:TX(i),y2:TY+(i%5===0 ? 6 : 4),class:'ttk'},gB); }
+    txt(gB,388,TY+17,'time','end');
+    tFl=el('line',{class:'tfl'},gB);
+    tFh=el('polygon',{class:'tfh'},gB);
+    tCur=el('line',{class:'tcur'},gB);
+    tCd=el('circle',{r:3.6,class:'tcd'},gB);
+    tBr=el('line',{class:'tbr'},gB);
+    tBr1=el('line',{class:'tbr'},gB);
+    tBr2=el('line',{class:'tbr'},gB);
+    L.tret=lab(gB,'t_{\\mathrm{ret}}',34);
+    L.tnow=lab(gB,'t',14);
+    L.dt=lab(gB,'t-t_{\\mathrm{ret}}',80);
+    L.dtR=lab(gB,'t-t_{\\mathrm{ret}}=\\dfrac{R}{c}',110);
+
+    surf=el('rect',{x:1,y:6,width:398,height:190,class:'surf',tabindex:0,role:'application',
+                    'aria-label':'Observer P. Drag, or use the arrow keys, to move it'},svg);
+    surf.addEventListener('pointerdown',function(e){
+        drag=true; surf.setPointerCapture(e.pointerId); showArrival(); movePt(e);
+    });
+    surf.addEventListener('pointermove',function(e){ if(drag){ movePt(e); } });
+    surf.addEventListener('pointerup',function(){ drag=false; restart(); });
+    surf.addEventListener('pointercancel',function(){ drag=false; restart(); });
+    surf.addEventListener('keydown',function(e){
+        var d=.25, ok=true;
+        if(e.key==='ArrowLeft'){ setP(xP-d,yP); }
+        else if(e.key==='ArrowRight'){ setP(xP+d,yP); }
+        else if(e.key==='ArrowUp'){ setP(xP,yP+d); }
+        else if(e.key==='ArrowDown'){ setP(xP,yP-d); }
+        else { ok=false; }
+        if(ok){ e.preventDefault(); showArrival(); render(); }
+    });
+}
+
+function setP(x,y){
+    xP=Math.max(-7.6,Math.min(7.6,x));
+    var s=y<0 ? -1 : 1;
+    yP=s*Math.max(.7,Math.min(3.5,Math.abs(y)));
+}
+function movePt(e){
+    var pt=svg.createSVGPoint(); pt.x=e.clientX; pt.y=e.clientY;
+    var q=pt.matrixTransform(svg.getScreenCTM().inverse());
+    setP((q.x-CX)/S,(AY-q.y)/S);
+    showArrival();
+    render();
+}
+
+function showArrival(){ t=arrivalT(); hold=true; holdT=0; }
+function restart(){ t=0; hold=false; holdT=0; fade=0; ripT=0; render(); }
+
+function render(){
+    var ta=arrivalT(), R=ta-TE;
+    var emitted=t>=TE-1e-9, arrived=t>=ta-1e-9, rho=emitted ? Math.min(t-TE,R) : 0;
+    var ex=PX(XE), cx=PX(xq(t)), px=PX(xP), py=PY(yP);
+    var dx=px-ex, dy=py-AY, dn=Math.sqrt(dx*dx+dy*dy), ux=dx/dn, uy=dy/dn;
+    var side=yP>0 ? 1 : -1;
+    var o=fade;
+    gA.style.opacity=o; gB.style.opacity=o;
+
+    trail.setAttribute('x1',PX(X0)); trail.setAttribute('x2',cx); trail.setAttribute('y1',AY); trail.setAttribute('y2',AY);
+    qC.setAttribute('cx',cx); qC.setAttribute('cy',AY);
+    qH.setAttribute('x1',cx-3); qH.setAttribute('x2',cx+3); qH.setAttribute('y1',AY); qH.setAttribute('y2',AY);
+    qV.setAttribute('x1',cx); qV.setAttribute('x2',cx); qV.setAttribute('y1',AY-3); qV.setAttribute('y2',AY+3);
+
+    var show=emitted ? '' : 'none';
+    ghost.style.display=show; gsA.style.display=show; gsB.style.display=show;
+    ghost.setAttribute('cx',ex); ghost.setAttribute('cy',AY);
+    gsA.setAttribute('x1',ex-3); gsA.setAttribute('x2',ex+3); gsA.setAttribute('y1',AY); gsA.setAttribute('y2',AY);
+    gsB.setAttribute('x1',ex); gsB.setAttribute('x2',ex); gsB.setAttribute('y1',AY-3); gsB.setAttribute('y2',AY+3);
+
+    ring.style.display=show; disk.style.display=show;
+    ring.setAttribute('cx',ex); ring.setAttribute('cy',AY); ring.setAttribute('r',Math.max(.1,rho*S));
+    disk.setAttribute('cx',ex); disk.setAttribute('cy',AY); disk.setAttribute('r',Math.max(.1,rho*S));
+    var fa=emitted ? t-TE : 9;
+    flash.style.display=fa<.5 ? '' : 'none';
+    flash.setAttribute('cx',ex); flash.setAttribute('cy',AY);
+    flash.setAttribute('r',8+22*fa/.5); flash.style.opacity=.55*(1-fa/.5);
+
+    rad.style.display=emitted && !arrived ? '' : 'none';
+    rad.setAttribute('x1',ex); rad.setAttribute('y1',AY); rad.setAttribute('x2',ex+ux*rho*S); rad.setAttribute('y2',AY+uy*rho*S);
+    sig.style.display=arrived ? '' : 'none'; sigH.style.display=arrived ? '' : 'none';
+    sig.setAttribute('x1',ex); sig.setAttribute('y1',AY); sig.setAttribute('x2',px-ux*9); sig.setAttribute('y2',py-uy*9);
+    arrowHead(sigH,ex,AY,px-ux*7,py-uy*7,9);
+
+    var gap=cx-ex, sd=emitted && gap>34;
+    var dyD=side*34;
+    dispL.style.display=sd ? '' : 'none'; dispH1.style.display=sd ? '' : 'none'; dispH2.style.display=sd ? '' : 'none';
+    dispL.setAttribute('x1',ex+5); dispL.setAttribute('x2',cx-5); dispL.setAttribute('y1',AY+dyD); dispL.setAttribute('y2',AY+dyD);
+    dispH1.setAttribute('points',[cx-3,AY+dyD, cx-10,AY+dyD-3.4, cx-10,AY+dyD+3.4].join(' '));
+    dispH2.setAttribute('points',[ex+3,AY+dyD, ex+10,AY+dyD-3.4, ex+10,AY+dyD+3.4].join(' '));
+
+    pD.setAttribute('cx',px); pD.setAttribute('cy',py);
+    pD.setAttribute('class','pd'+(arrived ? ' got' : ''));
+    if(arrived){
+        var k=(ripT*.9)%1;
+        rip.style.display=''; rip.setAttribute('cx',px); rip.setAttribute('cy',py);
+        rip.setAttribute('r',9+22*k); rip.style.opacity=.9*(1-k);
+    }else{
+        rip.style.display='none';
+    }
+
+    L.p.put(px+(xP>6 ? -13 : 13),py-side*13);
+    L.hint.setAttribute('x',px);
+    L.hint.setAttribute('y',py+(side>0 ? 24 : -18));
+    L.ret.show(emitted); L.ret.put(ex-27,AY+side*17);
+    L.q.put(cx+(emitted && gap<60 ? 31 : 0),AY+side*17);
+    L.disp.show(sd); L.disp.put((ex+cx)/2,AY+dyD+side*13);
+    var mx=ex+ux*rho*S/2, my=AY+uy*rho*S/2, nx=-uy*13*(ux>=0 ? 1 : -1), ny=ux*13*(ux>=0 ? 1 : -1);
+    var radOn=emitted && !arrived && rho*S>110;
+    L.rad.show(radOn); L.R.show(arrived);
+    L.rad.put(mx+nx*(uy<0 ? 1 : -1),my+ny*(uy<0 ? 1 : -1));
+    L.R.put(ex+dx/2+nx*(uy<0 ? 1 : -1),AY+dy/2+ny*(uy<0 ? 1 : -1));
+
+    var fx=TX(TE), nowX=TX(t);
+    var fs=emitted ? '' : 'none';
+    tFl.style.display=fs; tFh.style.display=fs; L.tret.show(emitted);
+    tFl.setAttribute('x1',fx); tFl.setAttribute('x2',fx); tFl.setAttribute('y1',TY+2); tFl.setAttribute('y2',TY-20);
+    tFh.setAttribute('points',[fx,TY-22, fx+9,TY-18, fx,TY-14].join(' '));
+    L.tret.put(fx-17,TY-30);
+    tCur.setAttribute('x1',nowX); tCur.setAttribute('x2',nowX); tCur.setAttribute('y1',TY+8); tCur.setAttribute('y2',TY-20);
+    tCd.setAttribute('cx',nowX); tCd.setAttribute('cy',TY);
+    L.tnow.put(nowX+(emitted && nowX-fx<34 ? 12 : 0),TY-30);
+    var bs=emitted && nowX-fx>6;
+    tBr.style.display=bs ? '' : 'none'; tBr1.style.display=bs ? '' : 'none'; tBr2.style.display=bs ? '' : 'none';
+    tBr.setAttribute('x1',fx); tBr.setAttribute('x2',nowX); tBr.setAttribute('y1',TY+20); tBr.setAttribute('y2',TY+20);
+    tBr1.setAttribute('x1',fx); tBr1.setAttribute('x2',fx); tBr1.setAttribute('y1',TY+14); tBr1.setAttribute('y2',TY+26);
+    tBr2.setAttribute('x1',nowX); tBr2.setAttribute('x2',nowX); tBr2.setAttribute('y1',TY+14); tBr2.setAttribute('y2',TY+26);
+    var lx=Math.max(70,Math.min(330,(fx+nowX)/2));
+    L.dt.show(bs && !arrived && nowX-fx>50); L.dtR.show(arrived && bs);
+    L.dt.put(lx,TY+40); L.dtR.put(lx,TY+42);
+}
+
+function frame(now){
+    raf=requestAnimationFrame(frame);
+    var dt=Math.min(.05,(now-last)/1000);
+    last=now;
+    if(fade<1){ fade=Math.min(1,fade+dt/.4); }
+    if(!playing){ if(fade<1){ render(); } return; }
+    if(hold){
+        holdT+=dt; ripT+=dt;
+        if(holdT>HOLD && !drag){ restart(); return; }
+        render();
+        return;
+    }
+    t+=dt*TS;
+    var ta=arrivalT();
+    if(t>=ta){ t=ta; hold=true; holdT=0; ripT=0; }
+    render();
+}
+
+function setPlay(on){
+    playing=on;
+    $('rv-play').textContent=on ? 'Pause' : 'Play';
+}
+
+$('rv-play').onclick=function(){ setPlay(!playing); };
+$('rv-replay').onclick=function(){ restart(); if(!playing){ setPlay(true); } };
+
+build();
+
+if(reduce){
+    setPlay(false);
+    showArrival();
+    render();
+}else{
+    restart();
+    last=performance.now();
+    raf=requestAnimationFrame(frame);
+}
+
+})();
+</script>
+
+@end(animation)
+
+@subsection{The Liénard–Wiechert Potentials, label = section-label}
+
+For a charge distribution, the scalar potential is given by
+
+\[
+\phi(\mathbf r,t)
+=\frac{1}{4\pi\epsilon_0}
+\int \frac{\rho(\mathbf r',t_r)}{R'}\,d^3r'.
+\]
+
+Here, \(R'\) denotes the distance between the observation point and the source point, and \(t_r\) is the retarded time:
+
+\[
+R'=|\mathbf r-\mathbf r'|
+\qquad \text{and} \qquad
+t_r=t-\frac{R'}{c}.
+\]
+
+Since the charge follows the trajectory \(\mathbf r_q(t')\), its charge density at the retarded time is given by
+
+\[
+\rho(\mathbf r',t_r)
+=q\,\delta^{(3)}\!\left(\mathbf r'-\mathbf r_q(t_r)\right).
+\]
+
+Interestingly, we can convert the spatial integral into an integral over time. First, we define the function
+
+\[
+g(t')=t-t'-\frac{R_q(t')}{c}=t'-t_r.
+\]
+
+Here, \(t'\) is the integration variable, so we can write the integral as follows:
+
+\[
+\phi(\mathbf r,t)
+=\frac{q}{4\pi\epsilon_0}
+\int_{-\infty}^{\infty}
+\frac{\delta(g(t'))}{R_q(t')}\,dt'.
+\]
+
+Here, \(R_q(t')\) denotes the distance between the observation point and the source position at time \(t'\):
+
+\[
+R_q(t')=\left|\mathbf r-\mathbf r_q(t')\right|.
+\]
+
+(Note that this works because the delta function selects the root \(t'=t_r\).)
+
+The delta-function transformation rule is
+
+\[
+\delta(g(t'))
+=\frac{\delta(t'-t_r)}{|g'(t_r)|}.
+\]
+
+Define
+
+\[
+\kappa=1-\mathbf n\cdot\beta.
+\]
+
+It follows that
+
+\[
+g'(t_r)=-\kappa
+\qquad \text{and} \qquad
+\delta(g(t'))
+=\frac{\delta(t'-t_r)}{\kappa}.
+\]
+
+Ultimately, we obtain
+
+\[
+\phi(\mathbf r,t)
+=\frac{q}{4\pi\epsilon_0}
+\int_{-\infty}^{\infty}
+\frac{\delta(t'-t_r)}{\kappa R_q(t')}\,dt'
+=\frac{q}{4\pi\epsilon_0\kappa R}.
+\]
+
+Likewise, the current density is given by
+
+\[
+\mathbf J(\mathbf r',t')
+=q\mathbf v(t')\,
+\delta^{(3)}\!\left(\mathbf r'-\mathbf r_q(t')\right).
+\]
+
+The retarded vector potential is given by
+
+\[
+\mathbf A(\mathbf r,t)
+=\frac{\mu_0}{4\pi}
+\int\frac{\mathbf J(\mathbf r',t_r)}{R'}\,d^3r'.
+\]
+
+Using the same substitution, we obtain
+
+\[
+\mathbf A(\mathbf r,t)
+=\frac{\mu_0q}{4\pi}
+\int
+\frac{\mathbf v(t')\delta(t'-t_r)}
+{\kappa R_q(t')}\,dt'
+=\frac{\mu_0q\mathbf v(t_r)}
+{4\pi\kappa R}.
+\]
+
+In general, with \(x^\mu=(ct,\mathbf r)\) and metric signature \((+,-,-,-)\), we can define the electromagnetic four-potential as follows:
+
+\[
+A^\mu(\mathbf r,t)
+=\frac{q}{4\pi\epsilon_0c}\frac{1}{\kappa R}
+\begin{pmatrix}
+1\\
+\beta_x\\
+\beta_y\\
+\beta_z
+\end{pmatrix}.
+\]
+
+Here, the quantities are defined as follows:
+
+\[
+\beta=\frac{\mathbf v(t_r)}{c},
+\qquad
+R=|\mathbf r-\mathbf r_q(t_r)|,
+\qquad
+\mathbf n=\frac{\mathbf r-\mathbf r_q(t_r)}{R},
+\qquad
+\kappa=1-\mathbf n\cdot\beta.
+\]
+
+@subsection{The retarded Electromagnetic Field, label = subsection-label}
+
+The fields follow from the potentials through:
+\[
+\mathbf E=-\nabla\phi-\frac{\partial\mathbf A}{\partial t},
+\qquad
+\mathbf B=\nabla\times\mathbf A.
+\]
+
+The calculation is quite tedious, but you can evaluate the Electric field to be:
+\[
+\mathbf E(\mathbf r,t)
+=\frac{q}{4\pi\epsilon_0}
+\Bigg[
+\frac{(1-\beta^2)(\mathbf n-\boldsymbol\beta)}
+{\kappa^3R^2}\\
++\frac{\mathbf n\times
+\left[(\mathbf n-\boldsymbol\beta)
+\times\dot{\boldsymbol\beta}\right]}
+{c\kappa^3R}
+\Bigg]_{\mathrm{ret}}.
+\]
+And the magnetic field can be written as:
+\[
+\mathbf B(\mathbf r,t)
+=\frac{1}{c}\mathbf n\times\mathbf E(\mathbf r,t).
+\]
+
+@section{Radiation momentum and power, label = section-label}
+As you can see, the electric field (as well as the magnetic field) contains two terms. One proportional to \(1/R\) and the other proportional to \(1/R^2\).
+
+More interestingly, it is the acceleration term that is dependent on \(1/R\).
+
+So, in general, it is this term that represents the disturbance in the electromagnetic field when the charges accelerate.
+
+And it is this term that represents the radiation terms of the electromagnetic field. To see why this is the case, note that the energy flux per unit time (the Poynting vector) is given by:
+
+\[
+\mathbf S = \frac{1}{\mu_0}\mathbf E \times \mathbf B
+\]
+
+The power radiated to infinity is just the integral of this over a very large surface (\(R \rightarrow \infty\)).
+
+The Poynting vector contains contributions that fall off as \(1/R^4\), \(1/R^3\), and \(1/R^2\). Since the area of a sphere grows as \(R^2\), the first two contributions vanish when integrated over a sphere as \(R\rightarrow\infty\). Only the \(1/R^2\) contribution can yield a finite, nonzero power in this limit.
+
+We shall therefore focus on the radiation fields in what follows:
+
+\[
+\mathbf E_{\mathrm{rad}}
+=\frac{q}{4\pi\epsilon_0c^2R}
+\left[
+\frac{\mathbf n\times
+\left[(\mathbf n-\boldsymbol\beta)\times\mathbf a\right]}
+{\kappa^3}
+\right]_{\mathrm{ret}}
+\qquad
+\mathbf B_{\mathrm{acc}}
+=\frac{1}{c}\mathbf n\times\mathbf E_{\mathrm{acc}}
+\]1
+
+@subsection{The radiated power, label = subsection-label}
+The radiating contribution of the Poynting vector is given as:
+\[
+\mathbf S_{\mathrm{rad}}
+=\frac{1}{\mu_0}\mathbf E_{\mathrm{rad}}\times\mathbf B_{\mathrm{rad}}
+=\epsilon_0cE_{\mathrm{rad}}^2\mathbf n.
+\]
+
+It could be simplified as:
+\[
+\begin{aligned}
+\mathbf S_{\mathrm{rad}}
+={}&\frac{q^2}{16\pi^2\epsilon_0cR^2}
+\left[
+\frac{
+\left|\mathbf n\times
+\left[(\mathbf n-\boldsymbol\beta)
+\times\dot{\boldsymbol\beta}\right]\right|^2
+}{\kappa^6}
+\right]_{\mathrm{ret}}\mathbf n.
+\end{aligned}
+\]
+Noting that \(dA = R^2 d\Omega\), you can write, 
+\[
+\frac{dP_{\mathrm{rad}}}{d\Omega}
+=\frac{q^2}{16\pi^2\epsilon_0c}
+\left[
+\frac{
+\left|\mathbf n\times
+\left[(\mathbf n-\boldsymbol\beta)
+\times\dot{\boldsymbol\beta}\right]\right|^2
+}{\kappa^5}
+\right]_{\mathrm{ret}}.
+\]
+This integration is a little tedious (the main trick is to take the polar axis along the velocity), but, you can evaluate it to be:
+\[
+P_{\mathrm{rad}}
+=\frac{q^2\gamma^6}{6\pi\epsilon_0c}
+\left[
+\dot{\boldsymbol\beta}^{\,2}
+-\left|\boldsymbol\beta\times\dot{\boldsymbol\beta}\right|^2
+\right]_{\mathrm{ret}},
+\qquad
+\gamma=\frac{1}{\sqrt{1-\beta^2}}.
+\]
+An more intuitive form is to decompose the acceleration into components parallel and perpendicular to velocity:
+\[
+P_{\mathrm{rad}}
+=\frac{q^2}{6\pi\epsilon_0c^3}
+\left(\gamma^6a_{\parallel}^2+\gamma^4a_{\perp}^2\right)_{\mathrm{ret}}
+\]
+In non-relativistic limit, it is the larmor formula:
+\[
+P_{\mathrm{rad}}=\frac{q^2a^2}{6\pi\epsilon_0c^3}.
+\]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
