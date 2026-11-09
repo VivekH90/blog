@@ -1,0 +1,519 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage{marktwo}
+\usepackage{graphicx}
+
+\begin{document}
+
+\makemathtitle
+    {Function-al vectors}
+    {Some fourier analysis and linear algebra}
+    {Vivek Kalita}
+    {Department of Physics, IISER Mohali}
+    {17 October 2026}
+
+\tableofcontents
+
+\section{Some basic Linear Algebra}
+Before going into the main topic, lets first start with a basic review. 
+
+
+Vector spaces (or more expressively linear spaces) are defined by two operations: addition and scalar multiplication. 
+
+\begin{definition}[Vector Space]
+Let $\mathbb{F}$ be a field. A \textbf{vector space over $\mathbb{F}$}
+is an abelian group $(V,+)$ equipped with a scalar multiplication
+\[
+\mathbb{F}\times V \longrightarrow V,
+\qquad (a,v)\longmapsto av,
+\]
+such that, for all $a,b\in\mathbb{F}$ and $u,v\in V$,
+\begin{enumerate}
+    \item \(a(u+v) = au+av,\)
+    \item \((a+b)v = av+bv,\)
+    \item \((ab)v = a(bv),\)
+    \item \(1_{\mathbb{F}}v = v.\)
+\end{enumerate}
+\end{definition}
+
+Now consider two vectors \(\mathbf u\) and \(\mathbf v\), it is easy to see that the space given by:
+\[
+V = \{a \mathbf{u} + b \mathbf{v} \,|\, a,b \in \mathbb F\}
+\]
+could generate a subspace of the vector space, such that it is a vector space in itself. 
+
+In general, for any vector space there exist a set of vectors (the basis) whose linear combinations would produce the entire vector space.
+
+As for example, 
+\begin{enumerate}
+    \item In \(\mathbb R ^3\), you can produce all the vectors with the simple basis \((1,0,0), (0,1,0)\) and \((0,0,1)\).
+\end{enumerate}
+
+\begin{definition}[Basis]
+Let \(V\) be a vector space over a field \(\mathbb{F}\). A subset
+\(B=\{\mathbf{e}_1,\mathbf{e}_2,\ldots,\mathbf{e}_n\}\subseteq V\)
+is called a \emph{basis} of \(V\) if:
+
+\begin{enumerate}
+    \item \(B\) spans \(V\), i.e., every \(\mathbf{v}\in V\) can be
+    expressed as
+    \[
+        \mathbf{v}
+        =a_1\mathbf{e}_1+a_2\mathbf{e}_2
+        +\cdots+a_n\mathbf{e}_n,
+        \qquad a_i\in\mathbb{F}.
+    \]
+
+    \item \(B\) is linearly independent, i.e.,
+    \[
+        a_1\mathbf{e}_1+a_2\mathbf{e}_2
+        +\cdots+a_n\mathbf{e}_n=\mathbf{0}
+    \]
+    implies
+    \[
+        a_1=a_2=\cdots=a_n=0.
+    \]
+\end{enumerate}
+\end{definition}
+Now till now what we've done is algebra. To induce geometry into the theory of linear spaces, we need to induce a metric.
+
+We do this by introducing the inner product, which consequenly allows us to define the metric and also the angular measure between two vectors. 
+\begin{definition}[Inner Product]
+Let \(V\) be a vector space over \(\mathbb{F}\), where
+\(\mathbb{F}=\mathbb{R}\) or \(\mathbb{C}\). An inner product
+on \(V\) is a map
+\[
+    \langle\cdot,\cdot\rangle:
+    V\times V\longrightarrow\mathbb{F}
+\]
+satisfying the following properties for all
+\(\mathbf{u},\mathbf{v},\mathbf{w}\in V\) and
+\(a,b\in\mathbb{F}\):
+
+\begin{enumerate}
+    \item Linearity
+    \[
+        \langle a\mathbf{u}+b\mathbf{v},\mathbf{w}\rangle
+        =
+        a\langle\mathbf{u},\mathbf{w}\rangle
+        +b\langle\mathbf{v},\mathbf{w}\rangle.
+    \]
+
+    \item Conjugate symmetry
+    \[
+        \langle\mathbf{u},\mathbf{v}\rangle
+        =
+        \overline{\langle\mathbf{v},\mathbf{u}\rangle}.
+    \]
+
+    \item Positive definiteness
+    \[
+        \langle\mathbf{v},\mathbf{v}\rangle\geq 0,
+    \]
+    with equality if and only if \(\mathbf{v}=\mathbf{0}\).
+\end{enumerate}
+\end{definition}
+The \textbf{\textcolor{blue}{norm}} of a vector \(\mathbf v\) consequently is given as: 
+\[\lVert \mathbf{v} \rVert^2 = \langle \mathbf{v},\mathbf{v} \rangle.
+\]
+
+Consequently, we can also define the angle between two
+non-zero vectors by
+\[
+    \cos\theta
+    =
+    \frac{\langle \mathbf{u},\mathbf{v}\rangle}
+    {\lVert\mathbf{u}\rVert\,\lVert\mathbf{v}\rVert}.
+\]
+We could thus define a notion of a orthogonal basis. 
+\begin{definition}[Orthogonal Basis]
+Let \(V\) be an inner product space over \(\mathbb{F}\). A basis
+\(B=\{\mathbf{e}_1,\mathbf{e}_2,\ldots,\mathbf{e}_n\}\) of
+\(V\) is called an \emph{orthogonal basis} if its distinct
+elements are mutually orthogonal, i.e.,
+\[
+    \langle\mathbf{e}_i,\mathbf{e}_j\rangle=0,
+    \qquad i\neq j.
+\]
+If, in addition, every basis vector has unit norm,
+\[
+    \lVert\mathbf{e}_i\rVert=1,
+    \qquad i=1,2,\ldots,n,
+\]
+the basis is called an \emph{orthonormal basis}.
+\end{definition}
+
+\section{Exploring functions as bases}
+Consider the follwing integrals:
+\[
+\int_{-\pi}^{\pi}\cos(nx)\cos(mx)\,dx=\pi\delta_{nm},
+\qquad
+\int_{-\pi}^{\pi}\sin(nx)\sin(mx)\,dx=\pi\delta_{nm},
+\qquad
+\int_{-\pi}^{\pi}\sin(nx)\cos(mx)\,dx=0.
+\]
+Quite easily you can see where I am trying to get at. 
+The functions
+\[
+\mathcal{B} = \{1,\, \frac{1}{\pi}\cos(nx),\, \frac{1}{\pi}\sin(nx) \}
+\]
+could potentially be considered as the basis of a a vector space.
+
+\subsection{The trignometric basis}
+With the basis laid over, we can define a vector space with \(\mathcal{B}\) as the basis:
+
+\begin{definition}[Space of Trigonometric Polynomials]
+Let \(\mathcal{T}\) be a vector space over \(\mathbb{R}\), spanned by
+the set of functions
+\[
+    \mathcal{B}
+    =
+    \left\{
+    1,\frac{1}{\pi}\cos(nx),\frac{1}{\pi}\sin(nx)
+    \;\middle|\;
+    n\in\mathbb{N}
+    \right\}.
+\]
+
+Thus, every \(f\in\mathcal{T}\) can be expressed as
+\[
+    f(x)
+    =
+    a_0+
+    \sum_{n=1}^{N}
+    \left[
+    \frac{a_n}{\pi}\cos(nx)
+    +
+    \frac{b_n}{\pi}\sin(nx)
+    \right],
+\]
+where \(a_n,b_n\in\mathbb{R}\) and \(N\) is finite. We equip \(\mathcal{T}\) with the inner product
+\[
+    \langle f,g\rangle
+    =
+    \int_{-\pi}^{\pi}f(x)g(x)\,dx,
+    \qquad f,g\in\mathcal{T}.
+\]
+\end{definition}
+In general, given the function \(f(x)\), we can also extract any of the coefficients. And also we have some very basic results:
+
+\begin{theorem}[Basic Results]
+Let \(f\in\mathcal{T}\) have the representation
+\[
+    f(x)=a_0+\sum_{n=1}^{N}
+    \left[
+        \frac{a_n}{\pi}\cos(nx)
+        +\frac{b_n}{\pi}\sin(nx)
+    \right].
+\]
+Then the following results hold:
+
+\begin{enumerate}
+    \item \textup{Fourier Coefficients:}  The coefficients are given by
+    \[
+        a_0=\frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)\,dx,
+        \quad
+        a_n=\int_{-\pi}^{\pi}f(x)\cos(nx)\,dx,
+        \quad
+        b_n=\int_{-\pi}^{\pi}f(x)\sin(nx)\,dx.
+    \]
+
+    \item \textup{Parseval's Identity:} The squared norm of \(f\) is given by
+    \[
+        \lVert f\rVert^2
+        =\langle f,f\rangle
+        =\int_{-\pi}^{\pi}f^2(x)\,dx
+        =2\pi a_0^2+\frac{1}{\pi}
+        \sum_{n=1}^{N}(a_n^2+b_n^2).
+    \]
+\end{enumerate}
+\end{theorem}
+
+\subsection{When can you fourier-expand?}
+With our choice of basis \(\mathcal{B}\), the Fourier coefficients
+are given by
+\[
+    a_0=\frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)\,dx,
+    \qquad
+    a_n=\int_{-\pi}^{\pi}f(x)\cos(nx)\,dx,
+    \qquad
+    b_n=\int_{-\pi}^{\pi}f(x)\sin(nx)\,dx.
+\]
+
+For all these integrals to exist, it is sufficient that
+\(f\in L^1([-\pi,\pi])\), which means that \(f(x)\) is
+absolutely integrable over the interval, i.e.,
+\[
+    \int_{-\pi}^{\pi}|f(x)|\,dx<\infty.
+\]
+
+To see why this condition is sufficient, observe that
+\[
+    |\cos(nx)|\leq 1,
+    \qquad
+    |\sin(nx)|\leq 1.
+\]
+Consequently,
+\[
+\begin{aligned}
+    \left|\int_{-\pi}^{\pi}f(x)\cos(nx)\,dx\right|
+    &\leq \int_{-\pi}^{\pi}|f(x)\cos(nx)|\,dx\\
+    &\leq \int_{-\pi}^{\pi}|f(x)|\,dx<\infty.
+\end{aligned}
+\]
+The same argument applies to the sine coefficients. Thus,
+all the Fourier coefficients are well-defined.
+
+\begin{theorem}[Existence of Fourier Coefficients]
+The Fourier coefficients of a function \(f\) are given by
+\[
+    A_0=\frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)\,dx,
+    \qquad
+    A_n=\int_{-\pi}^{\pi}f(x)\cos(nx)\,dx,
+    \qquad
+    B_n=\int_{-\pi}^{\pi}f(x)\sin(nx)\,dx,
+\]
+provided that \(f\) is absolutely integrable over the
+interval \([-\pi,\pi]\). That is: 
+\[
+    \int_{-\pi}^{\pi}|f(x)|\,dx<\infty.
+\]
+\end{theorem}
+\begin{proof}
+\begin{enumerate}
+    \item (\(\Rightarrow\)) Suppose all the Fourier coefficients exist as
+finite integrals. In particular, \(A_0\) exists, so
+\[
+    \int_{-\pi}^{\pi}f(x)\,dx
+\]
+is finite. Hence \(f\) is absolutely integrable, i.e.,
+\[
+    \int_{-\pi}^{\pi}|f(x)|\,dx<\infty.
+\]
+\item (\(\Leftarrow\)) Conversely, suppose that
+\[
+    \int_{-\pi}^{\pi}|f(x)|\,dx<\infty.
+\]
+Since
+\[
+    |\cos(nx)|\leq 1,
+    \qquad
+    |\sin(nx)|\leq 1,
+\]
+we have
+\[
+\begin{aligned}
+    \int_{-\pi}^{\pi}|f(x)\cos(nx)|\,dx
+    &\leq \int_{-\pi}^{\pi}|f(x)|\,dx<\infty,\\
+    \int_{-\pi}^{\pi}|f(x)\sin(nx)|\,dx
+    &\leq \int_{-\pi}^{\pi}|f(x)|\,dx<\infty.
+\end{aligned}
+\]
+Thus, all the Fourier coefficients exist as finite 
+integrals.
+\end{enumerate}
+\end{proof}
+
+\begin{example}
+But now, consider the function
+\[
+    f(x)=\frac{1}{\sqrt{|x|}},
+    \qquad x\in[-\pi,\pi],\quad x\neq 0.
+\]
+\begin{enumerate}
+    \item If we define \(f(0)=0\), then we can easily verify that
+\[
+    \int_{-\pi}^{\pi}|f(x)|\,dx
+    =4\sqrt{\pi}<\infty.
+\]
+Thus, \(f\in L^1([-\pi,\pi])\).
+\item However, it is easily seen that
+\[
+    |f(x)|^2=\frac{1}{|x|},
+\]
+and hence
+\[
+    \int_{-\pi}^{\pi}|f(x)|^2\,dx
+    =2\int_0^\pi\frac{1}{x}\,dx
+    =\infty.
+\]
+Therefore, \(f\notin L^2([-\pi,\pi])\).
+\end{enumerate}
+\end{example}
+
+
+Essentially, this demonstrates that absolute integrability alone is
+not sufficient to guarantee a finite norm. Consequently, if
+we wish to equip our function space with the inner product
+\[
+    \langle f,g\rangle
+    =\int_{-\pi}^{\pi}f(x)g(x)\,dx,
+\]
+we must restrict ourselves to square-integrable functions.
+Thus, our function space should be \(L^2([-\pi,\pi])\),
+which ensures that every function has a finite norm and that
+its Fourier coefficients are well-defined.
+
+With this final restriction, we now have a complete description of the trignometric space.
+\begin{theorem}[Fourier Expansion in \(L^2\)]
+The trigonometric system
+\[
+    \mathcal{B}
+    =
+    \left\{
+    1,\frac{1}{\pi}\cos(nx),\frac{1}{\pi}\sin(nx)
+    \;\middle|\; n\in\mathbb{N}
+    \right\}
+\]
+forms a complete orthogonal basis of
+\(L^2([-\pi,\pi])\). Consequently, every \(f\in L^2([-\pi,\pi])\) admits a
+Fourier expansion
+\[
+    f(x)=a_0+\sum_{n=1}^{\infty}
+    \left[
+        \frac{a_n}{\pi}\cos(nx)
+        +\frac{b_n}{\pi}\sin(nx)
+    \right],
+\]
+where the coefficients are given by the corresponding
+Fourier integrals, and the partial sums converge to \(f\)
+in the \(L^2\) norm.
+\end{theorem}
+The formal proof of this would require piecing a few more parts. And hence would be discussed later.
+
+
+There is yet another very interesting thing to observe about the fourier coefficients. The zeros of \(\cos(nx)\) are located at
+\[
+    x_k=\frac{(2k+1)\pi}{2n},
+    \qquad k\in\mathbb Z.
+\]
+The separation between two consecutive zeros is
+\[
+    \Delta x=\frac{\pi}{n}\longrightarrow 0
+    \qquad \text{as } n\to\infty.
+\]
+
+Approximate \(f(x)\) by a step function, taking a
+constant value \(c_j\) over each interval
+\([p_j,q_j]\). Then
+\[
+    b_n=\int_{-\pi}^{\pi}f(x)\cos(nx)\,dx
+    \approx
+    \sum_{j=1}^{m}c_j
+    \int_{p_j}^{q_j}\cos(nx)\,dx.
+\]
+
+Since
+\[
+    \left|\int_{p_j}^{q_j}\cos(nx)\,dx\right|
+    \leq \frac{2}{n},
+\]
+we obtain
+\[
+    |b_n|
+    \lesssim
+    \frac{2}{n}\sum_{j=1}^{m}|c_j|
+    \longrightarrow 0
+    \qquad \text{as }n\to\infty.
+\]
+
+A similar argument holds for the other Fourier coefficient.
+\begin{theorem}[Vanishing of Fourier Coefficients]
+Let \(f\in L^1([-\pi,\pi])\) have the Fourier expansion
+\[
+    f(x)=a_0+\sum_{n=1}^{\infty}
+    \left[
+        \frac{a_n}{\pi}\cos(nx)
+        +\frac{b_n}{\pi}\sin(nx)
+    \right].
+\]
+Then the Fourier coefficients satisfy
+\[
+    \lim_{n\to\infty}a_n=0,
+    \qquad
+    \lim_{n\to\infty}b_n=0.
+\]
+\end{theorem}
+
+\subsection{The complex exponential as the basis}
+Consider the following integral:
+\[
+    \int_{-\pi}^{\pi}e^{imx}e^{-inx}\,dx
+    =
+    2\pi\delta_{mn}.
+\]
+This isn't suprising, as the complex exponential inherently contains the trignometric terms. In general you can define the vector space:
+\begin{definition}[Complex Fourier Series]
+Let \(\mathcal{H}=L^2([-\pi,\pi];\mathbb{C})\) be the
+vector space of complex-valued square-integrable functions,
+equipped with the inner product
+\[
+    \langle f,g\rangle
+    =
+    \int_{-\pi}^{\pi}f(x)g^*(x)\,dx,
+    \qquad f,g\in\mathcal{H}.
+\]
+
+The set of complex exponential functions
+\[
+    \mathcal{B}
+    =
+    \left\{
+    e^{imx}\mid m\in\mathbb{Z}
+    \right\}
+\]
+forms a complete orthogonal basis of \(\mathcal{H}\). Consequently, every \(f\in\mathcal{H}\) admits a
+Fourier expansion of the form
+\[
+    f(x)=\sum_{m=-\infty}^{\infty}c_m e^{imx},
+\]
+where the Fourier coefficients are given by
+\[
+    c_m=\frac{1}{2\pi}
+    \int_{-\pi}^{\pi}f(x)e^{-imx}\,dx.
+\]
+\end{definition}
+
+We can derive some basic results from the complex representation.
+
+\begin{enumerate}
+    \item \textcolor{blue}{Parseval's Identity:}
+    \[
+        \lVert f\rVert^2
+        =2\pi\sum_{m=-\infty}^{\infty}c_m c_m^{*}.
+    \]
+
+    \item \textcolor{blue}{Riemann-Lebesgue Lemma:}
+
+    For \(f\in L^1([-\pi,\pi])\), its Fourier coefficients satisfy
+    \[
+        \lim_{|m|\to\infty}c_m=0.
+    \]
+
+    \item \textcolor{blue}{Conjugate Symmetry:}
+
+    If \(f(x)\) is real-valued, its Fourier coefficients satisfy
+    \[
+        c_{-m}=c_m^{*}.
+    \]
+
+    and they would be related to the sine and cosine coefficient (for the real-valued fourier expansion) as:
+
+    \[
+        a_0=c_0,\qquad
+        a_n=\pi(c_n+c_{-n}),\qquad
+        b_n=i\pi(c_n-c_{-n}).
+    \]
+
+    \item \textcolor{blue}{Inner Product Identity:}
+
+    For \(f,g\in L^2([-\pi,\pi])\), with Fourier coefficients
+    \(c_m\) and \(d_m\), respectively,
+    \[
+        \langle f,g\rangle
+        =\int_{-\pi}^{\pi}f(x)g^{*}(x)\,dx
+        =2\pi\sum_{m=-\infty}^{\infty}c_m d_m^{*}.
+    \]
+\end{enumerate}
+
+\end{document}

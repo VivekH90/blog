@@ -1,0 +1,252 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage{marktwo}
+\usepackage{graphicx}
+
+\begin{document}
+
+\makemathtitle
+    {Regular Languages}
+    {A brief introduction to alphabets, strings and languages}
+    {Vivek Kalita}
+    {Department of Physics, IISER Mohali}
+    {20 October 2026}
+
+\tableofcontents
+
+\section{Some basic definitions}
+
+Here I introduce some very basic words.
+\begin{definition}[Alphabet, string]
+The following are two fundamental building blocks of formal language theory:
+\begin{enumerate}
+    \item \textcolor{red!60!black}{\textsf{Alphabet}}: An alphabet $\Sigma$ is a finite, non-empty set of symbols, whose elements are called letters.
+    \item \textcolor{red!60!black}{\textsf{String}}: A string over an alphabet $\Sigma$ is a finite ordered sequence of elements of $\Sigma$. 
+    \begin{enumerate}
+        \item The length of a string $w$, denoted by $|w|$, is the number of symbols in the sequence.
+        \item The unique string of length zero is called the empty string and is denoted by $\varepsilon$.
+    \end{enumerate}
+     
+\end{enumerate}
+\end{definition}
+Here are some basic examples: 
+\begin{enumerate}
+    \item \textcolor{violet!80!black}{\textsf{Binary alphabet.}} Consider the alphabet
+    \[
+        \Sigma = \{0,1\}.
+    \]
+    Some strings over this alphabet are
+    \[
+        0,\quad 1,\quad 001,\quad 1010,\quad 11001.
+    \]
+
+    \item \textcolor{violet!80!black}{\textsf{English alphabet.}} Consider the alphabet
+    \[
+        \Sigma = \{a,b,c,\ldots,z\}.
+    \]
+    Some strings over this alphabet are
+    \[
+        \texttt{automata},\quad
+        \texttt{theory},\quad
+        \texttt{computer}.
+    \]
+
+    \item \textcolor{violet!80!black}{\textsf{Decimal alphabet.}} Consider the alphabet
+    \[
+        \Sigma = \{0,1,2,\ldots,9\}.
+    \]
+    Some strings over this alphabet are
+    \[
+        123,\quad 2026,\quad 314159.
+    \]
+\end{enumerate}
+
+\begin{definition}[Concatenation]
+ The \textsf{concatenation} of $u$ and $v$, denoted by $uv$, is the string obtained by appending the symbols of $v$ to the end of $u$. In particular, concatenation satisfies
+\[
+    |uv|=|u|+|v|,
+\]
+and the empty string $\varepsilon$ acts as the identity:
+\[
+    u\varepsilon=\varepsilon u=u.
+\]
+\end{definition}
+The notation $\Sigma^*$ denotes the set of all finite strings over an alphabet $\Sigma$, including the empty string $\varepsilon$.
+
+Let $u,v,w\in\Sigma^*$. The concatenation operation satisfies the following properties:
+\begin{enumerate}
+    \item \textcolor{violet!70!black}{\textsf{Closure.}} The concatenation of two strings is again a string over $\Sigma$:
+    \[
+        uv\in\Sigma^*.
+    \]
+
+    \item \textcolor{violet!70!black}{\textsf{Associativity.}} Concatenation is associative:
+    \[
+        (uv)w=u(vw).
+    \]
+
+    \item \textcolor{violet!70!black}{\textsf{Identity element.}} The empty string $\varepsilon$ acts as the identity element:
+    \[
+        u\varepsilon=\varepsilon u=u.
+    \]
+
+    \item \textcolor{violet!70!black}{\textsf{Non-commutativity.}} Concatenation is not commutative in general:
+    \[
+        uv\neq vu.
+    \]
+\end{enumerate}
+
+It is also important to observe that non-empty strings do not possess inverses under concatenation. This follows immediately from the fact that
+\[
+    |uv|=|u|+|v|,
+\]
+which implies that $uv\neq\varepsilon$ whenever $u\neq\varepsilon$. Consequently, the algebraic structure $(\Sigma^*,\cdot)$, where $\cdot$ denotes concatenation, forms a \textsf{monoid}, but not a group.
+
+\subsection{Languages and basic operations}
+\begin{definition}[\textsf{Language}]
+Let $\Sigma$ be an alphabet. A \textsf{language} $L$ over $\Sigma$ is any subset of $\Sigma^*$, where $\Sigma^*$ denotes the set of all finite strings over $\Sigma$, including the empty string $\varepsilon$. Thus,
+\[
+    L\subseteq\Sigma^*.
+\]
+\end{definition}
+
+Some examples of languages are given below:
+\begin{enumerate}
+    \item \textcolor{violet!70!black}{\textsf{Binary language.}} Consider the alphabet
+    \[
+        \Sigma=\{0,1\}.
+    \]
+    The collection of all binary strings ending in $1$ forms a language:
+    \[
+        L=\{w\in\Sigma^*:w\text{ ends in }1\}.
+    \]
+
+    \item \textcolor{violet!70!black}{\textsf{English language.}} The English language can be regarded as a language over an alphabet consisting of the English letters, spaces, and punctuation marks such as full stops, commas, semicolons, and colons. The collection of valid English expressions forms a language over this alphabet.
+
+    \item \textcolor{violet!70!black}{\textsf{Empty language.}} The empty set $\varnothing$ is also a language over any alphabet, since
+    \[
+        \varnothing\subseteq\Sigma^*.
+    \]
+\end{enumerate}
+
+\begin{definition}[\textsf{Concatenation of Languages}]
+Let $\Sigma$ be an alphabet and let $L_1,L_2\subseteq\Sigma^*$ be two languages. The \textsf{concatenation} of $L_1$ and $L_2$, denoted by $L_1L_2$, is defined as
+\[
+    L_1L_2=\{uv:u\in L_1,\ v\in L_2\}.
+\]
+In other words, it is the set of all strings obtained by concatenating a string from $L_1$ with a string from $L_2$.
+\end{definition}
+
+Some examples of language concatenation are given below:
+\begin{enumerate}
+    \item Let
+    \[
+        L_1=\{0,01\},\qquad L_2=\{1,10\}.
+    \]
+    Their concatenation is
+    \[
+        L_1L_2=\{01,010,011,0110\}.
+    \]
+
+    \item Let
+    \[
+        L_1=\{a,ab\},\qquad L_2=\{b,ba\}.
+    \]
+    Then
+    \[
+        L_1L_2=\{ab,aba,abb,abba\}.
+    \]
+\end{enumerate}
+
+The concatenation of languages satisfies the following basic properties. Let $L_1,L_2,L_3\subseteq\Sigma^*$ be languages.
+\begin{enumerate}
+    \item \textcolor{violet!70!black}{\textsf{Distributivity over union.}} Concatenation distributes over union:
+    \[
+        L_1(L_2\cup L_3)
+        =L_1L_2\cup L_1L_3,
+    \]
+    \[
+        (L_1\cup L_2)L_3
+        =L_1L_3\cup L_2L_3.
+    \]
+
+    \item \textcolor{violet!70!black}{\textsf{Associativity.}} Concatenation is associative:
+    \[
+        (L_1L_2)L_3=L_1(L_2L_3).
+    \]
+
+    \item \textcolor{violet!70!black}{\textsf{Identity element.}} The singleton language $\{\varepsilon\}$ acts as the identity element:
+    \[
+        L_1\{\varepsilon\}
+        =\{\varepsilon\}L_1=L_1.
+    \]
+\end{enumerate}
+
+\begin{definition}[\textsf{Kleene Star}]
+Let $\Sigma$ be an alphabet and let $L\subseteq\Sigma^*$ be a language. The \textsf{Kleene star} of $L$, denoted by $L^*$, is the set of all strings obtained by concatenating zero or more strings from $L$. Formally,
+\[
+    L^*=\bigcup_{n=0}^{\infty}L^n,
+\]
+where
+\[
+    L^0=\{\varepsilon\},
+    \qquad
+    L^{n+1}=L^nL.
+\]
+\end{definition}
+
+Some examples of the Kleene star operator are given below:
+\begin{enumerate}
+    \item  Consider the language
+    \[
+        L=\{a\}.
+    \]
+    Its Kleene star is
+    \[
+        L^*=\{\varepsilon,a,aa,aaa,\ldots\}.
+    \]
+
+    \item Consider the language
+    \[
+        L=\{0,1\}.
+    \]
+    Then
+    \[
+        L^*=\{\varepsilon,0,1,00,01,10,11,\ldots\},
+    \]
+    which is precisely the set of all finite binary strings.
+\end{enumerate}
+
+The Kleene star operator satisfies the following basic properties:
+\begin{enumerate}
+    \item \textcolor{violet!70!black}{\textsf{Empty string.}} The empty string always belongs to the Kleene star of a language:
+    \[
+        \varepsilon\in L^*.
+    \]
+
+    \item \textcolor{violet!70!black}{\textsf{Containment.}} Every string in $L$ also belongs to $L^*$:
+    \[
+        L\subseteq L^*.
+    \]
+
+    \item \textcolor{violet!70!black}{\textsf{Closure under concatenation.}} The Kleene star of a language is closed under concatenation. That is, if $x,y\in L^*$, then
+    \[
+        xy\in L^*.
+    \]
+    \item \textcolor{violet!70!black}{\textsf{Interaction with union.}}
+For any two languages $L_1,L_2$,
+\[
+    (L_1\cup L_2)^*=(L_1^*L_2^*)^*.
+\]
+\end{enumerate}
+
+\begin{remark}
+The Kleene star of the empty language is
+\[
+    \varnothing^*=\{\varepsilon\}.
+\]
+Indeed, by definition, $L^0=\{\varepsilon\}$, whereas
+$L^n=\varnothing$ for every $n\geq 1$ when $L=\varnothing$.
+Thus, the only string in $\varnothing^*$ is the empty string.
+\end{remark}
+\end{document}
