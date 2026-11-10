@@ -1,0 +1,272 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage{marktwo}
+\usepackage{graphicx}
+
+\begin{document}
+
+\makemathtitle
+    {The Chladni Plate}
+    {A brief introduction to some continuum mechanics and the chladni plate experiment}
+    {Vivek Kalita}
+    {Department of Physics, IISER Mohali}
+    {10 November 2026}
+
+\tableofcontents
+
+\section{Some Basics}
+
+\subsection{Strain}
+Consider a continuous body occupying a region of three-dimensional
+space. Every material point in the body is specified by its position
+vector
+
+\[
+\mathbf{r} =
+\begin{pmatrix}
+x\\
+y\\
+z
+\end{pmatrix}.
+\]
+
+A deformation of the body can be described mathematically as a
+mapping in which every material point is assigned a new position.
+We write this mapping as
+
+\[
+\mathbf{r}\longmapsto
+\mathbf{r}+\mathbf{u}(\mathbf{r})
+\]
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{chladni_plate_images/Continuum Deformation Mapping Diagram.png}
+    \caption{Deformation of a continous body}
+\end{figure}
+where \(\mathbf{u}(\mathbf{r})\) is the displacement vector field,
+given by
+
+\[
+\mathbf{u}(\mathbf{r}) =
+\begin{pmatrix}
+u_x(x,y,z)\\
+u_y(x,y,z)\\
+u_z(x,y,z)
+\end{pmatrix}.
+\]
+
+\begin{enumerate}
+    \item Now consider an infinitesimal rectangular element of a continuous
+medium with dimensions \(dx\), \(dy\) and \(dz\). 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{chladni_plate_images/deformation.png}
+    \caption{Deformations of a very small cuboid}
+\end{figure}
+Let one of its
+vertices be located at \(P=(x,y,z).\) The three neighbouring vertices along the coordinate directions
+are initially located at
+
+\[
+P_x=(x+dx,y,z), \qquad
+P_y=(x,y+dy,z), \qquad
+P_z=(x,y,z+dz).
+\]
+
+Under a deformation, every material point is displaced according
+to the displacement field
+
+\[
+\mathbf{u}(x,y,z)
+=
+\left(
+u_x(x,y,z),\,
+u_y(x,y,z),\,
+u_z(x,y,z)
+\right).
+\]
+
+Consequently, the point \(P\) is mapped to
+
+\[
+P'=
+\left(
+x+u_x(x,y,z),\,
+y+u_y(x,y,z),\,
+z+u_z(x,y,z)
+\right).
+\]
+
+Similarly, the neighbouring point \(P_x\) is mapped to
+
+\[
+P_x'=
+\left(
+x+dx+u_x(x+dx,y,z),\,
+y+u_y(x+dx,y,z),\,
+z+u_z(x+dx,y,z)
+\right).
+\]
+
+Expanding the displacement components in a Taylor series
+about \((x,y,z)\), and retaining only the first-order terms,
+we obtain the change in the position of the neighbouring
+point relative to \(P'\) to be:
+
+\[
+P_x'-P'
+=
+\left(
+\left(1+\frac{\partial u_x}{\partial x}\right)dx,\,
+\frac{\partial u_y}{\partial x}dx,\,
+\frac{\partial u_z}{\partial x}dx
+\right).
+\]
+In particular, the change in the length of the edge along
+the \(x\)-direction, to first order, is
+
+\[
+\Delta x=
+\frac{\partial u_x}{\partial x}\,dx.
+\]
+
+\item \textcolor{red!70!black}{\textsf{Strain}} is defined as the fractional change in length,
+the normal strain along the \(x\)-direction is
+
+\[
+\epsilon_{xx}
+=
+\frac{\Delta x}{dx}
+=
+\frac{\partial u_x}{\partial x}.
+\]
+
+Following the same procedure for the edges along the
+\(y\) and \(z\) directions, we obtain
+
+\[
+\epsilon_{yy}=\frac{\partial u_y}{\partial y},
+\qquad
+\epsilon_{zz}=\frac{\partial u_z}{\partial z}.
+\]
+\item From the previous calculations, we know that the change
+in height of the edge parallel to the \(x\)-axis is
+
+\[
+\Delta y = \frac{\partial u_y}{\partial x}\,dx.
+\]
+
+Therefore, for small deformations,
+
+\[
+\alpha \approx \tan\alpha
+= \frac{\Delta y}{dx}
+= \frac{\partial u_y}{\partial x}.
+\]
+
+Similarly, we can obtain
+
+\[
+\beta \approx \tan\beta
+= \frac{\partial u_x}{\partial y}.
+\]
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chladni_plate_images/shear_stress.png}
+    \caption{The shear strain}
+\end{figure}
+The total change in the right angle between the two edges is
+given by the sum of these two angles. Hence,
+
+\[
+\gamma_{xy} = \alpha+\beta
+= \frac{\partial u_y}{\partial x}
++ \frac{\partial u_x}{\partial y}.
+\]
+
+This quantity is called the \textcolor{red!70!black}{\textsf{engineering shear strain.}}
+
+\item Therefore, the engineering shear strains are
+
+\[
+\gamma_{xy}
+=
+\frac{\partial u_y}{\partial x}
++
+\frac{\partial u_x}{\partial y}
+\quad
+\gamma_{yx}
+=
+\frac{\partial u_x}{\partial y}
++
+\frac{\partial u_y}{\partial x}.
+\]
+
+By convention, the components of the infinitesimal strain
+tensor are defined as half the engineering shear strain.
+Thus,
+
+\[
+\epsilon_{xy}=\epsilon_{yx}
+=
+\frac{1}{2}
+\left(
+\frac{\partial u_y}{\partial x}
++
+\frac{\partial u_x}{\partial y}
+\right).
+\]
+\end{enumerate}
+
+\begin{definition}[Strain Tensor]
+The strain tensor is a second-order symmetric tensor that
+describes the deformation of a continuous body. It is given by
+
+\[
+\boldsymbol{\epsilon}
+=
+\begin{pmatrix}
+\epsilon_{xx} & \epsilon_{xy} & \epsilon_{xz}\\
+\epsilon_{yx} & \epsilon_{yy} & \epsilon_{yz}\\
+\epsilon_{zx} & \epsilon_{zy} & \epsilon_{zz}
+\end{pmatrix}.
+\]
+
+The diagonal components represent normal strains, given by
+
+\[
+\epsilon_{xx}=\frac{\partial u_x}{\partial x}
+\quad
+\epsilon_{yy}=\frac{\partial u_y}{\partial y}
+\quad
+\epsilon_{zz}=\frac{\partial u_z}{\partial z}.
+\]
+
+The off-diagonal components represent shear strains:
+
+\[
+\epsilon_{xy}=\epsilon_{yx}
+=\frac{1}{2}\left(
+\frac{\partial u_x}{\partial y}
++\frac{\partial u_y}{\partial x}
+\right), \quad
+\epsilon_{yz}=\epsilon_{zy}
+=\frac{1}{2}\left(
+\frac{\partial u_y}{\partial z}
++\frac{\partial u_z}{\partial y}
+\right),
+\quad
+\epsilon_{xz}=\epsilon_{zx}
+=\frac{1}{2}\left(
+\frac{\partial u_x}{\partial z}
++\frac{\partial u_z}{\partial x}
+\right).
+\]
+
+
+\end{definition}
+
+
+
+\end{document}
