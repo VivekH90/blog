@@ -249,4 +249,171 @@ Indeed, by definition, $L^0=\{\varepsilon\}$, whereas
 $L^n=\varnothing$ for every $n\geq 1$ when $L=\varnothing$.
 Thus, the only string in $\varnothing^*$ is the empty string.
 \end{remark}
+
+\section{Languages and the problem of finite representation}
+\begin{theorem}
+For any finite, non-empty alphabet $\Sigma$, the collection of all languages over $\Sigma$, namely $\mathcal{P}(\Sigma^*)$, is uncountably infinite.
+\end{theorem}
+
+\begin{proof}
+Since $\Sigma$ is finite and non-empty, $\Sigma^*$ is countably infinite. The result directly follows from Cantor's theorem.
+\end{proof}
+\subsection{Representation of a language}
+    Consider the binary alphabet \(\Sigma=\{0,1\}.\) Over this, we are going to desribe a few ways to write languages.
+\begin{enumerate}
+    \item Let $L_1$ be the language consisting of all binary strings ending in $1$. That is,
+    \[
+        L_1=\{w\in\Sigma^*:w\text{ ends in }1\}.
+    \]
+    One representation of this language is the expression
+    \[
+        (0\cup 1)^*\cdot 1.
+    \]
+    Here, $0\cup 1$ represents the language $\{0,1\}$, while $\cdot$ denotes concatenation and $^*$ denotes the Kleene star.
+
+    \item Consider the language
+    \[
+        L_2=\{1^n0^n:n\geq 0\} = \{\varepsilon,\, 10,\, 1100,\,
+        111000,\, 11110000,\ldots\}
+    \]
+    A representation of this language is the recursion:
+    \[
+        S\longrightarrow 1S0\mid\varepsilon.
+    \]
+    Here, $S$ is the starting symbol, and the production rule specifies that $S$ can be replaced either by $1S0$ or by $\varepsilon$.
+\end{enumerate}
+
+Notice that the symbols used to construct these representations form two different finite alphabets. In the first case, we have
+\[
+    \Gamma_1=\{0,1,\cup,\cdot,*,(,)\},
+\]
+whereas in the second case, we have
+\[
+    \Gamma_2=\{S,\longrightarrow,\mid,\varepsilon,1,0\}.
+\]
+
+We can now formally define what it means to represent a language.
+
+\begin{definition}[\textsf{Representation of a Language}]
+Let $\Sigma$ be a finite alphabet and let $\Gamma$ be another finite alphabet used to construct descriptions. Let $D\subseteq\Gamma^*$ be the collection of all valid descriptions.
+
+A \textsf{representation scheme} for languages over $\Sigma$ is a function
+\[
+    \Phi:D\longrightarrow\mathcal{P}(\Sigma^*),
+\]
+which assigns to each valid description $d\in D$ a language $\Phi(d)$ over $\Sigma$.
+
+In particular, a description $d\in D$ is said to represent a language $L$ if
+\[
+    \Phi(d)=L.
+\]
+\end{definition}
+
+\subsection{Can you represent any langauge?}
+Let $\Gamma$ be a finite, non-empty alphabet used to construct descriptions. Then
+\[
+    \Gamma^*=\{\text{all finite strings over }\Gamma\}.
+\]
+Let \(D\subseteq\Gamma^*\) denote the collection of all valid descriptions.
+
+Since $\Gamma$ is finite and non-empty, $\Gamma^*$ is \textcolor{red!60!black}{\textbf{countably infinite}}. Consequently, $D$ is at most \textcolor{red!60!black}{\textbf{countably infinite}}.
+
+Now, since $\Sigma$ is also a finite, non-empty alphabet, $\Sigma^*$ is countably infinite. However, the power set $\mathcal{P}(\Sigma^*)$, which contains all possible languages over $\Sigma$, is \textcolor{blue}{\textbf{un}}\textcolor{red!60!black}{\textbf{countably}} \textcolor{red!60!black}{\textbf{infinite}} by Cantor's theorem.
+
+We now consider a representation function
+\[
+    \Phi:D\longrightarrow\mathcal{P}(\Sigma^*).
+\]
+For this representation scheme to describe every possible language over $\Sigma$, the function $\Phi$ must be surjective.
+
+However, since \(|D| <\mathcal{P}(\Sigma^*)\), such a function cannot be surjective. 
+\begin{theorem}
+There exists no finite-description alphabet $\Gamma$ that can represent every possible language over a given finite, non-empty alphabet $\Sigma$.
+\end{theorem}
+
+\section{Regular Languages}
+\begin{definition}[\textsf{Regular Expressions}]
+Fix an alphabet $\Sigma$. The regular expressions over $\Sigma$ are defined recursively by the following rules:
+\begin{enumerate}
+    \item[\textcolor{violet!70!black}{\textsf{R1.}}]
+    The symbol $\varnothing$ and every symbol $a\in\Sigma$ are regular expressions.
+
+    \item[\textcolor{violet!70!black}{\textsf{R2.}}]
+    If $\alpha$ and $\beta$ are regular expressions, then their concatenation $(\alpha\beta)$ is a regular expression.
+
+    \item[\textcolor{violet!70!black}{\textsf{R3.}}]
+    If $\alpha$ and $\beta$ are regular expressions, then their union $(\alpha\cup\beta)$ is a regular expression.
+
+    \item[\textcolor{violet!70!black}{\textsf{R4.}}]
+    If $\alpha$ is a regular expression, then $\alpha^*$ is a regular expression.
+
+    \item[\textcolor{violet!70!black}{\textsf{R5.}}]
+    Nothing is a regular expression unless it can be obtained by finitely many applications of the preceding rules.
+\end{enumerate}
+\end{definition}
+
+Consider the alphabet
+\[
+    \Sigma=\{0,1\}.
+\]
+We want to represent the language consisting of all binary strings containing the substring $101$.
+
+One regular expression representing this language is
+\[
+    (0\cup1)^*101(0\cup1)^*.
+\]
+
+To understand this expression, consider the following:
+\begin{enumerate}
+    \item The expression
+    \[
+        (0\cup1)^*=\{0,1\}^*
+    \]
+    represents the set of all finite binary strings, including the empty string.
+
+    \item The expression
+    \[
+        (0\cup1)^*101(0\cup1)^*
+        =\{0,1\}^*\{101\}\{0,1\}^* = \{101,\,0101,\, 1010,\,
+        11010,\, 0010111,\,\ldots\}
+    \]
+    represents all binary strings containing the substring $101$.
+\end{enumerate}
+
+\subsection{Regular Languages}
+
+\begin{definition}[\textsf{Regular Language}]
+A language $L\subseteq\Sigma^*$ is said to be \textsf{regular} if there exists a regular expression $\alpha$ over $\Sigma$ such that
+\[
+    L=\mathcal{L}(\alpha),
+\]
+where $\mathcal{L}(\alpha)$ denotes the language generated by the regular expression $\alpha$.
+\end{definition}
+
+\begin{definition}[\textsf{Recursive Definition of Regular Language}]
+Let $\alpha$ and $\beta$ be regular expressions over an alphabet $\Sigma$. The language generated by a regular expression is defined recursively as follows:
+
+\begin{enumerate}
+    \item \textcolor{violet!70!black}{\textsf{Base cases.}}
+    \begin{enumerate}
+        \item[\textcolor{violet!70!black}{\textsf{B1.}}] $\mathcal{L}(\varnothing)=\varnothing$.
+
+        \item[\textcolor{violet!70!black}{\textsf{B2.}}] $\mathcal{L}(\varepsilon)=\{\varepsilon\}$.
+
+        \item[\textcolor{violet!70!black}{\textsf{B3.}}] For every $a\in\Sigma$, $\mathcal{L}(a)=\{a\}$.
+    \end{enumerate}
+
+    \item \textcolor{violet!70!black}{\textsf{Recursive cases.}}
+    \begin{enumerate}
+        \item[\textcolor{violet!70!black}{\textsf{R1.}}] $\mathcal{L}(\alpha\cup\beta)=\mathcal{L}(\alpha)\cup\mathcal{L}(\beta)$.
+
+        \item[\textcolor{violet!70!black}{\textsf{R2.}}] $\mathcal{L}(\alpha\beta)=\mathcal{L}(\alpha)\mathcal{L}(\beta)$.
+
+        \item[\textcolor{violet!70!black}{\textsf{R3.}}] $\mathcal{L}(\alpha^*)=\mathcal{L}(\alpha)^*$.
+    \end{enumerate}
+\end{enumerate}
+\end{definition}
+
+\subsection{A non-regular language}
+
 \end{document}
