@@ -1,1 +1,38 @@
-/target
+# Rust build output
+/target/
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.nav
+*.out
+*.run.xml
+*.snm
+*.synctex.gz
+*.synctex(busy)
+*.toc
+*.vrb
+*.xdv
+*.dvi
+*.idx
+*.ilg
+*.ind
+*.glo
+*.glg
+*.gls
+*.acn
+*.acr
+*.alg
+*.ist
+*.listing
+
+# Common editor / OS noise
+.DS_Store
+Thumbs.db

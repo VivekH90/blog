@@ -1,6 +1,0 @@
-\contentsline {section}{\numberline {1}Some basic Linear Algebra}{1}{section.1}%
-\contentsline {section}{\numberline {2}Exploring functions as bases}{2}{section.2}%
-\contentsline {subsection}{\numberline {2.1}The trignometric basis}{3}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}When can you fourier-expand?}{3}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}The complex exponential as the basis}{6}{subsection.2.3}%
-\contentsfinish 
