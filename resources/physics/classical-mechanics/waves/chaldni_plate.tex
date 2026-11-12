@@ -263,10 +263,380 @@ The off-diagonal components represent shear strains:
 +\frac{\partial u_z}{\partial x}
 \right).
 \]
-
-
 \end{definition}
 
+\subsection{Strain}
+\begin{assumption}
+We consider a material satisfying the following assumptions:
 
+\begin{enumerate}[label=\textsf{\textcolor{red!70!black}{A\arabic*.}}]
+
+    \item \textsf{\textcolor{blue}{Homogeneous.}}
+    Its material properties are identical throughout.
+
+    \item \textsf{\textcolor{blue}{Isotropic.}}
+    Its material properties are identical in every direction.
+
+    \item \textsf{\textcolor{blue}{Linearly Elastic.}}
+    The stress is linearly related to the strain for sufficiently
+    small deformations, allowing us to use the principle of
+    superposition.
+
+\end{enumerate}
+\end{assumption}
+
+\textcolor{red!70!black}{\textsf{Young's modulus}} is defined as the ratio of longitudinal
+stress to longitudinal strain, i.e.
+
+\[
+E=\frac{\text{Longitudinal Stress}}{\text{Longitudinal Strain}}.
+\]
+
+When a block is stretched along a particular direction, say the
+\(x\)-direction, it contracts along the two perpendicular
+directions. 
+
+Since the material is isotropic, its elastic response
+is independent of the direction of loading. The Poisson's ratio (which is defined as the negative ratio of transverse strain to longitudinal strain) is thereofore constant. For a uniaxial stress in the \(x\)-direction, we have
+
+\[
+\nu=-\frac{\epsilon_{yy}}{\epsilon_{xx}}
+\quad
+\nu=-\frac{\epsilon_{zz}}{\epsilon_{xx}}.
+\]
+
+Similarly, for uniaxial loading along the \(y\) and \(z\) directions,
+the corresponding relations are
+
+\[
+\nu=-\frac{\epsilon_{xx}}{\epsilon_{yy}}
+=-\frac{\epsilon_{zz}}{\epsilon_{yy}}
+\quad
+\nu=-\frac{\epsilon_{xx}}{\epsilon_{zz}}
+=-\frac{\epsilon_{yy}}{\epsilon_{zz}}.
+\]
+
+\begin{enumerate}
+    \item \textcolor{red!70!black}{Normal Stress} Consequently, when a uniaxial stress \(\sigma\) is applied along
+the \(x\)-direction, we obtain
+
+\[
+\epsilon_{xx}=\frac{\sigma}{E}
+\quad
+\epsilon_{yy}=-\frac{\nu\sigma}{E}
+\quad
+\epsilon_{zz}=-\frac{\nu\sigma}{E}.
+\]
+
+Now suppose that we apply three normal stresses simultaneously,
+namely \(\sigma_{xx}\), \(\sigma_{yy}\) and \(\sigma_{zz}\).
+Since the material is linearly elastic, we can use the
+principle of superposition.
+
+Consider the strain along the \(x\)-direction.
+    The individual contributions are:
+
+    \begin{enumerate}
+
+        \item The stress \(\sigma_{xx}\) produces a longitudinal
+        strain
+
+        \[
+        \epsilon_{xx}^{(1)}=\frac{\sigma_{xx}}{E}.
+        \]
+
+        \item The stress \(\sigma_{yy}\) produces a transverse
+        strain along the \(x\)-direction
+
+        \[
+        \epsilon_{xx}^{(2)}=-\frac{\nu\sigma_{yy}}{E}.
+        \]
+
+        \item Similarly, the stress \(\sigma_{zz}\) produces
+        a transverse strain along the \(x\)-direction
+
+        \[
+        \epsilon_{xx}^{(3)}=-\frac{\nu\sigma_{zz}}{E}.
+        \]
+
+    \end{enumerate}
+
+Adding all the contributions, we obtain
+
+\[
+\epsilon_{xx}
+=
+\epsilon_{xx}^{(1)}
++\epsilon_{xx}^{(2)}
++\epsilon_{xx}^{(3)}
+=
+\frac{1}{E}
+\left[
+\sigma_{xx}-\nu(\sigma_{yy}+\sigma_{zz})
+\right].
+\]
+
+By symmetry, the corresponding relations along the \(y\) and
+\(z\) directions are
+
+\[
+\epsilon_{yy}
+=
+\frac{1}{E}
+\left[
+\sigma_{yy}-\nu(\sigma_{xx}+\sigma_{zz})
+\right],
+\quad 
+\epsilon_{zz}
+=
+\frac{1}{E}
+\left[
+\sigma_{zz}-\nu(\sigma_{xx}+\sigma_{yy})
+\right].
+\]
+\item \textsf{\textcolor{red!70!black}{Shear stress}} Hooke's law for shear is
+\[
+\tau = G\gamma,
+\]
+where \textsf{\textcolor{blue!70!black}{engineering shear strain}} is denoted by \(\gamma\), and \(G\) is the \textsf{\textcolor{blue!70!black}{shear modulus}}. We also have
+\[
+G = \frac{E}{2(1+\nu)}.
+\]
+\end{enumerate}
+
+\begin{theorem}[Tensor form of Hooke's law]
+For an \textcolor{red!70!black}{\textnormal{\textsf{isotropic, linearly elastic body}}}, the stress-strain
+relation in tensor form is given by
+\[
+\boldsymbol{\sigma}
+=
+\lambda\,\operatorname{tr}(\boldsymbol{\epsilon})I
++2G\boldsymbol{\epsilon},
+\]
+where
+\[
+\lambda=\frac{E\nu}{(1+\nu)(1-2\nu)}.
+\]
+Here, \(E\) is Young's modulus, \(\nu\) is Poisson's ratio,
+\(G\) is the shear modulus, and \(I\) is the identity tensor.
+\end{theorem}
+
+\subsection{Newton's laws and the Navier--Cauchy equation}
+\begin{enumerate}
+
+    \item Consider a small rectangular element of a continuous body
+    with dimensions \(dx\), \(dy\) and \(dz\). Its volume and mass
+    are \(dV = dx\,dy\,dz\) and \(dm = \rho\,dV\), respectively.
+
+    The element experiences two kinds of forces:
+
+    \begin{enumerate}
+
+        \item \textsf{\textcolor{red!70!black}{Surface forces.}}
+        These are the forces exerted by the surrounding material
+        on the faces of the element. They arise due to the
+        stress tensor, which is given by
+        \[
+        \boldsymbol{\sigma} =
+        \begin{pmatrix}
+        \sigma_{xx} & \sigma_{xy} & \sigma_{xz}\\
+        \sigma_{yx} & \sigma_{yy} & \sigma_{yz}\\
+        \sigma_{zx} & \sigma_{zy} & \sigma_{zz}
+        \end{pmatrix}.
+        \]
+
+        Consider first the two faces whose normals point along
+        the \(x\)-direction. The face at position \(x\) experiences
+        an \(x\)-directed force
+        \[
+        F_x^{(-)}=-\sigma_{xx}(x,y,z)\,dy\,dz,
+        \]
+        whereas the opposite face at \(x+dx\) experiences
+        \[
+        F_x^{(+)}=\sigma_{xx}(x+dx,y,z)\,dy\,dz.
+        \]
+
+        Adding these contributions and using a first-order
+        Taylor expansion, we obtain
+        \[
+        F_x^{(1)}
+        =\frac{\partial \sigma_{xx}}{\partial x}\,dV.
+        \]
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.75\textwidth]{chladni_plate_images/stressonbody.png}
+            \caption{Force due to surrounding material}
+        \end{figure}
+        Similarly, the contributions from the two pairs of faces
+        normal to the \(y\)- and \(z\)-directions are
+        \[
+        F_x^{(2)}
+        =\frac{\partial \sigma_{xy}}{\partial y}\,dV,
+        \qquad
+        F_x^{(3)}
+        =\frac{\partial \sigma_{xz}}{\partial z}\,dV.
+        \]
+
+        Thus, the total surface force along the \(x\)-direction is
+        \[
+        F_x^{\mathrm{surface}}
+        =
+        \left(
+        \frac{\partial \sigma_{xx}}{\partial x}
+        +\frac{\partial \sigma_{xy}}{\partial y}
+        +\frac{\partial \sigma_{xz}}{\partial z}
+        \right)dV.
+        \]
+
+        Repeating the same procedure along the \(y\)- and
+        \(z\)-directions, we obtain the total surface force
+        in vector form:
+        \[
+        \mathbf{F}_{\mathrm{surface}}
+        =
+        (\nabla\cdot\boldsymbol{\sigma})\,dV,
+        \]
+        where
+       \[
+\nabla\cdot\boldsymbol{\sigma}
+=
+\begin{pmatrix}
+\dfrac{\partial}{\partial x} &
+\dfrac{\partial}{\partial y} &
+\dfrac{\partial}{\partial z}
+\end{pmatrix}
+\begin{pmatrix}
+\sigma_{xx} & \sigma_{xy} & \sigma_{xz}\\
+\sigma_{yx} & \sigma_{yy} & \sigma_{yz}\\
+\sigma_{zx} & \sigma_{zy} & \sigma_{zz}
+\end{pmatrix}.
+\]
+        \item \textsf{\textcolor{red!70!black}{Body forces.}}
+        These are forces that act throughout the volume of the
+        element, such as gravitational forces. Let the body force
+        per unit volume be represented by
+        \[
+        \mathbf{f} =
+        \begin{pmatrix}
+        f_x\\
+        f_y\\
+        f_z
+        \end{pmatrix}.
+        \]
+        Therefore, the total body force acting on the element is
+        \[
+        \mathbf{F}_{\mathrm{body}}=\mathbf{f}\,dV.
+        \]
+
+    \end{enumerate}
+
+    \item The net force acting on the infinitesimal element is therefore
+\[
+\mathbf{F}_{\mathrm{net}}
+=
+\left(
+\nabla\cdot\boldsymbol{\sigma}+\mathbf{f}
+\right)dV.
+\]
+
+Applying Newton's second law, we have
+\[
+\rho\mathbf{a}
+=
+\nabla\cdot\boldsymbol{\sigma}+\mathbf{f}.
+\]
+\end{enumerate}
+
+\begin{theorem}[Newton's law for a continuum]
+According to Newton's second law, the equation of motion for a
+continuum is given by
+\[
+\rho\mathbf{a}
+=
+\nabla\cdot\boldsymbol{\sigma}
++\mathbf{f},
+\]
+where \(\rho\) is the mass density, \(\mathbf{a}\) is the
+acceleration vector, \(\boldsymbol{\sigma}\) is the stress tensor,
+and \(\mathbf{f}\) is the external body force per unit volume.
+\end{theorem}
+
+\section{The Chladni Plate}
+\begin{enumerate}
+
+    \item Consider a thin plate of thickness \(h\), occupying the
+    region \(-h/2\leq z\leq h/2\). Initially, its middle surface
+    lies in the \(xy\)-plane (so that any point on the middle surface is \(\mathbf{r}(x,y)=(x,y,0)\)). 
+
+    Assume that after deformation, the middle surface is displaced in the
+    \(z\)-direction by an amount \(w(x,y,t)\). Its position vector
+    therefore becomes
+    \(\mathbf{r}'(x,y,t)=(x,y,w(x,y,t))\).
+
+    The normal vector to the deformed middle surface (assuming small slopes, that is,
+    \(\lvert w_x\rvert,\lvert w_y\rvert\ll 1\)) is given by
+    \[
+    \mathbf{n}=
+    \begin{pmatrix}
+    -w_x\\
+    -w_y\\
+    1
+    \end{pmatrix}.
+    \]
+\item According to the \textsf{\textcolor{red!70!black}{Kirchhoff--Love hypothesis}} (for thin plates), any point initially lying along the normal to the middle surface moves along the normal to the deformed middle surface. Furthermore, the normal remains straight and its length remains unchanged.
+
+    Thus, a point initially located at \(\mathbf{r}=(x,y,z)\) is transported to the position
+    \[
+    \mathbf{r}'= (x,y,w)+z(-w_x,-w_y,1)= (x-zw_x,\ y-zw_y,\ w+z).
+    \]
+    
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{chladni_plate_images/kirchoff-love.png}
+    \caption{Illustration of the Kirchhoff-Love law (this actually is prety intuitive)}
+\end{figure}
+\item The displacement field is thus given by (note that \(w=w(x,y,t)\)):
+\[
+\mathbf{u}
+=
+\begin{pmatrix}
+-zw_x , -zw_y , w
+\end{pmatrix},
+\]
+
+The strain tensor therefore is:
+\[
+\boldsymbol{\epsilon}
+=
+-z
+\begin{pmatrix}
+w_{xx} & w_{xy} & 0\\
+w_{xy} & w_{yy} & 0\\
+0 & 0 & 0
+\end{pmatrix}.
+\]
+\item The equations of motion for the plate are given by the
+three components of Newton's law:
+\[
+\begin{aligned}
+\frac{\partial\sigma_{xx}}{\partial x}
++\frac{\partial\sigma_{xy}}{\partial y}
++\frac{\partial\sigma_{xz}}{\partial z}
+&=\rho\frac{\partial^2u_x}{\partial t^2}
+=-\rho z w_{xtt},\\[8pt]
+\frac{\partial\sigma_{xy}}{\partial x}
++\frac{\partial\sigma_{yy}}{\partial y}
++\frac{\partial\sigma_{yz}}{\partial z}
+&=\rho\frac{\partial^2u_y}{\partial t^2}
+=-\rho z w_{ytt},\\[8pt]
+\frac{\partial\sigma_{xz}}{\partial x}
++\frac{\partial\sigma_{yz}}{\partial y}
++\frac{\partial\sigma_{zz}}{\partial z}
+&=\rho\frac{\partial^2u_z}{\partial t^2}
+=\rho w_{tt}.
+\end{aligned}
+\]
+\end{enumerate}
 
 \end{document}
